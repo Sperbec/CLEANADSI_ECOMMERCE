@@ -17,7 +17,7 @@
         <thead>
             <tr>
                 <td>ID</td>
-                <td>Nombre</td>
+                <td>Nombres</td>
                 <td>Email</td>
                 <td>Acciones</td>
             </tr>
