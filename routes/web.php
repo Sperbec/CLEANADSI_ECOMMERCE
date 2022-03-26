@@ -36,6 +36,10 @@ Route::post('/recover', [App\Http\Controllers\LoginController::class, 'postRecov
 Route::get('/reset', [App\Http\Controllers\LoginController::class, 'getReset'])->name('getReset');
 Route::post('/reset', [App\Http\Controllers\LoginController::class, 'postReset'])->name('postReset');
 
+//Categorías
+Route::resource('categoria', App\Http\Controllers\CategoriaController::class)->names('categoria');
+
+
 //Proveedores
 Route::get('/proveedores/index', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedores');
 Route::get('/proveedores/crear', [App\Http\Controllers\ProveedorController::class, 'crear'])->name('crearProveedores');
