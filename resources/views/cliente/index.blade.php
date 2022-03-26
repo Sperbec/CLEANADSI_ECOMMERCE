@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Clientes')
+@section('title', 'usuarios')
 
 @section('content_header')
 <div class="row">
-    <h1>Clientes</h1>
+    <h1>usuarios</h1>
     <a href="{{ url('/cliente/crear')}}" class="btn btn-primary btn-sm ml-auto">
         <i class="fas fa-plus"></i> Crear cliente</a>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cliente;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -14,8 +15,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-       
-            return view('clientes.index');
+            $clientes=User::all();
+            return view('clientes.index',compact('clientes'));
         }
     
 
@@ -26,7 +27,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**
@@ -46,9 +47,20 @@ class ClienteController extends Controller
      * @param  \App\Models\cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function show(cliente $cliente)
+    public function guardar(Request $request)
     {
-        //
+        $id = $request->name;
+        $nombre = $request->email;
+        $apellido=$request->apellido;
+        
+        $cliente = new User();
+        $cliente->id = $id;
+        $cliente->nombre = $nombre;
+        $cliente->apellido=$apellido;
+
+        $cliente->save();
+
+        return redirect('/clientes/index');  
     }
 
     /**

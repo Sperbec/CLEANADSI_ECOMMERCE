@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
+use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +39,10 @@ Route::post('/recover', [App\Http\Controllers\LoginController::class, 'postRecov
 
 //tabla clientes
 Route::get('/clientes/index', [App\Http\Controllers\clienteController::class, 'index'])->name('index');
+Route::get('/clientes/create', [App\Http\Controllers\clienteController::class, 'create'])->name('create');
+Route::post('/clientes/guardar', [App\Http\Controllers\clienteController::class, 'guardar'])->name('guardar');
 
+//Route::resource('clientes',ClienteController::class);
 
 
 //Proveedores

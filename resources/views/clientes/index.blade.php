@@ -1,41 +1,75 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Clientes')
 
 @section('content_header')
-    <h1>tabla clientes</h1>
+<div class="row">
+    <h1>Clientes</h1>
+    <a href="{{ url('/clientes/create')}}" class="btn btn-primary btn-sm ml-auto">
+        <i class="fas fa-plus"></i> Crear cliente</a>
+</div>
 @stop
 
 @section('content')
-    <p>Los clientes registrados hasta ahora son:</p>
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+    <table class="table" id="tblclientes">
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>nombre</td>
+                <td>apellido</td>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($clientes as $cliente)
+              <tr>
+                  <td>{{$cliente->id}}</td>
+                  <td>{{$cliente->nombre}}</td>
+                  <td>{{$cliente->apellido}}</td>
+                  <td>
+
+                   
+
+                   </td>
+              </tr>  
+            @endforeach
+        </tbody>
+       
+    </table>
 @stop
 
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+<script> 
+    $(document).ready(function(){
+       $('#tblclientes').DataTable({
+        "language": idioma_espanol
+       });
+    });
+
+    var idioma_espanol ={
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+       
+    }
+
+ </script>
+@stop
