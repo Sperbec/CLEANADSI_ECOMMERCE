@@ -20,7 +20,7 @@
             <label for="codigo">Codigo categoría:</label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <i class="fas fa-user"></i>
+                    <i class="far fa-keyboard"></i>
                 </div>
                 {!! Form::text('codigo', $categoria->codigo, ['class' => 'form-control', 'required']) !!}
             </div>
@@ -33,7 +33,7 @@
             <label for="nombre">Nombre categoría:</label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-keyboard"></i>
                 </div>
                 {!! Form::text('nombre', $categoria->nombre, ['class' => 'form-control', 'required']) !!}
             </div>
