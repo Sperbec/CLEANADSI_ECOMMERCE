@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-
+{!!  Form::open(['route' => 'guardarProveedores']) !!}
     <div class="row">
         <div class="col-md-6">
             <label for="tipos_personas" class="mtop16">Tipo de persona:</label>
@@ -17,7 +17,7 @@
                 </div>
                 <select name="tipos_personas" id="tipos_personas" class="form-select" onchange="
                 habilitar(this.value);">
-                    <option value='0'>Seleccione *</option>
+                    <option value=''>Seleccione *</option>
                     @foreach ($tipos_personas as $tipopersona)
                         <option value="{{ $tipopersona->id_opcion }}">{{ $tipopersona->nombre }}</option>
                     @endforeach
@@ -117,7 +117,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 
 <div class="row">
@@ -136,20 +136,87 @@
 
             <!--El segundo parámetro se manda en null porque no lleva ningun
                   valor por defecto-->
-            {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled']) !!}
+            {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'nombre_proveedor']) !!}
         </div>
     </div>
 
-    <div class="col-md-6">
-        <label for="nit">Nit:</label>
+    
+
+    <div class="col-md">
+        <label for="nit" class="mtop-16">NIT:</label>
         <div class="input-group">
             <div class="input-group-text">
-                
+                <i class="fas fa-marker"></i>
             </div>
-            {!! Form::text('nit', null, ['class' => 'input-group-text', 'enable']) !!}
+            {!! Form::text('nit', null, ['class' => 'form-control', 'required','disabled', 'id' => 'nit']) !!}
         </div>
     </div>
 </div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <label for="direccion">Dirección:</label>
+        <div class="input-group">
+            <div class="input-group-text">
+                <!--Hacer uso del fontawesome-->
+                <i class="fas fa-map-marked-alt"></i>
+            </div>
+
+            <!--El segundo parámetro se manda en null porque no lleva ningun
+                  valor por defecto-->
+            {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'direccion']) !!}
+        </div>
+    </div>
+
+    <div class="col-md">
+        <label for="correo" class="mtop-16">Correo electrónico:</label>
+        <div class="input-group">
+            <div class="input-group-text">
+                <i class="fas fa-envelope"></i>
+            </div>
+            {!! Form::text('nit', null, ['class' => 'form-control', 'required','disabled', 'id' => 'correo_electronico']) !!}
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <label  for="contacto">Contacto:</label>
+        <div class="input-group">
+            <div class="input-group-text">
+                <!--Hacer uso del fontawesome-->
+                <i class="fas fa-address-book"></i>
+            </div>
+
+            <!--El segundo parámetro se manda en null porque no lleva ningun
+                  valor por defecto-->
+            {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'contacto']) !!}
+        </div>
+    </div>
+
+    
+
+    <div class="col-md">
+        <label for="telefono" class="mtop-16">Teléfono móvil:</label>
+        <div class="input-group">
+            <div class="input-group-text">
+                <i class="fas fa-mobile"></i>
+            </div>
+            {!! Form::text('nit', null, ['class' => 'form-control', 'required','disabled', 'id' => 'telefono_movil']) !!}
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-md-3">
+    <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Enviar</button>
+</div>
+
+{!!  Form::close() !!}
 
 @stop
 
@@ -178,45 +245,66 @@
     });
 </script>
 
-
+<!-- habilitar o deshabilitar campos, dependiendo la selección de persona -->
 <script>
     function habilitar(value)
 		{
             
-                
-            
-            if(value=="0")
+            if(value=="")
 			{
 				// deshabilitamos
+                // campos de persona natural
 				document.getElementById("nombres_persona").disabled=true;
                 document.getElementById("apellidos_persona").disabled=true;
                 document.getElementById("tipo_documento_persona").disabled=true;
                 document.getElementById("documento_persona").disabled=true;
                 document.getElementById("genero_persona").disabled=true;
                 document.getElementById("calendario").disabled=true;
+                // campos de persona jurídica
+                document.getElementById("nombre_proveedor").disabled=true;
+                document.getElementById("nit").disabled=true;
+                document.getElementById("direccion").disabled=true;
+                document.getElementById("correo_electronico").disabled=true;
+                document.getElementById("contacto").disabled=true;
+                document.getElementById("telefono_movil").disabled=true;
             }
        
-			if(value=="20" || value==true)
+			if(value=="20")
             
 			{
 				// habilitamos
+                // campos de persona natural
 				document.getElementById("nombres_persona").disabled=false;
                 document.getElementById("apellidos_persona").disabled=false;
                 document.getElementById("tipo_documento_persona").disabled=false;
                 document.getElementById("documento_persona").disabled=false;
                 document.getElementById("genero_persona").disabled=false;
                 document.getElementById("calendario").disabled=false;
+                // campos de persona jurídica
+                document.getElementById("nombre_proveedor").disabled=true;
+                document.getElementById("nit").disabled=true;
+                document.getElementById("direccion").disabled=true;
+                document.getElementById("correo_electronico").disabled=true;
+                document.getElementById("contacto").disabled=true;
+                document.getElementById("telefono_movil").disabled=true;
 			}
             
             else if(value=="21" ){
 				// deshabilitamos
+                // campos de persona natural
 				document.getElementById("nombres_persona").disabled=true;
                 document.getElementById("apellidos_persona").disabled=true;
                 document.getElementById("tipo_documento_persona").disabled=true;
                 document.getElementById("documento_persona").disabled=true;
                 document.getElementById("genero_persona").disabled=true;
                 document.getElementById("calendario").disabled=true;
-
+                // campos de persona jurídica
+                document.getElementById("nombre_proveedor").disabled=false;
+                document.getElementById("nit").disabled=false;
+                document.getElementById("direccion").disabled=false;
+                document.getElementById("correo_electronico").disabled=false;
+                document.getElementById("contacto").disabled=false;
+                document.getElementById("telefono_movil").disabled=false;
 			}
         
 		}
