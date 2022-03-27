@@ -41,12 +41,8 @@ Route::resource('categoria', App\Http\Controllers\CategoriaController::class)->n
 
 
 //Proveedores
-Route::get('/proveedores/index', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedores');
-Route::get('/proveedores/crear', [App\Http\Controllers\ProveedorController::class, 'crear'])->name('crearProveedores');
-Route::post('/proveedores/guardar', [App\Http\Controllers\ProveedorController::class, 'guardar'])->name('guardarProveedores');
-Route::get('/proveedores/{id}/editar', [App\Http\Controllers\ProveedorController::class, 'editar'])->name('editarProveedores');
-Route::post('/proveedores/{id}/editarProveedor', [App\Http\Controllers\ProveedorController::class, 'editarProveedor'])->name('editarProveedor');
-Route::get('/proveedores/{id}/eliminar', [App\Http\Controllers\ProveedorController::class, 'eliminar'])->name('eliminarProveedores');
+
+Route::resource('proveedores', App\Http\Controllers\ProveedorController::class)->names('proveedores');
 
 
 //Clientes

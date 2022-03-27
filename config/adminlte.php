@@ -257,7 +257,7 @@ return [
 
         [
             'text' => 'Proveedores',
-            'route'  => 'proveedores',
+            'route'  => 'proveedores.index',
             'icon' => 'fas fa-fw fa-user-tag',
         ],
         [

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Proveedor;
 use App\Models\Opciones_definidas;
+use App\Models\Persona;
 use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
@@ -30,12 +31,12 @@ class ProveedorController extends Controller
         return view('proveedor.index', $data);
     }
 
-    public function mostrar($id){
+    public function show($id){
         $proveedor = Proveedor::find($id);
-        return view('proveedor.show', compact('proveedor'));
+        return view('proveedor.index', compact('proveedor'));
     }
 
-    public function crear(){
+    public function create(){
         $tipos_personas = Opciones_definidas::where('variable', '00tipopersona')->get();
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
@@ -49,53 +50,84 @@ class ProveedorController extends Controller
         return view('proveedor.crear', $data);
     }
 
-    public function guardar(Request $request){
+    public function store(Request $request){
 
-       // Tipo persona para el if
+
+        
+       // Datos persona natural para el if de persona natural
         $tipos_personas = $request->tipos_personas;
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;
         $tipos_documento = $request->tipo_documento;
         $documento = $request->numero_documento;
-        $documento = $request->numero_documento;
-        dd($request);
+        $genero = $request->genero;
+        $caledario = $request->calendario;
+
+        // Datos persona juridica para el if de persona jurídia
+
+        $nombre_juridico = $request->nombre;
+        $nit = $request->nit;
+        $direccion = $request->direccion;
+        $correo = $request->correo;
+        $contacto = $request->contacto;
+        $telefono_movil = $request->telefono_movil;
+        
 
         if ($tipos_personas == 20) {
+            $persona = new Persona();
+
+            $persona->nombres = $nombres;
+            $persona->apellidos = $apellidos;
+            $persona->id_opcion_genero = $genero;
+            $persona->id_opcion_tipo_documento = $tipos_documento;
+            $persona->numero_documento = $documento;
+            $persona->natalicio = $caledario;
+            $persona->habilitado = 1;
+
+            $persona->save();
+        }
+
+        if ($tipos_personas == 21) {
             $proveedor = new Proveedor();
-            $proveedor->nombre = $tipos_personas;
+            $proveedor->id_opcion_persona = $tipos_personas;
+            $proveedor->nombre = $nombre_juridico;
+            $proveedor->nit = $nit;
+            $proveedor->direccion = $direccion;
+            $proveedor->correo_electronico = $correo;
+            $proveedor->contacto = $contacto;
+            $proveedor ->telefono_movil=$telefono_movil;
 
             $proveedor->save();
         }
 
-        
-        
-
-        $proveedor->save();
-
-        return redirect('/proveedores/index');
+        return redirect()->route('proveedores.index');
     }
 
-    public function editar($id_proveedor){
-        $proveedor = Proveedor::find($id_proveedor);
+    public function edit($id_proveedor){
+        
+        $proveedor = Proveedor::FindOrFail($id_proveedor);
+        
         return view('proveedor.editar', compact('proveedor'));
+        dd($id_proveedor);
     }
 
-    public function editarProveedor(Request $request, $id_proveedor){
-        $codigoproveedor = $request->codigoproveedor;
+    public function update(Request $request, $id_proveedor){
+        
+       
         $nombreproveedor = $request->nombreproveedor;
         
         $proveedor = Proveedor::find($id_proveedor);
-        $proveedor->codigo = $codigoproveedor;
+       
         $proveedor->nombre = $nombreproveedor;
         
         $proveedor->update();
 
-        return redirect('/proveedores/index');
+        return redirect()->route('proveedores.index');
     }
 
-    public function eliminar($id_proveedor){
-        $proveedor = Proveedor::find($id_proveedor);
+    public function destroy($id_proveedor){
+        $proveedor = Proveedor::findOrFail($id_proveedor);
         $proveedor->delete();
-        return redirect('/proveedores/index');
+        return redirect()->route('proveedores.index');
     }
 }

@@ -5,7 +5,7 @@
 @section('content_header')
 <div class="row">
     <h1>Proveedores</h1>
-    <a href="{{ url('/proveedores/crear')}}" class="btn btn-primary btn-sm ml-auto">
+    <a href="{{route('proveedores.create')}}" class="btn btn-primary btn-sm ml-auto">
         <i class="fas fa-plus"></i> Crear proveedor</a>
 </div>  
 
@@ -17,7 +17,7 @@
         <thead>
             <tr>
                 <td>ID</td>
-                <td>Identificación</td>
+                <td>NIT</td>
                 <td>Nombre</td>
                 <td>Acciones</td>
             </tr>
@@ -29,13 +29,17 @@
                   <td>{{$proveedor->documento}}</td>
                   <td>{{$proveedor->nombre}}</td>
                   <td>
-                    <a class="opts" href="{{ url('/proveedores/'.$proveedor->id_proveedor.'/editar')}}" data-toggle="tooltip" 
+                      
+                        <div class="row">
+                    <a class="opts" href="{{ route('proveedores.edit', $proveedor->id_proveedor)}}" data-toggle="tooltip" 
                         data-bs-placement="top" title="Editar proveedor">
                     <i class="fas fa-edit"></i></a>
-
-                    <a class="opts" href="{{ url('/proveedores/'.$proveedor->id_proveedor.'/eliminar')}}" data-toggle="tooltip" 
-                        data-bs-placement="top" title="Eliminar proveedor">
-                    <i class="fas fa-trash"></i></a>
+                        <form action="{{route('proveedores.destroy', $proveedor->id_proveedor)}}" class="formulario-eliminar" method="post">
+                            @csrf
+                            @method('DELETE')
+                        <button style="border:0; background: none;" title="Eliminar proveedor" type="submit"><i class="fas fa-trash"></i></button>
+                        </form>
+                        </div>
 
                    </td>
                   
@@ -80,4 +84,13 @@
        
     }
     </script>
+
+<!--Sweetalert2 -->
+
+<!--Importar sweetalert2 -->
+<script src="sweetalert2.all.min.js"></script>
+
+
+
+
 @stop

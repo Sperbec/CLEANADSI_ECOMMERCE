@@ -6,8 +6,9 @@
     <h1>Crear proveedores</h1>
 @stop
 
+
 @section('content')
-{!!  Form::open(['route' => 'guardarProveedores']) !!}
+{!!  Form::open(['route' => 'proveedores.store']) !!}
     <div class="row">
         <div class="col-md-6">
             <label for="tipos_personas" class="mtop16">Tipo de persona:</label>
@@ -79,7 +80,7 @@
           <div class="input-group-text">
               <i class="far fa-id-card"></i>
           </div>
-          {!!  Form::text('numero_documento', null, ['class' => 'form-control', 'required', 'id'=>'documento_persona', 'disabled']) !!}
+          {!!  Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id'=>'documento_persona', 'disabled', 'min'=>'0000000000', 'max'=>'9999999999']) !!}
       </div>
   </div>
 </div>
@@ -110,11 +111,13 @@
             <span class="input-group-text">
                 <i class="fa fa-calendar"></i>
             </span>
-            <input disabled id="calendario" type="text" class="form-control">
+            {!! Form::date('calendario', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'calendario']) !!}
             <span class="input-group-append">
                
             </span>
         </div>
+        
+
     </div>
 </div>
 </div>
@@ -127,7 +130,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <label id="nombres" for="nombres">Nombre:</label>
+        <label for="nombre">Nombre:</label>
         <div class="input-group">
             <div class="input-group-text">
                 <!--Hacer uso del fontawesome-->
@@ -136,7 +139,7 @@
 
             <!--El segundo parámetro se manda en null porque no lleva ningun
                   valor por defecto-->
-            {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'nombre_proveedor']) !!}
+            {!! Form::text('nombre', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'nombre_proveedor']) !!}
         </div>
     </div>
 
@@ -148,7 +151,7 @@
             <div class="input-group-text">
                 <i class="fas fa-marker"></i>
             </div>
-            {!! Form::text('nit', null, ['class' => 'form-control', 'required','disabled', 'id' => 'nit']) !!}
+            {!! Form::number('nit', null, ['class' => 'form-control', 'required','disabled', 'id' => 'nit', 'min'=>'000000000000000', 'max'=>'999999999999999']) !!}
         </div>
     </div>
 </div>
@@ -165,7 +168,7 @@
 
             <!--El segundo parámetro se manda en null porque no lleva ningun
                   valor por defecto-->
-            {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'direccion']) !!}
+            {!! Form::text('direccion', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'direccion']) !!}
         </div>
     </div>
 
@@ -175,7 +178,7 @@
             <div class="input-group-text">
                 <i class="fas fa-envelope"></i>
             </div>
-            {!! Form::text('nit', null, ['class' => 'form-control', 'required','disabled', 'id' => 'correo_electronico']) !!}
+            {!! Form::email('correo', null, ['class' => 'form-control', 'required','disabled', 'id' => 'correo_electronico']) !!}
         </div>
     </div>
 </div>
@@ -184,7 +187,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <label  for="contacto">Contacto:</label>
+        <label  for="contacto">Nombre contacto:</label>
         <div class="input-group">
             <div class="input-group-text">
                 <!--Hacer uso del fontawesome-->
@@ -193,7 +196,7 @@
 
             <!--El segundo parámetro se manda en null porque no lleva ningun
                   valor por defecto-->
-            {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'contacto']) !!}
+            {!! Form::text('contacto', null, ['class' => 'form-control', 'required', 'disabled', 'id'=>'contacto']) !!}
         </div>
     </div>
 
@@ -205,7 +208,7 @@
             <div class="input-group-text">
                 <i class="fas fa-mobile"></i>
             </div>
-            {!! Form::text('nit', null, ['class' => 'form-control', 'required','disabled', 'id' => 'telefono_movil']) !!}
+            {!! Form::number('telefono_movil', null, ['class' => 'form-control', 'required','disabled', 'id' => 'telefono_movil', 'min'=>'0000000000', 'max'=>'9999999999']) !!}
         </div>
     </div>
 </div>
@@ -242,6 +245,8 @@
 <script type="text/javascript">
     $(function() {
         $('#datepicker').datepicker();
+        
+        
     });
 </script>
 
