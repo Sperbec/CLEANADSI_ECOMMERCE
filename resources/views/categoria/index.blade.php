@@ -82,7 +82,7 @@
                                 title="Editar categoria">
                                 <i class="fas fa-edit"></i></a>
 
-                            <form action="{{ route('categoria.destroy', $categoria->id_categoria) }}" method="post">
+                            <form class="formEliminar"  action="{{ route('categoria.destroy', $categoria->id_categoria) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
@@ -103,6 +103,9 @@
 @stop
 
 @section('js')
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
         $("#btnCrear").on("click", function() {
             document.getElementById('codigocategoria').value = '';
@@ -145,5 +148,51 @@
             }
 
         }
+
+        @if(session('eliminado') == 'ok' || session('editado') == 'ok' || session('guardado') == 'ok')
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            
+            @if(session('eliminado') == 'ok')
+                title: 'Registro eliminado con éxito',
+            @endif
+
+            @if(session('editado') == 'ok')
+                title: 'Registro editado con éxito',
+            @endif
+
+            @if(session('guardado') == 'ok')
+                title: 'Registro guardado con éxito',
+            @endif
+
+            showConfirmButton: false,
+            timer: 1500
+        })
+        @endif
+
+
+        $('.formEliminar').submit(function(e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Seguro de eliminar este registro?',
+                text: "Esta acción no se puede deshacer",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',  
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                   this.submit();
+                }
+                
+                
+            })
+
+        });
+
     </script>
 @stop

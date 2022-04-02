@@ -35,7 +35,7 @@ class CategoriaController extends Controller
 
         $categoria->save();
 
-        return redirect()->route('categoria.index');
+        return redirect()->route('categoria.index')->with('guardado', 'ok');;
     }
 
     public function edit($id){
@@ -55,13 +55,13 @@ class CategoriaController extends Controller
         
         $categoria->update();
         
-        return redirect()->route('categoria.index');
+        return redirect()->route('categoria.index')->with('editado', 'ok');
     }
 
     public function destroy($id){
         $categoria = Categoria::findOrFail($id);
         $categoria->delete();
-        return redirect()->route('categoria.index');
+        return redirect()->route('categoria.index')->with('eliminado', 'ok');
     }
 
     public function show(){

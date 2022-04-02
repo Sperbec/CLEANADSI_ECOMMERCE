@@ -41,7 +41,6 @@ Route::resource('categoria', App\Http\Controllers\CategoriaController::class)->n
 
 
 //Proveedores
-
 Route::resource('proveedores', App\Http\Controllers\ProveedorController::class)->names('proveedores');
 
 
