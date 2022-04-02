@@ -5,13 +5,60 @@
 @section('content_header')
     <div class="row">
         <h1>Categorías</h1>
-        <a href="{{ route('categoria.create') }}" class="btn btn-primary btn-sm ml-auto">
+        <a id="btnCrear" data-toggle="modal" data-target="#mdlCrearCategoria" class="btn btn-primary btn-sm ml-auto">
             <i class="fas fa-plus"></i> Crear categoría</a>
     </div>
 
 @stop
 
 @section('content')
+
+    <!-- Modal de crear categoria-->
+    <div id="mdlCrearCategoria" class="modal fade" role="dialog">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Crear categoría</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    {!! Form::open(['route' => 'categoria.store']) !!}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="codigo">Codigo categoría:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="far fa-keyboard"></i>
+                                </div>
+                                {!! Form::text('codigo', null, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="nombre">Nombre categoría:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-keyboard"></i>
+                                </div>
+                                {!! Form::text('nombre', null, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button id="agregarItem" type="submit" class="btn btn-success">Agregar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+
 
     <table class="table table-hover" id="tblcategoria">
         <thead>
@@ -26,21 +73,25 @@
             @foreach ($categorias as $categoria)
                 <tr>
                     <td>{{ $categoria->id_categoria }}</td>
-                    <td>{{ $categoria->categoria }}</td>
+                    <td>{{ $categoria->codigo }}</td>
                     <td>{{ $categoria->nombre }}</td>
                     <td>
                         <div class="row">
-                            <a class="btn btn-primary opts" href="{{ route('categoria.edit', $categoria->id_categoria) }}"
-                                data-toggle="tooltip" data-bs-placement="top" title="Editar categoria">
+                            <a id="btnEditar" data-toggle="modal" data-target="#mdlEditarCategoria{{$categoria->id_categoria}}"
+                                class="btn btn-primary opts" data-toggle="tooltip" data-bs-placement="top"
+                                title="Editar categoria">
                                 <i class="fas fa-edit"></i></a>
 
-                            <form action="{{ route('categoria.destroy', $categoria->id_categoria)}}" method="post">
+                            <form action="{{ route('categoria.destroy', $categoria->id_categoria) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
                         </div>
                         </form>
+
+                        
                     </td>
+                    @include('categoria.editmodal')
                 </tr>
             @endforeach
         </tbody>
@@ -53,6 +104,19 @@
 
 @section('js')
     <script>
+        $("#btnCrear").on("click", function() {
+            document.getElementById('codigocategoria').value = '';
+            document.getElementById('nombrecategoria').value = '';
+            $("#mdlCrearCategoria").modal("show");
+        });
+
+        $("#btnEditar").on("click", function() {
+            document.getElementById('codigocategoria').value = '';
+            document.getElementById('nombrecategoria').value = '';
+            $("#mdlEditarCategoria").modal("show");
+        });
+
+
         $(document).ready(function() {
             $('#tblcategoria').DataTable({
                 "language": idioma_espanol
