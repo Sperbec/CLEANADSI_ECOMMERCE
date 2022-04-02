@@ -66,7 +66,7 @@
                     <div class="input-group-text">
                         <i class="far fa-id-card"></i>
                     </div>
-                    {!!  Form::text('numero_documento', null, ['class' => 'form-control', 'required']) !!}
+                    {!!  Form::number('numero_documento', null, ['class' => 'form-control', 'required']) !!}
                 </div>
             </div>
         </div>

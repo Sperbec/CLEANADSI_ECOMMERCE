@@ -27,7 +27,6 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-md-6">
             <label for="nombre">Nombre categoría:</label>
