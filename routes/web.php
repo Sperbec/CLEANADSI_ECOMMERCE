@@ -36,13 +36,13 @@ Route::post('/recover', [App\Http\Controllers\LoginController::class, 'postRecov
 Route::get('/reset', [App\Http\Controllers\LoginController::class, 'getReset'])->name('getReset');
 Route::post('/reset', [App\Http\Controllers\LoginController::class, 'postReset'])->name('postReset');
 
+//Categorías
+Route::resource('categoria', App\Http\Controllers\CategoriaController::class)->names('categoria');
+
+
 //Proveedores
-Route::get('/proveedores/index', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedores');
-Route::get('/proveedores/crear', [App\Http\Controllers\ProveedorController::class, 'crear'])->name('crearProveedores');
-Route::post('/proveedores/guardar', [App\Http\Controllers\ProveedorController::class, 'guardar'])->name('guardarProveedores');
-Route::get('/proveedores/{id}/editar', [App\Http\Controllers\ProveedorController::class, 'editar'])->name('editarProveedores');
-Route::post('/proveedores/{id}/editarProveedor', [App\Http\Controllers\ProveedorController::class, 'editarProveedor'])->name('editarProveedor');
-Route::get('/proveedores/{id}/eliminar', [App\Http\Controllers\ProveedorController::class, 'eliminar'])->name('eliminarProveedores');
+
+Route::resource('proveedores', App\Http\Controllers\ProveedorController::class)->names('proveedores');
 
 
 //Clientes

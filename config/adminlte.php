@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'CLEAN ADSI',
+    'title' => 'CLEAN LINE',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>CLEAN ADSI</b>',
+    'logo' => '<b>CLEAN LINE</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -248,9 +248,16 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+
+        [
+            'text' => 'Categorías',
+            'route'  => 'categoria.index',
+            'icon' => 'fas fa-tags',
+        ],
+
         [
             'text' => 'Proveedores',
-            'route'  => 'proveedores',
+            'route'  => 'proveedores.index',
             'icon' => 'fas fa-fw fa-user-tag',
         ],
         [

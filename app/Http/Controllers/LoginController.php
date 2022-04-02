@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use App\Mail\UserSendRecover;
 use App\Mail\UserSendNewPassword;
 use GuzzleHttp\Psr7\Request as Psr7Request;
+use Illuminate\Contracts\Session\Session;
 
 class LoginController extends Controller
 {
@@ -24,6 +25,8 @@ class LoginController extends Controller
     //métodos que se le pasen como arreglo.
     public function __construct()
     {
+        Auth::logout();
+        session_unset();
         $this->middleware('guest')->except(['getLogout']);
     }
 
@@ -85,6 +88,30 @@ class LoginController extends Controller
 
     public function postRegister(Request $request)
     {
+
+        $rules = [
+            'nombres' => 'required|regex:/^[\pL\s\-]+$/u',
+            'apellidos' => 'required|regex:/^[\pL\s\-]+$/u',
+            'numero_documento' => 'required|min:10|max:15'
+        ];
+
+        $messages = [
+            'nombres.required' => 'Los nombres son requeridos.',
+            'nombres.alpha' => 'Los nombres no pueden contener letras.',
+            'apellidos.required' => 'Los apellidos son requeridos.',
+            'apellidos.alpha' => 'Los apellidos no pueden contener letras.',
+            'numero_documento.required' => 'El número de documento es requerido',
+            'numero_documento.min' => 'La cantidad de digitos para el número de documento no puede ser inferior a 10',
+            'numero_documento.max' => 'La cantidad de digitos para el número de documento no puede ser superior a 15'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) :
+            return back()->withErrors($validator)->with('message', 'Error al registrarse')
+                ->with('typealert', 'danger')->withInput();;
+        endif;
+
         $persona = new Persona;
         $persona->nombres = e($request->input('nombres'));
         $persona->apellidos = e($request->input('apellidos'));
