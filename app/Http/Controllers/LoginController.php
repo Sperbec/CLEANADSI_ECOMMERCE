@@ -97,9 +97,9 @@ class LoginController extends Controller
 
         $messages = [
             'nombres.required' => 'Los nombres son requeridos.',
-            'nombres.alpha' => 'Los nombres no pueden contener letras.',
+            'nombres.regex' => 'Los nombres no pueden contener números.',
             'apellidos.required' => 'Los apellidos son requeridos.',
-            'apellidos.alpha' => 'Los apellidos no pueden contener letras.',
+            'apellidos.regex' => 'Los apellidos no pueden contener números.',
             'numero_documento.required' => 'El número de documento es requerido',
             'numero_documento.min' => 'La cantidad de digitos para el número de documento no puede ser inferior a 10',
             'numero_documento.max' => 'La cantidad de digitos para el número de documento no puede ser superior a 15'
@@ -109,7 +109,7 @@ class LoginController extends Controller
 
         if ($validator->fails()) :
             return back()->withErrors($validator)->with('message', 'Error al registrarse')
-                ->with('typealert', 'danger')->withInput();;
+                ->with('typealert', 'danger')->withInput();
         endif;
 
         $persona = new Persona;
