@@ -19,6 +19,7 @@ class CategoriaController extends Controller
     }
 
     public function store(Request $request){
+        
         $codigocategoria = $request->codigo;
         $nombrecategoria = $request->nombre;
         
