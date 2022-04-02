@@ -77,7 +77,7 @@
                     <td>{{ $categoria->nombre }}</td>
                     <td>
                         <div class="row">
-                            <a id="btnEditar" data-toggle="modal" data-target="#mdlEditarCategoria{{$categoria->id}}"
+                            <a id="btnEditar" data-toggle="modal" data-target="#mdlEditarCategoria{{$categoria->id_categoria}}"
                                 class="btn btn-primary opts" data-toggle="tooltip" data-bs-placement="top"
                                 title="Editar categoria">
                                 <i class="fas fa-edit"></i></a>

@@ -1,4 +1,4 @@
-<div id="mdlEditarCategoria{{$categoria->id}}" class="modal fade" role="dialog">
+<div id="mdlEditarCategoria{{$categoria->id_categoria}}" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
 
-                @isset($categoria)
+                
                 <form action="{{ route('categoria.update', $categoria->id_categoria) }}" method="post">
                     @csrf
                     @method('PUT')
@@ -42,7 +42,7 @@
             </div>
 
             </form>
-            @endisset
+            
         </div>
     </div>
 </div>

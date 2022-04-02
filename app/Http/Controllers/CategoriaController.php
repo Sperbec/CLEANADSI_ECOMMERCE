@@ -7,6 +7,12 @@ use App\Models\Categoria;
 
 class CategoriaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     
     public function index(){
         $categorias = Categoria::All();
