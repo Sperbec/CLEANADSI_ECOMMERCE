@@ -77,19 +77,20 @@
                     <td>{{ $categoria->nombre }}</td>
                     <td>
                         <div class="row">
-                            <a id="btnEditar" data-toggle="modal" data-target="#mdlEditarCategoria{{$categoria->id_categoria}}"
-                                class="btn btn-primary opts" data-toggle="tooltip" data-bs-placement="top"
-                                title="Editar categoria">
+                            <a id="btnEditar" data-toggle="modal"
+                                data-target="#mdlEditarCategoria{{ $categoria->id_categoria }}" class="btn btn-primary opts"
+                                data-toggle="tooltip" data-bs-placement="top" title="Editar categoria">
                                 <i class="fas fa-edit"></i></a>
 
-                            <form class="formEliminar"  action="{{ route('categoria.destroy', $categoria->id_categoria) }}" method="post">
+                            <form class="formEliminar"
+                                action="{{ route('categoria.destroy', $categoria->id_categoria) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
                         </div>
                         </form>
 
-                        
+
                     </td>
                     @include('categoria.editmodal')
                 </tr>
@@ -104,15 +105,15 @@
 
 @section('js')
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
     <script>
+        //Modal de crear categoría
         $("#btnCrear").on("click", function() {
             document.getElementById('codigocategoria').value = '';
             document.getElementById('nombrecategoria').value = '';
             $("#mdlCrearCategoria").modal("show");
         });
 
+        //Modal de editar categoría
         $("#btnEditar").on("click", function() {
             document.getElementById('codigocategoria').value = '';
             document.getElementById('nombrecategoria').value = '';
@@ -149,30 +150,39 @@
 
         }
 
-        @if(session('eliminado') == 'ok' || session('editado') == 'ok' || session('guardado') == 'ok')
+        @if (session('eliminado') == 'ok' || session('editado') == 'ok' || session('guardado') == 'ok')
             Swal.fire({
             position: 'top-end',
             icon: 'success',
-            
-            @if(session('eliminado') == 'ok')
+        
+            @if (session('eliminado') == 'ok')
                 title: 'Registro eliminado con éxito',
             @endif
-
-            @if(session('editado') == 'ok')
+        
+            @if (session('editado') == 'ok')
                 title: 'Registro editado con éxito',
             @endif
-
-            @if(session('guardado') == 'ok')
+        
+            @if (session('guardado') == 'ok')
                 title: 'Registro guardado con éxito',
             @endif
-
+        
             showConfirmButton: false,
             timer: 1500
-        })
+            })
+        @endif
+
+        @if (session('error') == 'ok')
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No es posible eliminar la categoría porque está relacionada a un producto.'
+            })
         @endif
 
 
-        $('.formEliminar').submit(function(e){
+
+        $('.formEliminar').submit(function(e) {
             e.preventDefault();
 
             Swal.fire({
@@ -181,18 +191,15 @@
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',  
+                cancelButtonColor: '#d33',
                 confirmButtonText: 'Aceptar',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                   this.submit();
+                    this.submit();
                 }
-                
-                
             })
 
         });
-
     </script>
 @stop

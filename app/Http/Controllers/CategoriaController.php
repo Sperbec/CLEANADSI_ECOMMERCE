@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
@@ -59,9 +60,24 @@ class CategoriaController extends Controller
     }
 
     public function destroy($id){
-        $categoria = Categoria::findOrFail($id);
-        $categoria->delete();
-        return redirect()->route('categoria.index')->with('eliminado', 'ok');
+
+        //Si la categoria está relacionada a un producto no se puede eliminar.
+        $sql = 'SELECT  id_producto from productos
+        where id_categoria = '.$id;
+        
+        $productos_relacionados = DB::select($sql);
+
+        if(empty($productos_relacionados)){
+           
+            $categoria = Categoria::findOrFail($id);
+            $categoria->delete();
+            return redirect()->route('categoria.index')->with('eliminado', 'ok');
+        }else{
+            return redirect()->route('categoria.index')->with('error', 'ok');
+        }
+
+
+       
     }
 
     public function show(){
