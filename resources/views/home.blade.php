@@ -3,11 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Sección Admin</h1>
 @stop
 
 @section('content')
-    <p>Aqui el contenido de toda la pagina</p>
 @stop
 
 @section('css')
