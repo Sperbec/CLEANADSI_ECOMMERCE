@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('login.login');
 });
 
-//Auth::routes();
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -46,16 +46,7 @@ Route::resource('categoria', App\Http\Controllers\CategoriaController::class)->n
 Route::resource('proveedores', App\Http\Controllers\ProveedorController::class)->names('proveedores');
 
 //Clientes
-<<<<<<< HEAD
-Route::get('/cliente/index', [App\Http\Controllers\UsuarioController::class, 'index'])->name('clientes');
-Route::get('/cliente/crear', [App\Http\Controllers\UsuarioController::class, 'crear'])->name('crearClientes');
-Route::post('/cliente/guardar', [App\Http\Controllers\UsuarioController::class, 'guardar'])->name('guardarClientes');
-Route::get('/cliente/{id}/editar', [App\Http\Controllers\UsuarioController::class, 'editar'])->name('editarClientes');
-Route::post('/cliente/{id}/editarCliente', [App\Http\Controllers\UsuarioController::class, 'editarCliente'])->name('editarClientes');
-Route::get('/cliente/{id}/eliminar', [App\Http\Controllers\UsuarioController::class, 'eliminar'])->name('eliminarClientes');
-=======
 Route::resource('clientes', App\Http\Controllers\PersonaController::class)->names('clientes');
->>>>>>> 02e855e1826eca5ee94713766fc7bd35f974fe45
 
 //Orden de compra
 Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, 'crear'])->name('crearOrdenCompra');
