@@ -292,7 +292,7 @@ return [
         ],
         [
             'text' => 'Clientes',
-            'url'  => 'cliente/index',
+            'route'  => 'clientes.index',
             'icon' => 'fas fa-fw fa-users',
         ],
     ],
