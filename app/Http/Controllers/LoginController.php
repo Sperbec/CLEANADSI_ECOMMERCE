@@ -134,11 +134,10 @@ class LoginController extends Controller
         }
     }
 
-
-
-    public function getRecover()
-    {
-        return view('login.recover');
+    
+    //restablecer contraseña
+    public function getRecover(){
+       return view('login.recover');
     }
 
     public function postRecover(Request $request)
