@@ -1,0 +1,140 @@
+.cabezera {
+    width: 100%;
+    height: 50px;
+    background-color: #c9d1dd3b;
+    text-align: center;
+    font-family: "Fredoka One", cursive;
+    margin-bottom: 5px;
+}
+
+.contenedor-productos {
+    width: 100%;
+    height: 1100px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+/*tipo productos*/
+
+.tipo-productos {
+    grid-column: 1/2;
+    text-align: center;
+    height: 1100px;
+    background-color: white;
+
+    display: table;
+    text-align: center;
+}
+
+.contenido-categoria {
+    font-family: "Fredoka One", cursive;
+    display: block;
+    float: left;
+    padding: 10px;
+    margin-left: 17px;
+}
+
+.tipo-productos h2 {
+    font-family: "Fredoka One", cursive;
+}
+
+.marcas {
+    display: inline-block;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.card-marcas {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border: 2px solid black;
+    overflow: hidden;
+    float: left;
+    margin-left: 7px;
+    margin-bottom: 7px;
+}
+
+.card-marcas img {
+    width: 60px;
+    height: 60px;
+}
+
+/*productos*/
+
+.productos {
+    text-align: center;
+    grid-column: 2/6;
+    float: left;
+    border-left: 2px solid;
+    display: table;
+}
+
+#productos {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.card-producto {
+    border: 2px solid #b0c4ded8;
+    width: 80%;
+    height: 300px;
+    margin: 10px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 2);
+    font-family: "Fredoka One", cursive;
+    overflow: hidden;
+    display: table;
+}
+
+.card-producto:hover {
+    border: 2px solid rgba(0, 0, 0, 0.671);
+    width: 80%;
+    height: 300px;
+    margin: 10px;
+    overflow: hidden;
+    display: table;
+}
+
+.img-producto {
+    width: 160px;
+}
+
+.card-producto:hover .img-producto {
+    transition: all 600ms;
+    transform: scale(1.3);
+}
+.card-producto button {
+    align-items: center;
+    background-color: #7efc007e;
+    font-family: "Fredoka One", cursive;
+    color: black;
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.card-producto button:hover {
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 2);
+}
+
+/* clase input*/
+
+.input-checkbox input[type="checkbox"] + label span:after {
+    content: "✔";
+    position: absolute;
+    top: -2px;
+    left: 1px;
+    font-size: 10px;
+    color: #fff;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
