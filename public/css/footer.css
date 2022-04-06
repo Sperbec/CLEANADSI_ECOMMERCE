@@ -1,0 +1,65 @@
+#footer {
+    width: 100%;
+    background-color: black;
+    position: relative;
+    display: block;
+}
+
+.sesion {
+    width: 100%;
+    display: table;
+}
+
+.contenedor-footer {
+    display: table;
+}
+
+.fila {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    color: white;
+    font-family: "Fredoka One", cursive;
+}
+
+.footer-titulo {
+    color: white;
+}
+
+.footer {
+    text-align: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+}
+
+.footer ul li,
+.footer ul li a {
+    list-style: none;
+    color: white;
+}
+
+#bottom-footer {
+    display: table;
+    align-items: center;
+    background-color: white;
+    color: white;
+}
+
+.footer-links {
+    display: table;
+    margin-left: 30px;
+    margin-right: 100px;
+    align-items: center;
+}
+
+.footer-payments {
+    width: 50px;
+    display: inline-flex;
+    margin: 0%;
+}
+
+.footer-payments li {
+    width: 50px;
+    font-size: medium;
+}

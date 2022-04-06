@@ -295,7 +295,12 @@ return [
             'route'  => 'clientes.index',
             'icon' => 'fas fa-fw fa-users',
         ],
-        
+        [
+            'text' =>  'Frontend',
+            'icon'        => 'far fa-fw fa-sticky-note',
+            'icon_color' => 'green',
+            'url'  => 'frontend/inicio',
+        ],
     ],
 
     /*
@@ -451,5 +456,4 @@ return [
     */
 
     'livewire' => false,
-
 ];

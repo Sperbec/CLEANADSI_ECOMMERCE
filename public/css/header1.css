@@ -1,0 +1,107 @@
+.header {
+    background-color: white;
+    width: 100%;
+    display: table;
+}
+.container {
+    float: right;
+}
+.container ul li {
+    list-style: none;
+    margin-left: 30px;
+    padding: 10px;
+    float: left;
+    font-family: "Fredoka One", cursive;
+    font-size: 13px;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+.logo {
+    display: table;
+}
+
+nav {
+    position: center;
+    display: table;
+    border: 4px;
+    background-color: #28b46281;
+    width: 10px;
+    float: left;
+    border: 4px;
+}
+#nav {
+    border: 2px;
+    width: 100%;
+}
+
+.navegador
+{
+    width: 100%;
+}
+.navegador li a {
+    list-style: none;
+    padding: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    font-family: "Fredoka One", cursive;
+    display: block;
+}
+.navegador > li {
+    float: left;
+}
+.img-logo {
+    border-radius: 50%;
+    width: 10%;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    float: left;
+    display: block;
+}
+.marca {
+    float: inline-start;
+    size: 130px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.navegador li a,
+.navegador li a ul,
+.navegador li {
+    color: beige;
+    display: block;
+}
+.navegador li a:hover {
+    color: black;
+}
+.navegador li ul {
+    display: none;
+    background-color: #28b46281;
+    position: absolute;
+}
+.navegador li:hover > ul {
+    display: block;
+}
+.buscar {
+    float: inline-end;
+    margin-left: 20%;
+    display: table;
+    margin: auto;
+    border-radius: 10px;
+}
+.input {
+    border-radius: 25px;
+    font-size: large;
+}
+.btn-buscar {
+    background-color: #3498db;
+    color: white;
+    border-radius: 25%;
+    border-color: rgb(139, 144, 144);
+    font-size: large;
+    padding: 3px 3px 3px 3px;
+}

@@ -51,3 +51,28 @@ Route::resource('clientes', App\Http\Controllers\PersonaController::class)->name
 //Orden de compra
 Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, 'crear'])->name('crearOrdenCompra');
 Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::class, 'consultar'])->name('consultarOrdenCompra');
+
+
+
+//Reportes
+Route::get('/reportes/index', [App\Http\Controllers\ReporteController::class, 'index'])->name('reportes');
+
+/*----------------------------------------------------------------------------------------------------------- */
+//rutas del Frontend
+
+Route::get('/frontend/inicio',[App\Http\Controllers\FrontendController::class,'inicio'])->name('inicio');
+
+//aseo personal
+
+Route::get('/frontend/aseopp',[App\Http\Controllers\FrontendController::class,'aseopp'])->name('aseopp');
+
+//uso personal
+
+Route::get('/frontend/usopp',[App\Http\Controllers\FrontendController::class,'usopp'])->name('usopp');
+
+/*----------------------------------------------------------------------------------------------------------- */
+Route::get('/frontend/productoslimpieza',[App\Http\Controllers\FrontendController::class,'productoslimpieza'])->name('productoslim');
+
+Route::get('/frontend/accesorioslimpieza',[App\Http\Controllers\FrontendController::class,'accesorioslimpieza'])->name('accesorioslim');
+
+Route::get('/frontend/detalle',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
