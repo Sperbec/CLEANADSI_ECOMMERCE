@@ -33,35 +33,20 @@ Route::get('/logout', [App\Http\Controllers\LoginController::class, 'getLogout']
 Route::get('/register', [App\Http\Controllers\LoginController::class, 'getRegister'])->name('getRegister');
 Route::post('/register', [App\Http\Controllers\LoginController::class, 'postRegister'])->name('postRegister');
 
-//recuperar contraseña
+//Rutas para recuperar contraseña
 Route::get('/recover', [App\Http\Controllers\LoginController::class, 'getRecover'])->name('getRecover');
 Route::post('/recover', [App\Http\Controllers\LoginController::class, 'postRecover'])->name('postRecover');
+Route::get('/reset', [App\Http\Controllers\LoginController::class, 'getReset'])->name('getReset');
+Route::post('/reset', [App\Http\Controllers\LoginController::class, 'postReset'])->name('postReset');
 
-//tabla clientes
-Route::get('/clientes/index', [App\Http\Controllers\clienteController::class, 'index'])->name('index');
-Route::get('/clientes/create', [App\Http\Controllers\clienteController::class, 'create'])->name('create');
-Route::post('/clientes/guardar', [App\Http\Controllers\clienteController::class, 'guardar'])->name('guardar');
-
-//Route::resource('clientes',ClienteController::class);
-
+//Categorías
+Route::resource('categoria', App\Http\Controllers\CategoriaController::class)->names('categoria');
 
 //Proveedores
-Route::get('/proveedores/index', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedores');
-Route::get('/proveedores/crear', [App\Http\Controllers\ProveedorController::class, 'crear'])->name('crearProveedores');
-Route::post('/proveedores/guardar', [App\Http\Controllers\ProveedorController::class, 'guardar'])->name('guardarProveedores');
-Route::get('/proveedores/{id}/editar', [App\Http\Controllers\ProveedorController::class, 'editar'])->name('editarProveedores');
-Route::post('/proveedores/{id}/editarProveedor', [App\Http\Controllers\ProveedorController::class, 'editarProveedor'])->name('editarProveedor');
-Route::get('/proveedores/{id}/eliminar', [App\Http\Controllers\ProveedorController::class, 'eliminar'])->name('eliminarProveedores');
-
+Route::resource('proveedores', App\Http\Controllers\ProveedorController::class)->names('proveedores');
 
 //Clientes
-Route::get('/cliente/index', [App\Http\Controllers\UsuarioController::class, 'index'])->name('clientes');
-Route::get('/cliente/crear', [App\Http\Controllers\UsuarioController::class, 'crear'])->name('crearClientes');
-Route::post('/cliente/guardar', [App\Http\Controllers\UsuarioController::class, 'guardar'])->name('guardarClientes');
-Route::get('/cliente/{id}/editar', [App\Http\Controllers\UsuarioController::class, 'editar'])->name('editarClientes');
-Route::post('/cliente/{id}/editarCliente', [App\Http\Controllers\UsuarioController::class, 'editarCliente'])->name('editarClientes');
-Route::get('/cliente/{id}/eliminar', [App\Http\Controllers\UsuarioController::class, 'eliminar'])->name('eliminarClientes');
-
+Route::resource('clientes', App\Http\Controllers\PersonaController::class)->names('clientes');
 
 //Orden de compra
 Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, 'crear'])->name('crearOrdenCompra');

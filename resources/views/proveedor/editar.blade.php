@@ -1,17 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear proveedores')
+@section('title', 'Editar proveedor')
 
 @section('content_header')
-    <h1>Crear proveedores</h1>
+    <h1>Editar proveedores</h1>
 @stop
 
 @section('content')
-<form action="{{ url('/proveedores/'.$proveedor->id_proveedor.'/editarProveedor')}}" method="post">
+<form action="{{route('proveedores.update', $proveedor->id_proveedor)}}" method="post">
   @csrf
+  @method('PUT')
     <div class="mb-3">
       <label class="form-label">Código proveedor: </label>
-      <input type="text" class="form-control" value="{{$proveedor->documento}}" name="codigoproveedor" >
+      <input type="text" class="form-control" disabled value="{{$proveedor->id_proveedor}}" name="codigoproveedor" >
     </div>
     <div class="mb-3">
       <label class="form-label">Nombre proveedor</label>

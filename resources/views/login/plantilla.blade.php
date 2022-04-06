@@ -14,7 +14,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!--Utilizar css con stylus, escribir css de forma sencilla-->
+    <!--Utilizar css-->
     <link rel="stylesheet" href="{{url('/static/css/login.css')}}">
 
     <!--Utilizar fontawesome -->

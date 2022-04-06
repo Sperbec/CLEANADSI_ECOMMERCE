@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'CLEAN ADSI',
+    'title' => 'CLEAN LINE',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,14 @@ return [
     |
     */
 
-    'logo' => '<b>CLEAN ADSI</b>',
+    'logo' => '<b>CLEAN LINE</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'AdminLTE',
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -246,9 +248,16 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+
+        [
+            'text' => 'Categorías',
+            'route'  => 'categoria.index',
+            'icon' => 'fas fa-tags',
+        ],
+
         [
             'text' => 'Proveedores',
-            'route'  => 'proveedores',
+            'route'  => 'proveedores.index',
             'icon' => 'fas fa-fw fa-user-tag',
         ],
         [
@@ -258,6 +267,7 @@ return [
                 [
                     'text' => 'Consultar factura',
                     'url'  => '#',
+                    'icon'=>'fas fa-fw fa-search'
                 ]
             ],
         ],
@@ -266,25 +276,26 @@ return [
             'icon'    => 'fas fa-fw fa-cart-arrow-down',
             'submenu' => [
                 [
+
                     'text' => 'Crear',
                     'url'  => 'orden/crear',
+                    'icon'=>'fas fa-fw fa-plus'
+
                 ],
                 [
-                    'text' => 'Consultar',
+
+                    'text' => 'Consultar ',
                     'url'  => 'orden/consultar',
+                    'icon'=>'fas fa-fw fa-search'
                 ],
             ],
         ],
         [
-            'text' => 'usuarios',
-            'url'  => 'cliente/index',
-            'icon' => 'fas fa-fw fa-users',
-        ],
-        [
             'text' => 'Clientes',
-            'url'  => 'clientes/index',
+            'route'  => 'clientes.index',
             'icon' => 'fas fa-fw fa-users',
         ],
+        
     ],
 
     /*
@@ -343,7 +354,7 @@ return [
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -373,7 +384,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11',
                 ],
             ],
         ],
@@ -440,4 +451,5 @@ return [
     */
 
     'livewire' => false,
+
 ];

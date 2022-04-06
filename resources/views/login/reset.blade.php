@@ -14,7 +14,7 @@
           <!-- <img class="logo" src="{{url('/static/images/logo.jpg')}}" alt="">-->
         </div>
 
-        {!! Form::open(['url' => '/recover']) !!}
+        {!! Form::open(['url' => '/reset']) !!}
 
         <label for="email">Correo electrónico:</label>
         <div class="input-group">
@@ -25,10 +25,21 @@
 
             <!--El segundo parámetro se manda en null porque no lleva ningun
             valor por defecto-->
-            {!!  Form::email('email', null, ['class' => 'form-control', 'required']) !!}
+            {!!  Form::email('email', $email, ['class' => 'form-control', 'required']) !!}
         </div>
 
-        {!! Form::submit('Recuperar contraseña', ['class' => 'btn btn-success mtop16'])!!}
+        <label for="cod_recuperacion" class="mtop16">Código de recuperación:</label>
+        <div class="input-group">
+            <div class="input-group-text">
+                <i class="far fa-id-card"></i>
+            </div>
+
+            <!--El segundo parámetro se manda en null porque no lleva ningun
+            valor por defecto-->
+            {!!  Form::number('cod_recuperacion', null, ['class' => 'form-control', 'required']) !!}
+        </div>
+
+        {!! Form::submit('Enviar mi contraseña', ['class' => 'btn btn-success mtop16'])!!}
         {!!  Form::close() !!}
 
         <div class="footer mtop16">
@@ -70,3 +81,4 @@
         });
     </script>
 @stop
+
