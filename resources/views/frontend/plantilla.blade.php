@@ -48,29 +48,29 @@
     
         <nav>
             <ul>
-                <li><a href="{{route('inicio')}}"><span class="icon-home3"></span>Home</a></li>
-                <li class="submenu"><a href="#"><span class="icon-user"></span>Aseo Personal</a>
+                <li><a href="{{route('inicio')}}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="submenu"><a href="#"><i class="fas fa-hands-wash"></i> Aseo Personal</a>
                     <ul class="children">
                         <li><a href="{{route('usopp')}}">Productos Uso Personal<span class="icon-dot"></span></a></li>
                         <li><a href="{{route('aseopp')}}">Accesorios Aseo Personal<span class="icon-dot"></span></a></li>
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="icon-rocket"></span>Aseo General<span class="caret icon-arrow-down6"></span></a>
+                    <a href="#"><i class="fas fa-hand-sparkles"></i> Aseo General<span class="caret icon-arrow-down6"></span></a>
                     <ul class="children">
                         <li><a href="{{route('productoslim')}}">Productos de Limpieza<span class="icon-dot"></span></a></li>
                         <li><a href="{{route('accesorioslim')}}">Accesorios de Limpieza <span class="icon-dot"></span></a></li>
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="icon-earth"></span>Mi Cuenta</a>
+                    <a><i class="fas fa-user"></i></span> Mi Cuenta</a>
                     <ul class="children">
-                        <li><a href="">Iniciar Sesion<span class="icon-dot"></span></a></li>
-                        <li><a href="">Registrarse <span class="icon-dot"></span></a></li>
+                        <li><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+                        <li><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="icon-cart"></span>Carrito</a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i>Carrito</a>
                     <ul class="children">
                         <li><a href="">Ver Contenido<span class="icon-dot"></span></a></li>
                     </ul>
