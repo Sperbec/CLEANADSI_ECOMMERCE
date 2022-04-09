@@ -115,7 +115,7 @@ header nav ul li {
 }
 
 header nav ul li:hover {
-	background:#ecf0f1;
+	background:#2ed573;
 }
 
 header nav ul li a {
@@ -168,6 +168,13 @@ header nav ul li .caret {
 	top:3px;
 	margin-left:10px;
 	margin-right:0px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid black;
 }
 
 @media screen and (max-width: 800px) {
