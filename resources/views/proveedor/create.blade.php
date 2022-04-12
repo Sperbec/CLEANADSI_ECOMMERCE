@@ -3,11 +3,19 @@
 @section('title', 'Crear proveedor')
 
 @section('content_header')
-    <h1>Crear proveedor</h1>
+{!! Form::open(['route' => 'proveedores.store']) !!}
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Crear proveedor</h1>
+        </div>
+        <div class="col-md-6">
+            <button id="btnGuardar" type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
+        </div>
+    </div>
 @stop
 
 @section('content')
-    {!! Form::open(['route' => 'proveedores.store']) !!}
+    
     <div class="row">
         <div class="col-md-6">
             <label for="tipos_personas" class="mtop16">Tipo de persona:</label>
@@ -16,7 +24,7 @@
                     <i class="far fa-id-card"></i>
                 </div>
                 <select name="tipos_personas" id="tipos_personas" class="form-select" onchange="
-                    habilitar(this.value);">
+                            habilitar(this.value);">
                     <option value=''>Seleccione</option>
                     @foreach ($tipos_personas as $tipopersona)
                         <option value="{{ $tipopersona->id_opcion }}">{{ $tipopersona->nombre }}</option>
@@ -173,7 +181,7 @@
                     </div>
 
                     <!--El segundo parámetro se manda en null porque no lleva ningun
-                      valor por defecto-->
+                              valor por defecto-->
                     {!! Form::text('contacto', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'contacto']) !!}
                 </div>
             </div>
@@ -191,10 +199,6 @@
             </div>
         </div>
 
-        <div class="col-md-3">
-            <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Enviar</button>
-        </div>
-
         {!! Form::close() !!}
 
     @stop
@@ -206,17 +210,24 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+        <style>
+            #btnGuardar {
+                float: right;
+            }
+
+        </style>
+
+
     @stop
 
     @section('js')
-       
-        <!-- habilitar o deshabilitar campos, dependiendo la selección del tipo de persona -->
+
+        <!-- Habilitar o deshabilitar campos, dependiendo la selección del tipo de persona -->
         <script>
             function habilitar(value) {
 
                 if (value == "") {
-                    // Deshabilitamos
-                    // Campos de persona natural
+                    // Deshabilitamos campos de persona natural
                     document.getElementById("nombres_persona").disabled = true;
                     document.getElementById("apellidos_persona").disabled = true;
                     document.getElementById("tipo_documento_persona").disabled = true;
@@ -232,9 +243,8 @@
                     document.getElementById("telefono_movil").disabled = true;
                 }
 
-                if (value == "20"){
-                    // Habilitamos
-                    // Campos de persona natural
+                if (value == "20") {
+                    // Habilitamos campos de persona natural
                     document.getElementById("nombres_persona").disabled = false;
                     document.getElementById("apellidos_persona").disabled = false;
                     document.getElementById("tipo_documento_persona").disabled = false;
@@ -249,8 +259,7 @@
                     document.getElementById("contacto").disabled = true;
                     document.getElementById("telefono_movil").disabled = true;
                 } else if (value == "21") {
-                    // Deshabilitamos
-                    // Campos de persona natural
+                    // Deshabilitamos campos de persona natural
                     document.getElementById("nombres_persona").disabled = true;
                     document.getElementById("apellidos_persona").disabled = true;
                     document.getElementById("tipo_documento_persona").disabled = true;
@@ -267,6 +276,8 @@
                 }
 
             }
+
+            
         </script>
 
     @stop

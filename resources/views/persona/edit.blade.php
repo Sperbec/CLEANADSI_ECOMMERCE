@@ -73,9 +73,7 @@
                         <i class="fas fa-venus-mars"></i>
                     </div>
                     <select  id="genero_persona" name="genero" class="form-select" required>
-                        
                         <option value=''>Seleccione</option>
-                       
                         @foreach ($generos as $genero)
                         <option value="{{ $genero->id_opcion }}" 
                             {{ ($genero->id_opcion  == $cliente->id_opcion_genero)
