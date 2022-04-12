@@ -202,7 +202,12 @@ class ProveedorController extends Controller
     public function destroy($id_proveedor)
     {
         $proveedor = Proveedor::findOrFail($id_proveedor);
+        $persona = Persona::find($proveedor->id_persona);
+
         $proveedor->delete();
+        $persona->delete();
+        
+
         return redirect()->route('proveedores.index')->with('eliminado', 'ok');;
     }
 }
