@@ -3,13 +3,22 @@
 @section('title', 'Crear cliente')
 
 @section('content_header')
-    <h1>Crear cliente</h1>
+    {!! Form::open(['route' => 'clientes.store']) !!}
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Crear cliente</h1>
+        </div>
+        <div class="col-md-6">
+            <button id="btnGuardar" type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
+        </div>
+    </div>
+
 @stop
 
 @section('content')
-    {!! Form::open(['route' => 'clientes.store']) !!}
+
     <div class="row">
-        
+
         <div class="row">
             <div class="col-md-6">
                 <label for="nombres">Nombres:</label>
@@ -39,7 +48,7 @@
                     <div class="input-group-text">
                         <i class="far fa-id-card"></i>
                     </div>
-                    <select  id='tipo_documento_persona' name="tipo_documento" class="form-select" required>
+                    <select id='tipo_documento_persona' name="tipo_documento" class="form-select" required>
                         <option value=''>Seleccione</option>
                         @foreach ($tipos_documentos as $tipodocumento)
                             <option value="{{ $tipodocumento->id_opcion }}">{{ $tipodocumento->nombre }}</option>
@@ -68,7 +77,7 @@
                     <div class="input-group-text">
                         <i class="fas fa-venus-mars"></i>
                     </div>
-                    <select  id="genero_persona" name="genero" class="form-select" required>
+                    <select id="genero_persona" name="genero" class="form-select" required>
                         <option value=''>Seleccione</option>
                         @foreach ($generos as $genero)
                             <option value="{{ $genero->id_opcion }}">{{ $genero->nombre }}</option>
@@ -88,12 +97,6 @@
             </div>
         </div>
 
-
-
-        <div class="col-md-3">
-            <button style="margin-top: 16px;" type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
-        </div>
-
         {!! Form::close() !!}
 
     @stop
@@ -105,8 +108,15 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+        <style>
+            #btnGuardar {
+                float: right;
+            }
+
+        </style>
+
     @stop
 
     @section('js')
-       
+
     @stop
