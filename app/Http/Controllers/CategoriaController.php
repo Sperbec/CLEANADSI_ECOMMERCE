@@ -36,7 +36,7 @@ class CategoriaController extends Controller
 
         $categoria->save();
 
-        return redirect()->route('categoria.index')->with('guardado', 'ok');;
+        return redirect()->route('categoria.index')->with('guardado', 'ok');
     }
 
     public function edit($id){

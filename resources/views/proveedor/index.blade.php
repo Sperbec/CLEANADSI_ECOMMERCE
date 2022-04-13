@@ -45,7 +45,7 @@
                                 <i class="fas fa-edit"></i></a>
 
                             <form action="{{ route('proveedores.destroy', $proveedor->id_proveedor) }}"
-                                class="formulario-eliminar" method="post">
+                                class="formEliminar" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" title="Eliminar proveedor" type="submit"><i
@@ -93,6 +93,49 @@
             }
 
         }
+
+        @if (session('eliminado') == 'ok' || session('editado') == 'ok' || session('guardado') == 'ok')
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+        
+            @if (session('eliminado') == 'ok')
+                title: 'Registro eliminado con éxito',
+            @endif
+        
+            @if (session('editado') == 'ok')
+                title: 'Registro editado con éxito',
+            @endif
+        
+            @if (session('guardado') == 'ok')
+                title: 'Registro guardado con éxito',
+            @endif
+        
+            showConfirmButton: false,
+            timer: 1500
+            })
+        @endif
+
+        $('.formEliminar').submit(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Seguro de eliminar este registro?',
+                text: "Esta acción no se puede deshacer",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+        });
+        
     </script>
 
 @stop
