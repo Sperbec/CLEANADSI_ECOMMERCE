@@ -19,6 +19,7 @@
                 <td>ID</td>
                 <td>Nombres</td>
                 <td>Apellidos</td>
+                <td>Número documento</td>
                 <td>Acciones</td>
             </tr>
         </thead>
@@ -28,9 +29,16 @@
                     <td>{{ $cliente->id_persona }}</td>
                     <td>{{ $cliente->nombres }}</td>
                     <td>{{ $cliente->apellidos }}</td>
+                    <td>{{ $cliente->numero_documento }}</td>
                    
                     <td>
                         <div class="row">
+
+                            <a class="btn btn-secondary opts"
+                            href="{{ route('clientes.show', $cliente->id_persona) }}" data-toggle="tooltip"
+                            data-bs-placement="top" title="Ver cliente">
+                            <i class="fas fa-eye"></i></a>
+
                             <a class="btn btn-primary opts"
                                 href="{{ route('clientes.edit', $cliente->id_persona) }}" data-toggle="tooltip"
                                 data-bs-placement="top" title="Editar cliente">

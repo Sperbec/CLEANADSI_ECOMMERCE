@@ -37,8 +37,10 @@
             </div>
 
             <div class="modal-footer">
-                <button id="agregarItem" type="submit" class="btn btn-success">Editar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <button id="agregarItem" type="submit" class="btn btn-success">
+                    <i class="fas fa-edit"></i> Editar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fas fa-times"></i> Cerrar</button>
             </div>
 
             </form>

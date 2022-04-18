@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Categoria')
+@section('title', 'Categorías')
 
 @section('content_header')
     <div class="row">
@@ -50,8 +50,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button id="agregarItem" type="submit" class="btn btn-success">Guardar</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button id="agregarItem" type="submit" class="btn btn-success">
+                        <i class="fas fa-paper-plane"></i> Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-times"></i> Cerrar</button>
                 </div>
 
                 {!! Form::close() !!}
