@@ -102,6 +102,15 @@ header nav {
 	
 }
 
+header nav a.logo-clean {
+	color:#ffff;
+	font-size:50px;
+	line-height:130px;
+	float:left;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
 header nav ul {
 	list-style:none;
 }
@@ -113,6 +122,8 @@ header nav ul li {
 	font-family: "Fredoka One", cursive;
     font-size: 23px;
 }
+
+
 
 header nav ul li:hover {
 	background:#2ed573;
@@ -182,6 +193,11 @@ header nav ul li .caret {
 		padding-top:80px;
 	}
 
+	body section
+	{
+		display: none;
+	}
+
 	.menu_bar {
 		display:block;
 		width:100%;
@@ -239,5 +255,6 @@ header nav ul li .caret {
 	header nav ul li .caret {
 		float: right;
 	}
+
 }
 
