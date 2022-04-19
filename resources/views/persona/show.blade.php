@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'mostrar cliente')
+@section('title', 'Ver cliente')
 
 @section('content_header')
 
