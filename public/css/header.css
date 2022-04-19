@@ -102,6 +102,15 @@ header nav {
 	
 }
 
+header nav a.logo-clean {
+	color:#ffff;
+	font-size:50px;
+	line-height:130px;
+	float:left;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
 header nav ul {
 	list-style:none;
 }
@@ -114,8 +123,10 @@ header nav ul li {
     font-size: 23px;
 }
 
+
+
 header nav ul li:hover {
-	background:#ecf0f1;
+	background:#2ed573;
 }
 
 header nav ul li a {
@@ -170,9 +181,21 @@ header nav ul li .caret {
 	margin-right:0px;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid black;
+}
+
 @media screen and (max-width: 800px) {
 	body {
 		padding-top:80px;
+	}
+
+	body section
+	{
+		display: none;
 	}
 
 	.menu_bar {
@@ -232,5 +255,6 @@ header nav ul li .caret {
 	header nav ul li .caret {
 		float: right;
 	}
+
 }
 
