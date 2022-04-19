@@ -1,6 +1,6 @@
 @extends('frontend.plantilla')
 
-@section('titulo','Inicio')
+@section('titulo','Clean line')
 
 @section('header')
 

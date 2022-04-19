@@ -52,11 +52,6 @@ Route::resource('clientes', App\Http\Controllers\PersonaController::class)->name
 Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, 'crear'])->name('crearOrdenCompra');
 Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::class, 'consultar'])->name('consultarOrdenCompra');
 
-
-
-//Reportes
-Route::get('/reportes/index', [App\Http\Controllers\ReporteController::class, 'index'])->name('reportes');
-
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend
 
@@ -76,3 +71,6 @@ Route::get('/frontend/productoslimpieza',[App\Http\Controllers\FrontendControlle
 Route::get('/frontend/accesorioslimpieza',[App\Http\Controllers\FrontendController::class,'accesorioslimpieza'])->name('accesorioslim');
 
 Route::get('/frontend/detalle',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
+
+Route::get('/carritocompras', [App\Http\Controllers\CarritoComprasController::class, 'index']);
+
