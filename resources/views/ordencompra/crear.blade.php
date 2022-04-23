@@ -79,15 +79,6 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <label for="fecha_orden">Fecha de la orden: </label>
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i class="fas fa-calendar"></i>
-                </div>
-                {!! Form::date('fecha_orden', null, ['class' => 'form-control', 'required']) !!}
-            </div>
-        </div>
     </div>
 
     <a class="btn btn-primary mtop16" id="btnAgregar" data-toggle="modal" data-target="#miModal">
