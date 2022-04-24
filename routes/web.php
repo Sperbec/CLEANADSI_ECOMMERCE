@@ -25,6 +25,9 @@ Auth::routes();
 //Paises
 Route::resource('pais', App\Http\Controllers\PaisController::class)->names('pais');
 
+//Departamentos
+Route::resource('departamento', App\Http\Controllers\DepartamentoController::class)->names('departamento');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Rutas para login

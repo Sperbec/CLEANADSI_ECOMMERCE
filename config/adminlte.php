@@ -259,6 +259,11 @@ return [
                     'route'  => 'pais.index',
                     'icon' => 'fas fa-globe-americas',
                 ],
+                [
+                    'text' => 'Departamentos',
+                    'route'  => 'departamento.index',
+                    'icon' => 'fas fa-search-location',
+                ],
         
             ],
         ],
