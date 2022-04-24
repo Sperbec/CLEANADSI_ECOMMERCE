@@ -248,12 +248,23 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+
+
         [
-            'text' => 'Paises',
-            'route'  => 'pais.index',
-            'icon' => 'fas fa-globe-americas',
+            'text'    => 'Ubicación',
+            'icon'    => 'fas fa-map-marker-alt',
+            'submenu' => [
+                [
+                    'text' => 'Paises',
+                    'route'  => 'pais.index',
+                    'icon' => 'fas fa-globe-americas',
+                ],
+        
+            ],
         ],
 
+
+       
         [
             'text' => 'Categorías',
             'route'  => 'categoria.index',
