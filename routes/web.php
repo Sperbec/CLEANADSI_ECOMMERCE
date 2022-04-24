@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ClienteController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,6 +21,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+//Paises
+Route::resource('pais', App\Http\Controllers\PaisController::class)->names('pais');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

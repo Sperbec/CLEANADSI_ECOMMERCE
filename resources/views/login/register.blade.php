@@ -119,7 +119,7 @@
                     <div class="input-group-text">
                         <i class="fas fa-calendar"></i>
                     </div>
-                    {!!  Form::date('fecha_nacimiento', null, ['class' => 'form-control', 'required']) !!}
+                    {!!  Form::date('fecha_nacimiento', null, ['id' => 'fecha_nacimiento' ,'class' => 'form-control', 'required']) !!}
                 </div>
             </div>
         </div>
@@ -139,4 +139,13 @@
     </div>
 
 </div>
+@stop
+
+@section('js')
+<script>
+    $(documet).ready(function(){
+        $(#fecha_nacimiento).val(new Date().toDateInputValue());
+    })
+</script>
+    
 @stop

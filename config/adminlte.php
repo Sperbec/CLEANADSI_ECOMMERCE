@@ -248,6 +248,11 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        [
+            'text' => 'Paises',
+            'route'  => 'pais.index',
+            'icon' => 'fas fa-globe-americas',
+        ],
 
         [
             'text' => 'Categorías',
