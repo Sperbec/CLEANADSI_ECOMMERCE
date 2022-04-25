@@ -40,8 +40,10 @@ class DepartamentoController extends Controller
     {
         $codigodepartamento = $request->codigo;
         $nombredepartamento = $request->nombre;
+        $id_pais = $request->pais;
         
         $departamento = new Departamento();
+        $departamento->id_pais = $id_pais;
         $departamento->codigo = $codigodepartamento;
         $departamento->nombre = $nombredepartamento;
 
@@ -56,10 +58,7 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    public function show($id){}
 
     /**
      * Show the form for editing the specified resource.
@@ -67,12 +66,7 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $departamento = Departamento::findOrFail($id);
-        $data = ['departamento' => $departamento];
-        return view('departamento.edit', $data);
-    }
+    public function edit($id){}
 
     /**
      * Update the specified resource in storage.
