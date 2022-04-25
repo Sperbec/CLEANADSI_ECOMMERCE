@@ -1,65 +1,47 @@
-#footer {
+.contenido-footer {
     width: 100%;
+    text-align: center;
+    height: 400px;
+}
+
+.info {
     background-color: black;
-    position: relative;
-    display: block;
-}
-
-.sesion {
-    width: 100%;
-    display: table;
-}
-
-.contenedor-footer {
-    display: table;
-}
-
-.fila {
+    height: 300px;
+    color: white;
     display: flex;
-    text-align: center;
+    justify-content: center;
     align-items: center;
-    color: white;
-    font-family: "Fredoka One", cursive;
 }
 
-.footer-titulo {
-    color: white;
+.info > ul {
+    display: table;
+    margin-left: 120px;
 }
 
-.footer {
-    text-align: center;
-    align-items: center;
-    margin: 20px;
+.info ul li {
+    list-style: none;
     padding: 20px;
 }
 
-.footer ul li,
-.footer ul li a {
+.info ul p {
+    font-size: larger;
+}
+
+.targetas {
+    height: 300px;
+    display: block;
+}
+
+.targetas ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    margin: 20px;
+}
+
+.targetas ul li {
     list-style: none;
-    color: white;
-}
-
-#bottom-footer {
-    display: table;
-    align-items: center;
-    background-color: white;
-    color: white;
-}
-
-.footer-links {
-    display: table;
-    margin-left: 30px;
-    margin-right: 100px;
-    align-items: center;
-}
-
-.footer-payments {
-    width: 50px;
-    display: inline-flex;
-    margin: 0%;
-}
-
-.footer-payments li {
-    width: 50px;
-    font-size: medium;
+    margin: 20px;
+    color: #70a1ff;
 }

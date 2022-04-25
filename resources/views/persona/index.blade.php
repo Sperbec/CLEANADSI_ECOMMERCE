@@ -19,6 +19,7 @@
                 <td>ID</td>
                 <td>Nombres</td>
                 <td>Apellidos</td>
+                <td>Número documento</td>
                 <td>Acciones</td>
             </tr>
         </thead>
@@ -28,9 +29,16 @@
                     <td>{{ $cliente->id_persona }}</td>
                     <td>{{ $cliente->nombres }}</td>
                     <td>{{ $cliente->apellidos }}</td>
+                    <td>{{ $cliente->numero_documento }}</td>
                    
                     <td>
                         <div class="row">
+
+                            <a class="btn btn-secondary opts"
+                            href="{{ route('clientes.show', $cliente->id_persona) }}" data-toggle="tooltip"
+                            data-bs-placement="top" title="Ver cliente">
+                            <i class="fas fa-eye"></i></a>
+
                             <a class="btn btn-primary opts"
                                 href="{{ route('clientes.edit', $cliente->id_persona) }}" data-toggle="tooltip"
                                 data-bs-placement="top" title="Editar cliente">
@@ -68,7 +76,7 @@
             "decimal": "",
             "emptyTable": "No hay información",
             "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+            "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
             "infoFiltered": "(Filtrado de _MAX_ total entradas)",
             "infoPostFix": "",
             "thousands": ",",

@@ -1,11 +1,18 @@
+.contenedor {
+    display: table;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
+}
+
 .contenedor-card {
     padding-top: 40px;
     width: 100%;
     margin: auto;
-    display: table;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 1100px;
-    /*border: 1px solid;*/
-    inset-inline: center;
 }
 
 #card {
@@ -77,6 +84,8 @@ span {
 
 .destacados {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .titulo {

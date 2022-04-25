@@ -249,6 +249,27 @@ return [
             'can'  => 'manage-blog',
         ],
 
+
+        [
+            'text'    => 'Ubicación',
+            'icon'    => 'fas fa-map-marker-alt',
+            'submenu' => [
+                [
+                    'text' => 'Paises',
+                    'route'  => 'pais.index',
+                    'icon' => 'fas fa-globe-americas',
+                ],
+                [
+                    'text' => 'Departamentos',
+                    'route'  => 'departamento.index',
+                    'icon' => 'fas fa-search-location',
+                ],
+        
+            ],
+        ],
+
+
+       
         [
             'text' => 'Categorías',
             'route'  => 'categoria.index',
@@ -259,17 +280,6 @@ return [
             'text' => 'Proveedores',
             'route'  => 'proveedores.index',
             'icon' => 'fas fa-fw fa-user-tag',
-        ],
-        [
-            'text'    => 'Ventas',
-            'icon'    => 'fas fa-fw fa-store',
-            'submenu' => [
-                [
-                    'text' => 'Consultar factura',
-                    'url'  => '#',
-                    'icon'=>'fas fa-fw fa-search'
-                ]
-            ],
         ],
         [
             'text'    => 'Orden de compra',
@@ -291,16 +301,22 @@ return [
             ],
         ],
         [
+            'text'    => 'Ventas',
+            'icon'    => 'fas fa-fw fa-store',
+            'submenu' => [
+                [
+                    'text' => 'Consultar factura',
+                    'url'  => '#',
+                    'icon'=>'fas fa-fw fa-search'
+                ]
+            ],
+        ],
+        
+        [
             'text' => 'Clientes',
             'route'  => 'clientes.index',
             'icon' => 'fas fa-fw fa-users',
-        ],
-        [
-            'text' =>  'Frontend',
-            'icon'        => 'far fa-fw fa-sticky-note',
-            'icon_color' => 'green',
-            'url'  => 'frontend/inicio',
-        ],
+        ]
     ],
 
     /*

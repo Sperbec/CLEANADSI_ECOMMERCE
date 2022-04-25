@@ -3,18 +3,19 @@
 @section('title', 'Crear orden de compra')
 
 @section('content_header')
-    <div class="row">
-        <h1>Proveedores</h1>
-        <a href="{{ url('') }}" id="btnguardar" class="btn btn-primary btn-sm ml-auto">
-            <i class="fas fa-plus"></i> Guardar orden de compra</a>
+<div class="row">
+    <div class="col-md-6">
+        <h1>Crear orden de compra</h1>
     </div>
+    <div class="col-md-6">
+        <button id="btnGuardar" type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
+    </div>
+</div>
 @stop
 
 @section('content')
-    <!-- Modal -->
     <div id="miModal" class="modal fade" role="dialog">
         <div class="modal-dialog  modal-lg">
-            <!-- Contenido del modal -->
             <div class="modal-content">
                 <div class="modal-header">
                     <h3>Agregar producto a la orden de compra</h3>
@@ -69,7 +70,7 @@
                 <div class="input-group-text">
                     <i class="far fa-id-card"></i>
                 </div>
-                <select name="proveedores" class="form-select" required>
+                <select id="proveedores" name="proveedores" class="form-select" required>
                     <option value=''>Seleccione</option>
                     @foreach ($proveedores as $proveedor)
                         <option value="{{ $proveedor->id_proveedor }}">{{ $proveedor->proveedor }}</option>
@@ -78,15 +79,6 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <label for="fecha_orden">Fecha de la orden: </label>
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i class="fas fa-calendar"></i>
-                </div>
-                {!! Form::date('fecha_orden', null, ['class' => 'form-control', 'required']) !!}
-            </div>
-        </div>
     </div>
 
     <a class="btn btn-primary mtop16" id="btnAgregar" data-toggle="modal" data-target="#miModal">
@@ -113,12 +105,9 @@
             <label for="subtotal">Subtotal:</label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <!--Hacer uso del fontawesome-->
                     <i class="fas fa-dollar-sign"></i>
                 </div>
 
-                <!--El segundo parámetro se manda en null porque no lleva ningun
-                valor por defecto-->
                 {!! Form::text('subtotal', null, ['class' => 'form-control', 'required']) !!}
             </div>
         </div>
@@ -127,12 +116,8 @@
             <label for="valor_iva">Valor IVA:</label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <!--Hacer uso del fontawesome-->
                     <i class="fas fa-dollar-sign"></i>
                 </div>
-
-                <!--El segundo parámetro se manda en null porque no lleva ningun
-                valor por defecto-->
                 {!! Form::text('valor_iva', null, ['class' => 'form-control', 'required']) !!}
             </div>
         </div>
@@ -140,13 +125,10 @@
         <div class="col-md-4">
             <label for="total">Total:</label>
             <div class="input-group">
-                <div class="input-group-text">
-                    <!--Hacer uso del fontawesome-->
+                <div class="input-group-text">                 
                     <i class="fas fa-dollar-sign"></i>
                 </div>
 
-                <!--El segundo parámetro se manda en null porque no lleva ningun
-                valor por defecto-->
                 {!! Form::text('total', null, ['class' => 'form-control', 'required']) !!}
             </div>
         </div>
@@ -164,8 +146,8 @@
             margin-top: 16px;
         }
 
-        #btnguardar {
-            width: 20%;
+        #btnGuardar {
+            float: right;
         }
 
     </style>
@@ -185,7 +167,9 @@
             text = selectProduct.options[selectProduct.selectedIndex].innerText; 
             var cantidad = $('#cantidad').val();
            
-            $('table tbody').append('<tr><td>' + text+ '</td><td>' + cantidad +' </td></tr>');
+            $('table tbody').append('<tr><td>' + text+ '</td><td>' + cantidad +'</td><td>'+ 
+                '<a class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
+                '<a class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
             $("#miModal").modal('hide');
         });
     </script>

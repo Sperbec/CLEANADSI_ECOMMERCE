@@ -16,6 +16,7 @@ use App\Mail\UserSendRecover;
 use App\Mail\UserSendNewPassword;
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Contracts\Session\Session;
+use DateTime;
 
 class LoginController extends Controller
 {
@@ -89,10 +90,13 @@ class LoginController extends Controller
     public function postRegister(Request $request)
     {
 
+        $fechaActual=date('Y-m-d');
+
         $rules = [
             'nombres' => 'required|regex:/^[\pL\s\-]+$/u',
             'apellidos' => 'required|regex:/^[\pL\s\-]+$/u',
-            'numero_documento' => 'required|min:10|max:15'
+            'numero_documento' => 'required|min:10|max:15',
+            'fecha_nacimiento' => 'before:'.$fechaActual
         ];
 
         $messages = [
@@ -102,7 +106,8 @@ class LoginController extends Controller
             'apellidos.regex' => 'Los apellidos no pueden contener números.',
             'numero_documento.required' => 'El número de documento es requerido',
             'numero_documento.min' => 'La cantidad de digitos para el número de documento no puede ser inferior a 10',
-            'numero_documento.max' => 'La cantidad de digitos para el número de documento no puede ser superior a 15'
+            'numero_documento.max' => 'La cantidad de digitos para el número de documento no puede ser superior a 15',
+            'fecha_nacimiento.before' =>'La fecha de nacimiento no puede ser superior a la fecha actual'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);

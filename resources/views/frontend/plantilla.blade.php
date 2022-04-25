@@ -30,7 +30,7 @@
     <body>
         <section>
             <div class="wrapper">
-                <div class="logo">Clean Line</div>
+                <div class="logo">logo</div>
                 <nav>
                     <a href="#"><i class="fa-brands fa-whatsapp"></i> (312 747 26 49)</a>
                     <a href="#"><i class="fa fa-envelope-o"></i> Cleanline@gmail.com</a>
@@ -43,44 +43,74 @@
     </body>
     <header>
         <div class="menu_bar">
-            <a href="#" class="bt-menu"><span class="icon-list2"></span>Menú</a>
+            <a href="#" class="bt-menu"><span class="icon-list2"></span>Clean Line</a>
         </div>
     
         <nav>
+            <a class="logo-clean">Clean Line</a>
             <ul>
-                <li><a href="{{route('inicio')}}"><span class="icon-home3"></span>Home</a></li>
-                <li class="submenu"><a href="#"><span class="icon-user"></span>Aseo Personal</a>
+                <li><a href="{{route('inicio')}}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="submenu"><a href="#"><i class="fas fa-tags"></i> Categorias</a>
                     <ul class="children">
-                        <li><a href="{{route('usopp')}}">Productos Uso Personal<span class="icon-dot"></span></a></li>
-                        <li><a href="{{route('aseopp')}}">Accesorios Aseo Personal<span class="icon-dot"></span></a></li>
+                        <li><a href="{{route('usopp')}}">Aseo General<span class="icon-dot"></span></a></li>
+                        <li><a href="{{route('aseopp')}}">Aseo personal<span class="icon-dot"></span></a></li>
+                    </ul>
+                </li>
+            
+                <li class="submenu">
+                    <a><i class="fas fa-user"></i></span> Mi Cuenta</a>
+                    <ul class="children">
+                        <li><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+                        <li><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="icon-rocket"></span>Aseo General<span class="caret icon-arrow-down6"></span></a>
-                    <ul class="children">
-                        <li><a href="{{route('productoslim')}}">Productos de Limpieza<span class="icon-dot"></span></a></li>
-                        <li><a href="{{route('accesorioslim')}}">Accesorios de Limpieza <span class="icon-dot"></span></a></li>
-                    </ul>
-                </li>
-                <li class="submenu">
-                    <a href="#"><span class="icon-earth"></span>Mi Cuenta</a>
-                    <ul class="children">
-                        <li><a href="">Iniciar Sesion<span class="icon-dot"></span></a></li>
-                        <li><a href="">Registrarse <span class="icon-dot"></span></a></li>
-                    </ul>
-                </li>
-                <li class="submenu">
-                    <a href="#"><span class="icon-cart"></span>Carrito</a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i>Carrito</a>
                     <ul class="children">
                         <li><a href="">Ver Contenido<span class="icon-dot"></span></a></li>
                     </ul>
                 </li>
+                
             </ul>
         </nav>
     </header>
 			
     @yield('contenido')
     @yield('footer')
+    <footer>
+        <div class="contenido-footer">
+            <div class="info">
+                <ul><p>Contacto</p>
+                    <li><i class="fa-brands fa-whatsapp"></i> (312 747 26 49)</li>
+                    <li><i class="fa fa-envelope-o"></i> Cleanline@gmail.com</li>
+                    <li><i class="fa fa-map-marker"></i>  Salomia Cali Valle</li>
+                </ul>
+
+                <ul><p>Categorias</p>
+                    <li>Aseo Personal</li>
+                    <li>Aseo general</li>
+                    <li></li>
+                </ul>
+
+                <ul><p>Redes Sociales</p>
+                    <li><i class="fa-brands fa-facebook-square"></i>  Facebook</li>
+                    <li><i class="fa-brands fa-instagram"></i>  Instagram</li>
+                    <li><i class="fa-brands fa-twitter"></i>  twiter</li>
+                </ul>
+            </div>
+            <div class="targetas">
+                <ul>
+                    <li><i class="fa-brands fa-cc-visa"></i></li>
+                    <li><i class="fa-brands fa-cc-amex"></i></li>
+                    <li><i class="fa-brands fa-cc-diners-club"></i></li>
+                    <li><i class="fa-brands fa-cc-paypal"></i></li>
+                    <li><i class="fa-brands fa-cc-mastercard"></i></li>
+                    <li><i class="fa-solid fa-credit-card"></i></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
     
 </body>
 </html>

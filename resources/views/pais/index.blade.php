@@ -1,48 +1,48 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorías')
+@section('title', 'Países')
 
 @section('content_header')
     <div class="row">
-        <h1>Categorías</h1>
-        <a id="btnCrear" data-toggle="modal" data-target="#mdlCrearCategoria" class="btn btn-primary btn-sm ml-auto">
-            <i class="fas fa-plus"></i> Crear categoría</a>
+        <h1>Países</h1>
+        <a id="btnCrear" data-toggle="modal" data-target="#mdlCrearPais" class="btn btn-primary btn-sm ml-auto">
+            <i class="fas fa-plus"></i> Crear país</a>
     </div>
 
 @stop
 
 @section('content')
 
-    <!-- Modal de crear categoria-->
-    <div id="mdlCrearCategoria" class="modal fade" role="dialog">
+    <!-- Modal de crear país-->
+    <div id="mdlCrearPais" class="modal fade" role="dialog">
         <div class="modal-dialog  modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Crear categoría</h3>
+                    <h3>Crear país</h3>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
 
-                    {!! Form::open(['route' => 'categoria.store']) !!}
+                    {!! Form::open(['route' => 'pais.store']) !!}
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="codigo">Codigo categoría:</label>
+                            <label for="codigo">Codigo país:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('codigo', null, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('codigo', null, ['id' => 'codigopais', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="nombre">Nombre categoría:</label>
+                            <label for="nombre">Nombre país:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombre', null, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombre', null, ['id' => 'nombrepais', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,9 @@
     </div>
 
 
-    <table class="table table-hover" id="tblcategoria">
+
+
+    <table class="table table-hover" id="tblpais">
         <thead>
             <tr>
                 <td>ID</td>
@@ -72,20 +74,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($categorias as $categoria)
+            @foreach ($paises as $pais)
                 <tr>
-                    <td>{{ $categoria->id_categoria }}</td>
-                    <td>{{ $categoria->codigo }}</td>
-                    <td>{{ $categoria->nombre }}</td>
+                    <td>{{ $pais->id_pais }}</td>
+                    <td>{{ $pais->codigo }}</td>
+                    <td>{{ $pais->nombre }}</td>
                     <td>
                         <div class="row">
-                            <a id="btnEditar" data-toggle="modal"
-                                data-target="#mdlEditarCategoria{{ $categoria->id_categoria }}" class="btn btn-primary opts"
-                                data-toggle="tooltip" data-bs-placement="top" title="Editar categoria">
+                            <a id="btnEditar" data-toggle="modal" data-target="#mdlEditarPais{{ $pais->id_pais }}"
+                                class="btn btn-primary opts" data-toggle="tooltip" data-bs-placement="top"
+                                title="Editar país">
                                 <i class="fas fa-edit"></i></a>
 
-                            <form class="formEliminar"
-                                action="{{ route('categoria.destroy', $categoria->id_categoria) }}" method="post">
+                            <form class="formEliminar" action="{{ route('pais.destroy', $pais->id_pais) }}"
+                                method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
@@ -94,7 +96,7 @@
 
 
                     </td>
-                    @include('categoria.editmodal')
+                    @include('pais.editmodal')
                 </tr>
             @endforeach
         </tbody>
@@ -106,25 +108,24 @@
 @stop
 
 @section('js')
-
     <script>
-        //Modal de crear categoría
+        //Modal de crear país
         $("#btnCrear").on("click", function() {
-            document.getElementById('codigocategoria').value = '';
-            document.getElementById('nombrecategoria').value = '';
-            $("#mdlCrearCategoria").modal("show");
+            document.getElementById('codigopais').value = '';
+            document.getElementById('nombrepais').value = '';
+            $("#mdlCrearPais").modal("show");
         });
 
-        //Modal de editar categoría
+        //Modal de editar país
         $("#btnEditar").on("click", function() {
-            document.getElementById('codigocategoria').value = '';
-            document.getElementById('nombrecategoria').value = '';
-            $("#mdlEditarCategoria").modal("show");
+            document.getElementById('codigopais').value = '';
+            document.getElementById('nombrepais').value = '';
+            $("#mdlEditarPais").modal("show");
         });
 
 
         $(document).ready(function() {
-            $('#tblcategoria').DataTable({
+            $('#tblpais').DataTable({
                 "language": idioma_espanol
             });
         });
@@ -173,15 +174,6 @@
             timer: 1500
             })
         @endif
-
-        @if (session('error') == 'ok')
-            Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'No es posible eliminar la categoría porque está relacionada a un producto.'
-            })
-        @endif
-
 
 
         $('.formEliminar').submit(function(e) {

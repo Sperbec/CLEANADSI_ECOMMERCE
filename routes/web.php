@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ClienteController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,10 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('login.login');
+    return view('/frontend/inicio');
 });
 
 Auth::routes();
+
+//Paises
+Route::resource('pais', App\Http\Controllers\PaisController::class)->names('pais');
+
+//Departamentos
+Route::resource('departamento', App\Http\Controllers\DepartamentoController::class)->names('departamento');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -52,11 +58,6 @@ Route::resource('clientes', App\Http\Controllers\PersonaController::class)->name
 Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, 'crear'])->name('crearOrdenCompra');
 Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::class, 'consultar'])->name('consultarOrdenCompra');
 
-
-
-//Reportes
-Route::get('/reportes/index', [App\Http\Controllers\ReporteController::class, 'index'])->name('reportes');
-
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend
 
@@ -76,3 +77,6 @@ Route::get('/frontend/productoslimpieza',[App\Http\Controllers\FrontendControlle
 Route::get('/frontend/accesorioslimpieza',[App\Http\Controllers\FrontendController::class,'accesorioslimpieza'])->name('accesorioslim');
 
 Route::get('/frontend/detalle',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
+
+Route::get('/carritocompras', [App\Http\Controllers\CarritoComprasController::class, 'index']);
+
