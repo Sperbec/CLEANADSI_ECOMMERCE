@@ -1,9 +1,6 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +26,7 @@ Route::resource('pais', App\Http\Controllers\PaisController::class)->names('pais
 Route::post('/obtenerdepartamentos', [App\Http\Controllers\DepartamentoController::class, 'obtenerdepartamentos']);
 Route::post('/getDepartamentoById', [App\Http\Controllers\DepartamentoController::class, 'getDepartamentoById']);
 Route::post('/update', [App\Http\Controllers\DepartamentoController::class, 'update']);
+Route::post('/eliminarDepartamento', [App\Http\Controllers\DepartamentoController::class, 'eliminarDepartamento']);
 
 
 Route::resource('departamento', App\Http\Controllers\DepartamentoController::class)->names('departamento');

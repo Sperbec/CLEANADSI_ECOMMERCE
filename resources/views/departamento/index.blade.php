@@ -88,7 +88,7 @@
 </div>
 
 
-
+<!-- Modal de editar departamento-->
 <div id="mdlEditarDepartamento" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
@@ -97,10 +97,6 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-
-
-
-
                 <div class="row">
                     <div class="col-md-6">
                         <label for="codigodepartamentoeditar">Codigo departamento:</label>
@@ -133,16 +129,10 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
                     <i class="fas fa-times"></i> Cerrar</button>
             </div>
-
-
-
         </div>
     </div>
 </div>
 </div>
-
-
-
 
 <div class="row">
     <div class="col-md-6">
@@ -167,6 +157,7 @@
     <thead>
         <tr>
             <th scope="col">ID</th>
+            <th scope="col">Código</th>
             <th scope="col">Nombre</th>
             <th scope="col">Acciones</th>
         </tr>
@@ -198,7 +189,6 @@
         var iddepartamento = null;
 
         function changePais(){
-            
             fetch('obtenerdepartamentos',{
                     method : 'POST',
                     body: JSON.stringify({texto : document.getElementById('selectedPais').value}),
@@ -213,16 +203,15 @@
                     for (let i in data.lista) {
                         $('table tbody').append(
                         '<tr class="editable"><td>' + data.lista[i].id_departamento+ 
+                        '</td><td>' + data.lista[i].codigo + 
                         '</td><td>' + data.lista[i].nombre +'</td><td>'+ 
                         '<a onclick="cargarDatosEditar('+data.lista[i].id_departamento+')" class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
-                        '<a class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
+                        '<a onclick="eliminarDepartamento('+data.lista[i].id_departamento+')" class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
                     }
                    
                 }).catch(error => console.error(error));
             
         }
-
-       
 
         function cargarDatosEditar(iddepartamento){
             fetch('getDepartamentoById',{
@@ -244,7 +233,6 @@
         }
 
         function actualizarRegistro(){
-            console.log(this.iddepartamento);
             fetch('update',{
                     method : 'POST',
                     body: JSON.stringify({
@@ -258,7 +246,6 @@
                 }).then(response =>{
                     return response.json()
                 }).then( data =>{
-
                     Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -270,24 +257,51 @@
                     changePais();
                 }).catch(error => console.error(error));
         }
-        
-    
-        @if (session('eliminado') == 'ok'  || session('guardado') == 'ok')
+
+        function eliminarDepartamento(iddepartamento){
             Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-        
-            @if (session('eliminado') == 'ok')
-                title: 'Registro eliminado con éxito',
-            @endif
-        
-        
-            @if (session('guardado') == 'ok')
+                title: '¿Seguro de eliminar este registro?',
+                text: "Esta acción no se puede deshacer",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                   console.log(iddepartamento);
+                   fetch('eliminarDepartamento',{
+                    method : 'POST',
+                    body: JSON.stringify({id :iddepartamento}),
+                    headers:{
+                        'Content-Type': 'application/json',
+                        "X-CSRF-Token": csrfToken
+                    }
+                }).then(response =>{
+                    return response.json()
+                }).then( data =>{
+                    Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Registro eliminado con éxito',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+                    changePais();
+                }).catch(error => console.error(error));
+                }
+            })
+               
+        }
+
+        @if ( session('guardado') == 'ok')
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
                 title: 'Registro guardado con éxito',
-            @endif
-        
-            showConfirmButton: false,
-            timer: 1500
+                showConfirmButton: false,
+                timer: 1500
             })
         @endif
 
