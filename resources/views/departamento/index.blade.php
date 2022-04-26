@@ -14,7 +14,6 @@
     </div>
 </div>
 
-@livewireStyles
 @stop
 
 @section('content')
