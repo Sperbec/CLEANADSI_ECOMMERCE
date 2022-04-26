@@ -86,46 +86,11 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <label for="selectedPais" class="mtop16">País:</label>
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i class="fas fa-globe-americas"></i>
-                </div>
-                <select id="selectedPais" name="selectedPais" class="form-select">
-                    <option value=''>Seleccione</option>
-                    @foreach ($paises as $pais)
-                        <option value="{{ $pais->id_pais }}">{{ $pais->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <br>
-
-    <table class="table" id="tbldepartamentos">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-
-   
+    @livewire('select-component')
+    @livewireScripts
 @stop
 
 @section('css')
-
-<!-- Para importar bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <style>
         #btnCrear {
@@ -137,32 +102,6 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
 @section('js')
     <script>
-
-        const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
-
-        document.getElementById('selectedPais').addEventListener('change',(e)=>{
-            fetch('obtenerdepartamentos',{
-                    method : 'POST',
-                    body: JSON.stringify({texto : e.target.value}),
-                    headers:{
-                        'Content-Type': 'application/json',
-                        "X-CSRF-Token": csrfToken
-                    }
-                }).then(response =>{
-                    return response.json()
-                }).then( data =>{
-                    $("#tbldepartamentos .editable").empty();
-                    for (let i in data.lista) {
-                        $('table tbody').append(
-                        '<tr class="editable"><td>' + data.lista[i].id_departamento+ 
-                        '</td><td>' + data.lista[i].nombre +'</td><td>'+ 
-                        '<a class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
-                        '<a class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
-                    }
-                   
-                }).catch(error => console.error(error));
-            
-        });
         
        //Modal de crear país
        $("#btnCrear").on("click", function() {
@@ -201,6 +140,4 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
         @endif
 
     </script>
-
-   
 @stop

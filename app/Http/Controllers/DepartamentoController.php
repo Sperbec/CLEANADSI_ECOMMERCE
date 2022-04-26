@@ -20,6 +20,27 @@ class DepartamentoController extends Controller
         return view('departamento.index', $data);
     }
 
+    public function obtenerdepartamentos(Request $request)
+    {
+        if (isset($request->texto)) {
+            $departamentos = Departamento::where('id_pais', $request->texto)->get();
+            return response()->json(
+                [
+                    'lista' => $departamentos,
+                    'success' => true
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'success' => false
+                ]
+            );
+        }
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,7 +62,7 @@ class DepartamentoController extends Controller
         $codigodepartamento = $request->codigo;
         $nombredepartamento = $request->nombre;
         $id_pais = $request->pais;
-        
+
         $departamento = new Departamento();
         $departamento->id_pais = $id_pais;
         $departamento->codigo = $codigodepartamento;
@@ -58,7 +79,9 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){}
+    public function show($id)
+    {
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -66,7 +89,9 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id){}
+    public function edit($id)
+    {
+    }
 
     /**
      * Update the specified resource in storage.
@@ -84,9 +109,9 @@ class DepartamentoController extends Controller
         $departamento = Departamento::findOrFail($id);
         $departamento->codigo = $codigodepartamento;
         $departamento->nombre = $nombredepartamento;
-        
+
         $departamento->update();
-        
+
         return redirect()->route('departamento.index')->with('editado', 'ok');
     }
 
