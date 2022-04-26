@@ -39,6 +39,18 @@ class DepartamentoController extends Controller
         }
     }
 
+    public function getDepartamentoById(Request $request)
+    {
+
+        $departamento = Departamento::findOrFail($request->id);
+        return response()->json(
+            [
+                'departamento' => $departamento,
+                'success' => true
+            ]
+        );
+    }
+
 
 
     /**
@@ -100,19 +112,23 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        dd('prueba');
+
         $codigodepartamento = $request->codigo;
         $nombredepartamento = $request->nombre;
 
-        $departamento = Departamento::findOrFail($id);
+        $departamento = Departamento::findOrFail($request->id);
         $departamento->codigo = $codigodepartamento;
         $departamento->nombre = $nombredepartamento;
 
         $departamento->update();
 
-        return redirect()->route('departamento.index')->with('editado', 'ok');
+        return response()->json(
+            [
+                'success' => true
+            ]
+        );
     }
 
     /**

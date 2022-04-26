@@ -27,6 +27,10 @@ Route::resource('pais', App\Http\Controllers\PaisController::class)->names('pais
 
 //Departamentos
 Route::post('/obtenerdepartamentos', [App\Http\Controllers\DepartamentoController::class, 'obtenerdepartamentos']);
+Route::post('/getDepartamentoById', [App\Http\Controllers\DepartamentoController::class, 'getDepartamentoById']);
+Route::post('/update', [App\Http\Controllers\DepartamentoController::class, 'update']);
+
+
 Route::resource('departamento', App\Http\Controllers\DepartamentoController::class)->names('departamento');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
