@@ -59,7 +59,7 @@ class DepartamentoController extends Controller
         return redirect()->route('departamento.index')->with('guardado', 'ok');
     }
 
-    public function update(Request $request)
+    public function updateDepartamento(Request $request)
     {
 
         $codigodepartamento = $request->codigo;

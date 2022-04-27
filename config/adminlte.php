@@ -264,6 +264,11 @@ return [
                     'route'  => 'departamento.index',
                     'icon' => 'fas fa-search-location',
                 ],
+                [
+                    'text' => 'Municipios',
+                    'route'  => 'municipio.index',
+                    'icon' => 'fas fa-search-location',
+                ],
         
             ],
         ],

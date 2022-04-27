@@ -23,13 +23,21 @@ Auth::routes();
 Route::resource('pais', App\Http\Controllers\PaisController::class)->names('pais');
 
 //Departamentos
+Route::resource('departamento', App\Http\Controllers\DepartamentoController::class)->names('departamento');
 Route::post('/obtenerdepartamentos', [App\Http\Controllers\DepartamentoController::class, 'obtenerdepartamentos']);
 Route::post('/getDepartamentoById', [App\Http\Controllers\DepartamentoController::class, 'getDepartamentoById']);
-Route::post('/update', [App\Http\Controllers\DepartamentoController::class, 'update']);
+Route::post('/updateDepartamento', [App\Http\Controllers\DepartamentoController::class, 'updateDepartamento']);
 Route::post('/eliminarDepartamento', [App\Http\Controllers\DepartamentoController::class, 'eliminarDepartamento']);
 
+//Municipios
+Route::resource('municipio', App\Http\Controllers\MunicipioController::class)->names('municipio');
+Route::post('/obtenermunicipios', [App\Http\Controllers\MunicipioController::class, 'obtenermunicipios']);
+Route::post('/getMunicipioById', [App\Http\Controllers\MunicipioController::class, 'getMunicipioById']);
+Route::post('/updateMunicipio', [App\Http\Controllers\MunicipioController::class, 'updateMunicipio']);
+Route::post('/eliminarMunicipio', [App\Http\Controllers\MunicipioController::class, 'eliminarMunicipio']);
 
-Route::resource('departamento', App\Http\Controllers\DepartamentoController::class)->names('departamento');
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
