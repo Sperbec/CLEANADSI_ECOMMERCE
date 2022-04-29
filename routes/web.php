@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +18,31 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+
+//Paises
+Route::resource('pais', App\Http\Controllers\PaisController::class)->names('pais');
+
+//Departamentos
+Route::resource('departamento', App\Http\Controllers\DepartamentoController::class)->names('departamento');
+Route::post('/obtenerdepartamentos', [App\Http\Controllers\DepartamentoController::class, 'obtenerdepartamentos']);
+Route::post('/getDepartamentoById', [App\Http\Controllers\DepartamentoController::class, 'getDepartamentoById']);
+Route::post('/updateDepartamento', [App\Http\Controllers\DepartamentoController::class, 'updateDepartamento']);
+Route::post('/eliminarDepartamento', [App\Http\Controllers\DepartamentoController::class, 'eliminarDepartamento']);
+
+//Municipios
+Route::resource('municipio', App\Http\Controllers\MunicipioController::class)->names('municipio');
+Route::post('/obtenermunicipios', [App\Http\Controllers\MunicipioController::class, 'obtenermunicipios']);
+Route::post('/getMunicipioById', [App\Http\Controllers\MunicipioController::class, 'getMunicipioById']);
+Route::post('/updateMunicipio', [App\Http\Controllers\MunicipioController::class, 'updateMunicipio']);
+Route::post('/eliminarMunicipio', [App\Http\Controllers\MunicipioController::class, 'eliminarMunicipio']);
+
+//Barrios
+Route::resource('barrio', App\Http\Controllers\BarrioController::class)->names('barrio');
+Route::post('/obtenerbarrios', [App\Http\Controllers\BarrioController::class, 'obtenerbarrios']);
+Route::post('/getBarrioById', [App\Http\Controllers\BarrioController::class, 'getBarrioById']);
+Route::post('/updateBarrio', [App\Http\Controllers\BarrioController::class, 'updateBarrio']);
+Route::post('/eliminarBarrio', [App\Http\Controllers\BarrioController::class, 'eliminarBarrio']);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
