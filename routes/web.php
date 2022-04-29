@@ -36,7 +36,12 @@ Route::post('/getMunicipioById', [App\Http\Controllers\MunicipioController::clas
 Route::post('/updateMunicipio', [App\Http\Controllers\MunicipioController::class, 'updateMunicipio']);
 Route::post('/eliminarMunicipio', [App\Http\Controllers\MunicipioController::class, 'eliminarMunicipio']);
 
-
+//Barrios
+Route::resource('barrio', App\Http\Controllers\BarrioController::class)->names('barrio');
+Route::post('/obtenerbarrios', [App\Http\Controllers\BarrioController::class, 'obtenerbarrios']);
+Route::post('/getBarrioById', [App\Http\Controllers\BarrioController::class, 'getBarrioById']);
+Route::post('/updateBarrio', [App\Http\Controllers\BarrioController::class, 'updateBarrio']);
+Route::post('/eliminarBarrio', [App\Http\Controllers\BarrioController::class, 'eliminarBarrio']);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

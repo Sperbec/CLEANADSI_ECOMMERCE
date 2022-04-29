@@ -267,7 +267,13 @@ return [
                 [
                     'text' => 'Municipios',
                     'route'  => 'municipio.index',
-                    'icon' => 'fas fa-search-location',
+                    'icon' => 'fas fa-map-marker-alt',
+                ],
+
+                [
+                    'text' => 'Barrios',
+                    'route'  => 'barrio.index',
+                    'icon' => 'fas fa-map-marked-alt',
                 ],
         
             ],
