@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('/frontend/inicio');
-});
+
+ Route::get('/',[App\Http\Controllers\FrontendController::class,'nuevos_productos'])->name('inicio');
+
 
 Auth::routes();
 
@@ -79,22 +79,15 @@ Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::clas
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend
 
-Route::get('/frontend/inicio',[App\Http\Controllers\FrontendController::class,'inicio'])->name('inicio');
+Route::get('frontend/inicio',[App\Http\Controllers\FrontendController::class,'nuevos_productos'])->name('inicio');
 
-//aseo personal
+Route::get('/frontend/aseo_personal',[App\Http\Controllers\FrontendController::class,'categoria_aseo_personal'])->name('aseo_personal');
 
-Route::get('/frontend/aseopp',[App\Http\Controllers\FrontendController::class,'aseopp'])->name('aseopp');
+Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('aseo_general');
 
-//uso personal
+Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
+//rutas para crear productos (probicional)
 
-Route::get('/frontend/usopp',[App\Http\Controllers\FrontendController::class,'usopp'])->name('usopp');
+Route::post('frontend',[App\Http\Controllers\FrontendController::class, 'store'])->name('store');
 
-/*----------------------------------------------------------------------------------------------------------- */
-Route::get('/frontend/productoslimpieza',[App\Http\Controllers\FrontendController::class,'productoslimpieza'])->name('productoslim');
-
-Route::get('/frontend/accesorioslimpieza',[App\Http\Controllers\FrontendController::class,'accesorioslimpieza'])->name('accesorioslim');
-
-Route::get('/frontend/detalle',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
-
-Route::get('/carritocompras', [App\Http\Controllers\CarritoComprasController::class, 'index']);
-
+Route::get('frontend/crear',[App\Http\Controllers\FrontendController::class, 'crear'])->name('crear');
