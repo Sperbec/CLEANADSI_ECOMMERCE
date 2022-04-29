@@ -237,10 +237,19 @@ return [
             'can'  => 'manage-blog',
         ],
 
+        [
+            'text'   => 'Permisos de usuarios',
+            'route'  => 'users.index',
+            'icon'   => 'fas fa-user',
+            'can'    => 'permisos',
+        ],
+
+
 
         [
             'text'    => 'Ubicación',
             'icon'    => 'fas fa-map-marker-alt',
+            'can'     => 'ubicacion',
             'submenu' => [
                 [
                     'text' => 'Paises',
@@ -268,19 +277,22 @@ return [
         ],
 
         [
-            'text' => 'Categorías',
+            'text'   => 'Categorías',
             'route'  => 'categoria.index',
-            'icon' => 'fas fa-tags',
+            'icon'   => 'fas fa-tags',
+            'can'    => 'categorias'
         ],
 
         [
-            'text' => 'Proveedores',
+            'text'   => 'Proveedores',
             'route'  => 'proveedores.index',
-            'icon' => 'fas fa-fw fa-user-tag',
+            'icon'   => 'fas fa-fw fa-user-tag',
+            'can'    => 'proveedores'
         ],
         [
             'text'    => 'Orden de compra',
             'icon'    => 'fas fa-fw fa-cart-arrow-down',
+            'can'     => 'ordencompra',
             'submenu' => [
                 [
 
@@ -300,6 +312,7 @@ return [
         [
             'text'    => 'Ventas',
             'icon'    => 'fas fa-fw fa-store',
+            'can'     => 'ventas',
             'submenu' => [
                 [
                     'text' => 'Consultar factura',
@@ -310,9 +323,17 @@ return [
         ],
         
         [
-            'text' => 'Clientes',
-            'route'  => 'clientes.index',
-            'icon' => 'fas fa-fw fa-users',
+            'text'    => 'Clientes',
+            'route'   => 'clientes.index',
+            'icon'    => 'fas fa-fw fa-users',
+            'can'     => 'clientes',
+        ],
+
+        [
+            'text'    => 'Mis pedidos',
+            'url'  => '#',
+            'icon'    => 'fas fa-shopping-bag',
+            'can'     => 'pedidos',
         ]
     ],
 
