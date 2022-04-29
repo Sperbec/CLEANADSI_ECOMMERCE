@@ -7,171 +7,364 @@
 @endsection
 
 @section('contenido')
-<body>
-    <div id="contenedor">
-        <div class="slider">
-            <ul>
-                <li><img class="img-slider" src="../imagenes/slider7aseo.jpeg" width=>
-                </li>
-                <li><img class="img-slider" src="../imagenes/slide-marcas.jpg" width=""></li>
-                <li><img class="img-slider" src="../imagenes/pg.png" alt=""></li>
-                <li><img class="img-slider" src="../imagenes/slide-aseo.jpg" alt="">
-                    
-                </li>
-            </ul>
-        </div>  
-        <div id="" class="contenedor ">
-                    <div class="contenedor-card">
-                        <div id="card" class="">
-                            <figure>
-                                <a href="{{route('detalle')}}">
-                                    <img  class="img-card" src="../imagenes/detergente.jpg" alt="">
-                                </a>
-                            </figure>
-                            <h1>SUAVIZANTE TDA VAINILLA X 5000 CC</h1>
-                            <div class="boton">
-                                <span>$ 30.000</span>
-                                <button>Añadir al Carrito</button>
-                            </div>
-                        </div>
-                        <div id="card" class="">
-                            <figure>
-                                <img class="img-card" src="../imagenes/jabon en polvo.jpg" alt="">
-                            </figure>
-                            <h1>JABON POLVO ULTREX FLORAL 500 GR</h1>
-                            <div class="boton">
-                            <span>$ 30.000</span>
-                                <button>Añadir al Carrito</button>
-                            </div>
-                        </div>
-            
-                        <div id="card" class="">
-                            <figure>
-                                <img class="img-card" src="../imagenes/alcohol.jpg" alt="">
-                            </figure>
-                            <h1>SUAVIZANTE TDA VAINILLA X 5000 CC</h1>
-                            <div class="boton">
-                            <span>$ 30.000</span>
-                                <button>Añadir al Carrito</button>
-                            </div>
-                            
-                        </div>
-            
-                        <div id="card" class="">
-                            <figure>
-                                <img class="img-card" src="../imagenes/crema dental colgate.jpg" alt="">
-                            </figure>
-                            <h1>SUAVIZANTE TDA VAINILLA X 5000 CC</h1>
-                            <div class="boton">
-                            <span>$ 30.000</span>
-                                 <button>Añadir al Carrito</button>
-                            </div>
-                    </div>
-                    <div>
-                        </div>
-                    </div>
-        </div>
-        
-        <div id="" class="contenedor ">
-            <div class="contenedor-card">
-                <div id="card" class="">
-                    <figure>
-                        <img class="img-card" src="../imagenes/papel higienico.jpg" alt="">
-                    </figure>
-                    <h1>PAPEL SCOTT HD BLANCO PREC X 250 MT-4083</h1>
-                    <div class="boton">
-                    <span>$ 12.296</span>
-                         <button>Añadir al Carrito</button>
-                    </div>
-                   
-                    
-                </div>
-    
-                <div id="card" class="">
-                    <figure>
-                        <img class="img-card" src="../imagenes/jabon protex.jpg" alt="">
-                    </figure>
-                    <h1>JABON PROTEX LIMPIEZA PROFUNDA X 120</h1>
-                    <div class="boton">
-                    <span>$ 2.900</span>
-                         <button>Añadir al Carrito</button>
-                    </div>
-                    
-                </div>
-    
-                <div id="card" class="">
-                    <figure>
-                        <img class="img-card" src="../imagenes/cepillo.jpg" alt="">
-                    </figure>
-                    <h1>CEPILLO MANO TIPO PLANCHA OSBE</h1>
-                    <div class="boton">
-                    <span>$ 1.567</span>
-                         <button>Añadir al Carrito</button>
-                    </div>
-                    
-                </div>
-    
-                <div id="card" class="">
-                    <figure>
-                        <img class="img-card" src="../imagenes/papelera.jpg" alt="">
-                    </figure>
-                    <h1>PAPELERA ESTRA PEDAL 10 LT PAPEL CARTON</h1>
-                    <div class="boton">
-                    <span>$ 47.248</span>
-                         <button>Añadir al Carrito</button>
-                    </div>
-                    
-                </div>
 
-            <div>
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Nuevos Productos</h3>
                 </div>
             </div>
-</div>
-        
+            <!-- /section title -->
+
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab1" class="tab-pane active">
+                            <div class="products-slick" data-nav="#slick-nav-1">
+                                <!-- product -->
+                                @foreach ($producto as $nvp)
+                                <div class="product">
+                                        <div class="product-img">
+                                            <img src="/imagen/{{$nvp->imagen}}" alt="">
+                                            <div class="product-label">
+                                                <!--<span class="sale"></span>-->
+                                                <span class="new">Nuevo</span>
+                                            </div>
+                                        </div>
+                                    <div class="product-body">
+                                        
+                                        <p class="product-category">Category</p>
+                                        <h3 class="product-name"><a href="{{route('detalle',$nvp->id_producto)}}">{{$nvp->nombre}}</a></h3>
+                                        <h4 class="product-price">${{$nvp->precio}}</h4>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
+                                    </div>
+                                    
+                                </div> 
+                                @endforeach
+                                <!-- /product -->
+                            </div>
+                            <div id="slick-nav-1" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- Products tab & slick -->
+        </div>
+        <!-- /row -->
     </div>
+    <!-- /container -->
+</div>
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-4 col-xs-6">
+                <div class="section-title">
+                    <h4 class="title">Top selling</h4>
+                    <div class="section-nav">
+                        <div id="slick-nav-3" class="products-slick-nav"></div>
+                    </div>
+                </div>
 
-    <section>
-        <div class="titulo">
-          <h1>
-            Productos Destacados
-         </h1>
-        </div>
-            <div class="destacados">
-                <div class="produc-destacados">
-                   <figure>
-                        <img class="img-card" src="../imagenes/papelera.jpg" alt="">
-                    </figure>
-                        <h4>PAPELERA ESTRA PEDAL 10 LT PAPEL CARTON</h4>
-                </div>
-        
-                <div class="produc-destacados">
-                   <figure>
-                        <img class="img-card" src="../imagenes/cepillo.jpg" alt="">
-                    </figure>
-                        <h4>CEPILLO MANO TIPO PLANCHA OSBE</h4>
-                </div>
-        
-                <div class="produc-destacados">
-                   <figure>
-                        <img class="img-card" src="../imagenes/jabon protex.jpg" alt="">
-                    </figure>
-                        <h4>JABON T. PROTEX LIMPIEZA PROFUNDA X 120</h4>
-                </div>
-                <div class="produc-destacados">
-                   <figure>
-                        <img class="img-card" src="../imagenes/papel higienico.jpg" alt="">
-                    </figure>
-                        <h4>PAPEL SCOTT HD BLANCO PREC X 250 MT-4083</h4>
-                </div>
-                <div class="produc-destacados">
-                    <figure>
-                        <img class="img-card" src="../imagenes/jabon en polvo.jpg" alt="">
-                    </figure>
-                        <h4>JABON POLVO ULTREX FLORAL 500 GR</h4>
+                <div class="products-widget-slick" data-nav="#slick-nav-3">
+                    <div>
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product07.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product08.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product09.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- product widget -->
+                    </div>
+
+                    <div>
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product01.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product02.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product03.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- product widget -->
+                    </div>
                 </div>
             </div>
-        </section>
-</body>
+
+            <div class="col-md-4 col-xs-6">
+                <div class="section-title">
+                    <h4 class="title">Top selling</h4>
+                    <div class="section-nav">
+                        <div id="slick-nav-4" class="products-slick-nav"></div>
+                    </div>
+                </div>
+
+                <div class="products-widget-slick" data-nav="#slick-nav-4">
+                    <div>
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product04.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product05.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product06.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- product widget -->
+                    </div>
+
+                    <div>
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product07.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product08.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product09.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- product widget -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix visible-sm visible-xs"></div>
+
+            <div class="col-md-4 col-xs-6">
+                <div class="section-title">
+                    <h4 class="title">Top selling</h4>
+                    <div class="section-nav">
+                        <div id="slick-nav-5" class="products-slick-nav"></div>
+                    </div>
+                </div>
+
+                <div class="products-widget-slick" data-nav="#slick-nav-5">
+                    <div>
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product01.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product02.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product03.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- product widget -->
+                    </div>
+
+                    <div>
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product04.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product05.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- /product widget -->
+
+                        <!-- product widget -->
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product06.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+                        <!-- product widget -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
 @endsection
+
 @section('footer')
-@stop
+
+@endsection
