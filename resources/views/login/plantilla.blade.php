@@ -14,7 +14,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!--Utilizar css con stylus, escribir css de forma sencilla-->
+    <!--Utilizar css-->
     <link rel="stylesheet" href="{{url('/static/css/login.css')}}">
 
     <!--Utilizar fontawesome -->
@@ -25,7 +25,6 @@
 <body>
 
     <!--Condicional que muestra un mensaje utilizando la clase alerta-->
-    
     @if(Session::has('message'))
         <div class="container">
             <div class="alert alert-{{Session::get('typealert')}}" style="display:none;">
@@ -49,8 +48,12 @@
 
      <!--Mostrar sección de contenido-->
     @section('content')
-    hola mundo
     @show
+
+
+    @section('js')
+    @show
+
     
 </body>
 </html>
