@@ -1,35 +1,99 @@
-
 @extends('frontend.plantilla')
-@section('titulo','detelle')
+
+@section('titulo','Detalle de Producto')
+
 @section('header')
 
 @endsection
 
 @section('contenido')
-<div class="cabezera"><h1>Detalles</h1></div>
-<div class="contenedor-detalle">
-    <div class="filas">
-        <section id="imagen" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <img class="col-lg-12 col-md-12 col-sm-12 col-xs-12" src="../imagenes/detergente.jpg" alt="">
-        </section>
-        <section id="info" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <h3>SUAVIZANTE TDA VAINILLA X 5000 CC</h3>
-            <br>
-            <h1>$ 32.062 </h1>
-            <br>
-            <p>TDA Suavizante de telas deja sus prendas con más aroma, más frescura y una sensación de suavidad irresistible. Sus agentes acondicionadores disminuye la aparición de arrugas y facilita el planchado. Sus aromas frescos y suaves permanecen por más tiempo. Aroma a Vainilla.
-                Contenido: 5000 cc</p>
-                <br>
-                <div id="contador">
-                    1
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            
+
+            <!-- Product thumb imgs -->
+            <div class="col-md-2  col-md-pull-5">
+                <div id="product-imgs">
+                    <div class="product-preview">
+                        <img src="{{$producto->imagen}}" alt="">
+                    </div>
                 </div>
-                <button>Añadir al Carrito</button>
+            </div>
+            <!-- /Product thumb imgs -->
 
-        </section>
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="product-details">
+                    <h2 class="product-name">{{$producto->nombre}}</h2>
+                    
+                    <div>
+                        <h3 class="product-price">${{$producto->precio}}</h3>
+                        <span class="product-available">Cantidad disponivle : {{$producto->cantidad_existencia}}</span>
+                    </div>
+                    
+                    <div class="add-to-cart">
+                        
+                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
+                    </div>
+
+                    <ul class="product-links">
+                        <li>Siguenos:</li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- /Product details -->
+
+            <!-- Product tab -->
+            <div class="col-md-12">
+                <div id="product-tab">
+                    <!-- product tab nav -->
+                    <ul class="tab-nav">
+                        <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+                        
+                    </ul>
+                    <!-- /product tab nav -->
+
+                    <!-- product tab content -->
+                    <div class="tab-content">
+                        <!-- tab1  -->
+                        <div id="tab1" class="tab-pane fade in active">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>{{$producto->descripcion}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /tab1  -->
+
+                        <!-- tab2  -->
+                        <div id="tab2" class="tab-pane fade in">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /tab2  -->
+                    </div>
+                    <!-- /product tab content  -->
+                </div>
+            </div>
+            <!-- /product tab -->
+        </div>
+        
+        <!-- /row -->
     </div>
+    <!-- /container -->
 </div>
-
-
 @endsection
 
 @section('footer')
+@endsection

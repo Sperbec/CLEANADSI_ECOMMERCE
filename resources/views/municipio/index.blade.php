@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Departamentos')
+@section('title', 'Municipios')
 
 @section('content_header')
 
 <div class="row">
     <div class="col-md-6">
-        <h1>Departamentos</h1>
+        <h1>Municipios</h1>
     </div>
     <div class="col-md-6">
-        <a id="btnCrear" data-toggle="modal" data-target="#mdlCrearDepartamento" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Crear departamento</a>
+        <a id="btnCrear" data-toggle="modal" data-target="#mdlCrearMunicipio" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Crear municipio</a>
     </div>
 </div>
 
@@ -18,29 +18,29 @@
 
 @section('content')
 
-<!-- Modal de crear departamento-->
-<div id="mdlCrearDepartamento" class="modal fade" role="dialog">
+<!-- Modal de crear municipio-->
+<div id="mdlCrearMunicipio" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Crear departamento</h3>
+                <h3>Crear municipio</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
 
-                {!! Form::open(['route' => 'departamento.store']) !!}
+                {!! Form::open(['route' => 'municipio.store']) !!}
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="pais" class="mtop16">País:</label>
+                        <label for="departamento" class="mtop16">Departamento:</label>
                         <div class="input-group">
                             <div class="input-group-text">
-                                <i class="fas fa-globe-americas"></i>
+                                <i class="fas fa-search-location"></i>
                             </div>
-                            <select id="pais" name="pais" class="form-select" required>
+                            <select id="departamento" name="departamento" class="form-select" required>
                                 <option value=''>Seleccione</option>
-                                @foreach ($paises as $pais)
-                                <option value="{{ $pais->id_pais }}">{{ $pais->nombre }}</option>
+                                @foreach ($departamentos as $departamento)
+                                <option value="{{ $departamento->id_departamento }}">{{ $departamento->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -51,23 +51,23 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="codigo">Codigo departamento:</label>
+                        <label for="codigo">Codigo municipio:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="far fa-keyboard"></i>
                             </div>
-                            {!! Form::text('codigo', null, ['id' => 'codigodepartamento', 'class' => 'form-control',
+                            {!! Form::text('codigo', null, ['id' => 'codigomunicipio', 'class' => 'form-control',
                             'required']) !!}
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="nombre">Nombre departamento:</label>
+                        <label for="nombre">Nombre municipio:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="fas fa-keyboard"></i>
                             </div>
-                            {!! Form::text('nombre', null, ['id' => 'nombredepartamento', 'class' => 'form-control',
+                            {!! Form::text('nombre', null, ['id' => 'nombremunicipio', 'class' => 'form-control',
                             'required']) !!}
                         </div>
                     </div>
@@ -88,34 +88,34 @@
 </div>
 
 
-<!-- Modal de editar departamento-->
-<div id="mdlEditarDepartamento" class="modal fade" role="dialog">
+<!-- Modal de editar municipio-->
+<div id="mdlEditarMunicipio" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Editar departamento</h3>
+                <h3>Editar municipio</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="codigodepartamentoeditar">Codigo departamento:</label>
+                        <label for="codigomunicipioeditar">Codigo municipio:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="far fa-keyboard"></i>
                             </div>
-                            {!! Form::text('codigodepartamentoeditar', null, ['id' => 'codigodepartamentoeditar',
+                            {!! Form::text('codigomunicipioeditar', null, ['id' => 'codigomunicipioeditar',
                             'class' => 'form-control', 'required']) !!}
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="nombredepartamentoeditar">Nombre departamento:</label>
+                        <label for="nombremunicipioeditar">Nombre municipio:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="fas fa-keyboard"></i>
                             </div>
-                            {!! Form::text('nombredepartamentoeditar',null, ['id' => 'nombredepartamentoeditar', 'class'
+                            {!! Form::text('nombremunicipioeditar',null, ['id' => 'nombremunicipioeditar', 'class'
                             => 'form-control', 'required']) !!}
                         </div>
                     </div>
@@ -136,15 +136,15 @@
 
 <div class="row">
     <div class="col-md-6">
-        <label for="selectedPais" class="mtop16">País:</label>
+        <label for="selectedDepartamento" class="mtop16">Departamento:</label>
         <div class="input-group">
             <div class="input-group-text">
-                <i class="fas fa-globe-americas"></i>
+                <i class="fas fa-search-location"></i>
             </div>
-            <select id="selectedPais" name="selectedPais" class="form-select" onchange="changePais()">
+            <select id="selectedDepartamento" name="selectedDepartamento" class="form-select" onchange="changePais()">
                 <option value=''>Seleccione</option>
-                @foreach ($paises as $pais)
-                <option value="{{ $pais->id_pais }}">{{ $pais->nombre }}</option>
+                @foreach ($departamentos as $departamento)
+                <option value="{{ $departamento->id_departamento }}">{{ $departamento->nombre }}</option>
                 @endforeach
             </select>
         </div>
@@ -153,7 +153,7 @@
 
 <br>
 
-<table class="table" id="tbldepartamentos">
+<table class="table" id="tblmunicipios">
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -186,12 +186,12 @@
 @section('js')
 <script>
     const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
-        var iddepartamento = null;
+        var idmunicipio = null;
 
         function changePais(){
-            fetch('obtenerdepartamentos',{
+            fetch('obtenermunicipios',{
                     method : 'POST',
-                    body: JSON.stringify({texto : document.getElementById('selectedPais').value}),
+                    body: JSON.stringify({texto : document.getElementById('selectedDepartamento').value}),
                     headers:{
                         'Content-Type': 'application/json',
                         "X-CSRF-Token": csrfToken
@@ -199,24 +199,24 @@
                 }).then(response =>{
                     return response.json()
                 }).then( data =>{
-                    $("#tbldepartamentos .editable").empty();
+                    $("#tblmunicipios .editable").empty();
                     for (let i in data.lista) {
                         $('table tbody').append(
-                        '<tr class="editable"><td>' + data.lista[i].id_departamento+ 
+                        '<tr class="editable"><td>' + data.lista[i].id_municipio+ 
                         '</td><td>' + data.lista[i].codigo + 
                         '</td><td>' + data.lista[i].nombre +'</td><td>'+ 
-                        '<a onclick="cargarDatosEditar('+data.lista[i].id_departamento+')" class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
-                        '<a onclick="eliminarDepartamento('+data.lista[i].id_departamento+')" class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
+                        '<a onclick="cargarDatosEditar('+data.lista[i].id_municipio+')" class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
+                        '<a onclick="eliminarMunicipio('+data.lista[i].id_municipio+')" class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
                     }
                    
                 }).catch(error => console.error(error));
             
         }
 
-        function cargarDatosEditar(iddepartamento){
-            fetch('getDepartamentoById',{
+        function cargarDatosEditar(idmunicipio){
+            fetch('getMunicipioById',{
                     method : 'POST',
-                    body: JSON.stringify({id :iddepartamento}),
+                    body: JSON.stringify({id :idmunicipio}),
                     headers:{
                         'Content-Type': 'application/json',
                         "X-CSRF-Token": csrfToken
@@ -224,21 +224,21 @@
                 }).then(response =>{
                     return response.json()
                 }).then( data =>{
-                    document.getElementById('codigodepartamentoeditar').value = data.departamento.codigo;
-                    document.getElementById('nombredepartamentoeditar').value = data.departamento.nombre;
-                    this.iddepartamento = iddepartamento;
-                    $("#mdlEditarDepartamento").modal("show");
+                    document.getElementById('codigomunicipioeditar').value = data.municipio.codigo;
+                    document.getElementById('nombremunicipioeditar').value = data.municipio.nombre;
+                    this.idmunicipio = idmunicipio;
+                    $("#mdlEditarMunicipio").modal("show");
                 }).catch(error => console.error(error));
           
         }
 
         function actualizarRegistro(){
-            fetch('updateDepartamento',{
+            fetch('updateMunicipio',{
                     method : 'POST',
                     body: JSON.stringify({
-                        id : this.iddepartamento,
-                        codigo:  document.getElementById('codigodepartamentoeditar').value,
-                        nombre:  document.getElementById('nombredepartamentoeditar').value}),
+                        id : this.idmunicipio,
+                        codigo:  document.getElementById('codigomunicipioeditar').value,
+                        nombre:  document.getElementById('nombremunicipioeditar').value}),
                     headers:{
                         'Content-Type': 'application/json',
                         "X-CSRF-Token": csrfToken
@@ -253,12 +253,12 @@
                     showConfirmButton: false,
                     timer: 1500
                     })
-                    $("#mdlEditarDepartamento").modal("hide");
+                    $("#mdlEditarMunicipio").modal("hide");
                     changePais();
                 }).catch(error => console.error(error));
         }
 
-        function eliminarDepartamento(iddepartamento){
+        function eliminarMunicipio(idmunicipio){
             Swal.fire({
                 title: '¿Seguro de eliminar este registro?',
                 text: "Esta acción no se puede deshacer",
@@ -270,10 +270,10 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                   console.log(iddepartamento);
-                   fetch('eliminarDepartamento',{
+                   console.log(idmunicipio);
+                   fetch('eliminarMunicipio',{
                     method : 'POST',
-                    body: JSON.stringify({id :iddepartamento}),
+                    body: JSON.stringify({id :idmunicipio}),
                     headers:{
                         'Content-Type': 'application/json',
                         "X-CSRF-Token": csrfToken

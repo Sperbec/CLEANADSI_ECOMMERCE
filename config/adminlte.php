@@ -227,22 +227,10 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'Buscar',
-            'topnav_right' => true,
-        ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        // Sidebar items:
-        /*[
-            'type' => 'sidebar-menu-search',
-            'text' => 'Buscar',
-        ],*/
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -264,12 +252,21 @@ return [
                     'route'  => 'departamento.index',
                     'icon' => 'fas fa-search-location',
                 ],
+                [
+                    'text' => 'Municipios',
+                    'route'  => 'municipio.index',
+                    'icon' => 'fas fa-map-marker-alt',
+                ],
+
+                [
+                    'text' => 'Barrios',
+                    'route'  => 'barrio.index',
+                    'icon' => 'fas fa-map-marked-alt',
+                ],
         
             ],
         ],
 
-
-       
         [
             'text' => 'Categorías',
             'route'  => 'categoria.index',

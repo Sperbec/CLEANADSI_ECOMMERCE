@@ -3,40 +3,71 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Producto;
 class FrontendController extends Controller
 {
-    public function inicio()
-    {
-        return view('frontend.inicio');
-    }
 
-    /* aseo personal */
     
-    public function aseopp()
+    public function nuevos_productos()
     {
-        return view('frontend.aseopp');
+        $producto=Producto::orderBy('id_producto','desc')->paginate(5);
+        
+        return view('frontend.inicio',compact('producto'));
     }
 
-    /* uso personal */
-    public function usopp()
+    public function categoria_aseo_personal()
     {
-        return view('frontend.usopp');
+        $producto_aseo_personal = Producto::where('id_categoria','3')->get();
+
+        return view('frontend.aseo_personal',compact('producto_aseo_personal'));
     }
 
-    /* Aseo general */
-    public function productoslimpieza()
+    public function categoria_aseo_general()
     {
-        return view('frontend.productoslimpieza');
+        $producto_aseo_general = Producto::where('id_categoria','2')->get();
+
+        return view('frontend.aseo_general',compact('producto_aseo_general'));
     }
 
-    public function accesorioslimpieza()
+    public function detalle(Producto $producto)
     {
-        return view('frontend.accesorioslimpieza');
+        return view('frontend.detalle',compact('producto'));
     }
 
-    public function detalle()
+    public function crear()
     {
-        return view('frontend.detalle');
+        return view('frontend.crear');
     }
+
+    public function store(Request $request)
+    {
+        //$producto =Producto::create($request->all());
+
+        $request->validate([
+            'nombre'=> 'required',
+            'descripcion' => 'required',
+            'sku'=> 'required',
+            'estado' => 'required',
+            'precio' => 'required',
+            'cantidad_existencia'=> 'required',
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg,jfif|max:2048',
+            'id_categoria'=> 'required',
+        ]);
+       //dd('ok');
+        
+        $salidaimagen =$request->all();
+
+        if($imagen=$request->file('imagen'))
+        {
+            $rutaGuardarImg = 'imagen/';
+            $imagenProducto = date('YmdHis'). "." .$imagen->getClientOriginalExtension();
+            $imagen->move($rutaGuardarImg, $imagenProducto);
+            $salidaimagen['imagen'] = "$imagenProducto";
+        }
+
+        Producto::create($salidaimagen);
+        
+        return redirect()->route('frontend.aseo_personal');
+    }
+
 }
