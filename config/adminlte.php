@@ -238,15 +238,6 @@ return [
         ],
 
         [
-            'text'   => 'Permisos de usuarios',
-            'route'  => 'users.index',
-            'icon'   => 'fas fa-user',
-            'can'    => 'permisos',
-        ],
-
-
-
-        [
             'text'    => 'Ubicación',
             'icon'    => 'fas fa-map-marker-alt',
             'can'     => 'ubicacion',
