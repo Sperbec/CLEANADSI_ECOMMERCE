@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Opciones_definidas;
 use App\Models\Persona;
+use App\Http\Requests\storenombres;
+
 
 class PersonaController extends Controller
 {
@@ -41,7 +43,7 @@ class PersonaController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(Storenombres $request)
     {
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;

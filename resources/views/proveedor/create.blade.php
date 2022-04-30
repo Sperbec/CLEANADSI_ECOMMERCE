@@ -47,6 +47,11 @@
                     </div>
                     {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'nombres_persona']) !!}
                 </div>
+                
+                @error('nombres')
+                <small>*{{$message}}</small>
+                </br>
+                @enderror
             </div>
 
             <div class="col-md-6">

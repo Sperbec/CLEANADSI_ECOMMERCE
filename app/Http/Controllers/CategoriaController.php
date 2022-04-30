@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\storenombres;
 
 class CategoriaController extends Controller
 {
@@ -21,7 +22,7 @@ class CategoriaController extends Controller
         return view('categoria.index', $data);
     }
 
-    public function store(Request $request){
+    public function store(Storenombres $request){
         
         $codigocategoria = $request->codigo;
         $nombrecategoria = $request->nombre;

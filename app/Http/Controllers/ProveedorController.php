@@ -8,6 +8,7 @@ use App\Models\Proveedor;
 use App\Models\Opciones_definidas;
 use App\Models\Persona;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\storenombres;
 
 class ProveedorController extends Controller
 {
@@ -87,7 +88,7 @@ class ProveedorController extends Controller
         return view('proveedor.create', $data);
     }
 
-    public function store(Request $request)
+    public function store(Storenombres $request)
     {
         $tipos_personas = $request->tipos_personas;
        
