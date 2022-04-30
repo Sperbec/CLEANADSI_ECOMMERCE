@@ -325,6 +325,12 @@ return [
             'url'  => '#',
             'icon'    => 'fas fa-shopping-bag',
             'can'     => 'pedidos',
+        ],
+        [
+            'text'    => 'Mi cuenta',
+            'url'  => '#',
+            'icon'    => 'fas fa-user-circle',
+            'can'     => 'micuenta',
         ]
     ],
 
