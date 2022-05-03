@@ -322,13 +322,13 @@ return [
 
         [
             'text'    => 'Mis pedidos',
-            'url'  => '#',
+            'url'  => '/pedidos',
             'icon'    => 'fas fa-shopping-bag',
             'can'     => 'pedidos',
         ],
         [
             'text'    => 'Mi cuenta',
-            'url'  => '#',
+            'url'  => '/micuenta',
             'icon'    => 'fas fa-user-circle',
         ]
     ],
