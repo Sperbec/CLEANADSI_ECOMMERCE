@@ -74,6 +74,12 @@ Route::resource('clientes', App\Http\Controllers\PersonaController::class)->name
 Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, 'crear'])->name('crearOrdenCompra');
 Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::class, 'consultar'])->name('consultarOrdenCompra');
 
+//Mis pedidos
+Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])->name('pedidos');
+
+//Mi cuenta
+Route::get('/micuenta', [App\Http\Controllers\CuentaController::class, 'index'])->name('micuenta');
+
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend
 
