@@ -330,7 +330,6 @@ return [
             'text'    => 'Mi cuenta',
             'url'  => '#',
             'icon'    => 'fas fa-user-circle',
-            'can'     => 'micuenta',
         ]
     ],
 
