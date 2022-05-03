@@ -29,5 +29,8 @@ class RoleSeeder extends Seeder
 
        //Permisos para cliente
        Permission::create(['name' => 'pedidos'])->assignRole($role2);
+
+       //Permisos para cliente y administrador
+       Permission::create(['name' => 'micuenta'])->syncRoles([$role1, $role2]);
     }
 }
