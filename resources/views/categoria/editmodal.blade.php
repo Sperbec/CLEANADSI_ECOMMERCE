@@ -21,6 +21,10 @@
                                 </div>
                                 {!! Form::text('codigo', $categoria->codigo, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
                             </div>
+                            @error('codigo')
+                            <small>*{{$message}}</small>
+                            </br>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">

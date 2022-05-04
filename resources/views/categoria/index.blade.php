@@ -101,6 +101,11 @@
             @endforeach
         </tbody>
     </table>
+
+    @error('codigo')
+                <small>*{{$message}}</small>
+                </br>
+                @enderror
 @stop
 
 @section('css')
@@ -207,3 +212,4 @@
         });
     </script>
 @stop
+        
