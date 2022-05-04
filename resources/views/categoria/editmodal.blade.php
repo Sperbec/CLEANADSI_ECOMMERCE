@@ -24,13 +24,15 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="nombre">Nombre categoría:</label>
+                            <label for="nombre">nombre categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombre', $categoria->nombre, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombres', $categoria->nombres, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
                             </div>
+                           
+                           
                         </div>
                     </div>
 

@@ -3,6 +3,7 @@
 @section('title', 'Crear cliente')
 
 @section('content_header')
+
     {!! Form::open(['route' => 'clientes.store']) !!}
     <div class="row">
         <div class="col-md-6">
@@ -27,8 +28,22 @@
                         <i class="fas fa-user"></i>
                     </div>
                     {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'id' => 'nombres_persona']) !!}
+                   
                 </div>
+                @error ('nombres')
+                <br>
+                <small>*{{$message}}</small>
+                <br>
+                @enderror
             </div>
+            
+            <!--para hacer validaciones en el campo persona o cualquier otro dirigirse a HTTP y entrar en la 
+            carpeta request.nota @ error es una directiva de blade y muestra si hay una falla en la validacion
+            e imprime un mensaje-->
+           
+            
+           
+            
 
             <div class="col-md-6">
                 <label for="apellidos" class="mtop16">Apellidos:</label>
@@ -38,6 +53,11 @@
                     </div>
                     {!! Form::text('apellidos', null, ['class' => 'form-control', 'required', 'id' => 'apellidos_persona']) !!}
                 </div>
+                @error ('apellidos')
+                <br>
+                <small>*{{$message}}</small>
+                <br>
+                @enderror
             </div>
         </div>
 
@@ -55,17 +75,27 @@
                         @endforeach
                     </select>
                 </div>
+                @error ('tipo_documento')
+                <br>
+                <small>*{{$message}}</small>
+                <br>
+                @enderror
             </div>
 
 
             <div class="col-md-6">
-                <label for="numero_documento" class="mtop16">Número de documento:</label>
+                <label for="numero" class="mtop16">Número de documento:</label>
                 <div class="input-group">
                     <div class="input-group-text">
                         <i class="far fa-id-card"></i>
                     </div>
-                    {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'min' => '0000000000', 'max' => '9999999999']) !!}
+                    {!! Form::number('numero', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'min' => '0000000000', 'max' => '9999999999']) !!}
                 </div>
+                @error ('numero')
+                <br>
+                <small>*{{$message}}</small>
+                <br>
+                @enderror
             </div>
         </div>
 

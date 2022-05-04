@@ -35,7 +35,7 @@
                                 {!! Form::text('codigo', null, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
-
+                       
                         <div class="col-md-6">
                             <label for="nombre">Nombre categoría:</label>
                             <div class="input-group">
@@ -44,6 +44,8 @@
                                 </div>
                                 {!! Form::text('nombre', null, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
                             </div>
+                           
+                           
                         </div>
                     </div>
 
@@ -60,7 +62,7 @@
             </div>
         </div>
     </div>
-
+   
 
     <table class="table table-hover" id="tblcategoria">
         <thead>

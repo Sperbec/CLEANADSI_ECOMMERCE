@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Opciones_definidas;
 use App\Models\Persona;
+use App\Http\Requests\StorePersona;
 
 class PersonaController extends Controller
 {
@@ -56,14 +57,18 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePersona $request)
     {
+       
+        
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;
         $tipos_documento = $request->tipo_documento;
         $documento = $request->numero_documento;
         $genero = $request->genero;
         $caledario = $request->calendario;
+       
+        
 
         $persona = new Persona();
 

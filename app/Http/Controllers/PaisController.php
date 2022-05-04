@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pais;
+use App\Http\Requests\storePais;
+use App\Http\Requests\StorePais as RequestsStorePais;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class PaisController extends Controller
 {
@@ -44,6 +47,8 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
+        
+
         $codigopais = $request->codigo;
         $nombrepais = $request->nombre;
         

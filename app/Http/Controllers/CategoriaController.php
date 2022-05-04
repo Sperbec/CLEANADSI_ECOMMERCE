@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StorePersona;
 
 class CategoriaController extends Controller
 {
@@ -46,7 +47,7 @@ class CategoriaController extends Controller
 
     }
 
-    public function update(Request $request, $id){
+    public function update( Request $request, $id){
         $codigocategoria = $request->codigo;
         $nombrecategoria = $request->nombre;
 
