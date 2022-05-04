@@ -26,7 +26,9 @@
                     <div class="input-group-text">
                         <i class="fas fa-user"></i>
                     </div>
-                    {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'id' => 'nombres_persona']) !!}
+                    {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'id' => 'nombres_persona'
+                        
+                    ]) !!}
                 </div>
                 <br>
                 @error('nombres')

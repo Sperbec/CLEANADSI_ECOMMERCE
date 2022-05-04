@@ -45,6 +45,13 @@ class PersonaController extends Controller
     
     public function store(Storenombres $request)
     {
+
+        //$campos=[
+          //  'Nombres'=>'required|string|max:100',
+           // 'Apellidos'=>'required|string|max:100',
+           // 'Numero de documento'=>'required|int|max:15
+        ///]
+
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;
         $tipos_documento = $request->tipo_documento;
