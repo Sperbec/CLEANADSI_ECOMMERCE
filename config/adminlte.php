@@ -227,32 +227,20 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'Buscar',
-            'topnav_right' => true,
-        ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        // Sidebar items:
-        /*[
-            'type' => 'sidebar-menu-search',
-            'text' => 'Buscar',
-        ],*/
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
 
-
         [
             'text'    => 'Ubicación',
             'icon'    => 'fas fa-map-marker-alt',
+            'can'     => 'ubicacion',
             'submenu' => [
                 [
                     'text' => 'Paises',
@@ -264,26 +252,38 @@ return [
                     'route'  => 'departamento.index',
                     'icon' => 'fas fa-search-location',
                 ],
+                [
+                    'text' => 'Municipios',
+                    'route'  => 'municipio.index',
+                    'icon' => 'fas fa-map-marker-alt',
+                ],
+
+                [
+                    'text' => 'Barrios',
+                    'route'  => 'barrio.index',
+                    'icon' => 'fas fa-map-marked-alt',
+                ],
         
             ],
         ],
 
-
-       
         [
-            'text' => 'Categorías',
+            'text'   => 'Categorías',
             'route'  => 'categoria.index',
-            'icon' => 'fas fa-tags',
+            'icon'   => 'fas fa-tags',
+            'can'    => 'categorias'
         ],
 
         [
-            'text' => 'Proveedores',
+            'text'   => 'Proveedores',
             'route'  => 'proveedores.index',
-            'icon' => 'fas fa-fw fa-user-tag',
+            'icon'   => 'fas fa-fw fa-user-tag',
+            'can'    => 'proveedores'
         ],
         [
             'text'    => 'Orden de compra',
             'icon'    => 'fas fa-fw fa-cart-arrow-down',
+            'can'     => 'ordencompra',
             'submenu' => [
                 [
 
@@ -303,6 +303,7 @@ return [
         [
             'text'    => 'Ventas',
             'icon'    => 'fas fa-fw fa-store',
+            'can'     => 'ventas',
             'submenu' => [
                 [
                     'text' => 'Consultar factura',
@@ -313,9 +314,22 @@ return [
         ],
         
         [
-            'text' => 'Clientes',
-            'route'  => 'clientes.index',
-            'icon' => 'fas fa-fw fa-users',
+            'text'    => 'Clientes',
+            'route'   => 'clientes.index',
+            'icon'    => 'fas fa-fw fa-users',
+            'can'     => 'clientes',
+        ],
+
+        [
+            'text'    => 'Mis pedidos',
+            'url'  => '/pedidos',
+            'icon'    => 'fas fa-shopping-bag',
+            'can'     => 'pedidos',
+        ],
+        [
+            'text'    => 'Mi cuenta',
+            'url'  => '/micuenta',
+            'icon'    => 'fas fa-user-circle',
         ]
     ],
 

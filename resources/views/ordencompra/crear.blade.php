@@ -81,7 +81,7 @@
 
     </div>
 
-    <a class="btn btn-primary mtop16" id="btnAgregar" data-toggle="modal" data-target="#miModal">
+    <a class="btn btn-primary mtop16" id="btnAgregar" >
         <i class="fas fa-plus"></i> Agregar</a>
 
     <table class="table" id="table_articulos">
@@ -157,20 +157,34 @@
 @section('js')
     <script>
         $("#btnAgregar").on("click", function() {
-            document.getElementById("producto").value = ''; 
-            document.getElementById("cantidad").value = ""; 
-            $("#miModal").modal("show");
+
+            var selectProveedor = document.getElementById('proveedores');
+            text = selectProveedor.options[selectProveedor.selectedIndex].innerText; 
+
+            if(text === 'Seleccione'){
+                alert("Seleccione un proveedor");
+            }else{
+                document.getElementById("producto").value = ''; 
+                document.getElementById("cantidad").value = ""; 
+                $("#miModal").modal("show");
+            }
+
         });
+
 
         $('#agregarItem').click(function() {
             var selectProduct = document.getElementById('producto');
             text = selectProduct.options[selectProduct.selectedIndex].innerText; 
             var cantidad = $('#cantidad').val();
-           
-            $('table tbody').append('<tr><td>' + text+ '</td><td>' + cantidad +'</td><td>'+ 
-                '<a class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
-                '<a class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
-            $("#miModal").modal('hide');
+
+            if(cantidad === '' || text === 'Seleccione' ){
+                alert("Seleccione un producto y digite la cantidad");
+            }else{
+                $('table tbody').append('<tr><td>' + text+ '</td><td>' + cantidad +'</td><td>'+ 
+                    '<a class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
+                    '<a class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
+                $("#miModal").modal('hide');
+            }
         });
     </script>
 @stop

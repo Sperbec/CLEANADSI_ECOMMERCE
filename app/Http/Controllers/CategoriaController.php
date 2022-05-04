@@ -22,10 +22,6 @@ class CategoriaController extends Controller
         return view('categoria.index', $data);
     }
 
-    public function create(){
-       
-    }
-
     public function store(Request $request){
         
         $codigocategoria = $request->codigo;
@@ -77,10 +73,6 @@ class CategoriaController extends Controller
             return redirect()->route('categoria.index')->with('error', 'ok');
         }
 
-
-       
     }
 
-    public function show(){
-    }
 }

@@ -15,11 +15,6 @@ class PersonaController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
          $sql = 'SELECT * from personas
@@ -32,11 +27,6 @@ class PersonaController extends Controller
         return view('persona.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $tipos_personas = Opciones_definidas::where('variable', '00tipopersona')->get();
@@ -50,6 +40,7 @@ class PersonaController extends Controller
         ];
         return view('persona.create', $data);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -85,12 +76,7 @@ class PersonaController extends Controller
         return redirect()->route('clientes.index')->with('guardado', 'ok');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         $cliente = Persona::FindOrFail($id);
@@ -108,12 +94,7 @@ class PersonaController extends Controller
         return view('persona.show', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         $cliente = Persona::FindOrFail($id);
@@ -131,13 +112,6 @@ class PersonaController extends Controller
         return view('persona.edit', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $nombres = $request->nombres;
@@ -161,12 +135,6 @@ class PersonaController extends Controller
         return redirect()->route('clientes.index')->with('editado', 'ok');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $persona = Persona::findOrFail($id);
