@@ -20,17 +20,25 @@
                                     <i class="far fa-keyboard"></i>
                                 </div>
                                 {!! Form::text('codigo', $pais->codigo, ['id' => 'codigopais', 'class' => 'form-control', 'required']) !!}
+                               
                             </div>
-                        </div>
+                           
 
+                           
+
+                        </div>
+                       
                         <div class="col-md-6">
+                          
                             <label for="nombre">Nombre país:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
                                 {!! Form::text('nombre', $pais->nombre, ['id' => 'nombrepais', 'class' => 'form-control', 'required']) !!}
+                               
                             </div>
+                           
                         </div>
                     </div>
 

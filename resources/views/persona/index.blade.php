@@ -2,6 +2,7 @@
 
 @section('title', 'Clientes')
 
+
 @section('content_header')
     <div class="row">
         <h1>Clientes</h1>
@@ -135,6 +136,10 @@
             })
 
         });
+
+        
+
+
 
     </script>
 

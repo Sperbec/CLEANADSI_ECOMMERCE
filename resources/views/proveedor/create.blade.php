@@ -47,6 +47,11 @@
                     </div>
                     {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'nombres_persona']) !!}
                 </div>
+                
+                @error('nombres')
+                <small>*{{$message}}</small>
+                </br>
+                @enderror
             </div>
 
             <div class="col-md-6">
@@ -83,7 +88,8 @@
                     <div class="input-group-text">
                         <i class="far fa-id-card"></i>
                     </div>
-                    {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'disabled', 'min' => '0000000000', 'max' => '9999999999']) !!}
+                    {!! Form::number('numero_documento', null, ['class' => 'form-control', '', 'id' => 'documento_persona', 'min' => '999', 'max' => '999999999999999']) !!}
+                    <!--{!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'disabled', 'min' => '999', 'max' => '9999999999']) !!}-->
                 </div>
             </div>
         </div>
@@ -111,7 +117,9 @@
                     <div class="input-group-text">
                         <i class="fas fa-calendar"></i>
                     </div>
-                    {!! Form::date('calendario', null, ['id' => 'calendario', 'class' => 'form-control', 'required', 'disabled']) !!}
+                    {!! Form::date('calendario', null, ['id' => 'calendario', 'class' => 'form-control',  
+                        'min'=>"1900-01-01", 'max'=>"2021-12-31"]) !!}
+                    <!--{!! Form::date('calendario', null, ['id' => 'calendario', 'class' => 'form-control', 'required', 'disabled']) !!}-->
                 </div>
             </div>
         </div>

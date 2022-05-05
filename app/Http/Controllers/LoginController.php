@@ -133,6 +133,7 @@ class LoginController extends Controller
             $usuario->password = Hash::make($request->input('password'));
 
             if ($usuario->save()) {
+                $usuario->assignRole('Cliente');
                 return redirect('/login')->with('message', 'Su usuario se registró con éxito. Puede iniciar sesión')
                     ->with('typealert', 'success')->withInput();
             }

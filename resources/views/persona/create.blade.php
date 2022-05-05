@@ -3,13 +3,14 @@
 @section('title', 'Crear cliente')
 
 @section('content_header')
+
     {!! Form::open(['route' => 'clientes.store']) !!}
     <div class="row">
         <div class="col-md-6">
             <h1>Crear cliente</h1>
         </div>
         <div class="col-md-6">
-            <button id="btnGuardar" type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
+            <button id="btnGuardar" onclick="Comparar()" type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
         </div>
     </div>
 
@@ -27,17 +28,33 @@
                         <i class="fas fa-user"></i>
                     </div>
                     {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'id' => 'nombres_persona']) !!}
+                   
                 </div>
+                @error ('nombres')
+                <br>
+                <small>*{{$message}}</small>
+                <br>
+                @enderror
             </div>
-
+            
+            <!--para hacer validaciones en el campo persona o cualquier otro dirigirse a HTTP y entrar en la 
+            carpeta request.nota @ error es una directiva de blade y muestra si hay una falla en la validacion
+            e imprime un mensaje-->
+           
+            
             <div class="col-md-6">
                 <label for="apellidos" class="mtop16">Apellidos:</label>
                 <div class="input-group">
                     <div class="input-group-text">
                         <i class="fas fa-user"></i>
                     </div>
-                    {!! Form::text('apellidos', null, ['class' => 'form-control', 'required', 'id' => 'apellidos_persona']) !!}
+                    {!! Form::text('apellidos', null, ['class' => 'form-control', '', 'id' => 'apellidos_persona']) !!}
                 </div>
+                @error ('apellidos')
+                <br>
+                <small>*{{$message}}</small>
+                <br>
+                @enderror
             </div>
         </div>
 
@@ -55,17 +72,29 @@
                         @endforeach
                     </select>
                 </div>
+                @error ('tipo_documento')
+                <br>
+                <small>*{{$message}}</small>
+                <br>
+                @enderror
             </div>
 
 
             <div class="col-md-6">
-                <label for="numero_documento" class="mtop16">Número de documento:</label>
+                <label for="numero" class="mtop16">Número de documento:</label>
                 <div class="input-group">
                     <div class="input-group-text">
                         <i class="far fa-id-card"></i>
                     </div>
-                    {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'min' => '0000000000', 'max' => '9999999999']) !!}
+
+                    {!! Form::number('numero_documento', null, ['class' => 'form-control', '', 'id' => 'documento_persona', 'min' => '999', 'max' => '999999999999999']) !!}
+
                 </div>
+                @error ('numero')
+                <br>
+                <small>*{{$message}}</small>
+                <br>
+                @enderror
             </div>
         </div>
 
@@ -77,7 +106,7 @@
                     <div class="input-group-text">
                         <i class="fas fa-venus-mars"></i>
                     </div>
-                    <select id="genero_persona" name="genero" class="form-select" required>
+                    <select id="genero_persona" name="genero" class="form-select">
                         <option value=''>Seleccione</option>
                         @foreach ($generos as $genero)
                             <option value="{{ $genero->id_opcion }}">{{ $genero->nombre }}</option>
@@ -92,7 +121,10 @@
                     <div class="input-group-text">
                         <i class="fas fa-calendar"></i>
                     </div>
-                    {!! Form::date('calendario', null, ['id' => 'calendario', 'class' => 'form-control', 'required']) !!}
+                    {!! Form::date('calendario', null, ['id' => 'calendario', 'class' => 'form-control',  
+                        'min'=>"1900-01-01", 'max'=>"2021-12-31"]) !!}
+                        <!-- 'start_date' => 'required|date|after:tomorrow','finish_date' => 'required|date|start_date']) !!} -->
+                        <!-- 'start_date' => 'after:tomorrow', 'finish_date' => 'after:start_date'] -->
                 </div>
             </div>
         </div>
