@@ -1383,6 +1383,21 @@ textarea.input {
     float: right;
 }
 
+/* nueva clase para posicionar la paginacion*/
+.store-position 
+{
+    float:right;
+}
+/*----------------------------------*/
+/* nueva clase para la imagen del carrito*/
+.carrito_img
+{
+max-width: 200px; 
+min-width: 50px;
+}
+/*----------------------------------*/
+.store-position 
+
 .store-pagination li {
     display: inline-block;
     width: 40px;
@@ -2233,6 +2248,11 @@ textarea.input {
     }
     .section-tab-nav li {
         margin-top: 10px;
+    }
+    .carrito_img 
+    {
+        width: 100px;
+        margin-right: 50px;
     }
 }
 

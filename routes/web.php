@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarritoComprasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,5 @@ Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendControll
 Route::post('frontend',[App\Http\Controllers\FrontendController::class, 'store'])->name('store');
 
 Route::get('frontend/crear',[App\Http\Controllers\FrontendController::class, 'crear'])->name('crear');
+
+//-----------------------------------------------------------------

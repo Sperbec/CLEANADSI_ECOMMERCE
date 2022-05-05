@@ -43,7 +43,7 @@
                                         
                                         <p class="product-category">Category</p>
                                         <h3 class="product-name"><a href="{{route('detalle',$nvp->id_producto)}}">{{$nvp->nombre}}</a></h3>
-                                        <h4 class="product-price">${{$nvp->precio}}</h4>
+                                        <h4 class="product-price">${{number_format($nvp->precio)}}</h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
+                                        <button class="add-to-cart-btn"><a href=""><i class="fa fa-shopping-cart"></i>Añadir al Carrito</a></button>
                                     </div>
                                     
                                 </div> 
