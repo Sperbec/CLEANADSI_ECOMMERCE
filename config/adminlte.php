@@ -327,7 +327,7 @@ return [
             'can'     => 'pedidos',
         ],
         [
-            'text'    => 'Mii cuenta',
+            'text'    => 'Mi cuenta',
             'url'  => '/micuenta',
             'icon'    => 'fas fa-user-circle',
         ]
