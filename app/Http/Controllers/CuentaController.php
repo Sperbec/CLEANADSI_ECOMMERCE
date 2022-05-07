@@ -12,10 +12,9 @@ class CuentaController extends Controller
     {
         $this->middleware('auth');
     }
-
+    
    public function index(){
-
-    $sql = 'SELECT concat(nombres, " ", apellidos)  as nombre, email,
+    $sql = 'SELECT id_usuario, nombres,apellidos , email,
     telefono.valor as numerotelefono,
     direccion.valor as direccion,
     municipios.nombre as ciudad,
@@ -35,5 +34,26 @@ class CuentaController extends Controller
 
 
     return view('cuenta.index', $data);
+
+   }
+
+   public function show($id){
+
+   }
+
+   public function create(){
+
+   }
+
+   public function store(Request $request){
+   }
+
+   public function edit($id){
+   }
+
+   public function update( Request $request, $id){
+   }
+
+   public function destroy($id){
    }
 }

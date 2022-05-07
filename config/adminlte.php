@@ -328,7 +328,7 @@ return [
         ],
         [
             'text'    => 'Mi cuenta',
-            'url'  => '/micuenta',
+            'route'  => 'micuenta.index',
             'icon'    => 'fas fa-user-circle',
         ]
     ],

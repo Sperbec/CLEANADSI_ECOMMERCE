@@ -79,7 +79,7 @@ Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::clas
 Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])->name('pedidos');
 
 //Mi cuenta
-Route::get('/micuenta', [App\Http\Controllers\CuentaController::class, 'index'])->name('micuenta');
+Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names('micuenta');
 
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend
