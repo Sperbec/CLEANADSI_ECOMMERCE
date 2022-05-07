@@ -22,13 +22,17 @@ body{
     margin-top: 16px;
 }
 
-.btn-success{
-    width: 100%;
+.btn-primary{
+    width: 40%;
+}
+
+.btn-ingresar{
+    text-align: center;
 }
 
 .box_login{    
     left: calc(50% - 269px);
-    top: calc(50% - 196px);
+    top: calc(40% - 196px);
 }
 
 .box_register{
@@ -41,7 +45,7 @@ body{
 }
 
 .logo{
-    width: 40%;
+    width: 30%;
     display: block;
     margin: 0px auto;
 }

@@ -11,7 +11,7 @@
 
         <div class="header">
            <h1>Iniciar sesión</h1>
-          <!-- <img class="logo" src="{{url('/static/images/logo.jpg')}}" alt="">-->
+          <img class="logo" src="{{url('/static/images/logo.png')}}" alt="">
         </div>
 
         {!! Form::open(['url' => '/login']) !!}
@@ -42,7 +42,9 @@
               </div>
         </div>
 
-        {!! Form::submit('Ingresar', ['class' => 'btn btn-success mtop16'])!!}
+        <div class="btn-ingresar">
+            {!! Form::submit('Ingresar', ['class' => 'btn btn-primary mtop16'])!!}
+        </div>
         {!!  Form::close() !!}
 
         <div class="footer mtop16">
