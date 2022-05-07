@@ -19,8 +19,10 @@ class PersonaController extends Controller
     public function index()
     {
          $sql = 'SELECT * from personas
+         inner join model_has_roles mhr on mhr.model_id = personas.id_persona  
          where id_persona not in (select id_persona from proveedores
-          where id_persona is not null) ';
+         where id_persona is not null)
+         and role_id =2';
 
         $clientes = DB::select($sql);
         $data = ['clientes' => $clientes];
