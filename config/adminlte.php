@@ -47,8 +47,8 @@ return [
 
     'logo' => '',
     'logo_img' => '/static/images/logo.png',
-    'logo_img_class' => 'opacity-25',
-    'logo_img_style' => 'opacity-25',
+    'logo_img_class' => '',
+    'logo_img_style' => '',
     'logo_img_xl' => null,
     'logo_img_xl_class' => '',
     'logo_img_alt' => 'Cleanline',
