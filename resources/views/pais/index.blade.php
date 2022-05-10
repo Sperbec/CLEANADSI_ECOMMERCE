@@ -157,19 +157,19 @@
             Swal.fire({
             position: 'top-end',
             icon: 'success',
-        
+
             @if (session('eliminado') == 'ok')
                 title: 'Registro eliminado con éxito',
             @endif
-        
+
             @if (session('editado') == 'ok')
                 title: 'Registro editado con éxito',
             @endif
-        
+
             @if (session('guardado') == 'ok')
                 title: 'Registro guardado con éxito',
             @endif
-        
+
             showConfirmButton: false,
             timer: 1500
             })
@@ -195,5 +195,13 @@
             })
 
         });
+
+        @if (session('error') == 'ok')
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No es posible eliminar el país porque está relacionado a un departamento.'
+            })
+        @endif
     </script>
 @stop
