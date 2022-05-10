@@ -99,6 +99,18 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                <label for="email" class="mtop16">Correo electrónico:</label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="far fa-envelope-open"></i>
+                    </div>
+
+                    {!!  Form::email('email', $usuario->email, ['class' => 'form-control', 'required', 'disabled']) !!}
+                </div>
+            </div>
+        </div>
 
     @stop
 

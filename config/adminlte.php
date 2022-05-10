@@ -47,7 +47,7 @@ return [
 
     'logo' => '',
     'logo_img' => '/static/images/logo.png',
-    'logo_img_class' => '',
+    'logo_img_class' => 'd-none',
     'logo_img_style' => '',
     'logo_img_xl' => null,
     'logo_img_xl_class' => '',
@@ -239,12 +239,18 @@ return [
         ],
 
         [
+            'text'   => 'Inicio',
+            'url'  => '/home',
+            'icon'   => 'fas fa-home',
+        ],
+
+        [
             'text'    => 'Ubicación',
             'icon'    => 'fas fa-map-marker-alt',
             'can'     => 'ubicacion',
             'submenu' => [
                 [
-                    'text' => 'Paises',
+                    'text' => 'Países',
                     'route'  => 'pais.index',
                     'icon' => 'fas fa-globe-americas',
                 ],

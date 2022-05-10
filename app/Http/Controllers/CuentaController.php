@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Persona;
+use App\Models\User;
 
 class CuentaController extends Controller
 {
@@ -51,7 +53,22 @@ class CuentaController extends Controller
    public function edit($id){
    }
 
-   public function update( Request $request, $id){
+   public function update(Request $request, $id){
+
+        $persona = Persona::findOrFail($id);
+
+        $persona->nombres = $request->nombres;
+        $persona->apellidos = $request->apellidos;
+        $persona->update();
+
+
+        //Actualizo el email de la tabla usuarios
+        $usuario = DB::table('usuarios')->where('id_persona', $id)->first();
+        $usuario = User::findOrFail($usuario->id_usuario);
+        $usuario->email = $request->email;
+        $usuario->update();
+
+        return redirect()->route('micuenta.index')->with('editado', 'ok');
    }
 
    public function destroy($id){

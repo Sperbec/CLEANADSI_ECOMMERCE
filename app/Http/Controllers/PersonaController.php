@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Opciones_definidas;
 use App\Models\Persona;
-use App\Http\Requests\storenombres;
+use App\Http\Requests\StoreForm;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 
 class PersonaController extends Controller
@@ -45,10 +47,8 @@ class PersonaController extends Controller
     }
 
 
-    public function store(Storenombres $request)
+    public function store(StoreForm $request)
     {
-
-    
 
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;
@@ -57,8 +57,6 @@ class PersonaController extends Controller
         $genero = $request->genero;
         $caledario = $request->calendario;
        
-        
-
         $persona = new Persona();
 
         $persona->nombres = $nombres;
@@ -71,6 +69,17 @@ class PersonaController extends Controller
 
         $persona->save();
 
+        if ($persona->save()) {
+            $usuario = new User;
+            $usuario->id_persona = ($persona->id_persona);
+            $usuario->email =  $request->email;
+            $usuario->password = Hash::make('12345678');
+
+            if ($usuario->save()) {
+                $usuario->assignRole('Cliente');
+            }
+        }
+
         return redirect()->route('clientes.index')->with('guardado', 'ok');
     }
 
@@ -82,11 +91,14 @@ class PersonaController extends Controller
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
 
+        $usuario = DB::table('usuarios')->where('id_persona', $id)->first();
+
         $data = [
             'tipos_personas' => $tipos_personas,
             'tipos_documentos' => $tipos_documentos,
             'generos' => $generos,
-            'cliente' => $cliente
+            'cliente' => $cliente,
+            'usuario' => $usuario
         ];
         
         return view('persona.show', $data);
@@ -100,11 +112,16 @@ class PersonaController extends Controller
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
 
+        $usuario = DB::table('usuarios')->where('id_persona', $id)->first();
+
+
+
         $data = [
             'tipos_personas' => $tipos_personas,
             'tipos_documentos' => $tipos_documentos,
             'generos' => $generos,
-            'cliente' => $cliente
+            'cliente' => $cliente,
+            'usuario' => $usuario
         ];
 
         return view('persona.edit', $data);
@@ -130,13 +147,27 @@ class PersonaController extends Controller
 
         $persona->update();
 
+        //Actualizo el email de la tabla usuarios
+        $usuario = DB::table('usuarios')->where('id_persona', $id)->first();
+        $usuario = User::findOrFail($usuario->id_usuario);
+        $usuario->email = $request->email;
+        $usuario->update();
+
         return redirect()->route('clientes.index')->with('editado', 'ok');
     }
 
     public function destroy($id)
     {
+        //Elimino la persona
         $persona = Persona::findOrFail($id);
         $persona->delete();
+
+        //Elimino el rol que tiene el usuario
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+
+        //Elimino el usuario
+        DB::table('usuarios')->where('id_persona', $id)->delete();
+
         return redirect()->route('clientes.index')->with('eliminado', 'ok');
     }
 }

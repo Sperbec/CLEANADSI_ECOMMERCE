@@ -66,7 +66,7 @@
 
             <div class="modal-footer">
                 <button id="agregarItem" type="submit" class="btn btn-success">
-                    <i class="fas fa-paper-plane"></i> Editar</button>
+                    <i class="fas fa-edit"></i> Editar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
                     <i class="fas fa-times"></i> Cerrar</button>
             </div>
@@ -86,54 +86,15 @@
                 <h3>Cambiar contraseña</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+            
             <div class="modal-body">
 
-                <form action="{{route('micuenta.update', $usuario->id_usuario)}}" method="post">
-                    @csrf
-                    @method('PUT')
-
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="nombres">Nombres:</label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="far fa-keyboard"></i>
-                            </div>
-                            {!! Form::text('nombres', $usuario->nombres, ['id' => 'nombres', 'class' => 'form-control','required']) !!}
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="apellidos">Apellidos:</label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="fas fa-keyboard"></i>
-                            </div>
-                            {!! Form::text('apellidos', $usuario->apellidos, ['id' => 'apellidos', 'class' => 'form-control',
-                            'required']) !!}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="email">Correo:</label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="fas fa-keyboard"></i>
-                            </div>
-                            {!! Form::text('email',  $usuario->email, ['id' => 'email', 'class' => 'form-control',
-                            'required']) !!}
-                        </div>
-                    </div>
-                </div>
-
+              
             </div>
 
             <div class="modal-footer">
                 <button id="agregarItem" type="submit" class="btn btn-success">
-                    <i class="fas fa-paper-plane"></i> Editar</button>
+                    <i class="fas fa-lock"></i> Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
                     <i class="fas fa-times"></i> Cerrar</button>
             </div>
@@ -152,9 +113,9 @@
 <label>{{$usuario->email}}</label><br>
 <div>
     <a id="btnEditarDatosContacto" data-toggle="modal" data-target="#mdlEditarDatosContacto" class="btn btn-primary ">
-        <i class="fas fa-plus"></i> Editar</a>
+        <i class="fas fa-edit"></i> Editar</a>
 
-    <a id="btnCambiarContraseña" data-toggle="modal" data-target="#mdlCambiarContraseña" class="btn btn-primary ">
+    <a id="btnCambiarContraseña" data-toggle="modal" data-target="#mdlCambiarContraseña" class="btn btn-secondary ">
             <i class="fas fa-lock"></i> Cambiar contraseña</a>
     
 
@@ -199,4 +160,15 @@
 @stop
 
 @section('js')
+<script>
+     @if ( session('editado') == 'ok' )
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Registro editado con éxito',
+            showConfirmButton: false,
+            timer: 1500
+            })
+    @endif
+</script>
 @stop
