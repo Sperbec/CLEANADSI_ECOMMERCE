@@ -24,9 +24,9 @@ class StoreForm extends FormRequest
     public function rules()
     {
         return [
-            'nombres'=>'sometimes|required|max:50',
+            'nombres'=>'sometimes|required|max:50|alpha',
             'codigo'=>'sometimes|required|max:6',
-            'nombrecategoria' => 'max:80'
+            'nombrecategoria' => 'max:2',
         ];
     }
 }

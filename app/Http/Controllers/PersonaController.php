@@ -51,7 +51,6 @@ class PersonaController extends Controller
 
     public function store(StoreForm $request)
     {
-
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;
         $tipos_documento = $request->tipo_documento;
@@ -129,7 +128,7 @@ class PersonaController extends Controller
         return view('persona.edit', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreForm $request, $id)
     {
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;
