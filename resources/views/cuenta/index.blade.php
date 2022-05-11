@@ -54,7 +54,7 @@
                         <label for="email">Correo:</label>
                         <div class="input-group">
                             <div class="input-group-text">
-                                <i class="fas fa-keyboard"></i>
+                                <i class="far fa-envelope-open"></i>
                             </div>
                             {!! Form::text('email',  $usuario->email, ['id' => 'email', 'class' => 'form-control',
                             'required']) !!}
@@ -65,7 +65,7 @@
             </div>
 
             <div class="modal-footer">
-                <button id="agregarItem" type="submit" class="btn btn-success">
+                <button id="btnEditarInfoPersonal" type="submit" class="btn btn-success">
                     <i class="fas fa-edit"></i> Editar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
                     <i class="fas fa-times"></i> Cerrar</button>
@@ -89,53 +89,68 @@
 
             <div class="modal-body">
 
-                <form action="" method="post">
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="contraseñaactual">Contraseña actual:</label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="far fa-keyboard"></i>
+                <form method="POST" action="{{ route('changePassword', $usuario->id_usuario) }}">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="contraseniaactual" class="mtop16">Contraseña actual:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                {!!  Form::password('contraseniaactual', ['id' => 'contraseniaactual', 'class' => 'form-control', 'required', 'minlength' => '8']) !!}
+                                <div class="input-group-append">
+                                    <button id="show_passwordA" class="btn btn-secondary"
+                                            type="button" onclick="mostrarPasswordA()">
+                                        <span class="fa fa-eye-slash iconA"></span> </button>
+                                </div>
                             </div>
-                            {!! Form::password('contraseñaactual', null, ['id' => 'contraseñaactual', 'class' => 'form-control', 'required']) !!}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="contraseñanueva">Contraseña nueva:</label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="far fa-keyboard"></i>
-                            </div>
-                            {!! Form::password('contraseñanueva', null, ['id' => 'contraseñanueva', 'class' => 'form-control', 'required']) !!}
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="confirmacioncontraseña">Confirmar nueva contraseña:</label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="fas fa-keyboard"></i>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="contrasenianueva" class="mtop16">Contraseña nueva:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                {!!  Form::password('contrasenianueva', ['id' => 'contrasenianueva', 'class' => 'form-control', 'required', 'minlength' => '8']) !!}
+                                <div class="input-group-append">
+                                    <button id="show_passwordN" class="btn btn-secondary"
+                                            type="button" onclick="mostrarPasswordN()">
+                                        <span class="fa fa-eye-slash iconN"></span> </button>
+                                </div>
                             </div>
-                            {!! Form::password('confirmacioncontraseña',null, ['id' => 'confirmacioncontraseña', 'class' => 'form-control',
-                            'required']) !!}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="confirmacioncontrasenia" class="mtop16">Confirmación nueva contraseña:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                {!!  Form::password('confirmacioncontrasenia', ['id' => 'confirmacioncontrasenia', 'class' => 'form-control', 'required', 'minlength' => '8']) !!}
+                                <div class="input-group-append">
+                                    <button id="show_passwordCN" class="btn btn-secondary"
+                                            type="button" onclick="mostrarPasswordCN()">
+                                        <span class="fa fa-eye-slash iconCN"></span> </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+
+
+                    <div class="modal-footer">
+                        <button id="btnGuardarCambioContrase" type="submit" class="btn btn-success">
+                            <i class="fas fa-lock"></i> Guardar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            <i class="fas fa-times"></i> Cerrar</button>
+                    </div>
+
+                </form>
             </div>
-
-            <div class="modal-footer">
-                <button id="agregarItem" type="submit" class="btn btn-success">
-                    <i class="fas fa-lock"></i> Guardar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">
-                    <i class="fas fa-times"></i> Cerrar</button>
-            </div>
-
-             </form>
         </div>
     </div>
 </div>
@@ -153,7 +168,7 @@
 
     <a id="btnCambiarContraseña" data-toggle="modal" data-target="#mdlCambiarContraseña" class="btn btn-secondary ">
             <i class="fas fa-lock"></i> Cambiar contraseña</a>
-    
+
 
 </div>
 
@@ -196,8 +211,9 @@
 @stop
 
 @section('js')
-<script>
-     @if ( session('editado') == 'ok' )
+    <script>
+
+        @if ( session('editado') == 'ok' )
             Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -205,6 +221,78 @@
             showConfirmButton: false,
             timer: 1500
             })
-    @endif
-</script>
+        @endif
+
+        //Modal de cambiar contraseña
+        $("#btnCambiarContraseña").on("click", function() {
+            document.getElementById('contraseniaactual').value = '';
+            document.getElementById('contrasenianueva').value = '';
+            document.getElementById('confirmacioncontrasenia').value = '';
+            $("#mdlCambiarContraseña").modal("show");
+        });
+
+        function mostrarPasswordA(){
+            var cambio = document.getElementById("contraseniaactual");
+            if(cambio.type == "password"){
+                cambio.type = "text";
+                $('.iconA').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+            }else{
+                cambio.type = "password";
+                $('.iconA').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+            }
+
+        }
+
+        function mostrarPasswordN(){
+            var cambio = document.getElementById("contrasenianueva");
+            if(cambio.type == "password"){
+                cambio.type = "text";
+                $('.iconN').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+            }else{
+                cambio.type = "password";
+                $('.iconN').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+            }
+
+        }
+
+        function mostrarPasswordCN(){
+            var cambio = document.getElementById("confirmacioncontrasenia");
+            if(cambio.type == "password"){
+                cambio.type = "text";
+                $('.iconCN').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+            }else{
+                cambio.type = "password";
+                $('.iconCN').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+            }
+
+        }
+
+        @if (session('errorContraseñaActual') == 'ok' || session('errorConfirmacionContraseñas') == 'ok' )
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            @if (session('errorContraseñaActual') == 'ok')
+                text: 'No es posible cambiar la contraseña. Su contraseña actual no es correcta.'
+            @endif
+
+            @if (session('errorConfirmacionContraseñas') == 'ok')
+                text: 'No es posible cambiar la contraseña. Las contraseñas no coinciden.'
+            @endif
+
+            })
+        @endif
+
+        @if (session('editado') == 'ok')
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Contraseña editada con éxito',
+            showConfirmButton: false,
+            timer: 1500
+            })
+        @endif
+
+
+
+    </script>
 @stop

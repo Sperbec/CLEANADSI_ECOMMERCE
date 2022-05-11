@@ -80,6 +80,7 @@ Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])
 
 //Mi cuenta
 Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names('micuenta');
+Route::post('/changePassword/{id}', [App\Http\Controllers\CuentaController::class, 'changePassword'])->name('changePassword');
 
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend
