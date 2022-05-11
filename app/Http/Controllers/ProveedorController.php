@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreForm;
+
 use Illuminate\Http\Request;
 use App\Models\Proveedor;
 use App\Models\Opciones_definidas;
