@@ -35,7 +35,7 @@ class CuentaController extends Controller
         $usuarioLogin = User::findOrFail(auth()->user()->id_usuario);
 
         //Consulto los datos de contacto
-        $sql2 = 'SELECT persona_contacto.id_persona_contacto,
+        $sql2 = 'SELECT persona_contacto.id_persona_contacto, id_opcion_contacto,
         opciones_definidas.nombre as opcioncontacto, persona_contacto.valor, barrios.nombre as nombrebarrio
         FROM persona_contacto
         inner join opciones_definidas on opciones_definidas.id_opcion = persona_contacto.id_opcion_contacto
