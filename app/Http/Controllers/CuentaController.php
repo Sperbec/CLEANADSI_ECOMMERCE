@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Persona;
+use App\Models\User;
 
 class CuentaController extends Controller
 {
@@ -12,10 +14,9 @@ class CuentaController extends Controller
     {
         $this->middleware('auth');
     }
-
+    
    public function index(){
-
-    $sql = 'SELECT concat(nombres, " ", apellidos)  as nombre, email,
+    $sql = 'SELECT id_usuario, nombres,apellidos , email,
     telefono.valor as numerotelefono,
     direccion.valor as direccion,
     municipios.nombre as ciudad,
@@ -35,5 +36,41 @@ class CuentaController extends Controller
 
 
     return view('cuenta.index', $data);
+
+   }
+
+   public function show($id){
+
+   }
+
+   public function create(){
+
+   }
+
+   public function store(Request $request){
+   }
+
+   public function edit($id){
+   }
+
+   public function update(Request $request, $id){
+
+        $persona = Persona::findOrFail($id);
+
+        $persona->nombres = $request->nombres;
+        $persona->apellidos = $request->apellidos;
+        $persona->update();
+
+
+        //Actualizo el email de la tabla usuarios
+        $usuario = DB::table('usuarios')->where('id_persona', $id)->first();
+        $usuario = User::findOrFail($usuario->id_usuario);
+        $usuario->email = $request->email;
+        $usuario->update();
+
+        return redirect()->route('micuenta.index')->with('editado', 'ok');
+   }
+
+   public function destroy($id){
    }
 }

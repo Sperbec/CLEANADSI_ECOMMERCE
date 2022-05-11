@@ -202,15 +202,15 @@
                     $("#tbldepartamentos .editable").empty();
                     for (let i in data.lista) {
                         $('table tbody').append(
-                        '<tr class="editable"><td>' + data.lista[i].id_departamento+ 
-                        '</td><td>' + data.lista[i].codigo + 
-                        '</td><td>' + data.lista[i].nombre +'</td><td>'+ 
+                        '<tr class="editable"><td>' + data.lista[i].id_departamento+
+                        '</td><td>' + data.lista[i].codigo +
+                        '</td><td>' + data.lista[i].nombre +'</td><td>'+
                         '<a onclick="cargarDatosEditar('+data.lista[i].id_departamento+')" class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
                         '<a onclick="eliminarDepartamento('+data.lista[i].id_departamento+')" class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
                     }
-                   
+
                 }).catch(error => console.error(error));
-            
+
         }
 
         function cargarDatosEditar(iddepartamento){
@@ -229,7 +229,7 @@
                     this.iddepartamento = iddepartamento;
                     $("#mdlEditarDepartamento").modal("show");
                 }).catch(error => console.error(error));
-          
+
         }
 
         function actualizarRegistro(){
@@ -281,18 +281,26 @@
                 }).then(response =>{
                     return response.json()
                 }).then( data =>{
-                    Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Registro eliminado con éxito',
-                    showConfirmButton: false,
-                    timer: 1500
-                    })
+                    if(data.success){
+                        Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Registro eliminado con éxito',
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                    }else{
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'No es posible eliminar el departamento porque está relacionado a un municipio.'
+                        })
+                    }
                     changePais();
                 }).catch(error => console.error(error));
                 }
             })
-               
+
         }
 
         @if ( session('guardado') == 'ok')

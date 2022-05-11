@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarritoComprasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,7 +79,7 @@ Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::clas
 Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])->name('pedidos');
 
 //Mi cuenta
-Route::get('/micuenta', [App\Http\Controllers\CuentaController::class, 'index'])->name('micuenta');
+Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names('micuenta');
 
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend
@@ -95,3 +96,5 @@ Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendControll
 Route::post('frontend',[App\Http\Controllers\FrontendController::class, 'store'])->name('store');
 
 Route::get('frontend/crear',[App\Http\Controllers\FrontendController::class, 'crear'])->name('crear');
+
+//-----------------------------------------------------------------

@@ -17,20 +17,21 @@ class FrontendController extends Controller
 
     public function categoria_aseo_personal()
     {
-        $producto_aseo_personal = Producto::where('id_categoria','3')->get();
+        $producto_aseo_personal = Producto::where('id_categoria','2')->paginate(12);
 
         return view('frontend.aseo_personal',compact('producto_aseo_personal'));
     }
 
     public function categoria_aseo_general()
     {
-        $producto_aseo_general = Producto::where('id_categoria','2')->get();
+        $producto_aseo_general = Producto::where('id_categoria','1')->paginate(12);
 
         return view('frontend.aseo_general',compact('producto_aseo_general'));
     }
 
     public function detalle(Producto $producto)
     {
+        //dd($producto);
         return view('frontend.detalle',compact('producto'));
     }
 
@@ -67,7 +68,7 @@ class FrontendController extends Controller
 
         Producto::create($salidaimagen);
         
-        return redirect()->route('frontend.aseo_personal');
+        return redirect()->route('inicio');
     }
 
 }

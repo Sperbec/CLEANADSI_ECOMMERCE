@@ -13,6 +13,10 @@
 
 @section('content')
 
+@error('nombrecategoria')
+<small>*{{$message}}</small>
+@enderror
+
     <!-- Modal de crear categoria-->
     <div id="mdlCrearCategoria" class="modal fade" role="dialog">
         <div class="modal-dialog  modal-lg">
@@ -27,25 +31,25 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="codigo">Codigo categoría:</label>
+                            <label for="codigocategoria">Codigo categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('codigo', null, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('codigocategoria', null, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
-                       
+
                         <div class="col-md-6">
-                            <label for="nombre">Nombre categoría:</label>
+                            <label for="nombrecategoria">Nombre categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombre', null, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombrecategoria', null, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
                             </div>
-                           
-                           
+
+
                         </div>
                     </div>
 
@@ -62,7 +66,7 @@
             </div>
         </div>
     </div>
-   
+
 
     <table class="table table-hover" id="tblcategoria">
         <thead>
@@ -103,9 +107,9 @@
     </table>
 
     @error('codigo')
-                <small>*{{$message}}</small>
-                </br>
-                @enderror
+    <small>*{{$message}}</small>
+    @enderror
+
 @stop
 
 @section('css')
@@ -163,19 +167,19 @@
             Swal.fire({
             position: 'top-end',
             icon: 'success',
-        
+
             @if (session('eliminado') == 'ok')
                 title: 'Registro eliminado con éxito',
             @endif
-        
+
             @if (session('editado') == 'ok')
                 title: 'Registro editado con éxito',
             @endif
-        
+
             @if (session('guardado') == 'ok')
                 title: 'Registro guardado con éxito',
             @endif
-        
+
             showConfirmButton: false,
             timer: 1500
             })
@@ -212,4 +216,3 @@
         });
     </script>
 @stop
-        
