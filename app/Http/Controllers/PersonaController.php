@@ -129,7 +129,7 @@ class PersonaController extends Controller
         return view('persona.edit', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreForm $request, $id)
     {
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;

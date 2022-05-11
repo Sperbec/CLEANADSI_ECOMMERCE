@@ -89,6 +89,9 @@
                     </div>
                     {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'disabled', 'min' => '999', 'max' => '9999999999']) !!}
                 </div>
+                @error ('numero_documento')
+                <small>*{{$message}}</small>
+                @enderror
             </div>
         </div>
 
