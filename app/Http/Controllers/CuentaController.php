@@ -40,7 +40,7 @@ class CuentaController extends Controller
         FROM persona_contacto
         inner join opciones_definidas on opciones_definidas.id_opcion = persona_contacto.id_opcion_contacto
         left join barrios on persona_contacto.id_barrio = barrios.id_barrio
-        WHERE id_persona = '.$usuarioLogin->id_persona;
+        WHERE  deleted_at  is null and  id_persona = '.$usuarioLogin->id_persona;
 
         $datos_contacto =  DB::select($sql2);
 
@@ -104,7 +104,11 @@ class CuentaController extends Controller
 
    public function edit($id){}
 
-   public function destroy($id){}
+   public function destroy($id){
+        $persona_contacto = Persona_contacto::findOrFail($id);
+        $persona_contacto->delete();
+        return redirect()->route('micuenta.index')->with('eliminado', 'ok');
+   }
 
    public function datosContacto(Request $request, $id){
 
