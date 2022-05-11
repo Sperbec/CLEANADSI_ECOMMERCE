@@ -11,12 +11,12 @@
 
 @section('content')
 
-<!-- Modal editar datos contacto-->
-<div id="mdlEditarDatosContacto" class="modal fade" role="dialog">
+<!-- Modal editar datos personales-->
+<div id="mdlEditarDatosPersonales" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Editar datos de contacto</h3>
+                <h3>Editar datos personales</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -75,8 +75,6 @@
         </div>
     </div>
 </div>
-
-
 
 <!-- Modal editar contraseña-->
 <div id="mdlCambiarContraseña" class="modal fade" role="dialog">
@@ -157,61 +155,213 @@
 
 
 
+<!-- Modal datos de contacto-->
+<div id="mdlAgregarDatosContacto" class="modal fade" role="dialog">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar datos de contacto</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+
+                <form method="POST" action="{{ route('datosContacto', $usuario->id_usuario) }}">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="tipocontacto">Tipo de contacto:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-hand-pointer"></i>
+                                </div>
+                                <select id="tipocontacto" name="tipocontacto" class="form-select" required>
+                                    <option value=''>Seleccione</option>
+                                    @foreach ($tipos_contactos as $tipo_contacto)
+                                    <option value="{{ $tipo_contacto->id_opcion }}">{{ $tipo_contacto->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="contacto">Contacto:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="far fa-keyboard"></i>
+                                </div>
+                                {!! Form::text('contacto', null, ['id' => 'contacto', 'class' => 'form-control','required']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="municipio">Municipio:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <select id="municipio" name="municipio" class="form-select">
+                                    <option value=''>Seleccione</option>
+                                    @foreach ($municipios as $municipio)
+                                    <option value="{{ $municipio->id_municipio }}">{{ $municipio->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="barrio">Barrio:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-map-marked"></i>
+                                </div>
+                            <select id="barrio" name="barrio" class="form-select"></select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button id="btnGuardarDatosContacto" type="submit" class="btn btn-success">
+                            <i class="fas fa-lock"></i> Guardar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            <i class="fas fa-times"></i> Cerrar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <h4>Información de la cuenta</h4>
 <hr>
-<h5>Datos de contacto</h5>
+<h5>Datos personales</h5>
 <label>{{$usuario->nombres}} {{$usuario->apellidos}}</label><br>
 <label>{{$usuario->email}}</label><br>
 <div>
-    <a id="btnEditarDatosContacto" data-toggle="modal" data-target="#mdlEditarDatosContacto" class="btn btn-primary ">
+    <a id="btnEditarDatosPersonales" data-toggle="modal" data-target="#mdlEditarDatosPersonales" class="btn btn-primary ">
         <i class="fas fa-edit"></i> Editar</a>
 
     <a id="btnCambiarContraseña" data-toggle="modal" data-target="#mdlCambiarContraseña" class="btn btn-secondary ">
             <i class="fas fa-lock"></i> Cambiar contraseña</a>
-
-
 </div>
 
 <br><br>
 
 
-<h4>Libreta de direcciones</h4>
+<h4>Datos de contacto</h4>
 <hr>
+<a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto" class="btn btn-primary">
+    <i class="fas fa-plus"></i> Agregar datos de contacto</a>
 
+    <br><br>
 
-<div>
-    <h5>Dirección de envío predeterminada</h5>
-    <label>{{$usuario->nombres}} {{$usuario->apellidos}}</label><br>
+<table class="table table-hover" id="tbldatoscontacto">
+    <thead>
+        <tr>
+            <td class="negrita">Predeterminado</td>
+            <td class="negrita">Opcion contacto</td>
+            <td class="negrita">Valor</td>
+            <td class="negrita">Barrio</td>
+            <td class="negrita">Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($datos_contacto as $contacto)
+            <tr>
+                <td>{{ $contacto->predeterminado  == 1 ? 'Sí' : 'No'}} </td>
+                <td>{{ $contacto->opcioncontacto }}</td>
+                <td>{{ $contacto->valor }}</td>
+                <td>{{ $contacto->nombrebarrio }}</td>
+                <td>
 
-    @if ($usuario->numerotelefono != '')
-    <label>{{$usuario->numerotelefono}}</label><br>
-    @endif
+                </td>
 
-    @if ($usuario->direccion != '')
-    <label>{{$usuario->direccion}}</label><br>
-    @endif
-
-    @if ($usuario->ciudad != '')
-    <label>{{$usuario->ciudad}}</label><br>
-    @endif
-
-    @if ($usuario->pais != '')
-    <label>{{$usuario->pais}}</label><br>
-    @endif
-
-    <a class="btn btn-primary opts" href="" data-toggle="tooltip" data-bs-placement="top" title="Cambiar contraseña">
-        <i class="fas fa-edit"></i> Editar datos de contacto</a>
-</div>
-
-
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 @stop
 
 @section('css')
+<style>
+    .negrita{
+        font-weight: bold;
+    }
+
+</style>
+
+<!-- Para importar bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 @stop
 
 @section('js')
     <script>
+
+        $(document).ready(function() {
+            $('#tbldatoscontacto').DataTable({
+                "language": idioma_espanol
+            });
+        });
+
+
+        var idioma_espanol = {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+            "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+
+        }
+
+
+
+        const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+
+        document.getElementById('municipio').addEventListener('change',(e)=>{
+            fetch('obtenerbarrios',{
+                method : 'POST',
+                body: JSON.stringify({texto : document.getElementById('municipio').value}),
+                headers:{
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": csrfToken
+                }
+            }).then(response =>{
+                return response.json()
+            }).then( data =>{
+                var opciones ="<option value=''>Seleccione</option>";
+                for (let i in data.lista) {
+                opciones+= '<option value="'+data.lista[i].id_barrio+'">'+data.lista[i].nombre+'</option>';
+                }
+                document.getElementById("barrio").innerHTML = opciones;
+            }).catch(error =>console.error(error));
+        })
+
 
         @if ( session('editado') == 'ok' )
             Swal.fire({
@@ -230,6 +380,16 @@
             document.getElementById('confirmacioncontrasenia').value = '';
             $("#mdlCambiarContraseña").modal("show");
         });
+
+        //Modal de datos de contacto
+        $("#btnAgregarDatosContacto").on("click", function() {
+            document.getElementById('tipocontacto').value = '';
+            document.getElementById('contacto').value = '';
+            document.getElementById('municipio').value = '';
+            document.getElementById('barrio').value = '';
+            $("#mdlAgregarDatosContacto").modal("show");
+        });
+
 
         function mostrarPasswordA(){
             var cambio = document.getElementById("contraseniaactual");
