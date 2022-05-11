@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\StoreForm;
 use Illuminate\Http\Request;
 use App\Models\Proveedor;
 use App\Models\Opciones_definidas;
@@ -88,7 +88,7 @@ class ProveedorController extends Controller
         return view('proveedor.create', $data);
     }
 
-    public function store(Storenombres $request)
+    public function store(StoreForm $request)
     {
         $tipos_personas = $request->tipos_personas;
        
