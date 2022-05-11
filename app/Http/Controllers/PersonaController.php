@@ -51,7 +51,6 @@ class PersonaController extends Controller
 
     public function store(StoreForm $request)
     {
-
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;
         $tipos_documento = $request->tipo_documento;

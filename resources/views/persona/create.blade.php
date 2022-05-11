@@ -10,7 +10,7 @@
             <h1>Crear cliente</h1>
         </div>
         <div class="col-md-6">
-            <button id="btnGuardar" onclick="Comparar()" type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
+            <button id="btnGuardar"  type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
         </div>
     </div>
 
@@ -149,7 +149,6 @@
     @stop
 
     @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
 
         <!-- Para importar bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"

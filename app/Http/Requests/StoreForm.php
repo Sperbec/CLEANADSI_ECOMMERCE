@@ -27,7 +27,6 @@ class StoreForm extends FormRequest
             'nombres'=>'sometimes|required|max:50|alpha',
             'codigo'=>'sometimes|required|max:6',
             'nombrecategoria' => 'max:2',
-            'numero_documento'=>'max:3',
         ];
     }
 }
