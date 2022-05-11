@@ -8,7 +8,7 @@ use App\Models\Proveedor;
 use App\Models\Opciones_definidas;
 use App\Models\Persona;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\storenombres;
+use App\Http\Requests\StoreForm;
 
 class ProveedorController extends Controller
 {
@@ -20,15 +20,16 @@ class ProveedorController extends Controller
     public function index()
     {
 
-        $sql = 'SELECT id_proveedor, 
+        $sql = 'SELECT id_proveedor,
         case when nit is not null then nit else numero_documento end as documento,
-        case when nombres is not null then 
-        concat(nombres, " ", apellidos)  else 
+        case when nombres is not null then
+        concat(nombres, " ", apellidos)  else
         proveedores.nombre end as nombre,
         opciones_definidas.nombre as tipopersona
-        from proveedores 
+        from proveedores
         left join personas on personas.id_persona = proveedores.id_persona
-        inner join opciones_definidas on opciones_definidas.id_opcion = proveedores.id_opcion_persona';
+        inner join opciones_definidas on opciones_definidas.id_opcion = proveedores.id_opcion_persona
+        WHERE proveedores.deleted_at IS NULL';
 
         $proveedores = DB::select($sql);
         $data = ['proveedores' => $proveedores];
@@ -40,8 +41,8 @@ class ProveedorController extends Controller
     {
         $sql = 'SELECT id_proveedor, id_opcion_persona,
         case when nit is not null then nit else numero_documento end as documento,
-        case when nombres is not null then 
-     	nombres  else 
+        case when nombres is not null then
+     	nombres  else
         proveedores.nombre end as nombres,
         case when apellidos is not null then apellidos end as apellidos,
         opciones_definidas.nombre as tipopersona,
@@ -52,14 +53,14 @@ class ProveedorController extends Controller
         proveedores.correo_electronico,
         proveedores.contacto,
         proveedores.telefono_movil
-        from proveedores 
+        from proveedores
         left join personas on personas.id_persona = proveedores.id_persona
         inner join opciones_definidas on opciones_definidas.id_opcion = proveedores.id_opcion_persona
         WHERE id_proveedor = '.$id_proveedor;
 
 
         $proveedor = DB::select($sql);
-        
+
         $tipos_personas = Opciones_definidas::where('variable', '00tipopersona')->get();
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
@@ -71,7 +72,7 @@ class ProveedorController extends Controller
         ];
 
         return view('proveedor.show', $data);
-        
+
     }
 
     public function create()
@@ -91,11 +92,11 @@ class ProveedorController extends Controller
     public function store(StoreForm $request)
     {
         $tipos_personas = $request->tipos_personas;
-       
+
 
         // Datos persona natural para el if de persona natural
         if ($tipos_personas == 20) {
-            
+
             $persona = new Persona();
 
             $persona->nombres = $request->nombres;
@@ -135,8 +136,8 @@ class ProveedorController extends Controller
 
         $sql = 'SELECT id_proveedor, id_opcion_persona,
         case when nit is not null then nit else numero_documento end as documento,
-        case when nombres is not null then 
-     	nombres  else 
+        case when nombres is not null then
+     	nombres  else
         proveedores.nombre end as nombres,
         case when apellidos is not null then apellidos end as apellidos,
         opciones_definidas.nombre as tipopersona,
@@ -147,14 +148,14 @@ class ProveedorController extends Controller
         proveedores.correo_electronico,
         proveedores.contacto,
         proveedores.telefono_movil
-        from proveedores 
+        from proveedores
         left join personas on personas.id_persona = proveedores.id_persona
         inner join opciones_definidas on opciones_definidas.id_opcion = proveedores.id_opcion_persona
         WHERE id_proveedor = '.$id_proveedor;
 
 
         $proveedor = DB::select($sql);
-        
+
         $tipos_personas = Opciones_definidas::where('variable', '00tipopersona')->get();
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
@@ -187,7 +188,7 @@ class ProveedorController extends Controller
             $persona->update();
         }
 
-        if ($proveedor->id_opcion_persona  == 21) {           
+        if ($proveedor->id_opcion_persona  == 21) {
             $proveedor->nombre = $request->nombre;
             $proveedor->nit =  $request->nit;
             $proveedor->direccion = $request->direccion;
@@ -207,7 +208,7 @@ class ProveedorController extends Controller
 
         $proveedor->delete();
         $persona->delete();
-        
+
 
         return redirect()->route('proveedores.index')->with('eliminado', 'ok');;
     }

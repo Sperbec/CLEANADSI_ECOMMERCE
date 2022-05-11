@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class PersonaController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -20,11 +20,13 @@ class PersonaController extends Controller
 
     public function index()
     {
+        //Consulto solo las personas que tienen rol de cliente
          $sql = 'SELECT * from personas
-         inner join model_has_roles mhr on mhr.model_id = personas.id_persona  
-         where id_persona not in (select id_persona from proveedores
-         where id_persona is not null)
-         and role_id =2';
+        inner join usuarios on usuarios.id_persona = personas.id_persona
+        inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario
+        where personas.id_persona not in (select id_persona from proveedores
+        where id_persona is not null)
+        and role_id =2';
 
         $clientes = DB::select($sql);
         $data = ['clientes' => $clientes];
@@ -56,7 +58,7 @@ class PersonaController extends Controller
         $documento = $request->numero_documento;
         $genero = $request->genero;
         $caledario = $request->calendario;
-       
+
         $persona = new Persona();
 
         $persona->nombres = $nombres;
@@ -83,7 +85,7 @@ class PersonaController extends Controller
         return redirect()->route('clientes.index')->with('guardado', 'ok');
     }
 
-   
+
     public function show($id)
     {
         $cliente = Persona::FindOrFail($id);
@@ -100,11 +102,11 @@ class PersonaController extends Controller
             'cliente' => $cliente,
             'usuario' => $usuario
         ];
-        
+
         return view('persona.show', $data);
     }
 
-    
+
     public function edit($id)
     {
         $cliente = Persona::FindOrFail($id);
@@ -162,11 +164,15 @@ class PersonaController extends Controller
         $persona = Persona::findOrFail($id);
         $persona->delete();
 
+        //Consulto el usuaruo
+        $usuario = DB::table('usuarios')->where('id_persona', $id)->first();
+
         //Elimino el rol que tiene el usuario
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        DB::table('model_has_roles')->where('model_id', $usuario->id_usuario)->delete();
 
         //Elimino el usuario
-        DB::table('usuarios')->where('id_persona', $id)->delete();
+        $usuario = User::findOrFail($usuario->id_usuario);
+        $usuario->delete();
 
         return redirect()->route('clientes.index')->with('eliminado', 'ok');
     }

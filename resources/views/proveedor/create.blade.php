@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-    
+
     <div class="row">
         <div class="col-md-6">
             <label for="tipos_personas" class="mtop16">Tipo de persona:</label>
@@ -47,7 +47,7 @@
                     </div>
                     {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'nombres_persona']) !!}
                 </div>
-                
+
                 @error('nombres')
                 <small>*{{$message}}</small>
                 @enderror
@@ -284,7 +284,7 @@
 
             }
 
-            
+
         </script>
 
     @stop
