@@ -86,10 +86,46 @@
                 <h3>Cambiar contraseña</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            
+
             <div class="modal-body">
 
-              
+                <form action="" method="post">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="contraseñaactual">Contraseña actual:</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="far fa-keyboard"></i>
+                            </div>
+                            {!! Form::password('contraseñaactual', null, ['id' => 'contraseñaactual', 'class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="contraseñanueva">Contraseña nueva:</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="far fa-keyboard"></i>
+                            </div>
+                            {!! Form::password('contraseñanueva', null, ['id' => 'contraseñanueva', 'class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="confirmacioncontraseña">Confirmar nueva contraseña:</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="fas fa-keyboard"></i>
+                            </div>
+                            {!! Form::password('confirmacioncontraseña',null, ['id' => 'confirmacioncontraseña', 'class' => 'form-control',
+                            'required']) !!}
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="modal-footer">
