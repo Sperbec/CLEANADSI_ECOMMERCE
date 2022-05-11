@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Opciones_definidas;
 use App\Models\Municipio;
+use App\Models\Persona_contacto;
 
 class CuentaController extends Controller
 {
@@ -35,8 +36,7 @@ class CuentaController extends Controller
 
         //Consulto los datos de contacto
         $sql2 = 'SELECT persona_contacto.id_persona_contacto,
-        opciones_definidas.nombre as opcioncontacto, persona_contacto.valor, barrios.nombre as nombrebarrio,
-        predeterminado
+        opciones_definidas.nombre as opcioncontacto, persona_contacto.valor, barrios.nombre as nombrebarrio
         FROM persona_contacto
         inner join opciones_definidas on opciones_definidas.id_opcion = persona_contacto.id_opcion_contacto
         left join barrios on persona_contacto.id_barrio = barrios.id_barrio
@@ -106,8 +106,20 @@ class CuentaController extends Controller
 
    public function destroy($id){}
 
-   public function datosContacto(){
-    dd('Datos de contacto');
+   public function datosContacto(Request $request, $id){
+
+    $usuario = User::findOrFail($id);
+
+    $persona_contacto = new Persona_contacto();
+    $persona_contacto->id_persona = $usuario->id_persona;
+    $persona_contacto->id_opcion_contacto = $request->tipocontacto;
+    $persona_contacto->valor = $request->contacto;
+    $persona_contacto->id_barrio = $request->barrio;
+
+    $persona_contacto->save();
+
+    return redirect()->route('micuenta.index')->with('guardado', 'ok');
+
    }
 
 

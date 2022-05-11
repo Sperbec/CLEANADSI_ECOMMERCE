@@ -269,7 +269,6 @@
 <table class="table table-hover" id="tbldatoscontacto">
     <thead>
         <tr>
-            <td class="negrita">Predeterminado</td>
             <td class="negrita">Opcion contacto</td>
             <td class="negrita">Valor</td>
             <td class="negrita">Barrio</td>
@@ -279,7 +278,6 @@
     <tbody>
         @foreach ($datos_contacto as $contacto)
             <tr>
-                <td>{{ $contacto->predeterminado  == 1 ? 'Sí' : 'No'}} </td>
                 <td>{{ $contacto->opcioncontacto }}</td>
                 <td>{{ $contacto->valor }}</td>
                 <td>{{ $contacto->nombrebarrio }}</td>
@@ -312,7 +310,9 @@
 
         $(document).ready(function() {
             $('#tbldatoscontacto').DataTable({
-                "language": idioma_espanol
+                "language": idioma_espanol,
+                pageLength : 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, "Todos"]]
             });
         });
 
@@ -447,6 +447,28 @@
             position: 'top-end',
             icon: 'success',
             title: 'Contraseña editada con éxito',
+            showConfirmButton: false,
+            timer: 1500
+            })
+        @endif
+
+        @if (session('eliminado') == 'ok' || session('editado') == 'ok' || session('guardado') == 'ok')
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+
+            @if (session('eliminado') == 'ok')
+                title: 'Registro eliminado con éxito',
+            @endif
+
+            @if (session('editado') == 'ok')
+                title: 'Registro editado con éxito',
+            @endif
+
+            @if (session('guardado') == 'ok')
+                title: 'Registro guardado con éxito',
+            @endif
+
             showConfirmButton: false,
             timer: 1500
             })
