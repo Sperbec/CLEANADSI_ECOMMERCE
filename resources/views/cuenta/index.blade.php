@@ -51,9 +51,70 @@
                         </div>
                     </div>
 
+
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="email">Correo:</label>
+                            <label for="tipo_documento" class="mtop16">Tipo de documento:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="far fa-id-card"></i>
+                                </div>
+                                <select id='tipo_documento' name="tipo_documento" class="form-select" required>
+                                    <option value=''>Seleccione</option>
+                                    @foreach ($tipos_documentos as $tipodocumento)
+                                        <option value="{{ $tipodocumento->id_opcion }}"
+                                            {{$tipodocumento->id_opcion == $usuario->id_opcion_tipo_documento ? 'selected' : '' }}>
+                                            {{$tipodocumento->nombre}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="numero_documento" class="mtop16">Número de documento:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="far fa-id-card"></i>
+                                </div>
+                                {!! Form::number('numero_documento', $usuario->numero_documento,
+                                ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'min' => '0000000000', 'max' => '9999999999']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="tipo_genero" class="mtop16">Género:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-venus-mars"></i>
+                                </div>
+                                <select id="tipo_genero" name="tipo_genero" class="form-select" required>
+                                    <option value=''>Seleccione</option>
+                                    @foreach ($generos as $genero)
+                                        <option value="{{ $genero->id_opcion }}"
+                                            {{ $genero->id_opcion == $usuario->id_opcion_genero ? 'selected' : '' }}>
+                                            {{ $genero->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="fecha_nacimiento" class="mtop16">Fecha de nacimiento:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                {!! Form::date('fecha_nacimiento', $usuario->natalicio, ['id' => 'fecha_nacimiento', 'class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="email">Correo principal:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-envelope-open"></i>
@@ -339,26 +400,43 @@
 
 
 
-<h4>Información de la cuenta</h4>
-<hr>
-<h5>Datos personales</h5>
-<div class="row">
-    <div class="col-md-6">
-        <label>{{$usuario->nombres}} {{$usuario->apellidos}}</label>
-    </div>
-    <div class="col-md-6">
-        <label>{{$usuario->email}}</label>
-    </div>
-</div>
-
-
-<div>
-    <a id="btnEditarDatosPersonales" data-toggle="modal" data-target="#mdlEditarDatosPersonales"
+<div class="row justify-content-between">
+    <div class="col-3">
+<h4>Información de la cuenta</div>
+    <div class="col-3">
+        <a id="btnEditarDatosPersonales" data-toggle="modal" data-target="#mdlEditarDatosPersonales"
         class="btn btn-primary ">
         <i class="fas fa-edit"></i> Editar</a>
 
-    <a id="btnCambiarContraseña" data-toggle="modal" data-target="#mdlCambiarContraseña" class="btn btn-secondary ">
-        <i class="fas fa-lock"></i> Cambiar contraseña</a>
+        <a id="btnCambiarContraseña" data-toggle="modal" data-target="#mdlCambiarContraseña" class="btn btn-secondary ">
+            <i class="fas fa-lock"></i> Cambiar contraseña</a>
+    </div>
+
+</div>
+
+<hr>
+<div class="row">
+    <div class="col-md-6">
+        <label>Nombres y apellidos: {{$usuario->nombres}} {{$usuario->apellidos}}</label>
+    </div>
+    <div class="col-md-6">
+        <label>Correo principal: {{$usuario->email}}</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <label>{{$usuario->tipodocumento}}: {{$usuario->numero_documento}}</label>
+    </div>
+    <div class="col-md-6">
+        <label>Género: {{$usuario->tipogenero}}</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <label>Fecha nacimiento: {{$usuario->natalicio}}</label>
+    </div>
 </div>
 
 <br>

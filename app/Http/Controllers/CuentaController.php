@@ -23,9 +23,14 @@ class CuentaController extends Controller
    public function index(){
 
         //Consulto los datos de la persona que está logueada
-        $sql = 'SELECT id_usuario, nombres,apellidos , email
+        $sql = 'SELECT id_usuario, nombres,apellidos , email,
+         id_opcion_tipo_documento, numero_documento,
+         id_opcion_genero, natalicio,
+         documento.nombre as tipodocumento, genero.nombre as tipogenero
         from usuarios
         inner join personas on personas.id_persona = usuarios.id_persona
+        inner join opciones_definidas documento on documento.id_opcion =personas.id_opcion_tipo_documento
+        inner join opciones_definidas genero on genero.id_opcion = personas.id_opcion_genero
         where id_usuario = '.auth()->user()->id_usuario;
 
         $usuario = DB::select($sql);
@@ -45,11 +50,15 @@ class CuentaController extends Controller
 
         $datos_contacto =  DB::select($sql2);
 
+        $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
+        $generos = Opciones_definidas::where('variable', '00genero')->get();
 
         $data = ['usuario' => $usuario[0],
                 'tipos_contactos' => $tipos_contactos,
                 'municipios' => $municipios,
-                'datos_contacto' => $datos_contacto];
+                'datos_contacto' => $datos_contacto,
+                'tipos_documentos' => $tipos_documentos,
+                'generos' => $generos];
 
 
         return view('cuenta.index', $data);
@@ -62,6 +71,11 @@ class CuentaController extends Controller
 
         $persona->nombres = $request->nombres;
         $persona->apellidos = $request->apellidos;
+        $persona->id_opcion_tipo_documento = $request->tipo_documento;
+        $persona->numero_documento = $request->numero_documento;
+        $persona->id_opcion_genero = $request->tipo_genero;
+        $persona->natalicio = $request->fecha_nacimiento;
+
         $persona->update();
 
 
