@@ -80,6 +80,7 @@ Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])
 
 //Facturas
 Route::resource('factura', App\Http\Controllers\FacturaController::class)->names('factura');
+Route::get('/imprimirfactura/{id}', [App\Http\Controllers\FacturaController::class, 'imprimirfactura'])->name('imprimirfactura');
 
 //Mi cuenta
 Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names('micuenta');
