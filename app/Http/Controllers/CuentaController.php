@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Opciones_definidas;
 use App\Models\Municipio;
 use App\Models\Persona_contacto;
+use App\Models\Barrio;
 
 class CuentaController extends Controller
 {
@@ -124,6 +125,23 @@ class CuentaController extends Controller
 
     return redirect()->route('micuenta.index')->with('guardado', 'ok');
 
+   }
+
+   public function getPersonaContactoById(Request $request){
+        $personacontacto = Persona_contacto::findOrFail($request->id);
+
+        $barrio =  null;
+        if($personacontacto->id_barrio != null){
+            $barrio = Barrio::findOrFail($personacontacto->id_barrio);
+        }
+
+        return response()->json(
+            [
+                'personacontacto' => $personacontacto,
+                'municipio' => $barrio != null ? $barrio->id_municipio : null,
+                'success' => true
+            ]
+        );
    }
 
 

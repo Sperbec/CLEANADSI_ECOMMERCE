@@ -26,41 +26,43 @@
                     @method('PUT')
 
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="nombres">Nombres:</label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="far fa-keyboard"></i>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="nombres">Nombres:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="far fa-keyboard"></i>
+                                </div>
+                                {!! Form::text('nombres', $usuario->nombres, ['id' => 'nombres', 'class' =>
+                                'form-control','required']) !!}
                             </div>
-                            {!! Form::text('nombres', $usuario->nombres, ['id' => 'nombres', 'class' => 'form-control','required']) !!}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="apellidos">Apellidos:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-keyboard"></i>
+                                </div>
+                                {!! Form::text('apellidos', $usuario->apellidos, ['id' => 'apellidos', 'class' =>
+                                'form-control',
+                                'required']) !!}
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="apellidos">Apellidos:</label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="fas fa-keyboard"></i>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="email">Correo:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="far fa-envelope-open"></i>
+                                </div>
+                                {!! Form::text('email', $usuario->email, ['id' => 'email', 'class' => 'form-control',
+                                'required']) !!}
                             </div>
-                            {!! Form::text('apellidos', $usuario->apellidos, ['id' => 'apellidos', 'class' => 'form-control',
-                            'required']) !!}
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="email">Correo:</label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="far fa-envelope-open"></i>
-                            </div>
-                            {!! Form::text('email',  $usuario->email, ['id' => 'email', 'class' => 'form-control',
-                            'required']) !!}
-                        </div>
-                    </div>
-                </div>
 
             </div>
 
@@ -71,7 +73,7 @@
                     <i class="fas fa-times"></i> Cerrar</button>
             </div>
 
-             </form>
+            </form>
         </div>
     </div>
 </div>
@@ -96,10 +98,11 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-lock"></i>
                                 </div>
-                                {!!  Form::password('contraseniaactual', ['id' => 'contraseniaactual', 'class' => 'form-control', 'required', 'minlength' => '8']) !!}
+                                {!! Form::password('contraseniaactual', ['id' => 'contraseniaactual', 'class' =>
+                                'form-control', 'required', 'minlength' => '8']) !!}
                                 <div class="input-group-append">
-                                    <button id="show_passwordA" class="btn btn-secondary"
-                                            type="button" onclick="mostrarPasswordA()">
+                                    <button id="show_passwordA" class="btn btn-secondary" type="button"
+                                        onclick="mostrarPasswordA()">
                                         <span class="fa fa-eye-slash iconA"></span> </button>
                                 </div>
                             </div>
@@ -113,10 +116,11 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-lock"></i>
                                 </div>
-                                {!!  Form::password('contrasenianueva', ['id' => 'contrasenianueva', 'class' => 'form-control', 'required', 'minlength' => '8']) !!}
+                                {!! Form::password('contrasenianueva', ['id' => 'contrasenianueva', 'class' =>
+                                'form-control', 'required', 'minlength' => '8']) !!}
                                 <div class="input-group-append">
-                                    <button id="show_passwordN" class="btn btn-secondary"
-                                            type="button" onclick="mostrarPasswordN()">
+                                    <button id="show_passwordN" class="btn btn-secondary" type="button"
+                                        onclick="mostrarPasswordN()">
                                         <span class="fa fa-eye-slash iconN"></span> </button>
                                 </div>
                             </div>
@@ -128,10 +132,11 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-lock"></i>
                                 </div>
-                                {!!  Form::password('confirmacioncontrasenia', ['id' => 'confirmacioncontrasenia', 'class' => 'form-control', 'required', 'minlength' => '8']) !!}
+                                {!! Form::password('confirmacioncontrasenia', ['id' => 'confirmacioncontrasenia',
+                                'class' => 'form-control', 'required', 'minlength' => '8']) !!}
                                 <div class="input-group-append">
-                                    <button id="show_passwordCN" class="btn btn-secondary"
-                                            type="button" onclick="mostrarPasswordCN()">
+                                    <button id="show_passwordCN" class="btn btn-secondary" type="button"
+                                        onclick="mostrarPasswordCN()">
                                         <span class="fa fa-eye-slash iconCN"></span> </button>
                                 </div>
                             </div>
@@ -178,7 +183,8 @@
                                     habilitar(this.value);">
                                     <option value=''>Seleccione</option>
                                     @foreach ($tipos_contactos as $tipo_contacto)
-                                    <option value="{{ $tipo_contacto->id_opcion }}">{{ $tipo_contacto->nombre }}</option>
+                                    <option value="{{ $tipo_contacto->id_opcion }}">{{ $tipo_contacto->nombre }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -192,7 +198,8 @@
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('contacto', null, ['id' => 'contacto', 'class' => 'form-control','required']) !!}
+                                {!! Form::text('contacto', null, ['id' => 'contacto', 'class' =>
+                                'form-control','required']) !!}
                             </div>
                         </div>
                     </div>
@@ -220,7 +227,7 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-map-marked"></i>
                                 </div>
-                            <select id="barrio" name="barrio" class="form-select" disabled></select>
+                                <select id="barrio" name="barrio" class="form-select" disabled></select>
                             </div>
                         </div>
 
@@ -241,6 +248,97 @@
 </div>
 
 
+<!-- Modal editar de contacto-->
+<div id="mdlEditarDatosContacto" class="modal fade" role="dialog">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar datos de contacto</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="tipoContactoEditar">Tipo de contacto:</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="fas fa-hand-pointer"></i>
+                            </div>
+                            <select id="tipoContactoEditar" name="tipoContactoEditar" class="form-select" required
+                                onchange="
+                                    habilitar(this.value);">
+                                <option value=''>Seleccione</option>
+                                @foreach ($tipos_contactos as $tipo_contacto)
+                                <option value="{{ $tipo_contacto->id_opcion }}">{{ $tipo_contacto->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="contactoEditar">Contacto:</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="far fa-keyboard"></i>
+                            </div>
+                            {!! Form::text('contactoEditar', null, ['id' => 'contactoEditar', 'class' =>
+                            'form-control','required']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="municipioEditar">Municipio:</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <select id="municipioEditar" name="municipioEditar" class="form-select" disabled onchange="changeMunicipioEditar()">
+                                <option value=''>Seleccione</option>
+                                @foreach ($municipios as $municipio)
+                                <option value="{{ $municipio->id_municipio }}">{{ $municipio->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="barrioEditar">Barrio:</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="fas fa-map-marked"></i>
+                            </div>
+                            <select id="barrioEditar" name="barrioEditar" class="form-select" disabled></select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button onclick="actualizarRegistro()" id="btnEditarDatosContacto" type="submit"
+                        class="btn btn-success">
+                        <i class="fas fa-edit"></i> Editar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-times"></i> Cerrar</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 <h4>Información de la cuenta</h4>
 <hr>
@@ -256,11 +354,12 @@
 
 
 <div>
-    <a id="btnEditarDatosPersonales" data-toggle="modal" data-target="#mdlEditarDatosPersonales" class="btn btn-primary ">
+    <a id="btnEditarDatosPersonales" data-toggle="modal" data-target="#mdlEditarDatosPersonales"
+        class="btn btn-primary ">
         <i class="fas fa-edit"></i> Editar</a>
 
     <a id="btnCambiarContraseña" data-toggle="modal" data-target="#mdlCambiarContraseña" class="btn btn-secondary ">
-            <i class="fas fa-lock"></i> Cambiar contraseña</a>
+        <i class="fas fa-lock"></i> Cambiar contraseña</a>
 </div>
 
 <br>
@@ -269,7 +368,7 @@
 <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto" class="btn btn-primary">
     <i class="fas fa-plus"></i> Agregar datos de contacto</a>
 
-    <br><br>
+<br><br>
 
 <table class="table table-hover" id="tbldatoscontacto">
     <thead>
@@ -282,32 +381,31 @@
     </thead>
     <tbody>
         @foreach ($datos_contacto as $contacto)
-            <tr>
-                <td>{{ $contacto->opcioncontacto }}</td>
-                <td>{{ $contacto->valor }}</td>
-                <td>{{ $contacto->nombrebarrio }}</td>
-                <td>
-                    <div class="row">
+        <tr>
+            <td>{{ $contacto->opcioncontacto }}</td>
+            <td>{{ $contacto->valor }}</td>
+            <td>{{ $contacto->nombrebarrio }}</td>
+            <td>
+                <div class="row">
 
-                        <div class="col-md-2">
-                        <a id="btnEditar" data-toggle="modal"
-                            data-target="#mdlEditarDatosContacto{{ $contacto->id_persona_contacto }}" class="btn btn-primary opts"
-                            data-toggle="tooltip" data-bs-placement="top" title="Editar datos de contacto">
+                    <div class="col-md-3">
+                        <a id="btnEditar" onclick="cargarDatosEditar('{{$contacto->id_persona_contacto}}')"
+                            class="btn btn-primary opts" data-toggle="tooltip" data-bs-placement="top"
+                            title="Editar datos de contacto">
                             <i class="fas fa-edit"></i></a>
-                        </div>
-                        <div class="col-md-2">
+                    </div>
+                    <div class="col-md-2">
                         <form class="formEliminar"
                             action="{{ route('micuenta.destroy', $contacto->id_persona_contacto) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
-                        </div>
                     </div>
-                    </form>
+                </div>
+                </form>
 
-                </td>
-                @include('cuenta.editmodal')
-            </tr>
+            </td>
+        </tr>
         @endforeach
     </tbody>
 </table>
@@ -315,10 +413,9 @@
 
 @section('css')
 <style>
-    .negrita{
+    .negrita {
         font-weight: bold;
     }
-
 </style>
 
 <!-- Para importar bootstrap -->
@@ -328,8 +425,9 @@
 @stop
 
 @section('js')
-    <script>
-
+<script>
+    var idpersonacontacto = null;
+    var idbarrio =null;
         $(document).ready(function() {
             $('#tbldatoscontacto').DataTable({
                 "language": idioma_espanol,
@@ -337,6 +435,43 @@
                 lengthMenu: [[5, 10, 20, -1], [5, 10, 20, "Todos"]]
             });
         });
+
+        function cargarDatosEditar(idpersonacontacto){
+            fetch('getPersonaContactoById',{
+                    method : 'POST',
+                    body: JSON.stringify({id :idpersonacontacto}),
+                    headers:{
+                        'Content-Type': 'application/json',
+                        "X-CSRF-Token": csrfToken
+                    }
+                }).then(response =>{
+                    return response.json()
+                }).then( data =>{
+                    document.getElementById('tipoContactoEditar').value = data.personacontacto.id_opcion_contacto;
+                    document.getElementById('contactoEditar').value = data.personacontacto.valor;
+
+                    if(data.personacontacto.id_opcion_contacto == 10){
+                        document.getElementById("municipioEditar").disabled = false;
+                        document.getElementById("barrioEditar").disabled = false;
+                        document.getElementById('municipioEditar').value = data.municipio;
+                        changeMunicipioEditar();
+                        this.idbarrio = data.personacontacto.id_barrio;
+                    }else{
+                        document.getElementById('municipioEditar').value = '';
+                        document.getElementById('barrioEditar').value = '';
+                        document.getElementById("municipioEditar").disabled = true;
+                        document.getElementById("barrioEditar").disabled = true;
+                        this.idbarrio = null;
+                    }
+
+                    this.idpersonacontacto = idpersonacontacto;
+                    $("#mdlEditarDatosContacto").modal("show");
+                }).catch(error => console.error(error));
+        }
+
+        function actualizarRegistro(){
+            console.log('Actualizar');
+        }
 
 
         var idioma_espanol = {
@@ -383,6 +518,30 @@
                 document.getElementById("barrio").innerHTML = opciones;
             }).catch(error =>console.error(error));
         })
+
+        function changeMunicipioEditar(){
+            fetch('obtenerbarrios',{
+                method : 'POST',
+                body: JSON.stringify({texto : document.getElementById('municipioEditar').value}),
+                headers:{
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": csrfToken
+                }
+            }).then(response =>{
+                return response.json()
+            }).then( data =>{
+                var opciones ="<option value=''>Seleccione</option>";
+                for (let i in data.lista) {
+                    opciones+= '<option value="'+data.lista[i].id_barrio+'">'+data.lista[i].nombre+'</option>';
+                }
+                document.getElementById("barrioEditar").innerHTML = opciones;
+
+                if(this.idbarrio != null){
+                    document.getElementById('barrioEditar').value = this.idbarrio;
+                }
+
+            }).catch(error =>console.error(error));
+        }
 
 
         @if ( session('editado') == 'ok' )
@@ -530,5 +689,5 @@
 
 
 
-    </script>
+</script>
 @stop

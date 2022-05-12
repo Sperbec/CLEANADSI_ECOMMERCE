@@ -32,54 +32,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="contactoEditar">Contacto:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="far fa-keyboard"></i>
-                                </div>
-                                {!! Form::text('contactoEditar', $contacto->valor, ['id' => 'contactoEditar', 'class' => 'form-control','required']) !!}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="municipioEditar">Municipio:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <select id="municipioEditar" name="municipioEditar" class="form-select" disabled>
-                                    <option value=''>Seleccione</option>
-                                    @foreach ($municipios as $municipio)
-                                    <option value="{{ $municipio->id_municipio }}">{{ $municipio->nombre }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <label for="barrioEditar">Barrio:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="fas fa-map-marked"></i>
-                                </div>
-                            <select id="barrioEditar" name="barrioEditar" class="form-select" disabled></select>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <button id="btnEditarDatosContacto" type="submit" class="btn btn-success">
-                            <i class="fas fa-paper-plane"></i> Guardar</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">
-                            <i class="fas fa-times"></i> Cerrar</button>
-                    </div>
+                   
 
                 </form>
 
@@ -89,16 +42,6 @@
 </div>
 
 <script>
-     function habilitar(value) {
-            if (value == "10") {
-                document.getElementById("municipioEditar").disabled = false;
-                document.getElementById("barrioEditar").disabled = false;
-            }else{
-                document.getElementById('municipioEditar').value = '';
-                document.getElementById('barrioEditar').value = '';
-                document.getElementById("municipioEditar").disabled = true;
-                document.getElementById("barrioEditar").disabled = true;
-            }
-        }
+     
 </script>
 
