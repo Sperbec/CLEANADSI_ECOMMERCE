@@ -270,7 +270,7 @@ return [
                     'route'  => 'barrio.index',
                     'icon' => 'fas fa-map-marked-alt',
                 ],
-        
+
             ],
         ],
 
@@ -314,12 +314,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Consultar factura',
-                    'url'  => '#',
+                    'route'  => 'factura.index',
                     'icon'=>'fas fa-fw fa-search'
                 ]
             ],
         ],
-        
+
         [
             'text'    => 'Clientes',
             'route'   => 'clientes.index',
