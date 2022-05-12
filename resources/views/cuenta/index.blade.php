@@ -323,14 +323,11 @@
 
 
                 <div class="modal-footer">
-                    <button onclick="actualizarRegistro()" id="btnEditarDatosContacto" type="submit"
-                        class="btn btn-success">
+                    <button onclick="actualizarRegistro()" id="btnEditarDatosContacto" class="btn btn-success">
                         <i class="fas fa-edit"></i> Editar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         <i class="fas fa-times"></i> Cerrar</button>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -363,12 +360,18 @@
 </div>
 
 <br>
+<div class="row justify-content-between">
+    <div class="col-3">
 <h4>Datos de contacto</h4>
-<hr>
+    </div>
+    <div class="col-3">
 <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto" class="btn btn-primary">
     <i class="fas fa-plus"></i> Agregar datos de contacto</a>
+    </div>
+ 
+</div>
+<hr>
 
-<br><br>
 
 <table class="table table-hover" id="tbldatoscontacto">
     <thead>
@@ -428,6 +431,9 @@
 <script>
     var idpersonacontacto = null;
     var idbarrio =null;
+
+    const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+    
         $(document).ready(function() {
             $('#tbldatoscontacto').DataTable({
                 "language": idioma_espanol,
@@ -469,9 +475,7 @@
                 }).catch(error => console.error(error));
         }
 
-        function actualizarRegistro(){
-            console.log('Actualizar');
-        }
+        
 
 
         var idioma_espanol = {
@@ -495,10 +499,6 @@
             }
 
         }
-
-
-
-        const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
 
         document.getElementById('municipio').addEventListener('change',(e)=>{
             fetch('obtenerbarrios',{
@@ -686,6 +686,33 @@
             })
 
         });
+
+
+        function actualizarRegistro(){
+            fetch('updatePersonaContacto',{
+                    method : 'POST',
+                    body: JSON.stringify({
+                        id : this.idpersonacontacto,
+                        tipocontacto: document.getElementById('tipoContactoEditar').value,
+                        contacto:  document.getElementById('contactoEditar').value,
+                        barrio:  document.getElementById('barrioEditar').value}),
+                    headers:{
+                        'Content-Type': 'application/json',
+                        "X-CSRF-Token": csrfToken
+                    }
+                }).then(response =>{
+                    return response.json()
+                }).then( data =>{
+                    Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Registro editado con éxito',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+                    $("#mdlEditarDatosContacto").modal("hide");
+                }).catch(error => console.error(error));
+        }
 
 
 

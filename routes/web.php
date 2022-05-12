@@ -83,6 +83,7 @@ Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names
 Route::post('/changePassword/{id}', [App\Http\Controllers\CuentaController::class, 'changePassword'])->name('changePassword');
 Route::post('/datosContacto/{id}', [App\Http\Controllers\CuentaController::class, 'datosContacto'])->name('datosContacto');
 Route::post('/getPersonaContactoById', [App\Http\Controllers\CuentaController::class, 'getPersonaContactoById']);
+Route::post('/updatePersonaContacto', [App\Http\Controllers\CuentaController::class, 'updatePersonaContacto']);
 
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend

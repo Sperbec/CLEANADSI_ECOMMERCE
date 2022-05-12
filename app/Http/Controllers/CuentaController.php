@@ -97,14 +97,6 @@ class CuentaController extends Controller
         endif;
    }
 
-   public function show($id){}
-
-   public function create(){}
-
-   public function store(Request $request){}
-
-   public function edit($id){}
-
    public function destroy($id){
         $persona_contacto = Persona_contacto::findOrFail($id);
         $persona_contacto->delete();
@@ -142,6 +134,18 @@ class CuentaController extends Controller
                 'success' => true
             ]
         );
+   }
+
+
+   public function updatePersonaContacto(Request $request){
+        $personacontacto = Persona_contacto::findOrFail($request->idpersonacontacto);
+        $personacontacto->id_opcion_contacto = $request->tipocontacto;
+        $personacontacto->valor = $request->contacto;
+        $personacontacto->id_barrio = $request->barrio;
+
+        $personacontacto->update();
+
+        return response()->json(['success' => true]);
    }
 
 
