@@ -138,15 +138,18 @@ class CuentaController extends Controller
 
 
    public function updatePersonaContacto(Request $request){
-        $personacontacto = Persona_contacto::findOrFail($request->idpersonacontacto);
-        $personacontacto->id_opcion_contacto = $request->tipocontacto;
-        $personacontacto->valor = $request->contacto;
-        $personacontacto->id_barrio = $request->barrio;
+        $personacontacto = Persona_contacto::findOrFail($request->hiddenidpersonacontacto);
+        $personacontacto->id_opcion_contacto = $request->tipoContactoEditar;
+        $personacontacto->valor = $request->contactoEditar;
+        $personacontacto->id_barrio = $request->barrioEditar;
 
         $personacontacto->update();
 
-        return response()->json(['success' => true]);
+        return redirect()->route('micuenta.index')->with('editado', 'ok');
+
    }
+
+   public function show(){}
 
 
 }

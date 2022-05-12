@@ -259,7 +259,10 @@
 
             <div class="modal-body">
 
+                <form action="{{route('updatePersonaContacto')}}" method="post">
+                    @csrf
 
+                <input id="hiddenidpersonacontacto" name="hiddenidpersonacontacto" type="hidden">
                 <div class="row">
                     <div class="col-md-12">
                         <label for="tipoContactoEditar">Tipo de contacto:</label>
@@ -267,9 +270,7 @@
                             <div class="input-group-text">
                                 <i class="fas fa-hand-pointer"></i>
                             </div>
-                            <select id="tipoContactoEditar" name="tipoContactoEditar" class="form-select" required
-                                onchange="
-                                    habilitar(this.value);">
+                            <select id="tipoContactoEditar" name="tipoContactoEditar" class="form-select" required>
                                 <option value=''>Seleccione</option>
                                 @foreach ($tipos_contactos as $tipo_contacto)
                                 <option value="{{ $tipo_contacto->id_opcion }}">{{ $tipo_contacto->nombre }}</option>
@@ -323,11 +324,12 @@
 
 
                 <div class="modal-footer">
-                    <button onclick="actualizarRegistro()" id="btnEditarDatosContacto" class="btn btn-success">
+                    <button type="submit" id="btnEditarDatosContacto" class="btn btn-success">
                         <i class="fas fa-edit"></i> Editar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         <i class="fas fa-times"></i> Cerrar</button>
                 </div>
+               </form>
             </div>
         </div>
     </div>
@@ -368,7 +370,7 @@
 <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto" class="btn btn-primary">
     <i class="fas fa-plus"></i> Agregar datos de contacto</a>
     </div>
- 
+
 </div>
 <hr>
 
@@ -433,7 +435,7 @@
     var idbarrio =null;
 
     const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
-    
+
         $(document).ready(function() {
             $('#tbldatoscontacto').DataTable({
                 "language": idioma_espanol,
@@ -453,6 +455,7 @@
                 }).then(response =>{
                     return response.json()
                 }).then( data =>{
+                    document.getElementById('hiddenidpersonacontacto').value = idpersonacontacto;
                     document.getElementById('tipoContactoEditar').value = data.personacontacto.id_opcion_contacto;
                     document.getElementById('contactoEditar').value = data.personacontacto.valor;
 
@@ -475,7 +478,7 @@
                 }).catch(error => console.error(error));
         }
 
-        
+
 
 
         var idioma_espanol = {
@@ -667,6 +670,19 @@
             }
         }
 
+        document.getElementById('tipoContactoEditar').addEventListener('change',(e)=>{
+            if(document.getElementById('tipoContactoEditar').value == 10){
+                document.getElementById("municipioEditar").disabled = false;
+                document.getElementById("barrioEditar").disabled = false;
+            }else{
+                document.getElementById('municipioEditar').value = '';
+                document.getElementById('barrioEditar').value = '';
+                document.getElementById("municipioEditar").disabled = true;
+                document.getElementById("barrioEditar").disabled = true;
+            }
+
+        })
+
         $('.formEliminar').submit(function(e) {
             e.preventDefault();
 
@@ -686,35 +702,6 @@
             })
 
         });
-
-
-        function actualizarRegistro(){
-            fetch('updatePersonaContacto',{
-                    method : 'POST',
-                    body: JSON.stringify({
-                        id : this.idpersonacontacto,
-                        tipocontacto: document.getElementById('tipoContactoEditar').value,
-                        contacto:  document.getElementById('contactoEditar').value,
-                        barrio:  document.getElementById('barrioEditar').value}),
-                    headers:{
-                        'Content-Type': 'application/json',
-                        "X-CSRF-Token": csrfToken
-                    }
-                }).then(response =>{
-                    return response.json()
-                }).then( data =>{
-                    Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Registro editado con éxito',
-                    showConfirmButton: false,
-                    timer: 1500
-                    })
-                    $("#mdlEditarDatosContacto").modal("hide");
-                }).catch(error => console.error(error));
-        }
-
-
 
 </script>
 @stop
