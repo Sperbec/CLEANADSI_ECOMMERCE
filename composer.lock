@@ -1061,23 +1061,7 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "version": "v8.83.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "33b1b981266e3a19fbc826b60c4a6847e311ac95"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/33b1b981266e3a19fbc826b60c4a6847e311ac95",
-                "reference": "33b1b981266e3a19fbc826b60c4a6847e311ac95",
-=======
-            "version": "v8.83.9",
-=======
             "version": "v8.83.10",
->>>>>>> master
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
@@ -1085,14 +1069,8 @@
             },
             "dist": {
                 "type": "zip",
-<<<<<<< HEAD
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ac6e16bb56510eda2e373c6365d5c92da3fd559d",
-                "reference": "ac6e16bb56510eda2e373c6365d5c92da3fd559d",
->>>>>>> master
-=======
                 "url": "https://api.github.com/repos/laravel/framework/zipball/148ae59b7da6c3db6736374d357c5aaef9506fb7",
                 "reference": "148ae59b7da6c3db6736374d357c5aaef9506fb7",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1252,15 +1230,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "time": "2022-03-15T13:37:44+00:00"
-=======
-            "time": "2022-04-19T15:01:38+00:00"
->>>>>>> master
-=======
             "time": "2022-04-27T14:07:37+00:00"
->>>>>>> master
         },
         {
             "name": "laravel/sanctum",
@@ -1388,18 +1358,6 @@
         },
         {
             "name": "laravel/tinker",
-<<<<<<< HEAD
-            "version": "v2.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/tinker.git",
-                "reference": "1e2d500585a4e546346fadd3adc6f9c1a97e15f4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/tinker/zipball/1e2d500585a4e546346fadd3adc6f9c1a97e15f4",
-                "reference": "1e2d500585a4e546346fadd3adc6f9c1a97e15f4",
-=======
             "version": "v2.7.2",
             "source": {
                 "type": "git",
@@ -1410,7 +1368,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/tinker/zipball/dff39b661e827dae6e092412f976658df82dbac5",
                 "reference": "dff39b661e827dae6e092412f976658df82dbac5",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1463,15 +1420,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/tinker/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/laravel/tinker/tree/v2.7.1"
-            },
-            "time": "2022-03-15T15:25:01+00:00"
-=======
                 "source": "https://github.com/laravel/tinker/tree/v2.7.2"
             },
             "time": "2022-03-23T12:38:24+00:00"
->>>>>>> master
         },
         {
             "name": "laravel/ui",
@@ -6291,23 +6242,7 @@
         },
         {
             "name": "laravel/sail",
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "version": "v1.13.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/sail.git",
-                "reference": "2092e1ce6e4ba534bff443de8c3a7bb280aba121"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/2092e1ce6e4ba534bff443de8c3a7bb280aba121",
-                "reference": "2092e1ce6e4ba534bff443de8c3a7bb280aba121",
-=======
-            "version": "v1.13.10",
-=======
             "version": "v1.14.0",
->>>>>>> master
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
@@ -6315,14 +6250,8 @@
             },
             "dist": {
                 "type": "zip",
-<<<<<<< HEAD
-                "url": "https://api.github.com/repos/laravel/sail/zipball/cbf55e1a392724313f7726c38578b5e008df6a0f",
-                "reference": "cbf55e1a392724313f7726c38578b5e008df6a0f",
->>>>>>> master
-=======
                 "url": "https://api.github.com/repos/laravel/sail/zipball/453c66fde4109eb49e12299ffe3bf0d667983447",
                 "reference": "453c66fde4109eb49e12299ffe3bf0d667983447",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -6369,15 +6298,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "time": "2022-03-11T14:11:15+00:00"
-=======
-            "time": "2022-04-14T18:29:22+00:00"
->>>>>>> master
-=======
             "time": "2022-04-27T13:10:22+00:00"
->>>>>>> master
         },
         {
             "name": "mockery/mockery",
@@ -7255,18 +7176,6 @@
         },
         {
             "name": "phpunit/phpunit",
-<<<<<<< HEAD
-            "version": "9.5.19",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "35ea4b7f3acabb26f4bb640f8c30866c401da807"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/35ea4b7f3acabb26f4bb640f8c30866c401da807",
-                "reference": "35ea4b7f3acabb26f4bb640f8c30866c401da807",
-=======
             "version": "9.5.20",
             "source": {
                 "type": "git",
@@ -7277,7 +7186,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/12bc8879fb65aef2138b26fc633cb1e3620cffba",
                 "reference": "12bc8879fb65aef2138b26fc633cb1e3620cffba",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -7355,11 +7263,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.19"
-=======
                 "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.20"
->>>>>>> master
             },
             "funding": [
                 {
@@ -7371,11 +7275,7 @@
                     "type": "github"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2022-03-15T09:57:31+00:00"
-=======
             "time": "2022-04-01T12:37:26+00:00"
->>>>>>> master
         },
         {
             "name": "sebastian/cli-parser",
