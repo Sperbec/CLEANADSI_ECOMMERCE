@@ -45,7 +45,7 @@
                     <div class="input-group-text">
                         <i class="fas fa-user"></i>
                     </div>
-                    {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'nombres_persona']) !!}
+                    {!! Form::text('nombres', null, ['class' => 'form-control', 'required', '', 'id' => 'nombres_persona']) !!}
                 </div>
 
                 @error('nombres')
@@ -59,7 +59,7 @@
                     <div class="input-group-text">
                         <i class="fas fa-user"></i>
                     </div>
-                    {!! Form::text('apellidos', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'apellidos_persona']) !!}
+                    {!! Form::text('apellidos', null, ['class' => 'form-control', 'required', '', 'id' => 'apellidos_persona']) !!}
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                     <div class="input-group-text">
                         <i class="far fa-id-card"></i>
                     </div>
-                    {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'disabled', 'min' => '999', 'max' => '9999999999']) !!}
+                    {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', '', 'min' => '999', 'max' => '9999999999']) !!}
                 </div>
                 @error ('numero_documento')
                 <small>*{{$message}}</small>

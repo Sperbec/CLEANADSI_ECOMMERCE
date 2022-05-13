@@ -24,9 +24,19 @@ class StoreForm extends FormRequest
     public function rules()
     {
         return [
-            'nombres'=>'sometimes|required|max:50|alpha',
-            'codigo'=>'sometimes|required|max:6',
-            'nombrecategoria' => 'max:2',
+            'nombres'=>'max:7|alpha',
+            'apellidos'=>'required|max:7|alpha',
+            'numero'=>'numeric|max:6',
+            'codigo c' => 'numeric',
+            
         ];
+    }
+    public function messages()
+    {
+        return[
+            'codigo c.numeric'=>'El campo codigo categoria solo debe contener numeros por favor intente nuevamente',
+
+        ];
+
     }
 }

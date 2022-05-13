@@ -31,26 +31,30 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="codigocategoria">Codigo categoría:</label>
+                            <label for="codigo c">Codigo categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('codigocategoria', null, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('codigo c', null, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
                             </div>
+                            @error ('codigo c')
+                            <small>*{{$message}}</small>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <label for="nombrecategoria">Nombre categoría:</label>
+                            <label for="nombres">Nombre categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombrecategoria', null, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombres', null, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
                             </div>
-
-
-                        </div>
+                            @error ('nombres')
+                            <small>*{{$message}}</small>
+                            @enderror
+                         </div>
                     </div>
 
                 </div>
