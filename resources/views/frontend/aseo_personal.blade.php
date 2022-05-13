@@ -30,8 +30,8 @@
                             <div class="product-body">
                                 
                                 <p class="product-category">Aseo Personal</p>
-                                <h3 class="product-name"><a href="#">{{$pap->nombre}}</a></h3>
-                                <h4 class="product-price">${{$pap->precio}} <del class="product-old-price">$990.00</del></h4>
+                                <h3 class="product-name"><a href="{{route('detalle',$pap->id_producto)}}">{{$pap->nombre}}</a></h3>
+                                <h4 class="product-price">${{number_format($pap->precio)}} </h4>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -54,17 +54,15 @@
                     <!-- /product -->
                 </div>
                 <!-- /store products -->
-
+               
                 <!-- store bottom filter -->
                 <div class="store-filter clearfix">
-                    <span class="store-qty">Showing 20-100 products</span>
-                    <ul class="store-pagination">
-                        <li class="active">1</li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
+                    <span class="store-qty">Showing {{$producto_aseo_personal->count()}}-100 products</span>
+                    <div class="store-position">
+                        {!!$producto_aseo_personal->links()!!}
+                        
+                        
+                    </div>
                 </div>
                 <!-- /store bottom filter -->
             </div>

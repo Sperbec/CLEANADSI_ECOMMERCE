@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-    
+
     <div class="row">
         <div class="col-md-6">
             <label for="tipos_personas" class="mtop16">Tipo de persona:</label>
@@ -47,6 +47,10 @@
                     </div>
                     {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'nombres_persona']) !!}
                 </div>
+
+                @error('nombres')
+                <small>*{{$message}}</small>
+                @enderror
             </div>
 
             <div class="col-md-6">
@@ -83,8 +87,11 @@
                     <div class="input-group-text">
                         <i class="far fa-id-card"></i>
                     </div>
-                    {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'disabled', 'min' => '0000000000', 'max' => '9999999999']) !!}
+                    {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'disabled', 'min' => '999', 'max' => '9999999999']) !!}
                 </div>
+                @error ('numero_documento')
+                <small>*{{$message}}</small>
+                @enderror
             </div>
         </div>
 
@@ -111,7 +118,7 @@
                     <div class="input-group-text">
                         <i class="fas fa-calendar"></i>
                     </div>
-                    {!! Form::date('calendario', null, ['id' => 'calendario', 'class' => 'form-control', 'required', 'disabled']) !!}
+                    {!! Form::date('calendario', null, ['id' => 'calendario', 'class' => 'form-control', 'required', 'disabled','min'=>"1900-01-01", 'max'=>"2021-12-31"]) !!}
                 </div>
             </div>
         </div>
@@ -204,7 +211,6 @@
     @stop
 
     @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
 
         <!-- Para importar bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -277,7 +283,7 @@
 
             }
 
-            
+
         </script>
 
     @stop

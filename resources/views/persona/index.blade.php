@@ -2,6 +2,7 @@
 
 @section('title', 'Clientes')
 
+
 @section('content_header')
     <div class="row">
         <h1>Clientes</h1>
@@ -60,7 +61,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    
 @stop
 
 @section('js')
@@ -135,6 +136,10 @@
             })
 
         });
+
+        
+
+
 
     </script>
 

@@ -9,17 +9,18 @@ class OrdenCompraController extends Controller
 {
     public function crear(){
 
-        $sqlProveedores = 'SELECT id_proveedor, 
-                case when nombres is not null then 
-                concat(nombres, " ", apellidos)  else 
-                nombre end as proveedor 
-                from proveedores 
-                left join personas on personas.id_persona = proveedores.id_persona';
+        $sqlProveedores = 'SELECT id_proveedor,
+                case when nombres is not null then
+                concat(nombres, " ", apellidos)  else
+                nombre end as proveedor
+                from proveedores
+                left join personas on personas.id_persona = proveedores.id_persona
+                WHERE proveedores.deleted_at is null';
 
         $sqlProductos = 'SELECT id_producto, nombre FROM productos WHERE estado = 1 ';
 
-        
-                
+
+
         $proveedores = DB::select($sqlProveedores);
         $productos = DB::select($sqlProductos);
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarritoComprasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,19 @@ Route::resource('clientes', App\Http\Controllers\PersonaController::class)->name
 Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, 'crear'])->name('crearOrdenCompra');
 Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::class, 'consultar'])->name('consultarOrdenCompra');
 
+//Mis pedidos
+Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])->name('pedidos');
+
+//Facturas
+Route::resource('factura', App\Http\Controllers\FacturaController::class)->names('factura');
+
+//Mi cuenta
+Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names('micuenta');
+Route::post('/changePassword/{id}', [App\Http\Controllers\CuentaController::class, 'changePassword'])->name('changePassword');
+Route::post('/datosContacto/{id}', [App\Http\Controllers\CuentaController::class, 'datosContacto'])->name('datosContacto');
+Route::post('/getPersonaContactoById', [App\Http\Controllers\CuentaController::class, 'getPersonaContactoById']);
+Route::post('/updatePersonaContacto', [App\Http\Controllers\CuentaController::class, 'updatePersonaContacto'])->name('updatePersonaContacto');
+
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend
 
@@ -89,3 +103,5 @@ Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendControll
 Route::post('frontend',[App\Http\Controllers\FrontendController::class, 'store'])->name('store');
 
 Route::get('frontend/crear',[App\Http\Controllers\FrontendController::class, 'crear'])->name('crear');
+
+//-----------------------------------------------------------------

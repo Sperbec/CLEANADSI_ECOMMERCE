@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreForm;
 
 class CategoriaController extends Controller
 {
@@ -21,10 +22,10 @@ class CategoriaController extends Controller
         return view('categoria.index', $data);
     }
 
-    public function store(Request $request){
+    public function store(StoreForm $request){
         
-        $codigocategoria = $request->codigo;
-        $nombrecategoria = $request->nombre;
+        $codigocategoria = $request->codigocategoria;
+        $nombrecategoria = $request->nombrecategoria;
         
         $categoria = new Categoria();
         $categoria->codigo = $codigocategoria;
@@ -42,9 +43,9 @@ class CategoriaController extends Controller
 
     }
 
-    public function update(Request $request, $id){
-        $codigocategoria = $request->codigo;
-        $nombrecategoria = $request->nombre;
+    public function update(StoreForm $request, $id){
+        $codigocategoria = $request->codigocategoria;
+        $nombrecategoria = $request->nombrecategoria;
 
         $categoria = Categoria::findOrFail($id);
         $categoria->codigo = $codigocategoria;

@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Departamento;
 use Illuminate\Http\Request;
 use App\Models\Pais;
+use Illuminate\Support\Facades\DB;
 
 class DepartamentoController extends Controller
 {
-  
+
     public function index()
     {
         $paises = Pais::All();
@@ -76,9 +77,20 @@ class DepartamentoController extends Controller
 
     public function eliminarDepartamento(Request $request)
     {
-        $departamento = Departamento::findOrFail($request->id);
-        $departamento->delete();
-        return response()->json(['success' => true]);
-       
+
+         //Si el departamento está relacionado a un municipio no se puede eliminar.
+         $sql = 'SELECT  id_departamento from municipios
+         where id_departamento = '.$request->id;
+
+         $municipios_relacionados = DB::select($sql);
+
+         if(empty($municipios_relacionados)){
+            $departamento = Departamento::findOrFail($request->id);
+            $departamento->delete();
+            return response()->json(['success' => true]);
+         }else{
+            return response()->json(['success' => false]);
+         }
+
     }
 }
