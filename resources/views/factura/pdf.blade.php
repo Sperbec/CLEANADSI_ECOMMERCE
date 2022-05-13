@@ -26,10 +26,6 @@
         vertical-align: text-top;
     }
 
-    .footer{
-        text-align: center;
-    }
-
   </style>
 </head>
 <body>
