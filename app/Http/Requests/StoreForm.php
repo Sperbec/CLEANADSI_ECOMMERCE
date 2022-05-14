@@ -24,18 +24,34 @@ class StoreForm extends FormRequest
     public function rules()
     {
         return [
-            'nombres'=>'max:7|alpha',
-            'apellidos'=>'required|max:7|alpha',
-            'numero'=>'numeric|max:6',
-            'codigo c' => 'numeric',
-            
+            'codigo_categoria' => 'numeric|digits:15',
+            'nombre_categoria'=>'alpha|max:80',
+
+            'nombres_proveedor'=>'alpha|max:50',
+            'apellidos_proveedor'=>'alpha|max:50',
+            'numero_documento'=> 'numeric',
+            'nombre_juridico'=>'alpha|max:50',
+            'nit'=>'numeric',
+            'direccion_proveedor'=>'max:50',
+            'correo_proveedor'=>'max:80',
+            'contacto_proveedor'=>'alpha|max:50',
+            'telefono_proveedor'=> 'numeric',
+
+           
         ];
     }
     public function messages()
     {
         return[
-            'codigo c.numeric'=>'El campo codigo categoria solo debe contener numeros por favor intente nuevamente',
 
+            'codigo_categoria.numeric'=>'El campo código categoría solo debe contener números.',
+            'codigo_categoria.digits'=>'El campo código categoría solo debe contener 15 dígitos.',
+            'nombre_categoria.alpha'=>'El campo nombre categoría solo debe contener letras.',
+            'nombre_categoria.max'=>'El campo nombre categoría solo debe contener 80 caracteres.',
+
+            'nombres_proveedor.alpha'=>'El campo nombres solo debe contener letras.',
+           
+           
         ];
 
     }
