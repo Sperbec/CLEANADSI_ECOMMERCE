@@ -24,7 +24,7 @@ class StoreForm extends FormRequest
     public function rules()
     {
         return [
-            'codigo_categoria' => 'numeric|digits:15',
+            'codigo_categoria' => 'numeric',
             'nombre_categoria'=>'alpha|max:80',
 
             'nombres_proveedor'=>'alpha|max:50',
