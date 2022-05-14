@@ -30,6 +30,9 @@
                         </div>
                         {!! Form::text('nombres', $cliente->nombres, ['class' => 'form-control', 'required', 'id' => 'nombres_persona']) !!}
                     </div>
+                    @error ('nombres')
+                    <small>*{{$message}}</small>
+                    @enderror
                 </div>
 
                 <div class="col-md-6">
@@ -40,6 +43,9 @@
                         </div>
                         {!! Form::text('apellidos', $cliente->apellidos, ['class' => 'form-control', 'required', 'id' => 'apellidos_persona']) !!}
                     </div>
+                    @error ('apellidos')
+                    <small>*{{$message}}</small>
+                    @enderror
                 </div>
             </div>
 

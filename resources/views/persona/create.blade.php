@@ -31,9 +31,7 @@
                    
                 </div>
                 @error ('nombres')
-                <br>
                 <small>*{{$message}}</small>
-                <br>
                 @enderror
             </div>
             
@@ -48,12 +46,10 @@
                     <div class="input-group-text">
                         <i class="fas fa-user"></i>
                     </div>
-                    {!! Form::text('apellidos', null, ['class' => 'form-control', '', 'id' => 'apellidos_persona']) !!}
+                    {!! Form::text('apellidos', null, ['class' => 'form-control', 'required', 'id' => 'apellidos_persona']) !!}
                 </div>
                 @error ('apellidos')
-                <br>
                 <small>*{{$message}}</small>
-                <br>
                 @enderror
             </div>
         </div>
@@ -72,11 +68,7 @@
                         @endforeach
                     </select>
                 </div>
-                @error ('tipo_documento')
-                <br>
-                <small>*{{$message}}</small>
-                <br>
-                @enderror
+               
             </div>
 
 
@@ -87,13 +79,11 @@
                         <i class="far fa-id-card"></i>
                     </div>
 
-                    {!! Form::number('numero_documento', null, ['class' => 'form-control', '', 'id' => 'documento_persona', 'min' => '999', 'max' => '999999999999999']) !!}
+                    {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'min' => '999', 'max' => '999999999999999']) !!}
 
                 </div>
                 @error ('numero')
-                <br>
                 <small>*{{$message}}</small>
-                <br>
                 @enderror
             </div>
         </div>
@@ -106,7 +96,7 @@
                     <div class="input-group-text">
                         <i class="fas fa-venus-mars"></i>
                     </div>
-                    <select id="genero_persona" name="genero" class="form-select">
+                    <select id="genero_persona" name="genero" class="form-select" required>
                         <option value=''>Seleccione</option>
                         @foreach ($generos as $genero)
                             <option value="{{ $genero->id_opcion }}">{{ $genero->nombre }}</option>

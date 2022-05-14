@@ -23,34 +23,34 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <label for="nombres">Nombres:</label>
+                    <label for="nombres_proveedor">Nombres:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fas fa-user"></i>
                         </div>
-                        {!! Form::text('nombres', $proveedor->nombres, ['class' => 'form-control', 'required', 'id' => 'nombres_persona']) !!}
+                        {!! Form::text('nombres_proveedor', $proveedor->nombres, ['class' => 'form-control', 'required', 'id' => 'nombres_proveedor']) !!}
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <label for="apellidos" class="mtop16">Apellidos:</label>
+                    <label for="apellidos_proveedor" class="mtop16">Apellidos:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fas fa-user"></i>
                         </div>
-                        {!! Form::text('apellidos', $proveedor->apellidos, ['class' => 'form-control', 'required', 'id' => 'apellidos_persona']) !!}
+                        {!! Form::text('apellidos_proveedor', $proveedor->apellidos, ['class' => 'form-control', 'required', 'id' => 'apellidos_proveedor']) !!}
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <label for="tipo_documento" class="mtop16">Tipo de documento:</label>
+                    <label for="tipo_doc_proveedor" class="mtop16">Tipo de documento:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="far fa-id-card"></i>
                         </div>
-                        <select id='tipo_documento_persona' name="tipo_documento" class="form-select" required>
+                        <select id='tipo_doc_proveedor' name="tipo_doc_proveedor" class="form-select" required>
                           <option value=''>Seleccione</option>
                           @foreach ($tipos_documentos as $tipodocumento)     
                           <option value="{{ $tipodocumento->id_opcion }}" 
@@ -68,7 +68,7 @@
                         <div class="input-group-text">
                             <i class="far fa-id-card"></i>
                         </div>
-                        {!! Form::number('numero_documento', $proveedor->documento, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'min' => '0000000000', 'max' => '9999999999']) !!}
+                        {!! Form::number('numero_documento', $proveedor->documento, ['class' => 'form-control', 'required', 'id' => 'numero_documento']) !!}
                     </div>
                 </div>
             </div>
@@ -76,12 +76,12 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <label for="tipo_genero" class="mtop16">Género:</label>
+                    <label for="genero_proveedor" class="mtop16">Género:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fas fa-venus-mars"></i>
                         </div>
-                        <select id="genero_persona" name="genero" class="form-select" required>
+                        <select id="genero_proveedor" name="genero_proveedor" class="form-select" required>
                           <option value=''>Seleccione</option>
                           @foreach ($generos as $genero)
                           <option value="{{ $genero->id_opcion }}" 
@@ -98,7 +98,7 @@
                         <div class="input-group-text">
                             <i class="fas fa-calendar"></i>
                         </div>
-                        {!! Form::date('calendario', $proveedor->natalicio, ['id' => 'calendario', 'class' => 'form-control', 'required']) !!}
+                        {!! Form::date('fecha_nacimiento', $proveedor->natalicio, ['id' => 'fecha_nacimiento', 'class' => 'form-control', 'required']) !!}
                     </div>
                 </div>
             </div>
@@ -108,12 +108,12 @@
         @if ($proveedor->id_opcion_persona === 21)
             <div class="row">
                 <div class="col-md-6">
-                    <label for="nombre">Nombre:</label>
+                    <label for="nombre_juridico">Nombre:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fa fa-industry" aria-hidden="true"></i>
                         </div>
-                        {!! Form::text('nombre', $proveedor->nombres, ['class' => 'form-control', 'required', 'id' => 'nombre_proveedor']) !!}
+                        {!! Form::text('nombre_juridico', $proveedor->nombres, ['class' => 'form-control', 'required', 'id' => 'nombre_juridico']) !!}
                     </div>
                 </div>
 
@@ -125,7 +125,7 @@
                         <div class="input-group-text">
                             <i class="fas fa-marker"></i>
                         </div>
-                        {!! Form::number('nit', $proveedor->documento, ['class' => 'form-control', 'required', 'id' => 'nit', 'min' => '000000000000000', 'max' => '999999999999999']) !!}
+                        {!! Form::number('nit', $proveedor->documento, ['class' => 'form-control', 'required', 'id' => 'nit']) !!}
                     </div>
                 </div>
             </div>
@@ -133,22 +133,22 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <label for="direccion">Dirección:</label>
+                    <label for="direccion_proveedor">Dirección:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fas fa-map-marked-alt"></i>
                         </div>
-                        {!! Form::text('direccion', $proveedor->direccion, ['class' => 'form-control', 'required', 'id' => 'direccion']) !!}
+                        {!! Form::text('direccion_proveedor', $proveedor->direccion, ['class' => 'form-control', 'required', 'id' => 'direccion_proveedor']) !!}
                     </div>
                 </div>
 
                 <div class="col-md">
-                    <label for="correo" class="mtop-16">Correo electrónico:</label>
+                    <label for="correo_proveedor" class="mtop-16">Correo electrónico:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fas fa-envelope"></i>
                         </div>
-                        {!! Form::email('correo', $proveedor->correo_electronico, ['class' => 'form-control', 'required', 'id' => 'correo_electronico']) !!}
+                        {!! Form::email('correo_proveedor', $proveedor->correo_electronico, ['class' => 'form-control', 'required', 'id' => 'correo_proveedor']) !!}
                     </div>
                 </div>
             </div>
@@ -157,24 +157,24 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <label for="contacto">Nombre contacto:</label>
+                    <label for="contacto_proveedor">Nombre contacto:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fas fa-address-book"></i>
                         </div>
-                        {!! Form::text('contacto', $proveedor->contacto, ['class' => 'form-control', 'required', 'id' => 'contacto']) !!}
+                        {!! Form::text('contacto_proveedor', $proveedor->contacto, ['class' => 'form-control', 'required', 'id' => 'contacto_proveedor']) !!}
                     </div>
                 </div>
 
 
 
                 <div class="col-md">
-                    <label for="telefono" class="mtop-16">Teléfono móvil:</label>
+                    <label for="telefono_proveedor" class="mtop-16">Teléfono móvil:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fas fa-mobile"></i>
                         </div>
-                        {!! Form::number('telefono_movil', $proveedor->telefono_movil, ['class' => 'form-control', 'required', 'id' => 'telefono_movil', 'min' => '0000000000', 'max' => '9999999999']) !!}
+                        {!! Form::number('telefono_proveedor', $proveedor->telefono_movil, ['class' => 'form-control', 'required', 'id' => 'telefono_proveedor']) !!}
                     </div>
                 </div>
             </div>
