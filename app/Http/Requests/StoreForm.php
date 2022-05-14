@@ -25,7 +25,7 @@ class StoreForm extends FormRequest
     {
         return [
             'codigo_categoria' => 'numeric',
-            'nombre_categoria'=>'alpha|max:80',
+            'nombre_categoria'=>'alpha_spaces|max:80',
 
             'nombres_proveedor'=>'alpha|max:50',
             'apellidos_proveedor'=>'alpha|max:50',
@@ -46,7 +46,7 @@ class StoreForm extends FormRequest
 
             'codigo_categoria.numeric'=>'El campo código categoría solo debe contener números.',
             'codigo_categoria.digits'=>'El campo código categoría solo debe contener 15 dígitos.',
-            'nombre_categoria.alpha'=>'El campo nombre categoría solo debe contener letras.',
+            'nombre_categoria.alpha_spaces'=>'El campo nombre categoría solo debe contener letras.',
             'nombre_categoria.max'=>'El campo nombre categoría solo debe contener 80 caracteres.',
 
             'nombres_proveedor.alpha'=>'El campo nombres solo debe contener letras.',
