@@ -67,10 +67,10 @@
     <table class="table table-hover" id="tblpais">
         <thead>
             <tr>
-                <td>ID</td>
-                <td>Código</td>
-                <td>Nombre</td>
-                <td>Acciones</td>
+                <td class="negrita">ID</td>
+                <td class="negrita">Código</td>
+                <td class="negrita">Nombre</td>
+                <td class="negrita">Acciones</td>
             </tr>
         </thead>
         <tbody>
@@ -104,7 +104,11 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+<style>
+    .negrita {
+        font-weight: bold;
+    }
+</style>
 @stop
 
 @section('js')

@@ -16,11 +16,11 @@
     <table class="table" id="tblproveedores">
         <thead>
             <tr>
-                <td>ID</td>
-                <td>NIT</td>
-                <td>Nombre</td>
-                <td>Tipo de proveedor</td>
-                <td>Acciones</td>
+                <td class="negrita">ID</td>
+                <td class="negrita">NIT</td>
+                <td class="negrita">Nombre</td>
+                <td class="negrita">Tipo de proveedor</td>
+                <td class="negrita">Acciones</td>
             </tr>
         </thead>
         <tbody>
@@ -60,6 +60,11 @@
 @stop
 
 @section('css')
+<style>
+    .negrita {
+        font-weight: bold;
+    }
+</style>
 @stop
 
 @section('js')
@@ -97,19 +102,19 @@
             Swal.fire({
             position: 'top-end',
             icon: 'success',
-        
+
             @if (session('eliminado') == 'ok')
                 title: 'Registro eliminado con éxito',
             @endif
-        
+
             @if (session('editado') == 'ok')
                 title: 'Registro editado con éxito',
             @endif
-        
+
             @if (session('guardado') == 'ok')
                 title: 'Registro guardado con éxito',
             @endif
-        
+
             showConfirmButton: false,
             timer: 1500
             })
@@ -134,7 +139,7 @@
             })
 
         });
-        
+
     </script>
 
 @stop
