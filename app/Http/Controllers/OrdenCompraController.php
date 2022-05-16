@@ -26,10 +26,10 @@ class OrdenCompraController extends Controller
 
         $data = ['proveedores' => $proveedores,
                 'productos' => $productos];
-        return view('ordencompra.crear', $data);
+        return view('ordencompra.create', $data);
     }
 
     public function consultar(){
-        return view('ordencompra.consultar');
+        return view('ordencompra.show');
     }
 }

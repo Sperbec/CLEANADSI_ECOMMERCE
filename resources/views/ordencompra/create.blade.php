@@ -125,7 +125,7 @@
         <div class="col-md-4">
             <label for="total">Total:</label>
             <div class="input-group">
-                <div class="input-group-text">                 
+                <div class="input-group-text">
                     <i class="fas fa-dollar-sign"></i>
                 </div>
 
@@ -140,7 +140,7 @@
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/admin_custom.css">
+
     <style>
         .mtop16 {
             margin-top: 16px;
@@ -159,13 +159,13 @@
         $("#btnAgregar").on("click", function() {
 
             var selectProveedor = document.getElementById('proveedores');
-            text = selectProveedor.options[selectProveedor.selectedIndex].innerText; 
+            text = selectProveedor.options[selectProveedor.selectedIndex].innerText;
 
             if(text === 'Seleccione'){
                 alert("Seleccione un proveedor");
             }else{
-                document.getElementById("producto").value = ''; 
-                document.getElementById("cantidad").value = ""; 
+                document.getElementById("producto").value = '';
+                document.getElementById("cantidad").value = "";
                 $("#miModal").modal("show");
             }
 
@@ -174,13 +174,13 @@
 
         $('#agregarItem').click(function() {
             var selectProduct = document.getElementById('producto');
-            text = selectProduct.options[selectProduct.selectedIndex].innerText; 
+            text = selectProduct.options[selectProduct.selectedIndex].innerText;
             var cantidad = $('#cantidad').val();
 
             if(cantidad === '' || text === 'Seleccione' ){
                 alert("Seleccione un producto y digite la cantidad");
             }else{
-                $('table tbody').append('<tr><td>' + text+ '</td><td>' + cantidad +'</td><td>'+ 
+                $('table tbody').append('<tr><td>' + text+ '</td><td>' + cantidad +'</td><td>'+
                     '<a class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
                     '<a class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
                 $("#miModal").modal('hide');
