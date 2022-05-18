@@ -18,6 +18,14 @@
 
 @section('content')
 
+@error ('codigo_departamento')
+<small>{{$message}}</small>
+@enderror
+<br>
+@error ('nombre_departamento')
+<small>{{$message}}</small>
+@enderror
+
 <!-- Modal de crear departamento-->
 <div id="mdlCrearDepartamento" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -51,23 +59,23 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="codigo">Codigo departamento:</label>
+                        <label for="codigo_departamento">Codigo departamento:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="far fa-keyboard"></i>
                             </div>
-                            {!! Form::text('codigo', null, ['id' => 'codigodepartamento', 'class' => 'form-control',
+                            {!! Form::text('codigo_departamento', null, ['id' => 'codigo_departamento', 'class' => 'form-control',
                             'required']) !!}
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="nombre">Nombre departamento:</label>
+                        <label for="nombre_departamento">Nombre departamento:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="fas fa-keyboard"></i>
                             </div>
-                            {!! Form::text('nombre', null, ['id' => 'nombredepartamento', 'class' => 'form-control',
+                            {!! Form::text('nombre_departamento', null, ['id' => 'nombre_departamento', 'class' => 'form-control',
                             'required']) !!}
                         </div>
                     </div>

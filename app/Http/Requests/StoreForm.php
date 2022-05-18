@@ -24,6 +24,11 @@ class StoreForm extends FormRequest
     public function rules()
     {
         return [
+            //validacion departamento
+            'codigo_departamento'=>'numeric|max:3',
+            'nombre_departamento'=>'alpha_spaces|max:4',
+
+
             'codigo_categoria' => 'numeric',
             'nombre_categoria'=>'alpha_spaces|max:80',
 
@@ -43,6 +48,8 @@ class StoreForm extends FormRequest
     public function messages()
     {
         return[
+            
+
 
             'codigo_categoria.numeric'=>'El campo código categoría solo debe contener números.',
             'codigo_categoria.digits'=>'El campo código categoría solo debe contener 15 dígitos.',
@@ -50,6 +57,10 @@ class StoreForm extends FormRequest
             'nombre_categoria.max'=>'El campo nombre categoría solo debe contener 80 caracteres.',
 
             'nombres_proveedor.alpha'=>'El campo nombres solo debe contener letras.',
+            
+            //validacion departamento
+            'codigo_departamento.numeric'=>'El campo codigo departamento solo puede contener numeros. ',
+            'nombre_departamento.alpha_spaces'=>'El campo nombre deparatamento solo puede contener letras.',
            
            
         ];
