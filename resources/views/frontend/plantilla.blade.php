@@ -227,9 +227,10 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Categories</h3>
+								<h3 class="footer-title">ayuda</h3>
 								<ul class="footer-links">
-									<li><a href="#">Hot deals</a></li>
+									<li><a href="#">Preguntas Frecuentes</a></li>
+									<li><a href="#">Cambios y Garantias</a></li>
 								
 								</ul>
 							</div>
@@ -242,7 +243,9 @@
 								<h3 class="footer-title">Information</h3>
 								<ul class="footer-links">
 									<li><a href="#">About Us</a></li>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+									<li><a href="#">Politicas y Privacidad</a></li>
+									<li><a href="#">Trabaja Con Nosotros</a></li>
+									<p></p>
 									
 								</ul>
 							</div>
@@ -250,10 +253,12 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Service</h3>
+								<h3 class="footer-title">siguenos</h3>
 								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Cart</a></li>
+									<li><a href="#">Facebook</a></li>
+									<li><a href="#">Instagram</a></li>
+									<li><a href="#">Whatsapp</a></li>
+									
 									
 								</ul>
 							</div>
