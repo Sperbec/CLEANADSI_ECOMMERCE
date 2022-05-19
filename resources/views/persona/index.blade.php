@@ -17,11 +17,11 @@
     <table class="table" id="tblclientes">
         <thead>
             <tr>
-                <td>ID</td>
-                <td>Nombres</td>
-                <td>Apellidos</td>
-                <td>Número documento</td>
-                <td>Acciones</td>
+                <td class="negrita">ID</td>
+                <td class="negrita">Nombres</td>
+                <td class="negrita">Apellidos</td>
+                <td class="negrita">Número documento</td>
+                <td class="negrita">Acciones</td>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
                     <td>{{ $cliente->nombres }}</td>
                     <td>{{ $cliente->apellidos }}</td>
                     <td>{{ $cliente->numero_documento }}</td>
-                   
+
                     <td>
                         <div class="row">
 
@@ -61,7 +61,11 @@
 @stop
 
 @section('css')
-    
+<style>
+    .negrita {
+        font-weight: bold;
+    }
+</style>
 @stop
 
 @section('js')
@@ -99,19 +103,19 @@
             Swal.fire({
             position: 'top-end',
             icon: 'success',
-        
+
             @if (session('eliminado') == 'ok')
                 title: 'Registro eliminado con éxito',
             @endif
-        
+
             @if (session('editado') == 'ok')
                 title: 'Registro editado con éxito',
             @endif
-        
+
             @if (session('guardado') == 'ok')
                 title: 'Registro guardado con éxito',
             @endif
-        
+
             showConfirmButton: false,
             timer: 1500
             })
@@ -137,7 +141,7 @@
 
         });
 
-        
+
 
 
 

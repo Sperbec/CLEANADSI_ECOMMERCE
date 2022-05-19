@@ -24,17 +24,15 @@ class StoreForm extends FormRequest
     public function rules()
     {
         return [
-            //validacion de paises
+            //Validación de paises
             'codigo_pais'=>'numeric',
             'nombre_pais'=>'alpha_spaces|max:80',
 
-            //validacion departamentos
+            //Validación departamentos
             'codigo_departamento'=>'numeric',
             'nombre_departamento'=>'alpha_spaces|max:80',
 
-            
-            
-            //validacion categoria
+            //validación de categorías
             'codigo_categoria' => 'numeric',
             'nombre_categoria'=>'alpha_spaces|max:80',
 
@@ -60,15 +58,15 @@ class StoreForm extends FormRequest
     public function messages()
     {
         return[
-             //validacion paises
-             'codigo_pais.numeric'=>'El campo codigo paises solo debe contener numeros.',
-             'nombre_pais.alpha_spaces'=>'El campo nombre pais solo debe contener letras.',
+
+             //Validación paises
+             'codigo_pais.numeric'=>'El campo codigo país solo debe contener numeros.',
+             'nombre_pais.alpha_spaces'=>'El campo nombre país solo debe contener letras.',
+             'pais.alpha_spaces'=>'El campo país solo debe contener letras',
 
              //validacion departamentos
-             'pais.alpha_spaces'=>'El campo país solo debe contener letras',
-             'codigo_departamento.numeric'=>'El campo codigo departamento solo debe contener numeros.',
+             'codigo_departamento.numeric'=>'El campo código departamento solo debe contener numeros.',
              'nombre_departamento.alpha_spaces'=>'El campo nombre departamento solo debe contener letras.',
-
 
              //validacion para categoria
             'codigo_categoria.numeric'=>'El campo código categoría solo debe contener números.',
@@ -81,16 +79,11 @@ class StoreForm extends FormRequest
             'apellidos_proveedor.alpha_spaces'=>'El campo apellidos solo debe contener letras.',
             'nombre_juridico.alpha_spaces'=>'El campo nombre solo debe contener letras.',
             'contacto_proveedor.alpha_spaces'=>'el campo contacto solo debe contener letras',
+            'nombres_proveedor.alpha'=>'El campo nombres solo debe contener letras.',
             
-            
-
             //validacion clientes
             'nombres_cliente.alpha_spaces'=>'El campo nombres solo debe contener letras.',
             'apellidos_cliente.alpha_spaces'=>'El campo apellidos solo debe contener letras.',
-
-           
-            
-           
            
         ];
 

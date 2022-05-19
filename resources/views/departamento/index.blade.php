@@ -19,13 +19,13 @@
 @section('content')
 
 @error ('codigo_departamento')
-<small>*{{$message}}</small>
+<small>{{$message}}</small>
 @enderror
 <br>
-
 @error ('nombre_departamento')
-<small>*{{$message}}</small>
+<small>{{$message}}</small>
 @enderror
+
 
 <!-- Modal de crear departamento-->
 <div id="mdlCrearDepartamento" class="modal fade" role="dialog">

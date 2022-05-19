@@ -115,7 +115,7 @@
                             <div class="input-group-text">
                                 <i class="far fa-envelope-open"></i>
                             </div>
-        
+
                             {!!  Form::email('email', $usuario->email, ['class' => 'form-control', 'required']) !!}
                         </div>
                     </div>
@@ -127,7 +127,6 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 
     <!-- Para importar bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
