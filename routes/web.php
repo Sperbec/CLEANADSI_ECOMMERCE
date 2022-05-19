@@ -94,9 +94,9 @@ Route::post('/updatePersonaContacto', [App\Http\Controllers\CuentaController::cl
 
 Route::get('frontend/inicio',[App\Http\Controllers\FrontendController::class,'nuevos_productos'])->name('inicio');
 
-Route::get('/frontend/aseo_personal',[App\Http\Controllers\FrontendController::class,'categoria_aseo_personal'])->name('aseo_personal');
+Route::get('/frontend/categoria/{id}',[App\Http\Controllers\FrontendController::class,'categorias_front'])->name('categoria_front');
 
-Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('aseo_general');
+Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('Aseo_general');
 
 Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
 //rutas para crear productos (probicional)
@@ -104,5 +104,7 @@ Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendControll
 Route::post('frontend',[App\Http\Controllers\FrontendController::class, 'store'])->name('store');
 
 Route::get('frontend/crear',[App\Http\Controllers\FrontendController::class, 'crear'])->name('crear');
+
+Route::get('prueba',[App\Http\Controllers\FrontendController::class, 'prueba' ])->name('prueba');
 
 //-----------------------------------------------------------------

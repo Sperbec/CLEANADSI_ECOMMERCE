@@ -72,8 +72,9 @@
 								<form>
 									<select class="input-select">
 										<option value="0">Categorias</option>
-										<option value="1">Aseo General</option>
-										<option value="1"><a href="{{route('aseo_personal')}}">Aseo Personal</a></option>
+										@foreach ($categorias as $categoria)
+										<option value="{{$categoria -> id_categoria}}">{{$categoria -> nombre}}</option>
+										@endforeach
 									</select>
 									<input class="input" placeholder="">
 									<button class="search-btn">Buscar</button>
@@ -157,8 +158,20 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="{{route('inicio')}}">Inicio</a></li>
-						<li><a href="{{route('aseo_personal')}}">Aseo Personal</a></li>
-						<li><a href="{{route('aseo_general')}}">Aseo General</a></li>
+						
+						<li class="nav-item dropdown">
+							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Categorías</a>
+							<div class="dropdown-menu" aria-labelledby="btn-dropdown-categorias">
+								@foreach ($categorias as $categoria)
+								<ul>
+									<li class="active"><a class="dropdown-item" href="{{route('categoria_front', $categoria -> id_categoria)}}">{{$categoria -> nombre}}</a></li>
+								</ul>
+								@endforeach
+							</div>
+
+						</li>
+
 						<li><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
                         <li><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
 						<!--<li><a href="{{route('crear')}}">crear <span class="icon-dot"></span></a></li>-->

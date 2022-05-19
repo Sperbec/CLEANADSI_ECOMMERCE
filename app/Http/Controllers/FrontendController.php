@@ -3,21 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Producto;
+use App\Models\Categoria;
+
 class FrontendController extends Controller
 {
-
-    
-    public function nuevos_productos()
+//BORRAR PRUEBA
+    public function prueba()
     {
-        $producto=Producto::orderBy('id_producto','desc')->paginate(5);
-        
-        return view('frontend.inicio',compact('producto'));
+        return view('frontend.prueba');
     }
 
-    public function categoria_aseo_personal()
+    public function nuevos_productos()
     {
-        $producto_aseo_personal = Producto::where('id_categoria','2')->paginate(12);
+        $categorias = Categoria::all();
+       
+
+        $producto=Producto::orderBy('id_producto','desc')->paginate(5);
+        $data = ['categorias' => $categorias,
+        'producto'=>$producto];
+        
+        return view('frontend.inicio',$data);
+
+    }
+
+    public function categorias_front()
+    {
+        dd($_REQUEST);
+        $categoria_seleccionada = Producto::where('id_categoria','2')->paginate(12);
 
         return view('frontend.aseo_personal',compact('producto_aseo_personal'));
     }
