@@ -25,7 +25,7 @@ class StoreForm extends FormRequest
     {
         return [
             //Validación de paises
-            'codigo_pais'=>'numeric',
+            'codigo_pais'=>'alpha_num',
             'nombre_pais'=>'alpha_spaces|max:80',
 
             //Validación departamentos
@@ -60,7 +60,7 @@ class StoreForm extends FormRequest
         return[
 
              //Validación paises
-             'codigo_pais.numeric'=>'El campo codigo país solo debe contener numeros.',
+             'codigo_pais.alpha_num'=>'El campo codigo país solo debe contener números o letras.',
              'nombre_pais.alpha_spaces'=>'El campo nombre país solo debe contener letras.',
              'pais.alpha_spaces'=>'El campo país solo debe contener letras',
 
