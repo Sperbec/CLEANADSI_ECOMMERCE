@@ -182,9 +182,14 @@
             }else{
                 $('table tbody').append('<tr><td>' + text+ '</td><td>' + cantidad +'</td><td>'+
                     '<a class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
-                    '<a class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
+                    '<input  class="btn btn-danger" type="button" value="Eliminar" onclick="deleteRow(this)">'+'</tr>');
                 $("#miModal").modal('hide');
             }
         });
+
+        function deleteRow(id){
+            var i=id.parentNode.parentNode.rowIndex
+            document.getElementById('table_articulos').deleteRow(i)
+        }
     </script>
 @stop
