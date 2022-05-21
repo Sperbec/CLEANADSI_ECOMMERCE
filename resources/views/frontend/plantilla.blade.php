@@ -156,24 +156,29 @@
 				<!-- responsive-nav -->
 				<div id="responsive-nav">
 					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="{{route('inicio')}}">Inicio</a></li>
+					<ul  class="main-nav nav navbar-nav">
+						<li class=""><a href="{{route('inicio')}}">Inicio</a></li>
 						
-						<li class="nav-item dropdown">
+						<li class="active" class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Categorías</a>
 							<div class="dropdown-menu" aria-labelledby="btn-dropdown-categorias">
+								
+								
 								@foreach ($categorias as $categoria)
 								<ul>
-									<li " class="active"><a class="dropdown-item" href="{{route('categoria_front', $categoria -> id_categoria)}}">{{$categoria -> nombre}}</a></li>
-								</ul>
+								
+									<li ><a class="dropdown-item" href="{{route('categoria_front', $categoria -> id_categoria)}}">{{$categoria -> nombre}}</a></li>
+
 								@endforeach
+								
+								</ul>
 							</div>
 
 						</li>
 
-						<li><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
-                        <li><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+                        <li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
 						<!--<li><a href="{{route('crear')}}">crear <span class="icon-dot"></span></a></li>-->
 					</ul>
 					<!-- /NAV -->
