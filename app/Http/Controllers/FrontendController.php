@@ -3,31 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Producto;
+use App\Models\Categoria;
+
 class FrontendController extends Controller
 {
+//BORRAR PRUEBA
+    public function prueba()
+    {
+        return view('frontend.prueba');
+    }
 
-    
     public function nuevos_productos()
     {
+        $categorias = Categoria::all();
+       
+
         $producto=Producto::orderBy('id_producto','desc')->paginate(5);
+        $data = ['categorias' => $categorias,
+        'producto'=>$producto];
         
-        return view('frontend.inicio',compact('producto'));
+        return view('frontend.inicio',$data);
+
     }
 
-    public function categoria_aseo_personal()
+    public function categorias_front($id)
     {
-        $producto_aseo_personal = Producto::where('id_categoria','2')->paginate(12);
 
-        return view('frontend.aseo_personal',compact('producto_aseo_personal'));
+        $categorias = Categoria::all();
+
+        $categoria_seleccionada = Producto::where('id_categoria', $id)->paginate(12);
+        //dd($categoria_seleccionada);
+        return view('frontend.categorias_front', compact('categoria_seleccionada', 'categorias'));
     }
 
-    public function categoria_aseo_general()
+    /*public function categoria_aseo_general()
     {
         $producto_aseo_general = Producto::where('id_categoria','1')->paginate(12);
 
         return view('frontend.aseo_general',compact('producto_aseo_general'));
-    }
+    }*/
 
     public function detalle(Producto $producto)
     {
