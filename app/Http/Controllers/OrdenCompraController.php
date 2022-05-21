@@ -29,7 +29,11 @@ class OrdenCompraController extends Controller
         return view('ordencompra.create', $data);
     }
 
+    public function guardarOrdenCompra(Request $request){
+        dd($request);
+    }
+
     public function consultar(){
-        return view('ordencompra.show');
+        return view('ordencompra.index');
     }
 }

@@ -3,17 +3,22 @@
 @section('title', 'Crear orden de compra')
 
 @section('content_header')
-<div class="row">
-    <div class="col-md-6">
-        <h1>Crear orden de compra</h1>
-    </div>
-    <div class="col-md-6">
-        <button id="btnGuardar" type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
-    </div>
-</div>
+
+
 @stop
 
 @section('content')
+<form action="{{url('/guardarOrdenCompra')}}" method="post" style="padding-top: 25px">
+    <div class="row">
+    
+        <div class="col-md-6">
+            <h1>Crear orden de compra</h1>
+        </div>
+        <div class="col-md-6">
+            <button  type="submit"  id="btnGuardar" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
+        </div>
+    </div>
+    @csrf
     <div id="miModal" class="modal fade" role="dialog">
         <div class="modal-dialog  modal-lg">
             <div class="modal-content">
@@ -87,6 +92,7 @@
     <table class="table" id="table_articulos">
         <thead>
             <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Acciones</th>
@@ -108,7 +114,7 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
 
-                {!! Form::text('subtotal', null, ['class' => 'form-control', 'required']) !!}
+                {!! Form::text('subtotal', null, ['class' => 'form-control']) !!}
             </div>
         </div>
 
@@ -118,7 +124,7 @@
                 <div class="input-group-text">
                     <i class="fas fa-dollar-sign"></i>
                 </div>
-                {!! Form::text('valor_iva', null, ['class' => 'form-control', 'required']) !!}
+                {!! Form::text('valor_iva', null, ['class' => 'form-control']) !!}
             </div>
         </div>
 
@@ -129,12 +135,15 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
 
-                {!! Form::text('total', null, ['class' => 'form-control', 'required']) !!}
+                {!! Form::text('total', null, ['class' => 'form-control']) !!}
             </div>
         </div>
 
 
     </div>
+
+</form>
+
 @stop
 
 @section('css')
@@ -180,8 +189,12 @@
             if(cantidad === '' || text === 'Seleccione' ){
                 alert("Seleccione un producto y digite la cantidad");
             }else{
-                $('table tbody').append('<tr><td>' + text+ '</td><td>' + cantidad +'</td><td>'+
-                    '<a class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
+
+                $('table tbody').append('<tr><td> <input type="number" name="idproductotbl" value="'+selectProduct.options[selectProduct.selectedIndex].value+
+                    '"></td><td> <input type="text" name="nombreproductotbl" value="'+text+
+                    '"></td><td> <input type="number" name="cantidadproductotbl" value="' + cantidad +
+                    '"></td><td> <input type="hidden" id="contador" name="contador" value="1">'+
+                    '<a onclick="cargarDatosEditar(this)"  class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
                     '<input  class="btn btn-danger" type="button" value="Eliminar" onclick="deleteRow(this)">'+'</tr>');
                 $("#miModal").modal('hide');
             }
@@ -191,5 +204,11 @@
             var i=id.parentNode.parentNode.rowIndex
             document.getElementById('table_articulos').deleteRow(i)
         }
+
+        function cargarDatosEditar(producto){
+            console.log(producto.parentNode.parentNode.firstChild.textContent);
+            console.log(producto.parentNode.parentNode.firstChild.nextSibling.textContent);
+        }
+
     </script>
 @stop

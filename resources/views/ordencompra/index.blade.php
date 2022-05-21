@@ -3,7 +3,7 @@
 @section('title', 'Consultar ordenes de compra')
 
 @section('content_header')
-    <h1>COnsultar ordenes de compra a proveedor</h1>
+    <h1>Consultar ordenes de compra a proveedor</h1>
 @stop
 
 @section('content')
