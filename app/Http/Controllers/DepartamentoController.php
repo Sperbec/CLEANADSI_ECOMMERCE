@@ -6,6 +6,7 @@ use App\Models\Departamento;
 use Illuminate\Http\Request;
 use App\Models\Pais;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreForm;
 
 class DepartamentoController extends Controller
 {
@@ -44,10 +45,10 @@ class DepartamentoController extends Controller
         );
     }
 
-    public function store(Request $request)
+    public function store(StoreForm $request)
     {
-        $codigodepartamento = $request->codigo;
-        $nombredepartamento = $request->nombre;
+        $codigodepartamento = $request->codigo_departamento;
+        $nombredepartamento = $request->nombre_departamento;
         $id_pais = $request->pais;
 
         $departamento = new Departamento();

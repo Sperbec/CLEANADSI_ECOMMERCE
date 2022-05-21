@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         /* provaides para el carrito de compras */
         Darryldecode\Cart\CartServiceProvider::class,
+         //Custom validation rules
+        App\Providers\CustomValidationRulesProvider::class,
 
 
         /*
@@ -232,6 +234,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         /* alises paras el carrito de compras */
 
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
