@@ -165,7 +165,7 @@
 							<div class="dropdown-menu" aria-labelledby="btn-dropdown-categorias">
 								@foreach ($categorias as $categoria)
 								<ul>
-									<li class="active"><a class="dropdown-item" href="{{route('categoria_front', $categoria -> id_categoria)}}">{{$categoria -> nombre}}</a></li>
+									<li " class="active"><a class="dropdown-item" href="{{route('categoria_front', $categoria -> id_categoria)}}">{{$categoria -> nombre}}</a></li>
 								</ul>
 								@endforeach
 							</div>

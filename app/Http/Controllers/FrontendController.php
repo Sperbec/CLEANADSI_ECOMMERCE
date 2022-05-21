@@ -28,20 +28,22 @@ class FrontendController extends Controller
 
     }
 
-    public function categorias_front()
+    public function categorias_front($id)
     {
-        dd($_REQUEST);
-        $categoria_seleccionada = Producto::where('id_categoria','2')->paginate(12);
 
-        return view('frontend.aseo_personal',compact('producto_aseo_personal'));
+        $categorias = Categoria::all();
+
+        $categoria_seleccionada = Producto::where('id_categoria', $id)->paginate(12);
+        //dd($categoria_seleccionada);
+        return view('frontend.categorias_front', compact('categoria_seleccionada', 'categorias'));
     }
 
-    public function categoria_aseo_general()
+    /*public function categoria_aseo_general()
     {
         $producto_aseo_general = Producto::where('id_categoria','1')->paginate(12);
 
         return view('frontend.aseo_general',compact('producto_aseo_general'));
-    }
+    }*/
 
     public function detalle(Producto $producto)
     {

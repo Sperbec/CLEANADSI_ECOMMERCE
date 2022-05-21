@@ -105,6 +105,6 @@ Route::post('frontend',[App\Http\Controllers\FrontendController::class, 'store']
 
 Route::get('frontend/crear',[App\Http\Controllers\FrontendController::class, 'crear'])->name('crear');
 
-Route::get('prueba',[App\Http\Controllers\FrontendController::class, 'prueba' ])->name('prueba');
+
 
 //-----------------------------------------------------------------

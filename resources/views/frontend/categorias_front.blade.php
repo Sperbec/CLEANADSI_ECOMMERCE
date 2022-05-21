@@ -18,7 +18,7 @@
                 
                 <div class="row">
                     <!-- product -->
-                    @foreach($producto_aseo_personal as $pap)
+                    @foreach($categoria_seleccionada as $pap)
                     <div class="col-md-4 col-xs-6">
                         
                         <div class="product">
@@ -57,9 +57,9 @@
                
                 <!-- store bottom filter -->
                 <div class="store-filter clearfix">
-                    <span class="store-qty">Showing {{$producto_aseo_personal->count()}}-100 products</span>
+                    <span class="store-qty">Showing {{$categoria_seleccionada->count()}}-100 products</span>
                     <div class="store-position">
-                        {!!$producto_aseo_personal->links()!!}
+                        {!!$categoria_seleccionada->links()!!}
                         
                         
                     </div>
