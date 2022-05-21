@@ -26,6 +26,7 @@
 <small>{{$message}}</small>
 @enderror
 
+
 <!-- Modal de crear departamento-->
 <div id="mdlCrearDepartamento" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">

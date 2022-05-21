@@ -248,8 +248,7 @@
 								<h3 class="footer-title">ayuda</h3>
 								<ul class="footer-links">
 									<li><a href="#">Preguntas Frecuentes</a></li>
-									<li><a href="#">Cambios y Garantias</a></li>
-								
+									
 								</ul>
 							</div>
 						</div>
@@ -258,11 +257,11 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Information</h3>
+								<h3 class="footer-title">Information</h3> 
 								<ul class="footer-links">
 									<li><a href="#">About Us</a></li>
 									<li><a href="#">Politicas y Privacidad</a></li>
-									<li><a href="#">Trabaja Con Nosotros</a></li>
+									
 									<p></p>
 									
 								</ul>
@@ -273,11 +272,10 @@
 							<div class="footer">
 								<h3 class="footer-title">siguenos</h3>
 								<ul class="footer-links">
-									<li><a href="#">Facebook</a></li>
-									<li><a href="#">Instagram</a></li>
-									<li><a href="#">Whatsapp</a></li>
-									
-									
+									<li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+									<li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
+									<li><a href="#"><i class="fa fa-whatsapp"></i>Whatsapp</a></li>
+										
 								</ul>
 							</div>
 						</div>

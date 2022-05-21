@@ -13,6 +13,14 @@
 
 @section('content')
 
+@error ('codigo_pais')
+<small>{{$message}}</small>
+@enderror
+<br>
+@error ('nombre_pais')
+<small>{{$message}}</small>
+@enderror
+
     <!-- Modal de crear país-->
     <div id="mdlCrearPais" class="modal fade" role="dialog">
         <div class="modal-dialog  modal-lg">
@@ -27,22 +35,22 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="codigo">Codigo país:</label>
+                            <label for="codigo_pais">Codigo país:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('codigo', null, ['id' => 'codigopais', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('codigo_pais', null, ['id' => 'codigopais', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="nombre">Nombre país:</label>
+                            <label for="nombre_pais">Nombre país:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombre', null, ['id' => 'nombrepais', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombre_pais', null, ['id' => 'nombrepais', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
                     </div>
