@@ -75,6 +75,13 @@
 <div class="section">
     <!-- container -->
     <div class="container">
+
+        <div class="col-md-12">
+            <div class="section-title">
+                <h3 class="title">Nuevos Productos</h3>
+            </div>
+        </div>
+        
         <!-- row -->
         <div class="row">
             <div class="col-md-4 col-xs-6">

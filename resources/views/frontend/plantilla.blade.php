@@ -38,17 +38,47 @@
 	<body>
 		<!-- HEADER -->
 		<header>
-			<!-- TOP HEADER -->
-			<div id="top-header">
-				<div class="container">
-					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> CleanLine@email.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> Salomia.Cali.Valle</a></li>
+
+			<!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul  class="main-nav nav navbar-nav">
+						<li class=""><a href="{{route('inicio')}}">Inicio</a></li>
+						
+						<li class="active" class="nav-item dropdown">
+							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Categorías</a>
+							<div class="dropdown-menu" aria-labelledby="btn-dropdown-categorias">
+								
+								
+								@foreach ($categorias as $categoria)
+								<ul>
+								
+									<li ><a class="dropdown-item" href="{{route('categoria_front', $categoria -> id_categoria)}}">{{$categoria -> nombre}}</a></li>
+
+								@endforeach
+								
+								</ul>
+							</div>
+
+						</li>
+
+						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+                        <li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						<!--<li><a href="{{route('crear')}}">crear <span class="icon-dot"></span></a></li>-->
 					</ul>
+					<!-- /NAV -->
 				</div>
+				<!-- /responsive-nav -->
 			</div>
-			<!-- /TOP HEADER -->
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+			
 
 			<!-- MAIN HEADER -->
 			<div id="header"style="background-color:  #dfe4ea">
@@ -149,76 +179,7 @@
 		</header>
 		<!-- /HEADER -->
 
-		<!-- NAVIGATION -->
-		<nav id="navigation">
-			<!-- container -->
-			<div class="container">
-				<!-- responsive-nav -->
-				<div id="responsive-nav">
-					<!-- NAV -->
-					<ul  class="main-nav nav navbar-nav">
-						<li class=""><a href="{{route('inicio')}}">Inicio</a></li>
-						
-						<li class="active" class="nav-item dropdown">
-							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Categorías</a>
-							<div class="dropdown-menu" aria-labelledby="btn-dropdown-categorias">
-								
-								
-								@foreach ($categorias as $categoria)
-								<ul>
-								
-									<li ><a class="dropdown-item" href="{{route('categoria_front', $categoria -> id_categoria)}}">{{$categoria -> nombre}}</a></li>
-
-								@endforeach
-								
-								</ul>
-							</div>
-
-						</li>
-
-						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
-                        <li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
-						<!--<li><a href="{{route('crear')}}">crear <span class="icon-dot"></span></a></li>-->
-					</ul>
-					<!-- /NAV -->
-				</div>
-				<!-- /responsive-nav -->
-			</div>
-			<!-- /container -->
-		</nav>
-		<!-- /NAVIGATION -->
-
-		<!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<h3 class="breadcrumb-header">Clean Line</h3>
-						<ul class="breadcrumb-tree">
-						
-						</ul>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /BREADCRUMB -->
-
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
+		
 		<!-- /SECTION -->
         @yield('contenido')
 		

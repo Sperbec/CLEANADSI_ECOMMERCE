@@ -17,6 +17,7 @@ use App\Mail\UserSendNewPassword;
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Contracts\Session\Session;
 use DateTime;
+use App\Models\Categoria;
 
 class LoginController extends Controller
 {
@@ -34,7 +35,10 @@ class LoginController extends Controller
     //Retornamos a la vista del login
     public function getLogin()
     {
-        return view('login.login');
+
+        $categorias = Categoria::all();
+        $data = ['categorias' => $categorias];
+        return view('login.login', $data);
     }
 
     //Retornamos a la vista para registrar a un usuario
