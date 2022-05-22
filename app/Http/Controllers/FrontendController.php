@@ -171,7 +171,9 @@ class FrontendController extends Controller
 
     public function detalle_compra(Request $request)
     {
+        
         $categorias = Categoria::all();
+
 
         $comentario_facturas = Facturas::all();
         $opcion_entregas = Opciones_definidas::where('variable', '00tipoentrega')->get();
