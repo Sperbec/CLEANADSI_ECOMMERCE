@@ -9,16 +9,18 @@
 
 @section('content')
 <form action="{{url('/guardarOrdenCompra')}}" method="post" style="padding-top: 25px">
+    @csrf
+
     <div class="row">
     
         <div class="col-md-6">
             <h1>Crear orden de compra</h1>
         </div>
         <div class="col-md-6">
-            <button  type="submit"  id="btnGuardar" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
+            <button  type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
         </div>
     </div>
-    @csrf
+
     <div id="miModal" class="modal fade" role="dialog">
         <div class="modal-dialog  modal-lg">
             <div class="modal-content">
@@ -35,7 +37,7 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-box-open"></i>
                                 </div>
-                                <select id="producto" name="producto" class="form-select" required>
+                                <select id="producto"  class="form-select" required>
                                     <option value=''>Seleccione</option>
                                     @foreach ($productos as $producto)
                                         <option value="{{ $producto->id_producto }}">{{ $producto->nombre }}</option>
@@ -165,6 +167,8 @@
 
 @section('js')
     <script>
+        var contador = 0;
+
         $("#btnAgregar").on("click", function() {
 
             var selectProveedor = document.getElementById('proveedores');
@@ -186,17 +190,24 @@
             text = selectProduct.options[selectProduct.selectedIndex].innerText;
             var cantidad = $('#cantidad').val();
 
+    
+            if(contador === 0){
+                contador = 1;
+            }else{
+                contador= contador +1;
+            }
+
             if(cantidad === '' || text === 'Seleccione' ){
                 alert("Seleccione un producto y digite la cantidad");
             }else{
 
-                $('table tbody').append('<tr><td> <input type="number" name="idproductotbl" value="'+selectProduct.options[selectProduct.selectedIndex].value+
-                    '"></td><td> <input type="text" name="nombreproductotbl" value="'+text+
-                    '"></td><td> <input type="number" name="cantidadproductotbl" value="' + cantidad +
-                    '"></td><td> <input type="hidden" id="contador" name="contador" value="1">'+
-                    '<a onclick="cargarDatosEditar(this)"  class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
+                $('table tbody').append('<tr><td> <input disabled type="number" name="idproductotbl'+contador+'" value="'+selectProduct.options[selectProduct.selectedIndex].value+
+                    '"></td><td> <input disabled type="text" name="nombreproductotbl'+contador+'" value="'+text+
+                    '"></td><td> <input disabled type="number" name="cantidadproductotbl'+contador+'" value="' + cantidad +
+                    '"></td><td> <input  type="hidden" id="contador" name="contador" value="'+contador+'">'+
                     '<input  class="btn btn-danger" type="button" value="Eliminar" onclick="deleteRow(this)">'+'</tr>');
                 $("#miModal").modal('hide');
+
             }
         });
 
@@ -205,10 +216,17 @@
             document.getElementById('table_articulos').deleteRow(i)
         }
 
-        function cargarDatosEditar(producto){
-            console.log(producto.parentNode.parentNode.firstChild.textContent);
-            console.log(producto.parentNode.parentNode.firstChild.nextSibling.textContent);
-        }
+        @if ( session('guardado') == 'ok')
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Registro guardado con éxito',
+            showConfirmButton: false,
+            timer: 1500
+            })
+        @endif
 
+
+        
     </script>
 @stop
