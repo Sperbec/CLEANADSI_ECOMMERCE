@@ -4,6 +4,8 @@
 <!--Reemplazar el titulo-->
 @section('title', 'Login')
 
+
+
 <link rel="stylesheet" href="{{url('/static/css/login.css')}}">
 
 
@@ -15,14 +17,13 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <img src="/static/images/logo.png" alt="Image" class="img-fluid">
+          <img src="/static/images/logo.png" alt="Image" class="img-fluid" width="50%">
         </div>
         <div class="col-md-6 contents">
           <div class="row justify-content-center">
             <div class="col-md-8">
               <div class="mb-4">
               <h3>Iniciar sesión</h3>
-              <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
             </div>
             <form action="#" method="post">
               <div class="form-group first">
