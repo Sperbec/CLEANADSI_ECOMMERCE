@@ -97,6 +97,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Cantidad</th>
+                <th scope="col">Precio unitario</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -116,7 +117,7 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
 
-                {!! Form::text('subtotal', null, ['class' => 'form-control']) !!}
+                {!! Form::text('subtotal', null, [ 'id'=>'subtotal', 'class' => 'form-control', 'readonly']) !!}
             </div>
         </div>
 
@@ -126,7 +127,7 @@
                 <div class="input-group-text">
                     <i class="fas fa-dollar-sign"></i>
                 </div>
-                {!! Form::text('valor_iva', null, ['class' => 'form-control']) !!}
+                {!! Form::text('valor_iva', null, ['id'=>'valor_iva', 'class' => 'form-control',  'readonly']) !!}
             </div>
         </div>
 
@@ -137,7 +138,7 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
 
-                {!! Form::text('total', null, ['class' => 'form-control']) !!}
+                {!! Form::text('total', null, ['id'=>'total', 'class' => 'form-control', 'readonly']) !!}
             </div>
         </div>
 
@@ -167,7 +168,11 @@
 
 @section('js')
     <script>
+        
+        const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
         var contador = 0;
+        var subtotal = 0.0;
+        var iva = 0.0 ;
 
         $("#btnAgregar").on("click", function() {
 
@@ -186,6 +191,7 @@
 
 
         $('#agregarItem').click(function() {
+
             var selectProduct = document.getElementById('producto');
             text = selectProduct.options[selectProduct.selectedIndex].innerText;
             var cantidad = $('#cantidad').val();
@@ -200,15 +206,48 @@
             if(cantidad === '' || text === 'Seleccione' ){
                 alert("Seleccione un producto y digite la cantidad");
             }else{
+                fetch('../obtenerproducto',{
+                    method : 'POST',
+                    body: JSON.stringify({texto : selectProduct.options[selectProduct.selectedIndex].value}),
+                    headers:{
+                        'Content-Type': 'application/json',
+                        "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                    }
+                }).then(response =>{
+                    return response.json()
+                }).then( data =>{
 
-                $('table tbody').append('<tr><td> <input disabled type="number" name="idproductotbl'+contador+'" value="'+selectProduct.options[selectProduct.selectedIndex].value+
-                    '"></td><td> <input disabled type="text" name="nombreproductotbl'+contador+'" value="'+text+
-                    '"></td><td> <input disabled type="number" name="cantidadproductotbl'+contador+'" value="' + cantidad +
+                    if( document.getElementById('subtotal').value == null){
+                        subtotal = data.producto.precio * cantidad;
+                        document.getElementById('subtotal').value = subtotal;
+
+                    }else{
+                        subtotal = subtotal + data.producto.precio * cantidad;
+                        document.getElementById('subtotal').value = subtotal;
+
+                    }
+
+                    iva = (subtotal) * 0.19;
+                    document.getElementById('valor_iva').value = iva;
+                    document.getElementById('total').value = subtotal + iva;
+                    
+
+                    $('table tbody').append('<tr><td> <input style="border: 0; background-color:transparent;" readonly type="number" name="idproductotbl'+contador+'" value="'+selectProduct.options[selectProduct.selectedIndex].value+
+                    '"></td><td> <input style="border: 0; background-color:transparent;"  readonly type="text" name="nombreproductotbl'+contador+'" value="'+text+
+                    '"></td><td> <input style="border: 0; background-color:transparent;"  readonly type="number" name="cantidadproductotbl'+contador+'" value="'+cantidad+
+                    '"></td><td> <input style="border: 0; background-color:transparent;"  readonly type="number" name="precio" value="'+data.producto.precio+
                     '"></td><td> <input  type="hidden" id="contador" name="contador" value="'+contador+'">'+
                     '<input  class="btn btn-danger" type="button" value="Eliminar" onclick="deleteRow(this)">'+'</tr>');
-                $("#miModal").modal('hide');
+
+                     $("#miModal").modal('hide');
+
+                   
+                }).catch(error => console.error(error));
+
+               
 
             }
+            
         });
 
         function deleteRow(id){

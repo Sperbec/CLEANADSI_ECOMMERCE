@@ -11,6 +11,12 @@ use App\Http\Requests\StoreForm;
 class DepartamentoController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+
     public function index()
     {
         $paises = Pais::All();

@@ -12,6 +12,13 @@ use PDF;
 
 class OrdenCompraController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     public function crear(){
 
         $sqlProveedores = 'SELECT id_proveedor,
@@ -39,9 +46,9 @@ class OrdenCompraController extends Controller
         $dt = new DateTime();
         $orden_compra->fecha = $dt->format('Y-m-d H:i:s');
         $orden_compra->id_proveedor = $request->proveedores;
-        $orden_compra->total = 50000;
-        $orden_compra->valor_iva = 50000;
-        $orden_compra->subtotal = 50000;
+        $orden_compra->total = $request->total;
+        $orden_compra->valor_iva = $request->valor_iva;
+        $orden_compra->subtotal = $request->subtotal;
         $orden_compra->comentario = 'comentario';
         $orden_compra->estado = 1;
 

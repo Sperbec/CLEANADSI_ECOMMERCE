@@ -77,6 +77,7 @@ Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::clas
 Route::post('/guardarOrdenCompra', [App\Http\Controllers\OrdenCompraController::class, 'guardarOrdenCompra'])->name('guardarOrdenCompra');
 Route::get('/verOrdenCompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'verOrdenCompra'])->name('verOrdenCompra');
 Route::get('/imprimirordencompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'imprimirordencompra'])->name('imprimirordencompra');
+Route::post('/obtenerproducto', [App\Http\Controllers\ProductoController::class, 'obtenerproducto']);
 
 //Mis pedidos
 Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])->name('pedidos');
