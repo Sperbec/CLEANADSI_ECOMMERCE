@@ -64,6 +64,19 @@ class OrdenCompraController extends Controller
     }
 
     public function consultar(){
-        return view('ordencompra.index');
+
+        $sqlOrdenesCompra = 'SELECT id_orden, codigo, fecha,
+        case when nombres is not null then
+        concat(nombres, " ", apellidos)  else
+        proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total
+        from orden_compras 
+        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
+        left join personas on personas.id_persona = proveedores.id_persona';
+
+        $ordenes = DB::select($sqlOrdenesCompra);
+
+        $data = ['ordenes' => $ordenes];
+
+        return view('ordencompra.index', $data);
     }
 }
