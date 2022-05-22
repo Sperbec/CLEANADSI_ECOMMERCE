@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CarritoComprasController;
+use App\Http\Controllers\FacturaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,6 +110,20 @@ Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendControll
 Route::post('frontend',[App\Http\Controllers\FrontendController::class, 'store'])->name('store');
 
 Route::get('frontend/crear',[App\Http\Controllers\FrontendController::class, 'crear'])->name('crear');
+
+
+//------------------------------------rutas del carrito de compras
+Route::get('frontend/carrito', [FrontendController::class, 'carrito'])->name('carrito');
+Route::get('add-to-carrito/{id}', [FrontendController::class, 'añadir_carrito'])->name('carrito.añadir');
+Route::patch('update-cart', [FrontendController::class, 'update'])->name('carrito.update');
+Route::delete('remove-from-cart', [FrontendController::class, 'eliminar'])->name('carrito.eliminar');
+Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra'])->name('carrito.compra');
+
+
+
+/* rutas de la factura y detalle de factura*/
+ Route::get('facturas/facturas', [FacturaController::class, 'factura'])->name('factura'); 
+ Route::post('facturas/', [FacturaController::class, 'crear_factura'])->name('factura.crear'); 
 
 
 

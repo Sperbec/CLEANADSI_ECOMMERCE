@@ -3459,6 +3459,17 @@
             "time": "2022-03-27T21:42:02+00:00"
         },
         {
+<<<<<<< HEAD
+            "name": "spatie/laravel-permission",
+            "version": "5.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "cb86fd87b43fcfc493c3f2b1de6fad100c078146"
+            },
+            "dist": {
+                "type": "zip",
+=======
             "name": "sabberworm/php-css-parser",
             "version": "8.4.0",
             "source": {
@@ -3521,6 +3532,7 @@
             },
             "dist": {
                 "type": "zip",
+>>>>>>> 97d3ac120b69d8c9f3aaafe70a33df51057b0bbd
                 "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/cb86fd87b43fcfc493c3f2b1de6fad100c078146",
                 "reference": "cb86fd87b43fcfc493c3f2b1de6fad100c078146",
                 "shasum": ""
@@ -6587,6 +6599,18 @@
         },
         {
             "name": "laravel/sail",
+<<<<<<< HEAD
+            "version": "v1.14.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sail.git",
+                "reference": "f00f3a8f83e71436d473cda7700ae7b4b68d26cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/f00f3a8f83e71436d473cda7700ae7b4b68d26cc",
+                "reference": "f00f3a8f83e71436d473cda7700ae7b4b68d26cc",
+=======
             "version": "v1.14.5",
             "source": {
                 "type": "git",
@@ -6597,6 +6621,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/1da083e30e6b0d646535c0afc2afeffdccb7181d",
                 "reference": "1da083e30e6b0d646535c0afc2afeffdccb7181d",
+>>>>>>> 97d3ac120b69d8c9f3aaafe70a33df51057b0bbd
                 "shasum": ""
             },
             "require": {
@@ -6643,7 +6668,11 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
+<<<<<<< HEAD
+            "time": "2022-05-18T15:56:59+00:00"
+=======
             "time": "2022-05-16T18:13:03+00:00"
+>>>>>>> 97d3ac120b69d8c9f3aaafe70a33df51057b0bbd
         },
         {
             "name": "mockery/mockery",

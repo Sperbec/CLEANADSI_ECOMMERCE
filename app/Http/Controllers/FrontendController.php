@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Producto;
+use App\Models\Facturas;
+use App\Models\Opciones_definidas;
 use App\Models\Categoria;
 
 class FrontendController extends Controller
@@ -87,4 +89,100 @@ class FrontendController extends Controller
         return redirect()->route('inicio');
     }
 
-}
+    //carrito de Compras
+     /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+     public function carrito()
+    {
+        $categorias = Categoria::all();
+
+        $carrito = session()->get('carrito');
+        
+        return view('frontend.carrito',compact('carrito','categorias'));
+    } 
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+     public function añadir_carrito($id)
+    {
+        $producto = Producto::findOrFail($id);
+        $carrito = session()->get('carrito', []);
+        //si el carrito tiene un producto con el mismo id
+        if(isset($carrito[$id])) {
+            $carrito[$id]['quantity']++;
+        } else {
+            $carrito[$id] = [
+                "id" => $producto->id_producto,
+                "nombre" => $producto->nombre,
+                "quantity" => 1,
+                "precio" => $producto->precio,
+                "imagen" => $producto->imagen,
+                "descripcion" => $producto->descripcion,
+                "sku" => $producto->sku,
+                "estado" => $producto->estado,
+                "cantidad_existencia" => $producto->cantidad_existencia,
+                "id_categoria" => $producto->id_categoria
+                
+            ];
+        }
+        session()->put('carrito', $carrito);
+        
+        return redirect()->back()->with('success', 'Producto Añadido al carrito!');
+    } 
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function update(Request $request)
+    {
+        if($request->id && $request->quantity){
+            $carrito = session()->get('carrito');
+            $carrito[$request->id]["quantity"] = $request->quantity;
+            session()->put('carrito', $carrito);
+            session()->flash('success', 'Carrito actualizado');
+        }
+        //return redirect()->route('carrito');
+    }   
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function eliminar(Request $request)
+    {
+        if($request->id) {
+            $carrito = session()->get('carrito');
+            if(isset($carrito[$request->id])) {
+                unset($carrito[$request->id]);
+                session()->put('carrito', $carrito);
+            }
+            session()->flash('success', 'Producto eliminado');
+        } return redirect()->back()->with('success', 'Producto Añadido al carrito!');
+    }
+
+    public function detalle_compra(Request $request)
+    {
+        
+        $categorias = Categoria::all();
+
+
+        $comentario_facturas = Facturas::all();
+        $opcion_entregas = Opciones_definidas::where('variable', '00tipoentrega')->get();
+        $opcion_pagos = Opciones_definidas::where('variable', '00tipopago')->get();
+        $carrito = session()->get('carrito');
+        session()->put('carrito', $carrito);
+       return view('facturas/detalle',compact('opcion_entregas','opcion_pagos','comentario_facturas','categorias'));
+    }  
+
+    
+    
+}   

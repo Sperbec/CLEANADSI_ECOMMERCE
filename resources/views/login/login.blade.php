@@ -5,8 +5,10 @@
 @section('title', 'Login')
 
 
+
 <!--Mostrar sección de contenido exclusivo de esta plantilla, se debe iniciar y finalizar-->
 @section('contenido')
+<h1 style="text-align: center">Iniciar sesión</h1>
 
 @stop
 
