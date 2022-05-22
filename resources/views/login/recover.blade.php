@@ -28,7 +28,12 @@
             {!!  Form::email('email', null, ['class' => 'form-control', 'required']) !!}
         </div>
 
-        {!! Form::submit('Recuperar contraseña', ['class' => 'btn btn-success mtop16'])!!}
+        <div class="row">
+            <div class="btn-ingresar">
+                {!! Form::submit('Recuperar contraseña', ['class' => 'btn btn-primary mtop16'])!!}
+            </div>
+        </div>
+        
         {!!  Form::close() !!}
 
         <div class="footer mtop16">
