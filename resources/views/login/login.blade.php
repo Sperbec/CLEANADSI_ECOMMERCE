@@ -5,8 +5,13 @@
 @section('title', 'Login')
 
 
+<link rel="stylesheet" href="fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="{{url('/static/css/owl.carousel.min.css')}}" href="css/owl.carousel.min.css">
+
 
 <link rel="stylesheet" href="{{url('/static/css/login.css')}}">
+
 
 
 
@@ -25,29 +30,49 @@
               <div class="mb-4">
               <h3>Iniciar sesión</h3>
             </div>
-            <form action="#" method="post">
-              <div class="form-group first">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username">
-
-              </div>
-              <div class="form-group last mb-4">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
-                
-              </div>
-              
-             
-
-              <input type="submit" value="Iniciar sesión" class="btn btn-block btn-primary">
-
-              <div class="d-flex mb-5 align-items-center">
-               
-                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
-              </div>
-
+           
+            {!! Form::open(['url' => '/login']) !!}
+            <label for="username">Correo electrónico</label>
+            <div class="row">
+                <div class="form-group first">
+                    {!!  Form::email('email', null, ['class' => 'form-control', 'required']) !!}
+                </div>
+            </div>
           
-            </form>
+            <label for="password">Contraseña</label>
+                <div class="row">
+                    <div class="form-group last  col-md-9">
+                        {!!  Form::password('password', ['id' => 'password', 'class' => 'form-control', 'required']) !!}
+                    </div>
+                    <div class="col-md-3">
+                        <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"> 
+                            <span class="fa fa-eye-slash icon"></span></button>
+                    </div>
+                </div>
+            
+            <div class="row">
+                <input type="submit" value="Iniciar sesión" class="btn btn-block btn-primary">
+            </div>
+
+            <br>
+
+
+            <div class="d-flex mb-5 align-items-center">
+                <div class="align-items-center">
+                    <span class="ml-auto"><a href="{{url('/register')}}"class="forgot-pass">¿Aún no tienes una cuenta? Regístrate</a></span> 
+                 </div>
+
+                 <br>
+
+                 <div class="align-items-center">
+                    <span class="ml-auto"><a href="{{url('/recover')}}" class="forgot-pass">Recuperar contraseña</a></span> 
+                </div>
+            </div>
+
+        
+            {!!  Form::close() !!}
+
+
             </div>
           </div>
           
@@ -60,7 +85,7 @@
 @stop
 
 
-@section('js')
+@section('scripts')
     <script> 
         function mostrarPassword(){
             var cambio = document.getElementById("password");
@@ -81,5 +106,9 @@
             });
         });
     </script>
+
+    
+
+
 @stop
 
