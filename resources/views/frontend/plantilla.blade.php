@@ -26,6 +26,17 @@
 
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="{{asset('guia de plantillas/css/style.css')}}"/>
+		 <link type="text/css" rel="stylesheet" href="{{asset('guia de plantillas/css/style1.css')}}"/>
+{{-- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ --}}		 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	   
+
+		 
+		
+
+		 
 
  		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
  		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,46 +97,63 @@
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
 								<!-- Cart -->
+								@php $total = 0 @endphp
+								@foreach((array) session('carrito') as $id => $details)
+                                    @php $total += $details['precio'] * $details['quantity'] @endphp
+                                @endforeach
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart" style="color:black"></i>
 										<span style="color:black">Carrito</span>
-										<div class="qty">3</div>
+										<div class="qty">{{ count((array) session('carrito')) }}</div>
 									</a>
-									<div class="cart-dropdown">
-										<div class="cart-list">
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="./img/product01.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
-
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="./img/product02.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
-										</div>
-										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
-										</div>
-										<div class="cart-btns">
-											<a href="#">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
-										</div>
+									@if(isset($carrito))
+									<div class="cart-btns text-center">
+										<a href="{{route('carrito')}}"> Carrito Vacio</a>
 									</div>
-								</div>
+									@else
+
+									<div class="cart-dropdown">
+										@if(session('carrito'))
+										@foreach(session('carrito') as $id => $details)
+										<div class="cart-list">
+											
+											<div class="product-widget">
+												
+												<div class="product-img">
+													<img src="{{ $details['imagen'] }}" alt="">
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a href="#">{{ $details['nombre'] }}</a></h3>
+													<h4 class="product-price"><span class="qty">{{ $details['quantity'] }}x</span>$ {{ $details['precio'] }}</h4>
+												</div>
+											
+												<button class="delete"><i class="fa fa-close"></i></button>
+												
+											</div>
+											
+												
+										</div>
+										@endforeach
+
+										
+
+										<div class="cart-summary">
+											<h5>TOTAL: $ {{ $total }}</h5>
+										</div>
+										<div class="cart-btns text-center">
+											<a href="{{route('carrito')}}">Ver Carrito</a>
+										</div>
+										@endif
+										
+									</div>
+									
+									
+									@endif
+								
+
+								</div> 
+								
 								<!-- /Cart -->
 
 								<!-- Menu Toogle -->
@@ -161,7 +189,7 @@
 						<li><a href="{{route('aseo_general')}}">Aseo General</a></li>
 						<li><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
                         <li><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
-						<!--<li><a href="{{route('crear')}}">crear <span class="icon-dot"></span></a></li>-->
+						<li><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -201,8 +229,24 @@
 			</div>
 			<!-- /container -->
 		</div>
+		<div class="container">
+		  
+			@if(session('success'))
+				<div class="alert alert-success">
+				  {{ session('success') }}
+				</div> 
+			@endif
+		  
+			
+		</div>
 		<!-- /SECTION -->
         @yield('contenido')
+		
+		<br/>
+		
+		@yield('scripts')
+        
+		
 		
         @yield('footer')
 		<!-- FOOTER -->
@@ -304,11 +348,11 @@
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
-		<script src="{{asset('guia de plantillas/js/jquery.min.js')}}"></script>
+		 <script src="{{asset('guia de plantillas/js/jquery.min.js')}}"></script>
 		<script src="{{asset('guia de plantillas/js/bootstrap.min.js')}}"></script>
 		<script src="{{asset('guia de plantillas/js/slick.min.js')}}"></script>
 		<script src="{{asset('guia de plantillas/js/nouislider.min.js')}}"></script>
-		<script src="{{asset('guia de plantillas/js/jquery.zoom.min.js')}}"></script>
+		<script src="{{asset('guia de plantillas/js/jquery.zoom.min.js')}}"></script>	
 		<script src="{{asset('guia de plantillas/js/main.js')}}"></script>
 
 	</body>
