@@ -14,22 +14,22 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="codigocategoria">Codigo categoría:</label>
+                            <label for="codigo_categoria">Codigo categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('codigocategoria', $categoria->codigo, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('codigo_categoria', $categoria->codigo, ['id' => 'codigo_categoria', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="nombrecategoria">Nombre categoría:</label>
+                            <label for="nombre_categoria">Nombre categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombrecategoria', $categoria->nombre, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombre_categoria', $categoria->nombre, ['id' => 'nombre_categoria', 'class' => 'form-control', 'required']) !!}
                             </div>
                            
                            

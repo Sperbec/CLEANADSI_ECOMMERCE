@@ -6,6 +6,7 @@
 
 <!--Mostrar sección de contenido exclusivo de esta plantilla, se debe iniciar y finalizar-->
 @section('content')
+
 <div class="box box_login shadow">
     <div class="inside">
 
@@ -61,6 +62,7 @@
     </div>
 
 </div>
+
 @stop
 
 

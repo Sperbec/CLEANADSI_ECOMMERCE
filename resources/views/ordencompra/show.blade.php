@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalle de factura')
+@section('title', 'Detalle orden de compra')
 
 @section('content_header')
     <div class="row">
-        <h1>Ver detalle de la factura {{$encabezado->codigo}}</h1>
-        <a href="{{url('/imprimirfactura/'.$encabezado->id_factura)}}" class="btn btn-primary btn-sm ml-auto">
-            <i class="fas fa-print"></i> Imprimir factura</a>
+        <h1>Ver detalle de la orden de compra {{$encabezado->codigo}}</h1>
+        <a href="{{url('/imprimirordencompra/'.$encabezado->id_orden)}}" class="btn btn-primary btn-sm ml-auto">
+            <i class="fas fa-print"></i> Imprimir orden de compra</a>
     </div>
 <hr>
 @stop
@@ -18,7 +18,7 @@
         <label>Fecha: {{$encabezado->fecha}}</label>
     </div>
     <div class="col-md-6">
-        <label>Facturado a: {{$encabezado->nombrecompleto}}</label>
+        <label>Proveedor: {{$encabezado->nombre_proveedor}}</label>
     </div>
 </div>
 
@@ -34,36 +34,37 @@
 
 <div class="row">
     <div class="col-md-6">
-        <label>Costo de envío: ${{$encabezado->costo_envio}}</label>
-    </div>
-    <div class="col-md-6">
         <label>Total: ${{$encabezado->total}}</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label>Comentario: {{$encabezado->comentario}}</label>
     </div>
 </div>
 
 <br>
 <hr>
 
-<table class="table table-hover" id="tblDetalleFactura">
+<table class="table table-hover" id="tblDetalleOrdenCompra">
     <thead>
         <tr>
             <td class="negrita">ID</td>
             <td class="negrita">Nombre producto</td>
             <td class="negrita">SKU</td>
             <td class="negrita">Cantidad</td>
-            <td class="negrita">Precio unitario</td>
-            <td class="negrita">Subtotal</td>
+            <td class="negrita">Precio</td>
         </tr>
     </thead>
     <tbody>
         @foreach ($detalles as $detalle)
         <tr>
-            <td>{{ $detalle->id_detalle_factura }}</td>
+            <td>{{ $detalle->id_detalle_orden }}</td>
             <td>{{ $detalle->nombre }}</td>
             <td>{{ $detalle->sku }}</td>
             <td>{{ $detalle->cantidad }}</td>
             <td>${{ $detalle->precio }}</td>
-            <td>${{ $detalle->subtotal }}</td>
 
         </tr>
         @endforeach
@@ -85,7 +86,7 @@
 
     <script>
     $(document).ready(function() {
-        $('#tblDetalleFactura').DataTable({
+        $('#tblDetalleOrdenCompra').DataTable({
             "language": idioma_espanol
         });
     });

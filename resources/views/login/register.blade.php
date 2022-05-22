@@ -124,10 +124,9 @@
             </div>
         </div>
 
-
         <div class="row">
-            <div class="col-md-12">
-                {!! Form::submit('Registrarse', ['class' => 'btn btn-success mtop16'])!!}
+            <div class="btn-ingresar">
+                {!! Form::submit('Registrarse', ['class' => 'btn btn-primary mtop16'])!!}
             </div>
         </div>
         {!!  Form::close() !!}

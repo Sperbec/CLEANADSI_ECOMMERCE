@@ -26,7 +26,9 @@ class PersonaController extends Controller
         inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario
         where personas.id_persona not in (select id_persona from proveedores
         where id_persona is not null)
-        and role_id =2';
+        and role_id =2
+        and personas.deleted_at is  null';
+
 
         $clientes = DB::select($sql);
         $data = ['clientes' => $clientes];
@@ -51,8 +53,8 @@ class PersonaController extends Controller
 
     public function store(StoreForm $request)
     {
-        $nombres = $request->nombres;
-        $apellidos = $request->apellidos;
+        $nombres = $request->nombres_cliente;
+        $apellidos = $request->apellidos_cliente;
         $tipos_documento = $request->tipo_documento;
         $documento = $request->numero_documento;
         $genero = $request->genero;
@@ -130,8 +132,8 @@ class PersonaController extends Controller
 
     public function update(StoreForm $request, $id)
     {
-        $nombres = $request->nombres;
-        $apellidos = $request->apellidos;
+        $nombres = $request->nombres_cliente;
+        $apellidos = $request->apellidos_cliente;
         $tipos_documento = $request->tipo_documento;
         $documento = $request->numero_documento;
         $genero = $request->genero;

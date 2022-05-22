@@ -1,6 +1,6 @@
 @extends('frontend.plantilla')
 
-@section('titulo','Clean line')
+@section('titulo','Cleanline')
 
 @section('header')
 
@@ -33,7 +33,7 @@
                                 @foreach ($producto as $nvp)
                                 <div class="product">
                                         <div class="product-img">
-                                            <img src="/imagen/{{$nvp->imagen}}" alt="">
+                                            <img src="{{$nvp->imagen}}" alt="">
                                             <div class="product-label">
                                                 <!--<span class="sale"></span>-->
                                                 <span class="new">Nuevo</span>
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><a href=""><i class="fa fa-shopping-cart"></i>Añadir al Carrito</a></button>
+                                        <button class="add-to-cart-btn"><a href="{{route('carrito.añadir',$nvp->id_producto)}}"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</a></button>
                                     </div>
                                     
                                 </div> 
@@ -363,6 +363,13 @@
     </div>
     <!-- /container -->
 </div>
+@endsection
+
+@section('javascrits')
+<script type="text/javascript">
+    $(".cart-dropdown").hide();
+</script>
+
 @endsection
 
 @section('footer')

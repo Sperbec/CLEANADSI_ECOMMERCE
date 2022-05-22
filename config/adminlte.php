@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'CLEAN LINE',
+    'title' => 'CLEANLINE',
     'title_prefix' => '',
     'title_postfix' => '',
 

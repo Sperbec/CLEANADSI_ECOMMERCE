@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         /* provaides para el carrito de compras */
         Darryldecode\Cart\CartServiceProvider::class,
+         //Custom validation rules
+        App\Providers\CustomValidationRulesProvider::class,
 
 
         /*

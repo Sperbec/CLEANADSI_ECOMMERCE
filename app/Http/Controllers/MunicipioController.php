@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 class MunicipioController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $departamentos= Departamento::All();
