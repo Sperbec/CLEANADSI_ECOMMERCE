@@ -36,12 +36,14 @@
                 
               </div>
               
+             
+
+              <input type="submit" value="Iniciar sesión" class="btn btn-block btn-primary">
+
               <div class="d-flex mb-5 align-items-center">
                
                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
               </div>
-
-              <input type="submit" value="Iniciar sesión" class="btn btn-block btn-primary">
 
           
             </form>
