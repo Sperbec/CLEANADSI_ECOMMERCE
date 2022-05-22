@@ -3,7 +3,7 @@
 @section('title', 'Consultar ordenes de compra')
 
 @section('content_header')
-    <h1>Consultar ordenes de compra a proveedor</h1>
+<h1>Consultar ordenes de compra a proveedor</h1>
 @stop
 
 @section('content')
@@ -22,27 +22,26 @@
     </thead>
     <tbody>
         @foreach ($ordenes as $orden)
-            <tr>
-                <td>{{ $orden->id_orden }}</td>
-                <td>{{ $orden->codigo }}</td>
-                <td>{{ $orden->fecha }}</td>
-                <td>{{ $orden->nombre_proveedor }}</td>
-                <td>${{ $orden->subtotal }}</td>
-                <td>${{ $orden->valor_iva }}</td>
-                <td>${{ $orden->total }}</td>
-                <td>
+        <tr>
+            <td>{{ $orden->id_orden }}</td>
+            <td>{{ $orden->codigo }}</td>
+            <td>{{ $orden->fecha }}</td>
+            <td>{{ $orden->nombre_proveedor }}</td>
+            <td>${{ $orden->subtotal }}</td>
+            <td>${{ $orden->valor_iva }}</td>
+            <td>${{ $orden->total }}</td>
+            <td>
 
-                    <div class="row">
+                <div class="row">
 
-                        <a class="btn btn-secondary opts"
-                            data-toggle="tooltip"
-                        data-bs-placement="top" title="Ver factura">
+                    <a class="btn btn-secondary opts" href="{{url('/verOrdenCompra/'.$orden->id_orden)}}"
+                        data-toggle="tooltip" data-bs-placement="top" title="Ver factura">
                         <i class="fas fa-eye"></i></a>
 
 
-                    </div>
-                </td>
-            </tr>
+                </div>
+            </td>
+        </tr>
         @endforeach
     </tbody>
 </table>
@@ -60,8 +59,8 @@
 @stop
 
 @section('js')
-    <script>  
-     $(document).ready(function() {
+<script>
+    $(document).ready(function() {
             $('#tblordenes_compra').DataTable({
                 "language": idioma_espanol
             });
@@ -89,5 +88,5 @@
             }
 
         }
-    </script>
+</script>
 @stop

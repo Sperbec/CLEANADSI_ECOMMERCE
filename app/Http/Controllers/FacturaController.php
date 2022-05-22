@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Factura;
 use Illuminate\Support\Facades\DB;
 use PDF;
 

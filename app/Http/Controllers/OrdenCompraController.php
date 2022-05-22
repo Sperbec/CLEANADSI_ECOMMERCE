@@ -7,6 +7,7 @@ use App\Models\Orden_compra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use PDF;
 
 
 class OrdenCompraController extends Controller
@@ -78,5 +79,63 @@ class OrdenCompraController extends Controller
         $data = ['ordenes' => $ordenes];
 
         return view('ordencompra.index', $data);
+    }
+
+    public function verOrdenCompra($id){
+
+        $sql1 = 'SELECT id_orden, codigo, fecha,
+        case when nombres is not null then
+        concat(nombres, " ", apellidos)  else
+        proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total, comentario
+        from orden_compras 
+        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
+        left join personas on personas.id_persona = proveedores.id_persona
+        where orden_compras.id_orden = '.$id;
+
+        $sql2 = 'SELECT id_detalle_orden,
+        productos.nombre, productos.sku, detalle_orden_compra.cantidad, productos.precio
+        from orden_compras 
+        inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden 
+        inner join productos on productos.id_producto = detalle_orden_compra.id_producto
+        where orden_compras.id_orden = '.$id;
+
+        $encabezado=DB::select($sql1);
+        $detalles = DB::select($sql2);
+
+        $data = ['encabezado' => $encabezado[0],
+        'detalles' => $detalles];
+
+        return view('ordencompra.show', $data);
+
+    }
+
+    public function imprimirordencompra($id){
+
+        $sql1 = 'SELECT id_orden, codigo, fecha,
+        case when nombres is not null then
+        concat(nombres, " ", apellidos)  else
+        proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total, comentario
+        from orden_compras 
+        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
+        left join personas on personas.id_persona = proveedores.id_persona
+        where orden_compras.id_orden = '.$id;
+
+        $sql2 = 'SELECT id_detalle_orden,
+        productos.nombre, productos.sku, detalle_orden_compra.cantidad, productos.precio
+        from orden_compras 
+        inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden 
+        inner join productos on productos.id_producto = detalle_orden_compra.id_producto
+        where orden_compras.id_orden = '.$id;
+
+        $encabezado=DB::select($sql1);
+        $detalles = DB::select($sql2);
+
+        $pdf = PDF::loadView('ordencompra.pdf', [
+            'encabezado' => $encabezado[0],
+            'detalles' => $detalles
+        ]);
+
+        //Ver el pdf en el navegador
+        return $pdf->stream();
     }
 }
