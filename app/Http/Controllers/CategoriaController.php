@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\storenombres;
+use App\Http\Requests\StoreForm;
 
 class CategoriaController extends Controller
 {
@@ -22,17 +22,14 @@ class CategoriaController extends Controller
         return view('categoria.index', $data);
     }
 
-    public function store(Storenombres $request){
-        
-        $codigocategoria = $request->codigo;
-        $nombrecategoria = $request->nombre;
+    public function store(StoreForm $request){
         
         $categoria = new Categoria();
-        $categoria->codigo = $codigocategoria;
-        $categoria->nombre = $nombrecategoria;
-
+        $categoria->codigo =  $request->codigo_categoria;
+        $categoria->nombre =  $request->nombre_categoria;
+       
         $categoria->save();
-
+        
         return redirect()->route('categoria.index')->with('guardado', 'ok');
     }
 
@@ -43,14 +40,12 @@ class CategoriaController extends Controller
 
     }
 
-    public function update( Request $request, $id){
-        $codigocategoria = $request->codigo;
-        $nombrecategoria = $request->nombre;
-
+    public function update(StoreForm $request, $id){
+      
         $categoria = Categoria::findOrFail($id);
-        $categoria->codigo = $codigocategoria;
-        $categoria->nombre = $nombrecategoria;
-        
+        $categoria->codigo =  $request->codigo_categoria;
+        $categoria->nombre =  $request->nombre_categoria;
+       
         $categoria->update();
         
         return redirect()->route('categoria.index')->with('editado', 'ok');

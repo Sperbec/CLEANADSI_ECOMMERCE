@@ -76,21 +76,33 @@ Route::resource('clientes', App\Http\Controllers\PersonaController::class)->name
 //Orden de compra
 Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, 'crear'])->name('crearOrdenCompra');
 Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::class, 'consultar'])->name('consultarOrdenCompra');
+Route::post('/guardarOrdenCompra', [App\Http\Controllers\OrdenCompraController::class, 'guardarOrdenCompra'])->name('guardarOrdenCompra');
+Route::get('/verOrdenCompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'verOrdenCompra'])->name('verOrdenCompra');
+Route::get('/imprimirordencompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'imprimirordencompra'])->name('imprimirordencompra');
+Route::post('/obtenerproducto', [App\Http\Controllers\ProductoController::class, 'obtenerproducto']);
 
 //Mis pedidos
 Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])->name('pedidos');
 
+//Facturas
+Route::resource('factura', App\Http\Controllers\FacturaController::class)->names('factura');
+Route::get('/imprimirfactura/{id}', [App\Http\Controllers\FacturaController::class, 'imprimirfactura'])->name('imprimirfactura');
+
 //Mi cuenta
-Route::get('/micuenta', [App\Http\Controllers\CuentaController::class, 'index'])->name('micuenta');
+Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names('micuenta');
+Route::post('/changePassword/{id}', [App\Http\Controllers\CuentaController::class, 'changePassword'])->name('changePassword');
+Route::post('/datosContacto/{id}', [App\Http\Controllers\CuentaController::class, 'datosContacto'])->name('datosContacto');
+Route::post('/getPersonaContactoById', [App\Http\Controllers\CuentaController::class, 'getPersonaContactoById']);
+Route::post('/updatePersonaContacto', [App\Http\Controllers\CuentaController::class, 'updatePersonaContacto'])->name('updatePersonaContacto');
 
 /*----------------------------------------------------------------------------------------------------------- */
 //rutas del Frontend
 
 Route::get('frontend/inicio',[App\Http\Controllers\FrontendController::class,'nuevos_productos'])->name('inicio');
 
-Route::get('/frontend/aseo_personal',[App\Http\Controllers\FrontendController::class,'categoria_aseo_personal'])->name('aseo_personal');
+Route::get('/frontend/categoria/{id}',[App\Http\Controllers\FrontendController::class,'categorias_front'])->name('categoria_front');
 
-Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('aseo_general');
+Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('Aseo_general');
 
 Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
 //rutas para crear productos (probicional)
@@ -98,6 +110,7 @@ Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendControll
 Route::post('frontend',[App\Http\Controllers\FrontendController::class, 'store'])->name('store');
 
 Route::get('frontend/crear',[App\Http\Controllers\FrontendController::class, 'crear'])->name('crear');
+
 
 //------------------------------------rutas del carrito de compras
 Route::get('frontend/carrito', [FrontendController::class, 'carrito'])->name('carrito');
@@ -111,3 +124,7 @@ Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra'])->n
 /* rutas de la factura y detalle de factura*/
  Route::get('facturas/facturas', [FacturaController::class, 'factura'])->name('factura'); 
  Route::post('facturas/', [FacturaController::class, 'crear_factura'])->name('factura.crear'); 
+
+
+
+//-----------------------------------------------------------------

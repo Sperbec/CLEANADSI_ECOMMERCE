@@ -45,12 +45,13 @@ return [
     |
     */
 
-    'logo' => '<b>CLEAN LINE</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '',
+    'logo_img' => '/static/images/logo.png',
+    'logo_img_class' => 'd-none',
+    'logo_img_style' => '',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_xl_class' => '',
+    'logo_img_alt' => 'Cleanline',
 
 
 
@@ -238,12 +239,18 @@ return [
         ],
 
         [
+            'text'   => 'Inicio',
+            'url'  => '/home',
+            'icon'   => 'fas fa-home',
+        ],
+
+        [
             'text'    => 'Ubicación',
             'icon'    => 'fas fa-map-marker-alt',
             'can'     => 'ubicacion',
             'submenu' => [
                 [
-                    'text' => 'Paises',
+                    'text' => 'Países',
                     'route'  => 'pais.index',
                     'icon' => 'fas fa-globe-americas',
                 ],
@@ -263,7 +270,7 @@ return [
                     'route'  => 'barrio.index',
                     'icon' => 'fas fa-map-marked-alt',
                 ],
-        
+
             ],
         ],
 
@@ -307,12 +314,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Consultar factura',
-                    'url'  => '#',
+                    'route'  => 'factura.index',
                     'icon'=>'fas fa-fw fa-search'
                 ]
             ],
         ],
-        
+
         [
             'text'    => 'Clientes',
             'route'   => 'clientes.index',
@@ -328,7 +335,7 @@ return [
         ],
         [
             'text'    => 'Mi cuenta',
-            'url'  => '/micuenta',
+            'route'  => 'micuenta.index',
             'icon'    => 'fas fa-user-circle',
         ]
     ],

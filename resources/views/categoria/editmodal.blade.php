@@ -14,26 +14,22 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="codigo">Codigo categoría:</label>
+                            <label for="codigo_categoria">Codigo categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('codigo', $categoria->codigo, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('codigo_categoria', $categoria->codigo, ['id' => 'codigo_categoria', 'class' => 'form-control', 'required']) !!}
                             </div>
-                            @error('codigo')
-                            <small>*{{$message}}</small>
-                            </br>
-                            @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <label for="nombre">nombre categoría:</label>
+                            <label for="nombre_categoria">Nombre categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombres', $categoria->nombres, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombre_categoria', $categoria->nombre, ['id' => 'nombre_categoria', 'class' => 'form-control', 'required']) !!}
                             </div>
                            
                            

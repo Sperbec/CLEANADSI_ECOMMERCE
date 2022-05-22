@@ -6,14 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Proveedor extends Model
+class Persona_contacto extends Model
 {
-    use HasFactory;
+
+    protected $table = "persona_contacto";
     use SoftDeletes;
 
-    protected $table = "proveedores";
-
-
-
-    protected $primaryKey = 'id_proveedor';
+    protected $primaryKey = 'id_persona_contacto';
+    use HasFactory;
 }

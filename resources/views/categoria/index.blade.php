@@ -5,6 +5,7 @@
 @section('content_header')
     <div class="row">
         <h1>Categorías</h1>
+
         <a id="btnCrear" data-toggle="modal" data-target="#mdlCrearCategoria" class="btn btn-primary btn-sm ml-auto">
             <i class="fas fa-plus"></i> Crear categoría</a>
     </div>
@@ -12,6 +13,22 @@
 @stop
 
 @section('content')
+
+@error('codigo_categoria')
+<small>*{{$message}}</small>
+@enderror
+<br>
+@error('nombre_categoria')
+<small>*{{$message}}</small>
+@enderror
+
+
+
+
+
+@error('nombrecategoria')
+<small>*{{$message}}</small>
+@enderror
 
     <!-- Modal de crear categoria-->
     <div id="mdlCrearCategoria" class="modal fade" role="dialog">
@@ -27,25 +44,26 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="codigo">Codigo categoría:</label>
+                            <label for="codigo_categoria">Codigo categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('codigo', null, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('codigo_categoria', null, ['id' => 'codigo_categoria', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
-                       
+
                         <div class="col-md-6">
-                            <label for="nombre">Nombre categoría:</label>
+                            <label for="nombre_categoria">Nombre categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombre', null, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombre_categoria', null, ['id' => 'nombre_categoria', 'class' => 'form-control', 'required']) !!}
                             </div>
-                           
-                           
+
+
+
                         </div>
                     </div>
 
@@ -62,15 +80,15 @@
             </div>
         </div>
     </div>
-   
+
 
     <table class="table table-hover" id="tblcategoria">
         <thead>
             <tr>
-                <td>ID</td>
-                <td>Código</td>
-                <td>Nombre</td>
-                <td>Acciones</td>
+                <td class="negrita">ID</td>
+                <td class="negrita">Código</td>
+                <td class="negrita">Nombre</td>
+                <td class="negrita">Acciones</td>
             </tr>
         </thead>
         <tbody>
@@ -102,14 +120,16 @@
         </tbody>
     </table>
 
-    @error('codigo')
-                <small>*{{$message}}</small>
-                </br>
-                @enderror
+
+
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+<style>
+    .negrita {
+        font-weight: bold;
+    }
+</style>
 @stop
 
 @section('js')
@@ -117,15 +137,15 @@
     <script>
         //Modal de crear categoría
         $("#btnCrear").on("click", function() {
-            document.getElementById('codigocategoria').value = '';
-            document.getElementById('nombrecategoria').value = '';
+            document.getElementById('codigo_categoria').value = '';
+            document.getElementById('nombre_categoria').value = '';
             $("#mdlCrearCategoria").modal("show");
         });
 
         //Modal de editar categoría
         $("#btnEditar").on("click", function() {
-            document.getElementById('codigocategoria').value = '';
-            document.getElementById('nombrecategoria').value = '';
+            document.getElementById('codigo_categoria').value = '';
+            document.getElementById('nombre_categoria').value = '';
             $("#mdlEditarCategoria").modal("show");
         });
 
@@ -163,19 +183,19 @@
             Swal.fire({
             position: 'top-end',
             icon: 'success',
-        
+
             @if (session('eliminado') == 'ok')
                 title: 'Registro eliminado con éxito',
             @endif
-        
+
             @if (session('editado') == 'ok')
                 title: 'Registro editado con éxito',
             @endif
-        
+
             @if (session('guardado') == 'ok')
                 title: 'Registro guardado con éxito',
             @endif
-        
+
             showConfirmButton: false,
             timer: 1500
             })
@@ -212,4 +232,3 @@
         });
     </script>
 @stop
-        

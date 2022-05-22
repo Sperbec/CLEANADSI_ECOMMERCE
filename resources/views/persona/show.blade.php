@@ -99,12 +99,22 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                <label for="email" class="mtop16">Correo electrónico:</label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="far fa-envelope-open"></i>
+                    </div>
+
+                    {!!  Form::email('email', $usuario->email, ['class' => 'form-control', 'required', 'disabled']) !!}
+                </div>
+            </div>
+        </div>
 
     @stop
 
     @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
-
         <!-- Para importar bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">

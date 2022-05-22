@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Departamento;
 use App\Models\Municipio;
+use Illuminate\Support\Facades\DB;
 
 class MunicipioController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 
     public function index()
     {
@@ -76,9 +83,20 @@ class MunicipioController extends Controller
 
     public function eliminarMunicipio(Request $request)
     {
-        $municipio = Municipio::findOrFail($request->id);
-        $municipio->delete();
-        return response()->json(['success' => true]);
-       
+
+          //Si el municipio está relacionado a un barrio no se puede eliminar.
+          $sql = 'SELECT  id_municipio from barrios
+          where id_municipio = '.$request->id;
+
+          $barrios_relacionados = DB::select($sql);
+
+          if(empty($barrios_relacionados)){
+            $municipio = Municipio::findOrFail($request->id);
+            $municipio->delete();
+            return response()->json(['success' => true]);
+          }else{
+             return response()->json(['success' => false]);
+          }
+
     }
 }
