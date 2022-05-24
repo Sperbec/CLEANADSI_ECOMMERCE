@@ -277,7 +277,7 @@
 						<div class="footer">
 							<h3 class="footer-title">ayuda</h3>
 							<ul class="footer-links">
-								<li><a href="#">Preguntas frecuentes</a></li>
+								<li><a href="{{url('/preguntasfrecuentes')}}">Preguntas frecuentes</a></li>
 
 							</ul>
 						</div>

@@ -183,6 +183,12 @@ class FrontendController extends Controller
        return view('facturas/detalle',compact('opcion_entregas','opcion_pagos','comentario_facturas','categorias'));
     }  
 
+
+    public function preguntasfrecuentes(){
+        $categorias = Categoria::all();
+        $data = ['categorias' => $categorias];
+        return view('frontend.preguntas_frecuentes', $data);
+    }
     
     
 }   

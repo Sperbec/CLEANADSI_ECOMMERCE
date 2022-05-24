@@ -48,6 +48,7 @@ Route::post('/eliminarBarrio', [App\Http\Controllers\BarrioController::class, 'e
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/preguntasfrecuentes', [App\Http\Controllers\FrontendController::class, 'preguntasfrecuentes'])->name('preguntasfrecuentes');
 
 //Rutas para login
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'getLogin'])->name('getLogin');
