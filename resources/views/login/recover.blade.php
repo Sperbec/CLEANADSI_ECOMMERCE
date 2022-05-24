@@ -1,55 +1,57 @@
 <!--Utilizar la plantilla maestra en el login-->
-@extends('login.plantilla')
+@extends('frontend.plantilla')
 
 <!--Reemplazar el titulo-->
 @section('title', 'Recuperar contraseña')
 
+<link rel="stylesheet" href="{{url('/static/css/login.css')}}">
+
 <!--Mostrar sección de contenido exclusivo de esta plantilla, se debe iniciar y finalizar-->
-@section('content')
-<div class="box box_login shadow">
-    <div class="inside">
+@section('contenido')
 
-        <div class="header">
-           <h1>Recuperar contraseña</h1>
-          <!-- <img class="logo" src="{{url('/static/images/logo.jpg')}}" alt="">-->
-        </div>
 
-        {!! Form::open(['url' => '/recover']) !!}
+{!! Form::open(['url' => '/recover']) !!}
 
-        <label for="email">Correo electrónico:</label>
-        <div class="input-group">
-            <div class="input-group-text">
-                <!--Hacer uso del fontawesome-->
-                <i class="far fa-envelope-open"></i>
-            </div>
+<div class="content">
 
-            <!--El segundo parámetro se manda en null porque no lleva ningun
-            valor por defecto-->
+
+    <div class="section-title">
+        <h3 class="title">Recuperar contraseña</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label for="email" style="float: left;">Correo electrónico:</label>
             {!!  Form::email('email', null, ['class' => 'form-control', 'required']) !!}
-        </div>
-
-        <div class="row">
-            <div class="btn-ingresar">
-                {!! Form::submit('Recuperar contraseña', ['class' => 'btn btn-primary mtop16'])!!}
-            </div>
-        </div>
-        
-        {!!  Form::close() !!}
-
-        <div class="footer mtop16">
-
-            <div class="row">
-                 <a href="{{url('/register')}}">¿Aún no tienes una cuenta? Regístrate</a>
-            </div>
-
-            <div class="row mtop16">
-                <a href="{{url('/login')}}">Ingresar a mi cuenta</a>
-            </div>
-
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-6 col-md-2"></div>
+        <div class="col-6 col-md-8">
+            <input type="submit" value="Recuperar contraseña" style="margin-top: 20px;" class="btn btn-block btn-primary">
+        </div>
+    </div>
+
+    <div class="d-flex mb-5 align-items-center" style="margin-top: 20px;">
+        <div class="align-items-center">
+            <span class="ml-auto"><a href="{{url('/register')}}" class="forgot-pass">¿Aún no tienes una cuenta? Regístrate</a></span> 
+         </div>
+
+         <br>
+
+         <div class="align-items-center">
+            <span class="ml-auto"><a href="{{url('/login')}}" class="forgot-pass">Ingresar a mi cuenta</a></span> 
+        </div>
+    </div>
+
+
+    
+
 </div>
+{!!  Form::close() !!}
+
 @stop
 
 
