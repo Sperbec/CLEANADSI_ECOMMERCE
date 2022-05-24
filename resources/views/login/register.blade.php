@@ -1,143 +1,112 @@
 <!--Utilizar la plantilla maestra en el login-->
-@extends('login.plantilla')
+@extends('frontend.plantilla')
 
 <!--Reemplazar el titulo-->
 @section('title', 'Registrarse')
 
+<style>
+    .content{
+        margin: 0 auto;
+        text-align: center;
+        border-radius: 10px;
+        width: 50%;
+    }
+
+    .text{
+        float: left;
+        margin-top: 16px;
+    }
+</style>
+
 <!--Mostrar sección de contenido exclusivo de esta plantilla, se debe iniciar y finalizar-->
-@section('content')
-<div class="box box_register shadow ">
-    <div class="inside">
+@section('contenido')  
 
-        {!!  Form::open(['url' => '/register']) !!}
+{!!  Form::open(['url' => '/register']) !!}
 
-        <h1 class="registarse">Registrarse</h1>
-        
-        <div class="row">
-            <div class="col-md-12">
-                <label for="nombres">Nombres:</label>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <!--Hacer uso del fontawesome-->
-                        <i class="fas fa-user"></i>
-                    </div>
-
-                    <!--El segundo parámetro se manda en null porque no lleva ningun
-                    valor por defecto-->
-                    {!!  Form::text('nombres', null, ['class' => 'form-control', 'required']) !!}
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <label for="apellidos" class="mtop16">Apellidos:</label>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    {!!  Form::text('apellidos', null, ['class' => 'form-control', 'required']) !!}
-                </div>
-            </div>
-
-        </div>
+<div class="content">
 
 
-        <div class="row">
-            <div class="col-md-6">
-                <label for="tipo_documento" class="mtop16" >Tipo de documento:</label>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <i class="far fa-id-card"></i>
-                    </div>
-                    <select name="tipo_documento" class="form-select" required>
-                        <option value=''>Seleccione</option>
-                        @foreach($tipos_documentos as $tipodocumento)
-                        <option value="{{$tipodocumento->id_opcion}}">{{$tipodocumento->nombre}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>  
-
-
-            <div class="col-md-6">
-                <label for="numero_documento" class="mtop16">Número de documento:</label>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <i class="far fa-id-card"></i>
-                    </div>
-                    {!!  Form::number('numero_documento', null, ['class' => 'form-control', 'required']) !!}
-                </div>
-            </div>
-        </div>
-        
- 
-        <div class="row">
-            <div class="col-md-6">
-                <label for="email" class="mtop16">Correo electrónico:</label>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <i class="far fa-envelope-open"></i>
-                    </div>
-
-                    {!!  Form::email('email', null, ['class' => 'form-control', 'required']) !!}
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <label for="password" class="mtop16">Contraseña:</label>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    {!!  Form::password('password', ['class' => 'form-control', 'required']) !!}
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-6">
-                <label for="genero" class="mtop16">Género:</label>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <i class="fas fa-venus-mars"></i>
-                    </div>
-                    <select name="genero" class="form-select" required>
-                        <option value=''>Seleccione</option>
-                        @foreach($generos as $genero)
-                        <option value="{{$genero->id_opcion}}">{{$genero->nombre}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-    
-            
-            <div class="col-md-6">
-                <label for="fecha_nacimiento" class="mtop16">Fecha de nacimiento:</label>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <i class="fas fa-calendar"></i>
-                    </div>
-                    {!!  Form::date('fecha_nacimiento', null, ['id' => 'fecha_nacimiento' ,'class' => 'form-control', 'required']) !!}
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="btn-ingresar">
-                {!! Form::submit('Registrarse', ['class' => 'btn btn-primary mtop16'])!!}
-            </div>
-        </div>
-        {!!  Form::close() !!}
-
-        <div class="footer mtop16">
-            <a href="{{url('/login')}}">Ya tengo una cuenta, Ingresar</a>
-        </div>
-
+    <div class="section-title">
+        <h3 class="title">Registrarse</h3>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <label for="nombres" style="float: left;">Nombres:</label>
+            {!!  Form::text('nombres', null, ['class' => 'form-control', 'required']) !!}
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <label for="apellidos" class="text">Apellidos:</label>
+            {!!  Form::text('apellidos', null, ['class' => 'form-control', 'required']) !!}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label for="tipo_documento" class="text">Tipo de documento:</label>
+            <select name="tipo_documento" class="form-control" required>
+                <option value=''>Seleccione</option>
+                @foreach($tipos_documentos as $tipodocumento)
+                <option value="{{$tipodocumento->id_opcion}}">{{$tipodocumento->nombre}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="numero_documento" class="text">Número de documento:</label>
+            {!!  Form::number('numero_documento', null, ['class' => 'form-control', 'required']) !!}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label for="email" class="text">Correo electrónico:</label>
+            {!!  Form::email('email', null, ['class' => 'form-control', 'required']) !!}
+        </div>
+        <div class="col-md-6">
+            <label for="password" class="text">Contraseña:</label>
+            {!!  Form::password('password', ['class' => 'form-control', 'required']) !!}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label for="genero" class="text">Género:</label>
+            <select name="genero" class="form-control" required>
+                <option value=''>Seleccione</option>
+                @foreach($generos as $genero)
+                <option value="{{$genero->id_opcion}}">{{$genero->nombre}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="fecha_nacimiento" class="text">Fecha de nacimiento:</label>
+            {!!  Form::date('fecha_nacimiento', null, ['id' => 'fecha_nacimiento' ,'class' => 'form-control', 'required']) !!}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 col-md-2"></div>
+        <div class="col-6 col-md-8">
+            <input type="submit" value="Registrarse" style="margin-top: 20px;" class="btn btn-block btn-primary">
+
+        </div>
+        <div class="col-6 col-md-2"></div>
+    </div>
+
+    <div class="d-flex mb-5 align-items-center"  style="margin-top: 20px;">
+        <div class="align-items-center">
+            <span class="ml-auto"><a href="{{url('/login')}}"class="forgot-pass">Ya tengo una cuenta, ingresar.</a></span> 
+         </div>
+    </div>
+
+
 </div>
+
+{!!  Form::close() !!}
 @stop
 
 @section('js')

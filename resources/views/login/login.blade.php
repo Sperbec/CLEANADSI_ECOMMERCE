@@ -14,7 +14,6 @@
 
 
 
-
 <!--Mostrar sección de contenido exclusivo de esta plantilla, se debe iniciar y finalizar-->
 @section('contenido')
 

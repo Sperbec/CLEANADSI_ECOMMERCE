@@ -46,10 +46,12 @@ class LoginController extends Controller
     {
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
+        $categorias = Categoria::all();
 
         $data = [
             'tipos_documentos' => $tipos_documentos,
-            'generos' => $generos
+            'generos' => $generos,
+            'categorias' => $categorias
         ];
         return view('login.register',  $data);
     }
