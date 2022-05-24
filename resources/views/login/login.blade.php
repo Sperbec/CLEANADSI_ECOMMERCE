@@ -24,7 +24,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <label for="email" style="float: left;">Correo electrónico:</label>
+            <label for="email">Correo electrónico:</label>
             {!!  Form::email('email', null, ['class' => 'form-control', 'required']) !!}
         </div>
     </div>
@@ -32,17 +32,28 @@
 
     <div class="row">
         <div class="col-md-12">
-            <label for="password" class="text">Contraseña:</label>
-            {!!  Form::password('password', ['id' => 'password', 'class' => 'form-control col', 'required']) !!}
-        
-            <div class="col-md-3">
-                <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"> 
-                    <span class="fa fa-eye-slash icon"></span></button>
-            </div>
-        
-        
+            <label for="password">Contraseña:</label>
+            {!!  Form::password('password', ['id' => 'password', 'class' => 'form-control','placeholder' => 'Ingresa tu contraseña', 'required']) !!}
         </div>
     </div>
+
+    <div class="password-show">
+        <input id="show_password" class="form-check-input" type="checkbox" onclick="mostrarPassword()">
+        <label class="form-check-label" for="show_password">Mostrar contraseña</label>
+    </div>
+            
+{{--                 <div class="col-md-8">
+                    <label for="text" class="col-md-12">
+                
+                    </label>
+                </div> --}}
+
+{{--                     <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"> 
+                        <span class="fa fa-eye-slash icon"></span></button>
+ --}}
+
+        
+
 
     <div class="row">
         <div class="col-6 col-md-2"></div>
@@ -63,9 +74,6 @@
         </div>
     </div>
 
-
-    
-
 </div>
 {!!  Form::close() !!}
 @stop
@@ -78,6 +86,7 @@
             if(cambio.type == "password"){
                 cambio.type = "text";
                 $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+
             }else{
                 cambio.type = "password";
                 $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');

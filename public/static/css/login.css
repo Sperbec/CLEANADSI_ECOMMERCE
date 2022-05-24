@@ -1,10 +1,10 @@
-.content{
+/* .content{
   margin: 2% auto;
   text-align: center;
   border-radius: 10px;
   width: 50%;
 
-  /**/
+  
   padding: 5% 5% 5% 5%;
   background-color: aquamarine;
 }
@@ -12,4 +12,36 @@
 .text{
   float: left;
   margin-top: 16px;
+} */
+
+.content{
+  box-sizing: inherit;
+
+  margin: 2% 30% 0% 30%;
+  padding: 2% 2% 2% 2%;
+
+  width: 35%;
+  height: 65%;
+
+
+
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border: 0.5px;
+  border-style: solid;
+
+}
+
+.section-title{
+  text-align: center;
+}
+
+.password-show .form-check-label{
+font-size: 12px; 
+ 
+}
+.password-show .form-check-input{
+
+  width: 20px;
+  height: 20px;
 }
