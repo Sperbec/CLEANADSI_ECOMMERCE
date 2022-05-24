@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CarritoComprasController;
+use App\Http\Controllers\FacturaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,9 @@ Route::post('/eliminarBarrio', [App\Http\Controllers\BarrioController::class, 'e
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/preguntasfrecuentes', [App\Http\Controllers\FrontendController::class, 'preguntasfrecuentes'])->name('preguntasfrecuentes');
+Route::get('/sobrenosotros', [App\Http\Controllers\FrontendController::class, 'sobrenosotros'])->name('sobrenosotros');
+Route::get('/politicasprivacidad', [App\Http\Controllers\FrontendController::class, 'politicasprivacidad'])->name('politicasprivacidad');
 
 //Rutas para login
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'getLogin'])->name('getLogin');
@@ -74,6 +79,10 @@ Route::resource('clientes', App\Http\Controllers\PersonaController::class)->name
 //Orden de compra
 Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, 'crear'])->name('crearOrdenCompra');
 Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::class, 'consultar'])->name('consultarOrdenCompra');
+Route::post('/guardarOrdenCompra', [App\Http\Controllers\OrdenCompraController::class, 'guardarOrdenCompra'])->name('guardarOrdenCompra');
+Route::get('/verOrdenCompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'verOrdenCompra'])->name('verOrdenCompra');
+Route::get('/imprimirordencompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'imprimirordencompra'])->name('imprimirordencompra');
+Route::post('/obtenerproducto', [App\Http\Controllers\ProductoController::class, 'obtenerproducto']);
 
 //Mis pedidos
 Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])->name('pedidos');
@@ -94,9 +103,9 @@ Route::post('/updatePersonaContacto', [App\Http\Controllers\CuentaController::cl
 
 Route::get('frontend/inicio',[App\Http\Controllers\FrontendController::class,'nuevos_productos'])->name('inicio');
 
-Route::get('/frontend/aseo_personal',[App\Http\Controllers\FrontendController::class,'categoria_aseo_personal'])->name('aseo_personal');
+Route::get('/frontend/categoria/{id}',[App\Http\Controllers\FrontendController::class,'categorias_front'])->name('categoria_front');
 
-Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('aseo_general');
+Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('Aseo_general');
 
 Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
 //rutas para crear productos (probicional)
@@ -104,5 +113,21 @@ Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendControll
 Route::post('frontend',[App\Http\Controllers\FrontendController::class, 'store'])->name('store');
 
 Route::get('frontend/crear',[App\Http\Controllers\FrontendController::class, 'crear'])->name('crear');
+
+
+//------------------------------------rutas del carrito de compras
+Route::get('frontend/carrito', [FrontendController::class, 'carrito'])->name('carrito');
+Route::get('add-to-carrito/{id}', [FrontendController::class, 'añadir_carrito'])->name('carrito.añadir');
+Route::patch('update-cart', [FrontendController::class, 'update'])->name('carrito.update');
+Route::delete('remove-from-cart', [FrontendController::class, 'eliminar'])->name('carrito.eliminar');
+Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra'])->name('carrito.compra');
+
+
+
+/* rutas de la factura y detalle de factura*/
+ Route::get('facturas/facturas', [FacturaController::class, 'factura'])->name('factura'); 
+ Route::post('facturas/', [FacturaController::class, 'crear_factura'])->name('factura.crear'); 
+
+
 
 //-----------------------------------------------------------------

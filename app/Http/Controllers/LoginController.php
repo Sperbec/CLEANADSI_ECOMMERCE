@@ -17,6 +17,7 @@ use App\Mail\UserSendNewPassword;
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Contracts\Session\Session;
 use DateTime;
+use App\Models\Categoria;
 
 class LoginController extends Controller
 {
@@ -34,7 +35,10 @@ class LoginController extends Controller
     //Retornamos a la vista del login
     public function getLogin()
     {
-        return view('login.login');
+
+        $categorias = Categoria::all();
+        $data = ['categorias' => $categorias];
+        return view('login.login', $data);
     }
 
     //Retornamos a la vista para registrar a un usuario
@@ -42,10 +46,12 @@ class LoginController extends Controller
     {
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
+        $categorias = Categoria::all();
 
         $data = [
             'tipos_documentos' => $tipos_documentos,
-            'generos' => $generos
+            'generos' => $generos,
+            'categorias' => $categorias
         ];
         return view('login.register',  $data);
     }
@@ -69,7 +75,7 @@ class LoginController extends Controller
 
         if ($validator->fails()) :
             return back()->withErrors($validator)->with('message', 'Error al hacer login')
-                ->with('typealert', 'danger');
+                ->with('typealert', 'danger')->withInput();;
         else :
             //Busco el usuario con la información del correo y contraseña
             //El ultimo parámetro nos indica si el usuario va a estar conectado.
@@ -80,7 +86,7 @@ class LoginController extends Controller
                 return redirect('/home');
             else :
                 return back()->withErrors($validator)->with('message', 'Credenciales incorrectas.')
-                    ->with('typealert', 'danger');
+                    ->with('typealert', 'danger')->withInput();;
             endif;
 
         endif;
@@ -95,7 +101,7 @@ class LoginController extends Controller
         $rules = [
             'nombres' => 'required|regex:/^[\pL\s\-]+$/u',
             'apellidos' => 'required|regex:/^[\pL\s\-]+$/u',
-            'numero_documento' => 'required|min:10|max:15',
+            'numero_documento' => 'required|min:8|max:15',
             'fecha_nacimiento' => 'before:'.$fechaActual
         ];
 
@@ -105,7 +111,7 @@ class LoginController extends Controller
             'apellidos.required' => 'Los apellidos son requeridos.',
             'apellidos.regex' => 'Los apellidos no pueden contener números.',
             'numero_documento.required' => 'El número de documento es requerido',
-            'numero_documento.min' => 'La cantidad de digitos para el número de documento no puede ser inferior a 10',
+            'numero_documento.min' => 'La cantidad de digitos para el número de documento no puede ser inferior a 8',
             'numero_documento.max' => 'La cantidad de digitos para el número de documento no puede ser superior a 15',
             'fecha_nacimiento.before' =>'La fecha de nacimiento no puede ser superior a la fecha actual'
         ];
@@ -143,7 +149,9 @@ class LoginController extends Controller
     
     //restablecer contraseña
     public function getRecover(){
-       return view('login.recover');
+        $categorias = Categoria::all();
+        $data = ["categorias" => $categorias];
+        return view('login.recover', $data );
     }
 
     public function postRecover(Request $request)
@@ -189,7 +197,9 @@ class LoginController extends Controller
 
     public function getReset(Request $request)
     {
-        $data = ['email' => $request->get('email')];
+        $categorias = Categoria::all();
+        $data = ['email' => $request->get('email'), 
+                'categorias' => $categorias ];
         return view('login.reset', $data);
     }
 

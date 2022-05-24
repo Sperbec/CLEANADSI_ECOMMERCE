@@ -3,17 +3,24 @@
 @section('title', 'Crear orden de compra')
 
 @section('content_header')
-<div class="row">
-    <div class="col-md-6">
-        <h1>Crear orden de compra</h1>
-    </div>
-    <div class="col-md-6">
-        <button id="btnGuardar" type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
-    </div>
-</div>
+
+
 @stop
 
 @section('content')
+<form action="{{url('/guardarOrdenCompra')}}" method="post" style="padding-top: 25px">
+    @csrf
+
+    <div class="row">
+    
+        <div class="col-md-6">
+            <h1>Crear orden de compra</h1>
+        </div>
+        <div class="col-md-6">
+            <button  type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
+        </div>
+    </div>
+
     <div id="miModal" class="modal fade" role="dialog">
         <div class="modal-dialog  modal-lg">
             <div class="modal-content">
@@ -30,7 +37,7 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-box-open"></i>
                                 </div>
-                                <select id="producto" name="producto" class="form-select" required>
+                                <select id="producto"  class="form-select" required>
                                     <option value=''>Seleccione</option>
                                     @foreach ($productos as $producto)
                                         <option value="{{ $producto->id_producto }}">{{ $producto->nombre }}</option>
@@ -87,8 +94,10 @@
     <table class="table" id="table_articulos">
         <thead>
             <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Cantidad</th>
+                <th scope="col">Precio unitario</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -108,7 +117,7 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
 
-                {!! Form::text('subtotal', null, ['class' => 'form-control', 'required']) !!}
+                {!! Form::text('subtotal', null, [ 'id'=>'subtotal', 'class' => 'form-control', 'readonly']) !!}
             </div>
         </div>
 
@@ -118,7 +127,7 @@
                 <div class="input-group-text">
                     <i class="fas fa-dollar-sign"></i>
                 </div>
-                {!! Form::text('valor_iva', null, ['class' => 'form-control', 'required']) !!}
+                {!! Form::text('valor_iva', null, ['id'=>'valor_iva', 'class' => 'form-control',  'readonly']) !!}
             </div>
         </div>
 
@@ -129,12 +138,15 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
 
-                {!! Form::text('total', null, ['class' => 'form-control', 'required']) !!}
+                {!! Form::text('total', null, ['id'=>'total', 'class' => 'form-control', 'readonly']) !!}
             </div>
         </div>
 
 
     </div>
+
+</form>
+
 @stop
 
 @section('css')
@@ -156,6 +168,12 @@
 
 @section('js')
     <script>
+        
+        const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+        var contador = 0;
+        var subtotal = 0.0;
+        var iva = 0.0 ;
+
         $("#btnAgregar").on("click", function() {
 
             var selectProveedor = document.getElementById('proveedores');
@@ -173,18 +191,81 @@
 
 
         $('#agregarItem').click(function() {
+
             var selectProduct = document.getElementById('producto');
             text = selectProduct.options[selectProduct.selectedIndex].innerText;
             var cantidad = $('#cantidad').val();
 
+    
+            if(contador === 0){
+                contador = 1;
+            }else{
+                contador= contador +1;
+            }
+
             if(cantidad === '' || text === 'Seleccione' ){
                 alert("Seleccione un producto y digite la cantidad");
             }else{
-                $('table tbody').append('<tr><td>' + text+ '</td><td>' + cantidad +'</td><td>'+
-                    '<a class="btn btn-primary"><i class="fas fa-edit"></i></a>'+
-                    '<a class="btn btn-danger"><i class="fas fa-trash"></i></a>'+'</tr>');
-                $("#miModal").modal('hide');
+                fetch('../obtenerproducto',{
+                    method : 'POST',
+                    body: JSON.stringify({texto : selectProduct.options[selectProduct.selectedIndex].value}),
+                    headers:{
+                        'Content-Type': 'application/json',
+                        "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                    }
+                }).then(response =>{
+                    return response.json()
+                }).then( data =>{
+
+                    if( document.getElementById('subtotal').value == null){
+                        subtotal = data.producto.precio * cantidad;
+                        document.getElementById('subtotal').value = subtotal;
+
+                    }else{
+                        subtotal = subtotal + data.producto.precio * cantidad;
+                        document.getElementById('subtotal').value = subtotal;
+
+                    }
+
+                    iva = (subtotal) * 0.19;
+                    document.getElementById('valor_iva').value = iva;
+                    document.getElementById('total').value = subtotal + iva;
+                    
+
+                    $('table tbody').append('<tr><td> <input style="border: 0; background-color:transparent;" readonly type="number" name="idproductotbl'+contador+'" value="'+selectProduct.options[selectProduct.selectedIndex].value+
+                    '"></td><td> <input style="border: 0; background-color:transparent;"  readonly type="text" name="nombreproductotbl'+contador+'" value="'+text+
+                    '"></td><td> <input style="border: 0; background-color:transparent;"  readonly type="number" name="cantidadproductotbl'+contador+'" value="'+cantidad+
+                    '"></td><td> <input style="border: 0; background-color:transparent;"  readonly type="number" name="precio" value="'+data.producto.precio+
+                    '"></td><td> <input  type="hidden" id="contador" name="contador" value="'+contador+'">'+
+                    '<input  class="btn btn-danger" type="button" value="Eliminar" onclick="deleteRow(this)">'+'</tr>');
+
+                     $("#miModal").modal('hide');
+
+                   
+                }).catch(error => console.error(error));
+
+               
+
             }
+            
         });
+
+        function deleteRow(id){
+            var i=id.parentNode.parentNode.rowIndex
+            document.getElementById('table_articulos').deleteRow(i)
+        }
+
+        @if ( session('guardado') == 'ok')
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Registro guardado con éxito',
+            showConfirmButton: false,
+            timer: 1500
+            })
+        @endif
+
+
+        
     </script>
 @stop
