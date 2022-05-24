@@ -84,7 +84,7 @@
 
 						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
 						<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
-						<li><a href="{{route('carrito')}}">carrito <span class="icon-dot"></span></a></li>
+						<li><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -289,8 +289,8 @@
 						<div class="footer">
 							<h3 class="footer-title">Información</h3>
 							<ul class="footer-links">
-								<li><a href="#">Sobre nosotros</a></li>
-								<li><a href="#">Política de privacidad</a></li>
+								<li><a href="{{url('/sobrenosotros')}}">Sobre nosotros</a></li>
+								<li><a href="{{url('/politicasprivacidad')}}">Política de privacidad</a></li>
 
 								<p></p>
 
