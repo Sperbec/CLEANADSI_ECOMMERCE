@@ -10,6 +10,19 @@
 @stop
 
 @section('content')
+@error('nombres_cuenta')
+<small>{{$message}}</small>
+<br>
+@enderror
+
+@error('apellidos_cuenta')
+<small>{{$message}}</small>
+@enderror
+
+@error('email_cuenta')
+<small>{{$message}}</small>
+@enderror
+
 
 <!-- Modal editar datos personales-->
 <div id="mdlEditarDatosPersonales" class="modal fade" role="dialog">
@@ -19,6 +32,7 @@
                 <h3>Editar datos personales</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+            
             <div class="modal-body">
 
                 <form action="{{route('micuenta.update', $usuario->id_usuario)}}" method="post">
@@ -28,23 +42,24 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="nombres">Nombres:</label>
+                            <label for="nombres_cuenta">Nombres:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombres', $usuario->nombres, ['id' => 'nombres', 'class' =>
+                                {!! Form::text('nombres_cuenta', $usuario->nombres, ['id' => 'nombres', 'class' =>
                                 'form-control','required']) !!}
                             </div>
-                        </div>
+                           </div>
+                          
 
                         <div class="col-md-6">
-                            <label for="apellidos">Apellidos:</label>
+                            <label for="apellidos_cuenta">Apellidos:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('apellidos', $usuario->apellidos, ['id' => 'apellidos', 'class' =>
+                                {!! Form::text('apellidos_cuenta', $usuario->apellidos, ['id' => 'apellidos', 'class' =>
                                 'form-control',
                                 'required']) !!}
                             </div>
@@ -114,12 +129,12 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="email">Correo principal:</label>
+                            <label for="email_cuenta">Correo principal:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-envelope-open"></i>
                                 </div>
-                                {!! Form::text('email', $usuario->email, ['id' => 'email', 'class' => 'form-control',
+                                {!! Form::text('email_cuenta', $usuario->email, ['id' => 'email_cuenta', 'class' => 'form-control',
                                 'required']) !!}
                             </div>
                         </div>
@@ -216,6 +231,7 @@
         </div>
     </div>
 </div>
+
 
 
 

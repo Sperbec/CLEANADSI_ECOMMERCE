@@ -20,8 +20,8 @@
 
 @error ('codigo_departamento')
 <small>{{$message}}</small>
-@enderror
 <br>
+@enderror
 @error ('nombre_departamento')
 <small>{{$message}}</small>
 @enderror

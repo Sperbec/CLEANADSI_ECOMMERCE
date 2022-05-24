@@ -15,20 +15,13 @@
 @section('content')
 
 @error('codigo_categoria')
-<small>*{{$message}}</small>
-@enderror
+<small>{{$message}}</small>
 <br>
+@enderror
 @error('nombre_categoria')
-<small>*{{$message}}</small>
+<small>{{$message}}</small>
 @enderror
 
-
-
-
-
-@error('nombrecategoria')
-<small>*{{$message}}</small>
-@enderror
 
     <!-- Modal de crear categoria-->
     <div id="mdlCrearCategoria" class="modal fade" role="dialog">

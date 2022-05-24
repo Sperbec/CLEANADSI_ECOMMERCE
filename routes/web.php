@@ -48,6 +48,9 @@ Route::post('/eliminarBarrio', [App\Http\Controllers\BarrioController::class, 'e
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/preguntasfrecuentes', [App\Http\Controllers\FrontendController::class, 'preguntasfrecuentes'])->name('preguntasfrecuentes');
+Route::get('/sobrenosotros', [App\Http\Controllers\FrontendController::class, 'sobrenosotros'])->name('sobrenosotros');
+Route::get('/politicasprivacidad', [App\Http\Controllers\FrontendController::class, 'politicasprivacidad'])->name('politicasprivacidad');
 
 //Rutas para login
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'getLogin'])->name('getLogin');
@@ -117,13 +120,13 @@ Route::get('frontend/carrito', [FrontendController::class, 'carrito'])->name('ca
 Route::get('add-to-carrito/{id}', [FrontendController::class, 'añadir_carrito'])->name('carrito.añadir');
 Route::patch('update-cart', [FrontendController::class, 'update'])->name('carrito.update');
 Route::delete('remove-from-cart', [FrontendController::class, 'eliminar'])->name('carrito.eliminar');
-Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra'])->name('carrito.compra');
+Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra'])/* ->middleware('auth') */ ->name('carrito.compra');
 
 
 
 /* rutas de la factura y detalle de factura*/
  Route::get('facturas/facturas/{factura}', [FacturaController::class, 'factura'])->name('factura.cliente'); 
- Route::post('facturas/', [FacturaController::class, 'crear_factura']) ->middleware('auth') ->name('factura.crear'); 
+ Route::post('facturas/', [FacturaController::class, 'crear_factura']) ->name('factura.crear'); 
 
 
 
