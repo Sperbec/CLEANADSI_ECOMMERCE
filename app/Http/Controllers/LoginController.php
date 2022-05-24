@@ -149,7 +149,9 @@ class LoginController extends Controller
     
     //restablecer contraseña
     public function getRecover(){
-       return view('login.recover');
+        $categorias = Categoria::all();
+        $data = ["categorias" => $categorias];
+        return view('login.recover', $data );
     }
 
     public function postRecover(Request $request)

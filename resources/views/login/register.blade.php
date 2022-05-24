@@ -4,20 +4,8 @@
 <!--Reemplazar el titulo-->
 @section('title', 'Registrarse')
 
-<style>
-    .content{
-        margin: 0 auto;
-        text-align: center;
-        border-radius: 10px;
-        width: 50%;
-    }
 
-    .text{
-        float: left;
-        margin-top: 16px;
-    }
-</style>
-
+<link rel="stylesheet" href="{{url('/static/css/login.css')}}">
 <!--Mostrar sección de contenido exclusivo de esta plantilla, se debe iniciar y finalizar-->
 @section('contenido')  
 
