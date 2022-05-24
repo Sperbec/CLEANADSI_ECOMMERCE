@@ -35,7 +35,14 @@
     <div class="row">
         <div class="col-md-12">
             <label for="password" class="text">Contraseña:</label>
-            {!!  Form::password('password', ['id' => 'password', 'class' => 'form-control', 'required']) !!}
+            {!!  Form::password('password', ['id' => 'password', 'class' => 'form-control col', 'required']) !!}
+        
+            <div class="col-md-3">
+                <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"> 
+                    <span class="fa fa-eye-slash icon"></span></button>
+            </div>
+        
+        
         </div>
     </div>
 
