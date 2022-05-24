@@ -75,7 +75,7 @@ class LoginController extends Controller
 
         if ($validator->fails()) :
             return back()->withErrors($validator)->with('message', 'Error al hacer login')
-                ->with('typealert', 'danger');
+                ->with('typealert', 'danger')->withInput();;
         else :
             //Busco el usuario con la información del correo y contraseña
             //El ultimo parámetro nos indica si el usuario va a estar conectado.
@@ -86,7 +86,7 @@ class LoginController extends Controller
                 return redirect('/home');
             else :
                 return back()->withErrors($validator)->with('message', 'Credenciales incorrectas.')
-                    ->with('typealert', 'danger');
+                    ->with('typealert', 'danger')->withInput();;
             endif;
 
         endif;
@@ -101,7 +101,7 @@ class LoginController extends Controller
         $rules = [
             'nombres' => 'required|regex:/^[\pL\s\-]+$/u',
             'apellidos' => 'required|regex:/^[\pL\s\-]+$/u',
-            'numero_documento' => 'required|min:10|max:15',
+            'numero_documento' => 'required|min:8|max:15',
             'fecha_nacimiento' => 'before:'.$fechaActual
         ];
 
@@ -111,7 +111,7 @@ class LoginController extends Controller
             'apellidos.required' => 'Los apellidos son requeridos.',
             'apellidos.regex' => 'Los apellidos no pueden contener números.',
             'numero_documento.required' => 'El número de documento es requerido',
-            'numero_documento.min' => 'La cantidad de digitos para el número de documento no puede ser inferior a 10',
+            'numero_documento.min' => 'La cantidad de digitos para el número de documento no puede ser inferior a 8',
             'numero_documento.max' => 'La cantidad de digitos para el número de documento no puede ser superior a 15',
             'fecha_nacimiento.before' =>'La fecha de nacimiento no puede ser superior a la fecha actual'
         ];
@@ -197,7 +197,9 @@ class LoginController extends Controller
 
     public function getReset(Request $request)
     {
-        $data = ['email' => $request->get('email')];
+        $categorias = Categoria::all();
+        $data = ['email' => $request->get('email'), 
+                'categorias' => $categorias ];
         return view('login.reset', $data);
     }
 

@@ -18,8 +18,6 @@
 
 {!! Form::open(['url' => '/login']) !!}
 <div class="content">
-
-
     <div class="section-title">
         <h3 class="title">Iniciar sesión</h3>
     </div>
