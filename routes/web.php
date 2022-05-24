@@ -122,8 +122,8 @@ Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra'])->n
 
 
 /* rutas de la factura y detalle de factura*/
- Route::get('facturas/facturas', [FacturaController::class, 'factura'])->name('factura'); 
- Route::post('facturas/', [FacturaController::class, 'crear_factura'])->name('factura.crear'); 
+ Route::get('facturas/facturas/{factura}', [FacturaController::class, 'factura'])->name('factura.cliente'); 
+ Route::post('facturas/', [FacturaController::class, 'crear_factura']) ->middleware('auth') ->name('factura.crear'); 
 
 
 

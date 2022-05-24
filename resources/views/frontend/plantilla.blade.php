@@ -109,9 +109,7 @@
 										<div class="qty">{{ count((array) session('carrito')) }}</div>
 									</a>
 									@if(isset($carrito))
-									<div class="cart-btns text-center">
-										<a href="{{route('carrito')}}"> Carrito Vacio</a>
-									</div>
+									
 									@else
 
 									<div class="cart-dropdown">

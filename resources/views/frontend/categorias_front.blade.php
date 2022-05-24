@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="add-to-cart">
-                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
+                                <button class="add-to-cart-btn"><a href="{{route('carrito.añadir',$pap->id_producto)}}"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</a></button>
                             </div>
                         </div>
                     </div>

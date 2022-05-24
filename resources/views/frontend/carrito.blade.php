@@ -34,7 +34,7 @@
                 @php $total += $details['precio'] * $details['quantity'] @endphp
                 @php $precio = $details['precio'] @endphp
                 @php $subtotal = $precio * $details['quantity'] @endphp
-                <tr data-id="{{ $id }}">
+                <tr data-id="{{ $details['id']}}">
                     <td data-th="Product">
                         <div class="row">
                             <div class="col-sm-3 "><img src="{{ $details['imagen'] }}" width="100" height="100" class="img-responsive"/></div>

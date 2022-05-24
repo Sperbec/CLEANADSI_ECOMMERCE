@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\DetalleFactura;
+
 use App\Models\Producto;
 use App\Models\Facturas;
 use App\Models\Opciones_definidas;
@@ -12,6 +14,12 @@ use App\Models\Categoria;
 class FrontendController extends Controller
 {
 //BORRAR PRUEBA
+
+/* public function __construct()
+{
+    $this->middleware('auth');
+} */
+
     public function prueba()
     {
         return view('frontend.prueba');
@@ -166,7 +174,7 @@ class FrontendController extends Controller
                 session()->put('carrito', $carrito);
             }
             session()->flash('success', 'Producto eliminado');
-        } return redirect()->back()->with('success', 'Producto Añadido al carrito!');
+        } return redirect()->route('carrito')->with('success', 'Producto eliminado del carrito!');
     }
 
     public function detalle_compra(Request $request)
@@ -174,13 +182,13 @@ class FrontendController extends Controller
         
         $categorias = Categoria::all();
 
-
+        $detalle_factura = DetalleFactura::all();
         $comentario_facturas = Facturas::all();
         $opcion_entregas = Opciones_definidas::where('variable', '00tipoentrega')->get();
         $opcion_pagos = Opciones_definidas::where('variable', '00tipopago')->get();
         $carrito = session()->get('carrito');
         session()->put('carrito', $carrito);
-       return view('facturas/detalle',compact('opcion_entregas','opcion_pagos','comentario_facturas','categorias'));
+       return view('facturas/detalle',compact('opcion_entregas','opcion_pagos','comentario_facturas','categorias','detalle_factura'));
     }  
 
     
