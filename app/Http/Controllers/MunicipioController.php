@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Departamento;
 use App\Models\Municipio;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreForm;
 
 class MunicipioController extends Controller
 {
@@ -44,10 +45,10 @@ class MunicipioController extends Controller
         );
     }
 
-    public function store(Request $request)
+    public function store(StoreForm $request)
     {
-        $codigomunicipio = $request->codigo;
-        $nombremunicipio = $request->nombre;
+        $codigomunicipio = $request->codigo_municipio;
+        $nombremunicipio = $request->nombre_municipio;
         $id_departamento = $request->departamento;
 
         $municipio = new Municipio();
@@ -60,7 +61,7 @@ class MunicipioController extends Controller
         return redirect()->route('municipio.index')->with('guardado', 'ok');
     }
 
-    public function updateMunicipio(Request $request)
+    public function updateMunicipio(StoreForm $request)
     {
 
         $codigomunicipio = $request->codigo;

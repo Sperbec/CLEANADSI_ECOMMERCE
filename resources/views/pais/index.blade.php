@@ -15,8 +15,8 @@
 
 @error ('codigo_pais')
 <small>{{$message}}</small>
-@enderror
 <br>
+@enderror
 @error ('nombre_pais')
 <small>{{$message}}</small>
 @enderror
