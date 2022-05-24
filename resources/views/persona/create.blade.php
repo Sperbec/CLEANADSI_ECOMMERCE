@@ -31,7 +31,7 @@
                    
                 </div>
                 @error ('nombres_cliente')
-                <small>*{{$message}}</small>
+                <small>{{$message}}</small>
                 @enderror
             </div>
             
@@ -41,7 +41,7 @@
            
             
             <div class="col-md-6">
-                <label for="apellidos_cliente" class="mtop16">apellidos:</label>
+                <label for="apellidos_cliente" class="mtop16">Apellidos:</label>
                 <div class="input-group">
                     <div class="input-group-text">
                         <i class="fas fa-user"></i>
@@ -49,7 +49,7 @@
                     {!! Form::text('apellidos_cliente', null, ['class' => 'form-control', 'required', 'id' => 'apellidos_cliente_persona']) !!}
                 </div>
                 @error ('apellidos_cliente')
-                <small>*{{$message}}</small>
+                <small>{{$message}}</small>
                 @enderror
             </div>
         </div>

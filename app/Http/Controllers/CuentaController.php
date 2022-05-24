@@ -12,6 +12,7 @@ use App\Models\Opciones_definidas;
 use App\Models\Municipio;
 use App\Models\Persona_contacto;
 use App\Models\Barrio;
+use App\Http\Requests\StoreForm;
 
 class CuentaController extends Controller
 {
@@ -65,12 +66,12 @@ class CuentaController extends Controller
 
    }
 
-   public function update(Request $request, $id){
+   public function update(StoreForm $request, $id){
 
         $persona = Persona::findOrFail($id);
 
-        $persona->nombres = $request->nombres;
-        $persona->apellidos = $request->apellidos;
+        $persona->nombres = $request->nombres_cuenta;
+        $persona->apellidos = $request->apellidos_cuenta;
         $persona->id_opcion_tipo_documento = $request->tipo_documento;
         $persona->numero_documento = $request->numero_documento;
         $persona->id_opcion_genero = $request->tipo_genero;
@@ -82,7 +83,7 @@ class CuentaController extends Controller
         //Actualizo el email de la tabla usuarios
         $usuario = DB::table('usuarios')->where('id_persona', $id)->first();
         $usuario = User::findOrFail($usuario->id_usuario);
-        $usuario->email = $request->email;
+        $usuario->email = $request->email_cuenta;
         $usuario->update();
 
         return redirect()->route('micuenta.index')->with('editado', 'ok');
