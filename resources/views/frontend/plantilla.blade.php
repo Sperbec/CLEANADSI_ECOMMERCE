@@ -263,12 +263,12 @@
 				<div class="row">
 					<div class="col-md-3 col-xs-6">
 						<div class="footer">
-							<h3 class="footer-title">Contact Us</h3>
+							<h3 class="footer-title">Contáctanos</h3>
 
 							<ul class="footer-links">
-								<li><a href="#"><i class="fa fa-map-marker"></i>Salomia.Cali.Valle</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-								<li><a href="#"><i class="fa fa-envelope-o"></i>CleanLine@email.com</a></li>
+								<li><a href="#"><i class="fa fa-map-marker"></i>Calle 56 #1E-142</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i>315-576-86-10</a></li>
+								<li><a href="#"><i class="fa fa-envelope-o"></i>Cleanline@cleanadsi.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -277,7 +277,7 @@
 						<div class="footer">
 							<h3 class="footer-title">ayuda</h3>
 							<ul class="footer-links">
-								<li><a href="#">Preguntas Frecuentes</a></li>
+								<li><a href="#">Preguntas frecuentes</a></li>
 
 							</ul>
 						</div>
@@ -287,10 +287,10 @@
 
 					<div class="col-md-3 col-xs-6">
 						<div class="footer">
-							<h3 class="footer-title">Information</h3>
+							<h3 class="footer-title">Información</h3>
 							<ul class="footer-links">
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Politicas y Privacidad</a></li>
+								<li><a href="#">Sobre nosotros</a></li>
+								<li><a href="#">Política de privacidad</a></li>
 
 								<p></p>
 
@@ -300,7 +300,7 @@
 
 					<div class="col-md-3 col-xs-6">
 						<div class="footer">
-							<h3 class="footer-title">siguenos</h3>
+							<h3 class="footer-title">Síguenos</h3>
 							<ul class="footer-links">
 								<li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
 								<li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
@@ -334,8 +334,7 @@
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							Copyright &copy;<script>
 								document.write(new Date().getFullYear());
-							</script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-								aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							</script> All rights reserved </a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</span>
 
