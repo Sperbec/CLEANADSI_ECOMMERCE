@@ -22,18 +22,16 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="nombres">Nombres:</label>
+                <label for="nombres_cliente">Nombres:</label>
                 <div class="input-group">
                     <div class="input-group-text">
                         <i class="fas fa-user"></i>
                     </div>
-                    {!! Form::text('nombres', null, ['class' => 'form-control', 'required', 'id' => 'nombres_persona']) !!}
+                    {!! Form::text('nombres_cliente', null, ['class' => 'form-control', 'required', 'id' => 'nombres_cliente_persona']) !!}
                    
                 </div>
-                @error ('nombres')
-                <br>
-                <small>*{{$message}}</small>
-                <br>
+                @error ('nombres_cliente')
+                <small>{{$message}}</small>
                 @enderror
             </div>
             
@@ -43,17 +41,15 @@
            
             
             <div class="col-md-6">
-                <label for="apellidos" class="mtop16">Apellidos:</label>
+                <label for="apellidos_cliente" class="mtop16">Apellidos:</label>
                 <div class="input-group">
                     <div class="input-group-text">
                         <i class="fas fa-user"></i>
                     </div>
-                    {!! Form::text('apellidos', null, ['class' => 'form-control', '', 'id' => 'apellidos_persona']) !!}
+                    {!! Form::text('apellidos_cliente', null, ['class' => 'form-control', 'required', 'id' => 'apellidos_cliente_persona']) !!}
                 </div>
-                @error ('apellidos')
-                <br>
-                <small>*{{$message}}</small>
-                <br>
+                @error ('apellidos_cliente')
+                <small>{{$message}}</small>
                 @enderror
             </div>
         </div>
@@ -72,29 +68,21 @@
                         @endforeach
                     </select>
                 </div>
-                @error ('tipo_documento')
-                <br>
-                <small>*{{$message}}</small>
-                <br>
-                @enderror
+               
             </div>
 
 
             <div class="col-md-6">
-                <label for="numero" class="mtop16">Número de documento:</label>
+                <label for="numero_documento" class="mtop16">Número de documento:</label>
                 <div class="input-group">
                     <div class="input-group-text">
                         <i class="far fa-id-card"></i>
                     </div>
 
-                    {!! Form::number('numero_documento', null, ['class' => 'form-control', '', 'id' => 'documento_persona', 'min' => '999', 'max' => '999999999999999']) !!}
+                    {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'min' => '999', 'max' => '999999999999999']) !!}
 
                 </div>
-                @error ('numero')
-                <br>
-                <small>*{{$message}}</small>
-                <br>
-                @enderror
+               
             </div>
         </div>
 
@@ -106,7 +94,7 @@
                     <div class="input-group-text">
                         <i class="fas fa-venus-mars"></i>
                     </div>
-                    <select id="genero_persona" name="genero" class="form-select">
+                    <select id="genero_persona" name="genero" class="form-select" required>
                         <option value=''>Seleccione</option>
                         @foreach ($generos as $genero)
                             <option value="{{ $genero->id_opcion }}">{{ $genero->nombre }}</option>

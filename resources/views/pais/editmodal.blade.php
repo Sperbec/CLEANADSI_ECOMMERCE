@@ -14,12 +14,12 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="codigo">Codigo país:</label>
+                            <label for="codigo_pais">Codigo país:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('codigo', $pais->codigo, ['id' => 'codigopais', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('codigo_pais', $pais->codigo, ['id' => 'codigopais', 'class' => 'form-control', 'required']) !!}
 
                             </div>
 
@@ -30,12 +30,12 @@
 
                         <div class="col-md-6">
 
-                            <label for="nombre">Nombre país:</label>
+                            <label for="nombre_pais">Nombre país:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombre', $pais->nombre, ['id' => 'nombrepais', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombre_pais', $pais->nombre, ['id' => 'nombrepais', 'class' => 'form-control', 'required']) !!}
 
                             </div>
 

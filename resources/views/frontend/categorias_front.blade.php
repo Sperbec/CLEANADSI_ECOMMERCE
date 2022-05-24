@@ -18,7 +18,7 @@
                 
                 <div class="row">
                     <!-- product -->
-                    @foreach($producto_aseo_personal as $pap)
+                    @foreach($categoria_seleccionada as $pap)
                     <div class="col-md-4 col-xs-6">
                         
                         <div class="product">
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="add-to-cart">
-                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
+                                <a href="{{route('carrito.añadir',$pap->id_producto)}}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button></a>
                             </div>
                         </div>
                     </div>
@@ -57,9 +57,9 @@
                
                 <!-- store bottom filter -->
                 <div class="store-filter clearfix">
-                    <span class="store-qty">Showing {{$producto_aseo_personal->count()}}-100 products</span>
+                    <span class="store-qty">Showing {{$categoria_seleccionada->count()}}-100 products</span>
                     <div class="store-position">
-                        {!!$producto_aseo_personal->links()!!}
+                        {!!$categoria_seleccionada->links()!!}
                         
                         
                     </div>

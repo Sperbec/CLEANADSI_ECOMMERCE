@@ -77,12 +77,12 @@ class ProveedorController extends Controller
 
     public function create()
     {
-        $tipos_personas = Opciones_definidas::where('variable', '00tipopersona')->get();
+        $tipos_proveedores = Opciones_definidas::where('variable', '00tipopersona')->get();
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
 
         $data = [
-            'tipos_personas' => $tipos_personas,
+            'tipos_proveedores' => $tipos_proveedores,
             'tipos_documentos' => $tipos_documentos,
             'generos' => $generos
         ];
@@ -91,7 +91,7 @@ class ProveedorController extends Controller
 
     public function store(StoreForm $request)
     {
-        $tipos_personas = $request->tipos_personas;
+        $tipos_personas = $request->tipos_proveedores;
 
 
         // Datos persona natural para el if de persona natural
@@ -99,12 +99,12 @@ class ProveedorController extends Controller
 
             $persona = new Persona();
 
-            $persona->nombres = $request->nombres;
-            $persona->apellidos = $request->apellidos;
-            $persona->id_opcion_genero = $request->genero;
-            $persona->id_opcion_tipo_documento = $request->tipo_documento;
+            $persona->nombres = $request->nombres_proveedor;
+            $persona->apellidos = $request->apellidos_proveedor;
+            $persona->id_opcion_genero = $request->genero_proveedor;
+            $persona->id_opcion_tipo_documento = $request->tipo_doc_proveedor;
             $persona->numero_documento = $request->numero_documento;
-            $persona->natalicio = $request->calendario;
+            $persona->natalicio = $request->fecha_nacimiento;
             $persona->habilitado = 1;
 
             $persona->save();
@@ -119,12 +119,12 @@ class ProveedorController extends Controller
         if ($tipos_personas == 21) {
             $proveedor = new Proveedor();
             $proveedor->id_opcion_persona = $tipos_personas;
-            $proveedor->nombre = $request->nombre;
+            $proveedor->nombre = $request->nombre_juridico;
             $proveedor->nit =  $request->nit;
-            $proveedor->direccion = $request->direccion;
-            $proveedor->correo_electronico = $request->correo;
-            $proveedor->contacto = $request->contacto;
-            $proveedor->telefono_movil = $request->telefono_movil;
+            $proveedor->direccion = $request->direccion_proveedor;
+            $proveedor->correo_electronico = $request->correo_proveedor;
+            $proveedor->contacto = $request->contacto_proveedor;
+            $proveedor->telefono_movil = $request->telefono_proveedor;
             $proveedor->save();
         }
 
@@ -156,12 +156,10 @@ class ProveedorController extends Controller
 
         $proveedor = DB::select($sql);
 
-        $tipos_personas = Opciones_definidas::where('variable', '00tipopersona')->get();
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
 
         $data = ['proveedor' => $proveedor[0],
-                'tipos_personas' => $tipos_personas,
                 'tipos_documentos' => $tipos_documentos,
                 'generos' => $generos
         ];
@@ -169,7 +167,7 @@ class ProveedorController extends Controller
         return view('proveedor.edit', $data);
     }
 
-    public function update(Request $request, $id_proveedor)
+    public function update(StoreForm $request, $id_proveedor)
     {
 
         $proveedor = Proveedor::find($id_proveedor);
@@ -177,24 +175,24 @@ class ProveedorController extends Controller
         if ($proveedor->id_opcion_persona == 20) {
             $persona = Persona::find($proveedor->id_persona);
 
-            $persona->nombres = $request->nombres;
-            $persona->apellidos = $request->apellidos;
-            $persona->id_opcion_genero = $request->genero;
-            $persona->id_opcion_tipo_documento = $request->tipo_documento;
+            $persona->nombres = $request->nombres_proveedor;
+            $persona->apellidos = $request->apellidos_proveedor;
+            $persona->id_opcion_genero = $request->genero_proveedor;
+            $persona->id_opcion_tipo_documento = $request->tipo_doc_proveedor;
             $persona->numero_documento = $request->numero_documento;
-            $persona->natalicio = $request->calendario;
+            $persona->natalicio = $request->fecha_nacimiento;
             $persona->habilitado = 1;
 
             $persona->update();
         }
 
         if ($proveedor->id_opcion_persona  == 21) {
-            $proveedor->nombre = $request->nombre;
+            $proveedor->nombre = $request->nombre_juridico;
             $proveedor->nit =  $request->nit;
-            $proveedor->direccion = $request->direccion;
-            $proveedor->correo_electronico = $request->correo;
-            $proveedor->contacto = $request->contacto;
-            $proveedor->telefono_movil = $request->telefono_movil;
+            $proveedor->direccion = $request->direccion_proveedor;
+            $proveedor->correo_electronico = $request->correo_proveedor;
+            $proveedor->contacto = $request->contacto_proveedor;
+            $proveedor->telefono_movil = $request->telefono_proveedor;
             $proveedor->update();
         }
 
@@ -204,11 +202,17 @@ class ProveedorController extends Controller
     public function destroy($id_proveedor)
     {
         $proveedor = Proveedor::findOrFail($id_proveedor);
-        $persona = Persona::find($proveedor->id_persona);
+
+        $persona = null;
+        if ($proveedor->id_persona != null) {
+            $persona = Persona::find($proveedor->id_persona);
+        }
 
         $proveedor->delete();
-        $persona->delete();
 
+        if($persona != null){
+            $persona->delete();    
+        }       
 
         return redirect()->route('proveedores.index')->with('eliminado', 'ok');;
     }

@@ -23,23 +23,33 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <label for="nombres">Nombres:</label>
+                    <label for="nombres_cliente">Nombres:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fas fa-user"></i>
                         </div>
-                        {!! Form::text('nombres', $cliente->nombres, ['class' => 'form-control', 'required', 'id' => 'nombres_persona']) !!}
+                        {!! Form::text('nombres_cliente', $cliente->nombres, ['class' => 'form-control', 'required', 'id' => 'nombres_persona']) !!}
                     </div>
+                    @error ('nombres_cliente')
+                    <small>{{$message}}</small>
+                    @enderror
                 </div>
 
                 <div class="col-md-6">
-                    <label for="apellidos" class="mtop16">Apellidos:</label>
+                    <label for="apellidos_cliente" class="mtop16">Apellidos:</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="fas fa-user"></i>
                         </div>
-                        {!! Form::text('apellidos', $cliente->apellidos, ['class' => 'form-control', 'required', 'id' => 'apellidos_persona']) !!}
+                        {!! Form::text('apellidos_cliente', $cliente->apellidos, ['class' => 'form-control', 'required', 'id' => 'apellidos_persona']) !!}
                     </div>
+                    @error ('apellidos_cliente')
+                    <small>
+                        
+                        
+                        
+                        {{$message}}</small>
+                    @enderror
                 </div>
             </div>
 
@@ -109,7 +119,7 @@
                             <div class="input-group-text">
                                 <i class="far fa-envelope-open"></i>
                             </div>
-        
+
                             {!!  Form::email('email', $usuario->email, ['class' => 'form-control', 'required']) !!}
                         </div>
                     </div>
@@ -121,7 +131,6 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 
     <!-- Para importar bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"

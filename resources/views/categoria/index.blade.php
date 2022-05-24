@@ -5,6 +5,7 @@
 @section('content_header')
     <div class="row">
         <h1>Categorías</h1>
+
         <a id="btnCrear" data-toggle="modal" data-target="#mdlCrearCategoria" class="btn btn-primary btn-sm ml-auto">
             <i class="fas fa-plus"></i> Crear categoría</a>
     </div>
@@ -13,9 +14,14 @@
 
 @section('content')
 
-@error('nombrecategoria')
-<small>*{{$message}}</small>
+@error('codigo_categoria')
+<small>{{$message}}</small>
+<br>
 @enderror
+@error('nombre_categoria')
+<small>{{$message}}</small>
+@enderror
+
 
     <!-- Modal de crear categoria-->
     <div id="mdlCrearCategoria" class="modal fade" role="dialog">
@@ -31,23 +37,24 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="codigocategoria">Codigo categoría:</label>
+                            <label for="codigo_categoria">Codigo categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="far fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('codigocategoria', null, ['id' => 'codigocategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('codigo_categoria', null, ['id' => 'codigo_categoria', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="nombrecategoria">Nombre categoría:</label>
+                            <label for="nombre_categoria">Nombre categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fas fa-keyboard"></i>
                                 </div>
-                                {!! Form::text('nombrecategoria', null, ['id' => 'nombrecategoria', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nombre_categoria', null, ['id' => 'nombre_categoria', 'class' => 'form-control', 'required']) !!}
                             </div>
+
 
 
                         </div>
@@ -71,10 +78,10 @@
     <table class="table table-hover" id="tblcategoria">
         <thead>
             <tr>
-                <td>ID</td>
-                <td>Código</td>
-                <td>Nombre</td>
-                <td>Acciones</td>
+                <td class="negrita">ID</td>
+                <td class="negrita">Código</td>
+                <td class="negrita">Nombre</td>
+                <td class="negrita">Acciones</td>
             </tr>
         </thead>
         <tbody>
@@ -106,14 +113,16 @@
         </tbody>
     </table>
 
-    @error('codigo')
-    <small>*{{$message}}</small>
-    @enderror
+
 
 @stop
 
 @section('css')
-
+<style>
+    .negrita {
+        font-weight: bold;
+    }
+</style>
 @stop
 
 @section('js')
@@ -121,15 +130,15 @@
     <script>
         //Modal de crear categoría
         $("#btnCrear").on("click", function() {
-            document.getElementById('codigocategoria').value = '';
-            document.getElementById('nombrecategoria').value = '';
+            document.getElementById('codigo_categoria').value = '';
+            document.getElementById('nombre_categoria').value = '';
             $("#mdlCrearCategoria").modal("show");
         });
 
         //Modal de editar categoría
         $("#btnEditar").on("click", function() {
-            document.getElementById('codigocategoria').value = '';
-            document.getElementById('nombrecategoria').value = '';
+            document.getElementById('codigo_categoria').value = '';
+            document.getElementById('nombre_categoria').value = '';
             $("#mdlEditarCategoria").modal("show");
         });
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pais;
 use Symfony\Contracts\Service\Attribute\Required;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreForm;
 
 class PaisController extends Controller
 {
@@ -22,12 +23,12 @@ class PaisController extends Controller
         return view('pais.index', $data);
     }
 
-    public function store(Request $request)
+    public function store(StoreForm $request)
     {
 
 
-        $codigopais = $request->codigo;
-        $nombrepais = $request->nombre;
+        $codigopais = $request->codigo_pais;
+        $nombrepais = $request->nombre_pais;
 
         $pais = new Pais();
         $pais->codigo = $codigopais;
@@ -47,10 +48,10 @@ class PaisController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(StoreForm $request, $id)
     {
-        $codigopais = $request->codigo;
-        $nombrepais = $request->nombre;
+        $codigopais = $request->codigo_pais;
+        $nombrepais = $request->nombre_pais;
 
         $pais = Pais::findOrFail($id);
         $pais->codigo = $codigopais;

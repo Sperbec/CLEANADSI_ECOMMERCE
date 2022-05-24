@@ -63,7 +63,7 @@
                     <h2 class="product-name">{{$producto->nombre}}</h2>
                     
                     <div>
-                        <h3 class="product-price">${{$producto->precio}}</h3>
+                        <h3 class="product-price">${{number_format($producto->precio)}}</h3>
                         <span class="product-available">Cantidad disponivle : {{$producto->cantidad_existencia}}</span>
                     </div>
                     

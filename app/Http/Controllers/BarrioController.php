@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Municipio;
 use App\Models\Barrio;
+use App\Http\Requests\StoreForm;
 
 class BarrioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $municipios= Municipio::All();
@@ -42,10 +48,10 @@ class BarrioController extends Controller
         );
     }
 
-    public function store(Request $request)
+    public function store(StoreForm $request)
     {
-        $codigobarrio = $request->codigo;
-        $nombrebarrio = $request->nombre;
+        $codigobarrio = $request->codigo_barrio;
+        $nombrebarrio = $request->nombre_barrio;
         $id_municipio = $request->municipio;
 
         $barrio = new Barrio();
@@ -58,11 +64,11 @@ class BarrioController extends Controller
         return redirect()->route('barrio.index')->with('guardado', 'ok');
     }
 
-    public function updateBarrio(Request $request)
+    public function updateBarrio(StoreForm $request)
     {
 
-        $codigobarrio = $request->codigo;
-        $nombrebarrio = $request->nombre;
+        $codigobarrio = $request->codigobarrioeditar;
+        $nombrebarrio = $request->nombrebarrioeditar;
 
         $barrio = Barrio::findOrFail($request->id);
         $barrio->codigo = $codigobarrio;

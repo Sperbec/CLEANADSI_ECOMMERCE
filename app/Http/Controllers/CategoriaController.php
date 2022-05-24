@@ -24,15 +24,12 @@ class CategoriaController extends Controller
 
     public function store(StoreForm $request){
         
-        $codigocategoria = $request->codigocategoria;
-        $nombrecategoria = $request->nombrecategoria;
-        
         $categoria = new Categoria();
-        $categoria->codigo = $codigocategoria;
-        $categoria->nombre = $nombrecategoria;
-
+        $categoria->codigo =  $request->codigo_categoria;
+        $categoria->nombre =  $request->nombre_categoria;
+       
         $categoria->save();
-
+        
         return redirect()->route('categoria.index')->with('guardado', 'ok');
     }
 
@@ -44,13 +41,11 @@ class CategoriaController extends Controller
     }
 
     public function update(StoreForm $request, $id){
-        $codigocategoria = $request->codigocategoria;
-        $nombrecategoria = $request->nombrecategoria;
-
+      
         $categoria = Categoria::findOrFail($id);
-        $categoria->codigo = $codigocategoria;
-        $categoria->nombre = $nombrecategoria;
-        
+        $categoria->codigo =  $request->codigo_categoria;
+        $categoria->nombre =  $request->nombre_categoria;
+       
         $categoria->update();
         
         return redirect()->route('categoria.index')->with('editado', 'ok');
