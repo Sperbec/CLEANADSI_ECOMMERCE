@@ -62,6 +62,8 @@
 					<ul class="main-nav nav navbar-nav">
 						<li class=""><a href="{{route('inicio')}}">Inicio</a></li>
 
+						
+
 						<li class="active" class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorías</a>
@@ -81,15 +83,36 @@
 							</div>
 
 						</li>
-
+															{{-- DESPLEGABLE DE OPCIONES DE USUARIO --}}
 						@if (Auth::guest())
 							<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
 							<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
 						@else
-							<li class=""><a href="{{route('micuenta.index')}}">Mi cuenta<span class="icon-dot"></span></a></li>
-							<li class=""><a href="{{url('/pedidos')}}">Mis pedidos<span class="icon-dot"></span></a></li>
-							<li class=""><a href="{{url('/logout')}}">Cerrar sesión<span class="icon-dot"></span></a></li>
+
+						
+						
+							<li class="" class="nav-item dropdown">
+								{{-- Para traer el email del usuario --}}
+
+								@foreach ($usuario as $usuario)
+								<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-usuario"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$usuario-> nombres}} {{$usuario->apellidos}}</a>
+								@endforeach
+
+								<div class="dropdown-menu" aria-labelledby="btn-dropdown-usuario">
+									<ul >
+										<li class="dropdown-item"><a href="{{route('micuenta.index')}}">Mi cuenta<span class="icon-dot"></span></a></li>
+										<li class="dropdown-item"><a href="{{url('/pedidos')}}">Mis pedidos<span class="icon-dot"></span></a></li>
+										<li class="dropdown-item"><a href="{{url('/logout')}}">Cerrar sesión<span class="icon-dot"></span></a></li>
+									</ul>
+
+								</div>
+
+							</li>
+							
 						@endif
+
+	
 
 
 
@@ -364,6 +387,8 @@
 	<script src="{{asset('guia de plantillas/js/nouislider.min.js')}}"></script>
 	<script src="{{asset('guia de plantillas/js/jquery.zoom.min.js')}}"></script>
 	<script src="{{asset('guia de plantillas/js/main.js')}}"></script>
+
+	{{-- SCRIPT PARA LA PANTALLA EN LA QUE SE ENCUENTRA ACTUALMENTE --}}
 
 </body>
 
