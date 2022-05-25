@@ -23,7 +23,7 @@
             @php $subtotal = 0 @endphp
             @php $precios = 0 @endphp
             @foreach (session('carrito') as $detalle=>$d)
-            {{ $d['precio']}}
+            
             @php $precio = $d['precio'] @endphp
             @php $subtotal = $d['precio'] * $d['quantity'] @endphp
             @php $precios = $d['precio'] @endphp
@@ -73,6 +73,10 @@
 								<input type="checkbox" id="shiping-address">
 								<form action="{{route('factura.crear')}}" method="post">
                                     @csrf
+                                    @foreach (session('carrito') as $detalle=>$d)
+                                    <input type="hidden" name="cantidad[]" value="{{$d['quantity']}}<">
+
+                                    @endforeach
 								<div class="Opcion Entrega">
 									<div class="form-group">
                                     <select name="opcion_entregas" id="opcion_entregas" class="form-select">
