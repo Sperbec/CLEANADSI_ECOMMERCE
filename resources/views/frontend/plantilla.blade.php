@@ -82,8 +82,17 @@
 
 						</li>
 
-						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
-						<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						@if (Auth::guest())
+							<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+							<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						@else
+							<li class=""><a href="{{route('micuenta.index')}}">Mi cuenta<span class="icon-dot"></span></a></li>
+							<li class=""><a href="{{url('/pedidos')}}">Mis pedidos<span class="icon-dot"></span></a></li>
+							<li class=""><a href="{{url('/logout')}}">Cerrar sesión<span class="icon-dot"></span></a></li>
+						@endif
+
+
+
 						<li><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
 						{{-- <li><a href="{{route('crear')}}">Crear <span class="icon-dot"></span></a></li> --}}
 					</ul>
