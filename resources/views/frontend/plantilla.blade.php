@@ -36,6 +36,8 @@
 
 	<script src="https://kit.fontawesome.com/8224604846.js" crossorigin="anonymous"></script>
 
+	<link rel="shortcut icon" href="/static/images/logo.png">
+
 
 
 

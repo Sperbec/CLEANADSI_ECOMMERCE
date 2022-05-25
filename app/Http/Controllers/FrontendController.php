@@ -142,7 +142,7 @@ class FrontendController extends Controller
         }
         session()->put('carrito', $carrito);
         
-        return redirect()->back()->with('success', 'Producto Añadido al carrito!');
+        return redirect()->back()->with('success', 'Producto añadido al carrito!');
     } 
   
     /**

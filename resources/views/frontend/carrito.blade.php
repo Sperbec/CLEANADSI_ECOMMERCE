@@ -6,12 +6,21 @@
 
 @endsection
 
+<style>
+    .content{
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 10px;
+    width: 50%;
+    }
+</style>
+
 
 @section('contenido')
 
 
 <table id="cart" class=" table table-hover table-condensed">
-    @if(count($carrito))
+    @if($carrito != null and count($carrito))
     <thead>
         <div class="section-title text-center">
             <h3 class="title">Mi Orden</h3>
@@ -70,7 +79,11 @@
         </tr>
     </tfoot>
     @else
-    <h1 class="text-center">El Carrito Esta Vacio</h1>
+    <h1 class="text-center">El carrito está vacío</h1>
+    <br>
+    <div class="content">
+    <a href="{{url('/')}}" >Continuar comprando</a>
+    </div>
     @endif
 </table>
 @endsection
@@ -102,7 +115,7 @@
   
         var ele = $(this);
   
-        if(confirm("Esta seguro de Eliminar Este Producto?")) {
+        if(confirm("¿Está seguro de eliminar este producto del carrito?")) {
             $.ajax({
                 url: '{{ route('carrito.eliminar') }}',
                 method: "DELETE",
