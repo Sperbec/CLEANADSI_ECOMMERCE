@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><a href="{{route('carrito.añadir',$nvp->id_producto)}}"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</a></button>
+                                        <a href="{{route('carrito.añadir',$nvp->id_producto)}}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button></a>
                                     </div>
                                     
                                 </div> 

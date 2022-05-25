@@ -85,6 +85,7 @@
 						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
 						<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
 						<li><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
+						{{-- <li><a href="{{route('crear')}}">Crear <span class="icon-dot"></span></a></li> --}}
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -142,9 +143,7 @@
 									<div class="qty">{{ count((array) session('carrito')) }}</div>
 								</a>
 								@if(isset($carrito))
-								<div class="cart-btns text-center">
-									<a href="{{route('carrito')}}"> Carrito Vacio</a>
-								</div>
+								
 								@else
 
 								<div class="cart-dropdown">

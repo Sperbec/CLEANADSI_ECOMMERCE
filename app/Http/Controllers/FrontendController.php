@@ -63,7 +63,8 @@ class FrontendController extends Controller
 
     public function crear()
     {
-        return view('frontend.crear');
+        $categorias = Categoria::all();
+        return view('frontend.crear',compact('categorias'));
     }
 
     public function store(Request $request)
@@ -87,7 +88,7 @@ class FrontendController extends Controller
         if($imagen=$request->file('imagen'))
         {
             $rutaGuardarImg = 'imagen/';
-            $imagenProducto = date('YmdHis'). "." .$imagen->getClientOriginalExtension();
+            $imagenProducto = $request->nombre."." . date('YmdHis'). "." .$imagen->getClientOriginalExtension();
             $imagen->move($rutaGuardarImg, $imagenProducto);
             $salidaimagen['imagen'] = "$imagenProducto";
         }

@@ -12,37 +12,9 @@ use PDF;
 
 class FacturaController extends Controller
 {
-    public function factura(Request $request)
-    { 
-        /* $factura =new Facturas();
 
-        $factura->comentario =$request->comentario;
-        $factura->codigo =$request->codigo;
-
-        $factura ->save();
-
-        $carrito = session()->get('carrito');
-        session()->put('carrito', $carrito);
-
-        
-        foreach($carrito as $d){
-            dd($id_producto = $d['nombre']);
-            $id_factura = $factura->id;
-            $cantidad =$d['quantity'];
-
-            $re = DetalleFactura::detalle_factura(null,$id_producto,$cantidad);
-            dd($id_producto);
-        }
-        return view('frontend.inicio');
-         */
-        
-       
-        
-
-        
-        
-         /* return view('facturas.facturas');     */
-      
+    public function __construct(){
+        $this->middleware('auth');
     }
 
     public function crear_factura(Request $request)
@@ -53,28 +25,21 @@ class FacturaController extends Controller
         $carrito = session()->get('carrito');
         session()->put('carrito', $carrito);
         
-        /* if (Auth::check()) {
-            // The user is logged in...
-        }else {
-            "no puede acceder";
-        } */
-        
-        
-     
-        $persona = Persona_contacto::all();
+        if (Auth::check()) {
+            $persona = Persona_contacto::all();
         $factura =new Facturas();
 
-        
+        dd($persona->id_persona);
         if (isset( $factura->codigo )) {
             $factura->codigo = 1;
 
         }else {
-            $factura->codigo +=1/*  $factura->codigo +1 */;
+            $factura->codigo = "FK"+  $factura->id_factura;
         }
         /* dd($factura->codigo); */
         $factura->fecha = date("YmdHis");
 
-        $factura->id_persona = 1;/* $persona->id_persona; */
+        $factura->id_persona =  $persona->id_persona; 
         $total = 0;
         foreach($carrito as $d){
 
@@ -111,6 +76,13 @@ class FacturaController extends Controller
         session()->flush('carrito', $carrito);
 
         return redirect()->route('inicio');
+        }else {
+            "no puede acceder";
+        }
+        
+        
+     
+        
     }
 
 
