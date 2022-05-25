@@ -85,12 +85,13 @@
 						</li>
 
 						@if (Auth::guest())
-							<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
-							<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+						<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
 						@else
-							<li class=""><a href="{{route('micuenta.index')}}">Mi cuenta<span class="icon-dot"></span></a></li>
-							<li class=""><a href="{{url('/pedidos')}}">Mis pedidos<span class="icon-dot"></span></a></li>
-							<li class=""><a href="{{url('/logout')}}">Cerrar sesión<span class="icon-dot"></span></a></li>
+						<li class=""><a href="{{route('micuenta.index')}}">Mi cuenta<span class="icon-dot"></span></a>
+						</li>
+						<li class=""><a href="{{url('/pedidos')}}">Mis pedidos<span class="icon-dot"></span></a></li>
+						<li class=""><a href="{{url('/logout')}}">Cerrar sesión<span class="icon-dot"></span></a></li>
 						@endif
 
 
@@ -154,7 +155,7 @@
 									<div class="qty">{{ count((array) session('carrito')) }}</div>
 								</a>
 								@if(isset($carrito))
-								
+
 								@else
 
 								<div class="cart-dropdown">
@@ -187,7 +188,7 @@
 										<h5>TOTAL: $ {{ $total }}</h5>
 									</div>
 									<div class="cart-btns text-center">
-										<a href="{{route('carrito')}}">Ver Carrito</a>
+										<a href="{{route('carrito')}}">Ver carrito</a>
 									</div>
 									@endif
 
