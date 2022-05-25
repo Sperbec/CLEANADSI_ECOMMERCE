@@ -3522,6 +3522,13 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 97d3ac120b69d8c9f3aaafe70a33df51057b0bbd
+>>>>>>> master
+>>>>>>> ramajhonjairo
                 "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/cb86fd87b43fcfc493c3f2b1de6fad100c078146",
                 "reference": "cb86fd87b43fcfc493c3f2b1de6fad100c078146",
                 "shasum": ""
@@ -6588,6 +6595,13 @@
         },
         {
             "name": "laravel/sail",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
+>>>>>>> ramajhonjairo
             "version": "v1.14.6",
             "source": {
                 "type": "git",
@@ -6598,6 +6612,24 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/f00f3a8f83e71436d473cda7700ae7b4b68d26cc",
                 "reference": "f00f3a8f83e71436d473cda7700ae7b4b68d26cc",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+            "version": "v1.14.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sail.git",
+                "reference": "1da083e30e6b0d646535c0afc2afeffdccb7181d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/1da083e30e6b0d646535c0afc2afeffdccb7181d",
+                "reference": "1da083e30e6b0d646535c0afc2afeffdccb7181d",
+>>>>>>> 97d3ac120b69d8c9f3aaafe70a33df51057b0bbd
+>>>>>>> master
+>>>>>>> ramajhonjairo
                 "shasum": ""
             },
             "require": {
@@ -6645,6 +6677,16 @@
                 "source": "https://github.com/laravel/sail"
             },
             "time": "2022-05-18T15:56:59+00:00"
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+            "time": "2022-05-18T15:56:59+00:00"
+=======
+            "time": "2022-05-16T18:13:03+00:00"
+>>>>>>> 97d3ac120b69d8c9f3aaafe70a33df51057b0bbd
+>>>>>>> master
+>>>>>>> ramajhonjairo
         },
         {
             "name": "mockery/mockery",
