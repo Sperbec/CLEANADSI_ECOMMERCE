@@ -18,6 +18,7 @@ use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Contracts\Session\Session;
 use DateTime;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -83,7 +84,25 @@ class LoginController extends Controller
                 'email' => $request->input('email'),
                 'password' => $request->input('password')
             ], true)) :
-                return redirect('/home');
+
+                //Consulto si el usuario que hace login es admin o cliente
+               $sql = 'SELECT roles.id 
+               FROM usuarios
+               inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+               inner join roles on roles.id = mhr.role_id 
+               where id_usuario = '.auth()->user()->id_usuario;
+
+
+                $rol = DB::select($sql);
+
+                //1: Es un administrador
+                //2: Es un cliente.
+                if($rol[0]->id == 1){
+                    return redirect('/home');
+                }else{
+                    return redirect('/');
+                }
+                
             else :
                 return back()->withErrors($validator)->with('message', 'Credenciales incorrectas.')
                     ->with('typealert', 'danger')->withInput();;
