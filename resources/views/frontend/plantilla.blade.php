@@ -36,6 +36,8 @@
 
 	<script src="https://kit.fontawesome.com/8224604846.js" crossorigin="anonymous"></script>
 
+	<link rel="shortcut icon" href="/static/images/logo.png">
+
 
 
 
@@ -82,8 +84,18 @@
 
 						</li>
 
+						@if (Auth::guest())
 						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
 						<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						@else
+						<li class=""><a href="{{route('micuenta.index')}}">Mi cuenta<span class="icon-dot"></span></a>
+						</li>
+						<li class=""><a href="{{url('/pedidos')}}">Mis pedidos<span class="icon-dot"></span></a></li>
+						<li class=""><a href="{{url('/logout')}}">Cerrar sesión<span class="icon-dot"></span></a></li>
+						@endif
+
+
+
 						<li><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
 						{{-- <li><a href="{{route('crear')}}">Crear <span class="icon-dot"></span></a></li> --}}
 					</ul>
@@ -143,7 +155,7 @@
 									<div class="qty">{{ count((array) session('carrito')) }}</div>
 								</a>
 								@if(isset($carrito))
-								
+
 								@else
 
 								<div class="cart-dropdown">
@@ -159,7 +171,7 @@
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">{{ $details['nombre'] }}</a></h3>
 												<h4 class="product-price"><span class="qty">{{ $details['quantity']
-														}}x</span>$ {{ $details['precio'] }}</h4>
+														}}x</span>$ {{ number_format($details['precio'] )}}</h4>
 											</div>
 
 											<button class="delete"><i class="fa fa-close"></i></button>
@@ -173,10 +185,10 @@
 
 
 									<div class="cart-summary">
-										<h5>TOTAL: $ {{ $total }}</h5>
+										<h5>TOTAL: $ {{ number_format($total) }}</h5>
 									</div>
 									<div class="cart-btns text-center">
-										<a href="{{route('carrito')}}">Ver Carrito</a>
+										<a href="{{route('carrito')}}">Ver carrito</a>
 									</div>
 									@endif
 

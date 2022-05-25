@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\DetalleFactura;
-
+use App\Models\User;
 use App\Models\Producto;
 use App\Models\Facturas;
 use App\Models\Opciones_definidas;
@@ -142,7 +142,7 @@ class FrontendController extends Controller
         }
         session()->put('carrito', $carrito);
         
-        return redirect()->back()->with('success', 'Producto Añadido al carrito!');
+        return redirect()->back()->with('success', 'Producto añadido al carrito!');
     } 
   
     /**
@@ -181,15 +181,15 @@ class FrontendController extends Controller
     public function detalle_compra(Request $request)
     {
         
+        
         $categorias = Categoria::all();
-
         $detalle_factura = DetalleFactura::all();
         $comentario_facturas = Facturas::all();
         $opcion_entregas = Opciones_definidas::where('variable', '00tipoentrega')->get();
         $opcion_pagos = Opciones_definidas::where('variable', '00tipopago')->get();
         $carrito = session()->get('carrito');
         session()->put('carrito', $carrito);
-       return view('facturas/detalle',compact('opcion_entregas','opcion_pagos','comentario_facturas','categorias','detalle_factura'));
+       return view('facturas/detalle',compact('opcion_entregas','opcion_pagos','comentario_facturas','categorias'));
     }  
 
 

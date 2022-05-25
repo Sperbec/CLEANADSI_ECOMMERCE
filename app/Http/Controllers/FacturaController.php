@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Facturas;
-use App\Models\DetalleFactura;
 use App\Models\Persona_contacto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,26 +19,30 @@ class FacturaController extends Controller
     public function crear_factura(Request $request)
     {
 
-        
+       
+
+        $request->validate([
+            'opcion_pagos'=> 'required',
+            'opcion_entregas' => 'required',
+        ]); 
+       
         
         $carrito = session()->get('carrito');
         session()->put('carrito', $carrito);
         
-        if (Auth::check()) {
-            $persona = Persona_contacto::all();
+        $id=Facturas::orderBy('id_factura','desc')->first();
         $factura =new Facturas();
-
-        dd($persona->id_persona);
+        
         if (isset( $factura->codigo )) {
-            $factura->codigo = 1;
+            $factura->codigo ="FK". 1;
 
         }else {
-            $factura->codigo = "FK"+  $factura->id_factura;
+            $factura->codigo = "FK".$id->id_factura +1;
         }
-        /* dd($factura->codigo); */
-        $factura->fecha = date("YmdHis");
+        
+        $factura->fecha = date("Y-m-d");
 
-        $factura->id_persona =  $persona->id_persona; 
+        $factura->id_persona = $request->user()->id_persona; 
         $total = 0;
         foreach($carrito as $d){
 
@@ -75,10 +78,8 @@ class FacturaController extends Controller
 
         session()->flush('carrito', $carrito);
 
-        return redirect()->route('inicio');
-        }else {
-            "no puede acceder";
-        }
+        return redirect()->route('inicio')->with('success', 'Su Compra fue Exitosa 🛒!');
+       
         
         
      

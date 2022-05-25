@@ -1210,16 +1210,16 @@
         },
         {
             "name": "jeroennoten/laravel-adminlte",
-            "version": "v3.8.1",
+            "version": "v3.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeroennoten/Laravel-AdminLTE.git",
-                "reference": "ad59de64afcfb37d8348f0b175d5074519b8c2e8"
+                "reference": "0043e3fc962a34f0e8debcf5806751c78e22cb60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeroennoten/Laravel-AdminLTE/zipball/ad59de64afcfb37d8348f0b175d5074519b8c2e8",
-                "reference": "ad59de64afcfb37d8348f0b175d5074519b8c2e8",
+                "url": "https://api.github.com/repos/jeroennoten/Laravel-AdminLTE/zipball/0043e3fc962a34f0e8debcf5806751c78e22cb60",
+                "reference": "0043e3fc962a34f0e8debcf5806751c78e22cb60",
                 "shasum": ""
             },
             "require": {
@@ -1229,7 +1229,8 @@
             },
             "require-dev": {
                 "orchestra/testbench": ">=4.0",
-                "phpunit/phpunit": "^8.3"
+                "phpunit/phpunit": ">=9.1",
+                "scrutinizer/ocular": "^1.9"
             },
             "type": "library",
             "extra": {
@@ -1263,9 +1264,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jeroennoten/Laravel-AdminLTE/issues",
-                "source": "https://github.com/jeroennoten/Laravel-AdminLTE/tree/v3.8.1"
+                "source": "https://github.com/jeroennoten/Laravel-AdminLTE/tree/v3.8.2"
             },
-            "time": "2022-03-14T12:43:50+00:00"
+            "time": "2022-05-18T14:12:47+00:00"
         },
         {
             "name": "laravel/framework",
@@ -3459,17 +3460,6 @@
             "time": "2022-03-27T21:42:02+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "spatie/laravel-permission",
-            "version": "5.5.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "cb86fd87b43fcfc493c3f2b1de6fad100c078146"
-            },
-            "dist": {
-                "type": "zip",
-=======
             "name": "sabberworm/php-css-parser",
             "version": "8.4.0",
             "source": {
@@ -3532,7 +3522,13 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
 >>>>>>> 97d3ac120b69d8c9f3aaafe70a33df51057b0bbd
+>>>>>>> master
+>>>>>>> ramajhonjairo
                 "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/cb86fd87b43fcfc493c3f2b1de6fad100c078146",
                 "reference": "cb86fd87b43fcfc493c3f2b1de6fad100c078146",
                 "shasum": ""
@@ -6600,6 +6596,12 @@
         {
             "name": "laravel/sail",
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
+>>>>>>> ramajhonjairo
             "version": "v1.14.6",
             "source": {
                 "type": "git",
@@ -6610,6 +6612,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/f00f3a8f83e71436d473cda7700ae7b4b68d26cc",
                 "reference": "f00f3a8f83e71436d473cda7700ae7b4b68d26cc",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
 =======
             "version": "v1.14.5",
             "source": {
@@ -6622,6 +6628,8 @@
                 "url": "https://api.github.com/repos/laravel/sail/zipball/1da083e30e6b0d646535c0afc2afeffdccb7181d",
                 "reference": "1da083e30e6b0d646535c0afc2afeffdccb7181d",
 >>>>>>> 97d3ac120b69d8c9f3aaafe70a33df51057b0bbd
+>>>>>>> master
+>>>>>>> ramajhonjairo
                 "shasum": ""
             },
             "require": {
@@ -6668,11 +6676,17 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
+            "time": "2022-05-18T15:56:59+00:00"
+<<<<<<< HEAD
+=======
+=======
 <<<<<<< HEAD
             "time": "2022-05-18T15:56:59+00:00"
 =======
             "time": "2022-05-16T18:13:03+00:00"
 >>>>>>> 97d3ac120b69d8c9f3aaafe70a33df51057b0bbd
+>>>>>>> master
+>>>>>>> ramajhonjairo
         },
         {
             "name": "mockery/mockery",
@@ -8675,5 +8689,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }

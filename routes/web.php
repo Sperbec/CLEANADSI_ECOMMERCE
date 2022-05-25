@@ -120,7 +120,7 @@ Route::get('frontend/carrito', [FrontendController::class, 'carrito'])->name('ca
 Route::get('add-to-carrito/{id}', [FrontendController::class, 'añadir_carrito'])->name('carrito.añadir');
 Route::patch('update-cart', [FrontendController::class, 'update'])->name('carrito.update');
 Route::delete('remove-from-cart', [FrontendController::class, 'eliminar'])->name('carrito.eliminar');
-Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra'])/* ->middleware('auth') */ ->name('carrito.compra');
+Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra']) ->middleware('auth')  ->name('carrito.compra');
 
 
 
