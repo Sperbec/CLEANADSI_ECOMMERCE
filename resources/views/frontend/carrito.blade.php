@@ -11,7 +11,7 @@
 
 
 <table id="cart" class=" table table-hover table-condensed">
-    @if(count($carrito))
+    @if(isset($carrito))
     <thead>
         <div class="section-title text-center">
             <h3 class="title">Mi Orden</h3>
