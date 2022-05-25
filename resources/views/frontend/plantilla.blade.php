@@ -96,7 +96,7 @@
 		<!-- /NAVIGATION -->
 
 		<!-- MAIN HEADER -->
-		<div id="header" style="background-color:  #dfe4ea">
+		<div id="header" style="background-color:  #9137e6cb">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
