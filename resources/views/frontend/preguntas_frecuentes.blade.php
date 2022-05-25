@@ -27,18 +27,14 @@
         <p ><strong>¿Cómo comprar en el sitio web?</strong></p>
         <p >Si aún no tienes una cuenta, primero debes registrarte, luego activas tu cuenta dando clic en el correo que te llegó, después eliges los ítems que te gustaron, llenas tus datos de envío, luego eliges el método de pago y por último finalizas tu pedido. Puedes ver el paso a paso aquí</p> 
         <p  ><strong>¿Cuáles métodos de pago puedo usar para la compra por el sitio web?</strong></p>
-        <p >Puedes pagar con tarjeta de crédito, débito con PSE, Nequi o Daviplata, Rappipay, en efectivo Vía Baloto, Efecty o pagando contra entrega (si aplica en tu municipio)</p>
-        <p ><strong>¿Qué pasa si no realizo el pago con Efecty o Vía Baloto en 48 horas?</strong></p>
-        <p >Si no realizas el pago de tu pedido en 48 horas, se cancelará automáticamente.</p> 
+        <p >Puedes pagar con tarjeta de crédito, débito y efectivo o pagando contra entrega.</p>
         <p ><strong>¿Puedo cambiar el método de pago de mi pedido?</strong></p>
-        <p >No es posible cambiar el método de pago de un pedido, pero si elegiste pago en efectivo vía Baloto o Efecty, o contra entrega, nos puedes escribir al WhatsApp 300 507 1000 para cancelar el pedido y puedas hacer uno nuevo con el método que prefieras.</p> 
-        <p ><strong>¿Puedo pagar con tarjeta regalo?</strong></p> 
-        <p >Las tarjetas regalo solo se pueden redimir en las tiendas físicas, por lo que no es posible usarlas como método de pago en el sitio web.</p>
+        <p >No es posible cambiar el método de pago de un pedido, pero si elegiste pago en efectivo o contra entrega, nos puedes escribir al WhatsApp 315-576-86-10 para cancelar el pedido y puedas hacer uno nuevo con el método que prefieras.</p> 
         <p ><strong>ENVÍOS:</strong></p>
         <p ><strong>¿Todos los envíos son gratis?</strong></p>
-        <p >No, los ítems del SALE o COSAS sí tienen costo de envío.</p> 
+        <p >No, todos los productos sí tienen costo de envío.</p> 
         <p ><strong>¿Cuánto vale el envío a mi dirección?</strong></p>
-        <p >Si compras solo ropa del SALE, puedes ver el valor del envío a cada ciudad o municipio aquí</p>
+        <p >Puedes ver el valor del envío a cada ciudad o municipio antes de finalizar tu compra</p>
         <p ></strong>¿Cuánto tiempo tarda el envío a mi dirección?</strong></p>
         <p >El tiempo de envío tarda dependiendo de la ciudad o municipio en la que estés, aquí puedes ver los días hábiles para cada lugar</p>
         <p ><strong>¿Tienen envíos el mismo día?</strong></p>
