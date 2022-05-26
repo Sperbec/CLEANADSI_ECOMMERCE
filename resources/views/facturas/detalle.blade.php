@@ -76,7 +76,7 @@
                             <form action="{{route('factura.crear')}}" method="post">
                                 @csrf
                                 @foreach (session('carrito') as $detalle=>$d)
-                                <input type="hidden" name="cantidad[]" value="{{$d['quantity']}}<">
+                                
 
                                 @endforeach
                                 <div class="Opcion Entrega">
