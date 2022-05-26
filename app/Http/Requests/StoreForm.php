@@ -40,21 +40,22 @@ class StoreForm extends FormRequest
 
             //Validacion de barrios
 
-            'codigo_barrio'=>'numeric',
-            'nombre_barrio'=>'alpha_spaces',
+            'codigo_barrio'=>'numeric|max:11',
+            'nombre_barrio'=>'alpha_spaces|max:11',
             'codigobarrioeditar'=>'numeric',
             'nombrebarrioeditar'=>'alpha_spaces',
 
             //Validacion de cuenta
 
-            'nombres_cuenta'=>'alpha_spaces',
-            'apellidos_cuenta'=>'alpha_spaces',
+            'nombres_cuenta'=>'max:80|alpha_spaces',
+            'apellidos_cuenta'=>'max:80|alpha_spaces',
             'email_cuenta'=>'max:80|email',
 
            
             //validación de categorías
-            'codigo_categoria' => 'numeric',
+            'codigo_categoria' => 'numeric|digits_between:1,15',
             'nombre_categoria'=>'alpha_spaces|max:80',
+            
 
             //validacion proveedor
             'nombres_proveedor'=>'alpha_spaces|max:50',
@@ -65,7 +66,7 @@ class StoreForm extends FormRequest
             'direccion_proveedor'=>'max:50',
             'correo_proveedor'=>'max:80|email',
             'contacto_proveedor'=>'alpha_spaces|max:50',
-            'telefono_proveedor'=> 'numeric',
+            'telefono_proveedor'=> 'max:15',
 
             //validacion cliente
             'nombres_cliente'=>'alpha_spaces|max:80',
@@ -110,7 +111,7 @@ class StoreForm extends FormRequest
         
              //validacion para categoria
             'codigo_categoria.numeric'=>'El campo código categoría solo debe contener números.',
-            'codigo_categoria.digits'=>'El campo código categoría solo debe contener 15 dígitos.',
+            'codigo_categoria.digits_between'=>'El campo código categoría no debe contener mas de 15 dígitos.',
             'nombre_categoria.alpha_spaces'=>'El campo nombre categoría solo debe contener letras.',
             'nombre_categoria.max'=>'El campo nombre categoría solo debe contener 80 caracteres.',
 
@@ -121,6 +122,7 @@ class StoreForm extends FormRequest
             'contacto_proveedor.alpha_spaces'=>'el campo contacto solo debe contener letras',
             'nombres_proveedor.alpha'=>'El campo nombres solo debe contener letras.',
             'correo_proveedor.email'=>'El campo correo debe contener el simbolo @ para tener acceso.',
+            'telefono_proveedor.max'=>'El campo teléfono móvil no puede contener mas de 10 números.',
             
             //validacion clientes
             'nombres_cliente.alpha_spaces'=>'El campo nombres solo debe contener letras.',
