@@ -16,7 +16,7 @@
 <!--Mostrar sección de contenido exclusivo de esta plantilla, se debe iniciar y finalizar-->
 @section('contenido')
 
-{!! Form::open(['url' => '/login']) !!}
+{!! Form::open(['route' => 'getLogin']) !!}
 <div class="content">
     <div class="section-title">
         <h3 class="title">Iniciar sesión</h3>
@@ -80,15 +80,7 @@
                 cambio.type = "password";
                 
             }
-            
         } 
-        
-        $(document).ready(function () {
-            //CheckBox mostrar contraseña
-            $('#ShowPassword').click(function () {
-                $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-            });
-        });
     </script>
 
     
