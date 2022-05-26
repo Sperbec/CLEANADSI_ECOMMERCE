@@ -100,23 +100,11 @@ class LoginController extends Controller
                 //2: Es un cliente.
                 if($rol[0]->id == 1){
                     return redirect('/home');
-                }else{  
-                    //Consulto los datos de la persona que está logueada
-                        $sql = 'SELECT id_usuario, nombres,apellidos , email,
-                        id_opcion_tipo_documento, numero_documento,
-                        id_opcion_genero, natalicio,
-                        documento.nombre as tipodocumento, genero.nombre as tipogenero
-                    from usuarios
-                    inner join personas on personas.id_persona = usuarios.id_persona
-                    inner join opciones_definidas documento on documento.id_opcion =personas.id_opcion_tipo_documento
-                    inner join opciones_definidas genero on genero.id_opcion = personas.id_opcion_genero
-                    where id_usuario = '.auth()->user()->id_usuario;
-
-                    $usuario = DB::select($sql);
-                    /* DATOS */
-                    $data = ["usuario" => $usuario];
+                }
+                
+                else{  
                     
-                     return redirect('frontend.inicio', $data); 
+                     return redirect('/'); 
                 }
                 
             else :

@@ -16,15 +16,18 @@ use Illuminate\Support\Facades\DB;
 class FrontendController extends Controller
 {
 
-public function __construct(){
-    $this->middleware('auth');
-    
-}
+
 
 
     public function nuevos_productos()
     {
-        //Consulto los datos de la persona que está logueada
+
+        $categorias = Categoria::all();
+
+        $producto=Producto::orderBy('id_producto','desc')->paginate(5);
+
+        if (auth()->user() != null) {
+            //Consulto los datos de la persona que está logueada
         $sql = 'SELECT id_usuario, nombres,apellidos , email,
         id_opcion_tipo_documento, numero_documento,
         id_opcion_genero, natalicio,
@@ -37,13 +40,19 @@ public function __construct(){
 
         $usuario = DB::select($sql);
 
-        $categorias = Categoria::all();
 
-        $producto=Producto::orderBy('id_producto','desc')->paginate(5);
 
         $data = ['categorias' => $categorias,
         'producto'=>$producto, 'usuario'=>$usuario];
         
+
+        }
+        else{
+    
+            $data = ['categorias' => $categorias,
+            'producto'=>$producto];
+
+        }
         return view('frontend.inicio',$data);
 
     }
