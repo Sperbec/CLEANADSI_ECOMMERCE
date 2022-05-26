@@ -391,7 +391,14 @@
 	<script src="{{asset('guia de plantillas/js/main.js')}}"></script>
 
 	{{-- SCRIPT PARA LA PANTALLA EN LA QUE SE ENCUENTRA ACTUALMENTE --}}
-
+	<script>
+		function pantalla_actual(){
+            if(cambio.type == "password"){
+                cambio.type = "text";
+                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+			}
+		}
+	</script>
 </body>
 
 </html>
