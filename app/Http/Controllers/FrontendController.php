@@ -74,7 +74,9 @@ class FrontendController extends Controller
     public function detalle(Producto $producto)
     {
         //dd($producto);
-        return view('frontend.detalle',compact('producto'));
+        $categorias = Categoria::all();
+
+        return view('frontend.detalle',compact('producto', 'categorias'));
     }
 
     public function crear()

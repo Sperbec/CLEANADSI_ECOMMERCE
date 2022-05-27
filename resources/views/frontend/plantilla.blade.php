@@ -62,11 +62,11 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class=""><a href="{{route('inicio')}}">Inicio</a></li>
+						<li><a href="{{route('inicio')}}">Inicio</a></li>
 
 						
 
-						<li class="active" class="nav-item dropdown">
+						<li class="" class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorías</a>
 							<div class="dropdown-menu" aria-labelledby="btn-dropdown-categorias">
@@ -391,14 +391,18 @@
 	<script src="{{asset('guia de plantillas/js/main.js')}}"></script>
 
 	{{-- SCRIPT PARA LA PANTALLA EN LA QUE SE ENCUENTRA ACTUALMENTE --}}
-	<script>
+	{{-- <script>
 		function pantalla_actual(){
+			var cambio = document.getElementById("inicio");
+			if (cambio.type == "active") {
+				$('.navop1').removeClass('false').addClass('active');
+			}
             if(cambio.type == "password"){
                 cambio.type = "text";
                 $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
 			}
 		}
-	</script>
+	</script> --}}
 </body>
 
 </html>
