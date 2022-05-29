@@ -141,79 +141,47 @@
                     @csrf
 
 
-                   <div class="row">
-                        <div class="col-md-6">
-                            <label for="contraseniaactual" style="float: left;">Contraseña actual:</label>
-                            {!! Form::password('contraseniaactual', ['id' => 'contraseniaactual', 'class' =>
-                            'form-control', 'required', 'minlength' => '8']) !!}
-                              <button id="show_passwordA" class="btn btn-secondary" type="button"
-                              onclick="mostrarPasswordA()">
-                              <span class="fa fa-eye-slash iconA"></span> </button>
-                        </div>
-                        
-
-                    </div>
-
-
                     <div class="row">
                         <div class="col-md-6">
                             <label for="contraseniaactual" class="mtop16">Contraseña actual:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="fas fa-lock"></i>
-                                </div>
-                                {!! Form::password('contraseniaactual', ['id' => 'contraseniaactual', 'class' =>
-                                'form-control', 'required', 'minlength' => '8']) !!}
-                                <div class="input-group-append">
-                                    <button id="show_passwordA" class="btn btn-secondary" type="button"
-                                        onclick="mostrarPasswordA()">
-                                        <span class="fa fa-eye-slash iconA"></span> </button>
-                                </div>
-                            </div>
+                            {!! Form::password('contraseniaactual', ['id' => 'contraseniaactual', 'class' =>
+                            'form-control', 'required', 'minlength' => '8']) !!}
                         </div>
                     </div>
-
-
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="contrasenianueva" class="mtop16">Contraseña nueva:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="fas fa-lock"></i>
-                                </div>
-                                {!! Form::password('contrasenianueva', ['id' => 'contrasenianueva', 'class' =>
-                                'form-control', 'required', 'minlength' => '8']) !!}
-                                <div class="input-group-append">
-                                    <button id="show_passwordN" class="btn btn-secondary" type="button"
-                                        onclick="mostrarPasswordN()">
-                                        <span class="fa fa-eye-slash iconN"></span> </button>
-                                </div>
-                            </div>
+                            <label for="contraseniaactual" class="mtop16">Contraseña nueva:</label>
+                            {!! Form::password('contrasenianueva', ['id' => 'contrasenianueva', 'class' =>
+                            'form-control', 'required', 'minlength' => '8']) !!}
                         </div>
 
                         <div class="col-md-6">
-                            <label for="confirmacioncontrasenia" class="mtop16">Confirmación nueva contraseña:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="fas fa-lock"></i>
-                                </div>
-                                {!! Form::password('confirmacioncontrasenia', ['id' => 'confirmacioncontrasenia',
-                                'class' => 'form-control', 'required', 'minlength' => '8']) !!}
-                                <div class="input-group-append">
-                                    <button id="show_passwordCN" class="btn btn-secondary" type="button"
-                                        onclick="mostrarPasswordCN()">
-                                        <span class="fa fa-eye-slash iconCN"></span> </button>
-                                </div>
-                            </div>
+                            <label for="contraseniaactual" class="mtop16">Confirmar contraseña:</label>
+                            {!! Form::password('confirmacioncontrasenia', ['id' => 'confirmacioncontrasenia',
+                            'class' => 'form-control', 'required', 'minlength' => '8']) !!}
                         </div>
                     </div>
 
-                    <div class="modal-footer">
-                        <button id="btnGuardarCambioContrase" type="submit" class="btn btn-success">
-                            <i class="fas fa-lock"></i> Guardar</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">
-                            <i class="fas fa-times"></i> Cerrar</button>
+                    <br>
+                    <div class="password-show">
+                        <input id="show_password" class="form-check-input" type="checkbox" onclick="mostrarPassword()">
+                        <label class="form-check-label" for="show_password">Mostrar contraseñas</label>
+                    </div>
+
+
+                    <hr>
+
+                    <div class="row" style="height: 20px">
+                        <div class="col-md-6">
+                        </div>
+
+                        <div class="col-md-6" style="text-align: right">
+                            <button id="btnGuardarCambioContrasenia" type="submit" class="btn btn-success">
+                                <i class="fas fa-lock"></i> Guardar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                    <i class="fas fa-times"></i> Cerrar</button>
+                        </div>
                     </div>
 
                 </form>
@@ -532,6 +500,26 @@
             });
         });
 
+
+        function mostrarPassword(){
+            var contraseniaactual = document.getElementById("contraseniaactual");
+            var contrasenianueva = document.getElementById("contrasenianueva");
+            var confirmacioncontrasenia = document.getElementById("confirmacioncontrasenia");
+
+
+            if(contraseniaactual.type == "password" || contrasenianueva.type == "password" || confirmacioncontrasenia.type == "password"){
+                contraseniaactual.type = "text";
+                contrasenianueva.type = "text";
+                confirmacioncontrasenia.type = "text";
+            }else{
+                contraseniaactual.type = "password";
+                contrasenianueva.type = "password";
+                confirmacioncontrasenia.type = "password";
+            }
+            
+        } 
+        
+
         function cargarDatosEditar(idpersonacontacto){
             fetch('getPersonaContactoById',{
                     method : 'POST',
@@ -663,66 +651,6 @@
         });
 
 
-        function mostrarPasswordA(){
-            var cambio = document.getElementById("contraseniaactual");
-            if(cambio.type == "password"){
-                cambio.type = "text";
-                $('.iconA').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-            }else{
-                cambio.type = "password";
-                $('.iconA').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-            }
-
-        }
-
-        function mostrarPasswordN(){
-            var cambio = document.getElementById("contrasenianueva");
-            if(cambio.type == "password"){
-                cambio.type = "text";
-                $('.iconN').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-            }else{
-                cambio.type = "password";
-                $('.iconN').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-            }
-
-        }
-
-        function mostrarPasswordCN(){
-            var cambio = document.getElementById("confirmacioncontrasenia");
-            if(cambio.type == "password"){
-                cambio.type = "text";
-                $('.iconCN').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-            }else{
-                cambio.type = "password";
-                $('.iconCN').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-            }
-
-        }
-
-        @if (session('errorContraseñaActual') == 'ok' || session('errorConfirmacionContraseñas') == 'ok' )
-            Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            @if (session('errorContraseñaActual') == 'ok')
-                text: 'No es posible cambiar la contraseña. Su contraseña actual no es correcta.'
-            @endif
-
-            @if (session('errorConfirmacionContraseñas') == 'ok')
-                text: 'No es posible cambiar la contraseña. Las contraseñas no coinciden.'
-            @endif
-
-            })
-        @endif
-
-        @if (session('editado') == 'ok')
-            Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Contraseña editada con éxito',
-            showConfirmButton: false,
-            timer: 1500
-            })
-        @endif
 
         @if (session('eliminado') == 'ok' || session('editado') == 'ok' || session('guardado') == 'ok')
             Swal.fire({

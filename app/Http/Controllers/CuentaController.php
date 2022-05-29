@@ -25,7 +25,7 @@ class CuentaController extends Controller
    public function index(){
 
         //Consulto los datos de la persona que está logueada
-        $sql = 'SELECT id_usuario, nombres,apellidos , email,
+        $sql = 'SELECT id_usuario, nombres,apellidos, email,
          id_opcion_tipo_documento, numero_documento,
          id_opcion_genero, natalicio,
          documento.nombre as tipodocumento, genero.nombre as tipogenero
@@ -64,8 +64,7 @@ class CuentaController extends Controller
                 'tipos_documentos' => $tipos_documentos,
                 'generos' => $generos,
                 'categorias' => $categorias];
-
-
+                
         return view('cuenta.index', $data);
 
    }
@@ -108,12 +107,12 @@ class CuentaController extends Controller
             if($contraseña_nueva === $confirmacion_contraseña){
                 $usuario->password = Hash::make($request->input('contrasenianueva'));
                 $usuario->update();
-                return redirect()->route('micuenta.index')->with('editado', 'ok');
+                return redirect()->route('micuenta.index')->with('message', 'Contraseña editada con éxito.')->with('typealert', 'success');
             }else{
-                return redirect()->route('micuenta.index')->with('errorConfirmacionContraseñas', 'ok');
+                return redirect()->route('micuenta.index')->with('message', 'No es posible cambiar la contraseña. Las contraseñas no coinciden.')->with('typealert', 'danger');
             }
         else :
-            return redirect()->route('micuenta.index')->with('errorContraseñaActual', 'ok');
+            return redirect()->route('micuenta.index')->with('message', 'No es posible cambiar la contraseña. Su contraseña actual no es correcta.')->with('typealert', 'danger');
         endif;
    }
 
