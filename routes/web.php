@@ -105,7 +105,7 @@ Route::get('frontend/inicio',[App\Http\Controllers\FrontendController::class,'nu
 
 Route::get('/frontend/categoria/{id}',[App\Http\Controllers\FrontendController::class,'categorias_front'])->name('categoria_front');
 
-Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('Aseo_general');
+
 
 Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
 //rutas para crear productos (probicional)

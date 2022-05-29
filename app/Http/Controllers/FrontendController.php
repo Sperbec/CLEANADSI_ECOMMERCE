@@ -11,49 +11,65 @@ use App\Models\Facturas;
 use App\Models\Opciones_definidas;
 use App\Models\Categoria;
 
+use Illuminate\Support\Facades\DB;
+
 class FrontendController extends Controller
 {
-//BORRAR PRUEBA
 
-/* public function __construct()
-{
-    $this->middleware('auth');
-} */
 
-    public function prueba()
-    {
-        return view('frontend.prueba');
-    }
+
 
     public function nuevos_productos()
     {
+
         $categorias = Categoria::all();
-       
 
         $producto=Producto::orderBy('id_producto','desc')->paginate(5);
+
+        if (auth()->user() != null) {
+            //Consulto los datos de la persona que está logueada
+        $sql = 'SELECT id_usuario, nombres,apellidos , email,
+        id_opcion_tipo_documento, numero_documento,
+        id_opcion_genero, natalicio,
+        documento.nombre as tipodocumento, genero.nombre as tipogenero
+        from usuarios
+        inner join personas on personas.id_persona = usuarios.id_persona
+        inner join opciones_definidas documento on documento.id_opcion =personas.id_opcion_tipo_documento
+        inner join opciones_definidas genero on genero.id_opcion = personas.id_opcion_genero
+        where id_usuario = '.auth()->user()->id_usuario;
+
+        $usuario = DB::select($sql);
+
+
+
         $data = ['categorias' => $categorias,
-        'producto'=>$producto];
+        'producto'=>$producto, 'usuario'=>$usuario];
         
+
+        }
+        else{
+    
+            $data = ['categorias' => $categorias,
+            'producto'=>$producto];
+
+        }
         return view('frontend.inicio',$data);
 
     }
 
     public function categorias_front($id)
     {
-
+        
         $categorias = Categoria::all();
+
+        
 
         $categoria_seleccionada = Producto::where('id_categoria', $id)->paginate(12);
         //dd($categoria_seleccionada);
         return view('frontend.categorias_front', compact('categoria_seleccionada', 'categorias'));
     }
 
-    /*public function categoria_aseo_general()
-    {
-        $producto_aseo_general = Producto::where('id_categoria','1')->paginate(12);
 
-        return view('frontend.aseo_general',compact('producto_aseo_general'));
-    }*/
 
     public function detalle(Producto $producto)
     {

@@ -36,6 +36,11 @@
             {!!  Form::password('password', ['id' => 'password', 'class' => 'form-control', 'required']) !!}
         </div>
     </div>
+    <br>
+    <div class="password-show">
+        <input id="show_password" class="form-check-input" type="checkbox" onclick="mostrarPassword()">
+        <label class="form-check-label" for="show_password">Mostrar contraseña</label>
+    </div>
 
     <div class="row">
         <div class="col-6 col-md-2"></div>
