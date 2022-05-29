@@ -1,15 +1,11 @@
-@extends('adminlte::page')
+@extends('frontend.plantilla')
 
 @section('title', 'Mi cuenta')
 
-@section('content_header')
-<div class="row">
-    <h1>Mi cuenta</h1>
-</div>
+<link rel="stylesheet" href="{{url('/static/css/micuenta.css')}}">
 
-@stop
 
-@section('content')
+@section('contenido')
 @error('nombres_cuenta')
 <small>{{$message}}</small>
 <br>
@@ -23,133 +19,109 @@
 <small>{{$message}}</small>
 @enderror
 
-
 <!-- Modal editar datos personales-->
 <div id="mdlEditarDatosPersonales" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
+
             <div class="modal-header">
                 <h3>Editar datos personales</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            
+
             <div class="modal-body">
 
                 <form action="{{route('micuenta.update', $usuario->id_usuario)}}" method="post">
                     @csrf
                     @method('PUT')
 
-
                     <div class="row">
-                        <div class="col-md-6">
-                            <label for="nombres_cuenta">Nombres:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="far fa-keyboard"></i>
-                                </div>
-                                {!! Form::text('nombres_cuenta', $usuario->nombres, ['id' => 'nombres', 'class' =>
-                                'form-control','required']) !!}
-                            </div>
-                           </div>
-                          
 
                         <div class="col-md-6">
-                            <label for="apellidos_cuenta">Apellidos:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="fas fa-keyboard"></i>
-                                </div>
-                                {!! Form::text('apellidos_cuenta', $usuario->apellidos, ['id' => 'apellidos', 'class' =>
-                                'form-control',
-                                'required']) !!}
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="tipo_documento" class="mtop16">Tipo de documento:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="far fa-id-card"></i>
-                                </div>
-                                <select id='tipo_documento' name="tipo_documento" class="form-select" required>
-                                    <option value=''>Seleccione</option>
-                                    @foreach ($tipos_documentos as $tipodocumento)
-                                        <option value="{{ $tipodocumento->id_opcion }}"
-                                            {{$tipodocumento->id_opcion == $usuario->id_opcion_tipo_documento ? 'selected' : '' }}>
-                                            {{$tipodocumento->nombre}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <label for="nombres_cuenta" style="float: left;">Nombres:</label>
+                            {!! Form::text('nombres_cuenta', $usuario->nombres, ['id' => 'nombres_cuenta', 'class' =>
+                            'form-control','required']) !!}
                         </div>
 
-
                         <div class="col-md-6">
-                            <label for="numero_documento" class="mtop16">Número de documento:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="far fa-id-card"></i>
-                                </div>
-                                {!! Form::number('numero_documento', $usuario->numero_documento,
-                                ['class' => 'form-control', 'required', 'id' => 'documento_persona', 'min' => '0000000000', 'max' => '9999999999']) !!}
-                            </div>
+                            <label for="apellidos_cuenta" style="float: left;">Apellidos:</label>
+                            {!! Form::text('apellidos_cuenta', $usuario->apellidos, ['id' => 'apellidos_cuenta', 'class' =>
+                            'form-control',
+                            'required']) !!}
                         </div>
+
                     </div>
 
                     <div class="row">
+
                         <div class="col-md-6">
-                            <label for="tipo_genero" class="mtop16">Género:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="fas fa-venus-mars"></i>
-                                </div>
-                                <select id="tipo_genero" name="tipo_genero" class="form-select" required>
-                                    <option value=''>Seleccione</option>
-                                    @foreach ($generos as $genero)
-                                        <option value="{{ $genero->id_opcion }}"
-                                            {{ $genero->id_opcion == $usuario->id_opcion_genero ? 'selected' : '' }}>
-                                            {{ $genero->nombre }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <label for="tipo_documento" style="float: left;">Tipo de documento:</label>
+                            <select id='tipo_documento' name="tipo_documento" class="form-control" required>
+                                <option value=''>Seleccione</option>
+                                @foreach ($tipos_documentos as $tipodocumento)
+                                    <option value="{{ $tipodocumento->id_opcion }}"
+                                        {{$tipodocumento->id_opcion == $usuario->id_opcion_tipo_documento ? 'selected' : '' }}>
+                                        {{$tipodocumento->nombre}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="fecha_nacimiento" class="mtop16">Fecha de nacimiento:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="fas fa-calendar"></i>
-                                </div>
-                                {!! Form::date('fecha_nacimiento', $usuario->natalicio, ['id' => 'fecha_nacimiento', 'class' => 'form-control', 'required']) !!}
-                            </div>
+                            <label for="numero_documento" style="float: left;">Número de documento:</label>
+                            {!! Form::number('numero_documento', $usuario->numero_documento,
+                                ['class' => 'form-control', 'required', 'id' => 'numero_documento', 'min' => '0000000000', 'max' => '9999999999']) !!}
                         </div>
+
                     </div>
 
                     <div class="row">
+
                         <div class="col-md-6">
-                            <label for="email_cuenta">Correo principal:</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="far fa-envelope-open"></i>
-                                </div>
-                                {!! Form::text('email_cuenta', $usuario->email, ['id' => 'email_cuenta', 'class' => 'form-control',
-                                'required']) !!}
-                            </div>
+                            <label for="tipo_genero" style="float: left;">Género:</label>
+                            <select id="tipo_genero" name="tipo_genero" class="form-control" required>
+                                <option value=''>Seleccione</option>
+                                @foreach ($generos as $genero)
+                                    <option value="{{ $genero->id_opcion }}"
+                                        {{ $genero->id_opcion == $usuario->id_opcion_genero ? 'selected' : '' }}>
+                                        {{ $genero->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="fecha_nacimiento" style="float: left;">Fecha de nacimiento:</label>
+                            {!! Form::date('fecha_nacimiento', $usuario->natalicio, ['id' => 'fecha_nacimiento', 'class' => 'form-control', 'required']) !!}
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label for="email_cuenta" style="float: left;">Correo principal:</label>
+                            {!! Form::text('email_cuenta', $usuario->email, ['id' => 'email_cuenta', 'class' => 'form-control',
+                            'required']) !!}
+                        </div>
+
+                    </div>
+
+
+                    <hr>
+
+                    <div class="row" style="height: 20px">
+                        <div class="col-md-6">
+                        </div>
+
+                        <div class="col-md-6" style="text-align: right">
+                            <button id="btnEditarInfoPersonal" type="submit" class="btn btn-success">
+                                <i class="fas fa-edit"></i> Editar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                <i class="fas fa-times"></i> Cerrar</button>
                         </div>
                     </div>
 
+                </form>
             </div>
-
-            <div class="modal-footer">
-                <button id="btnEditarInfoPersonal" type="submit" class="btn btn-success">
-                    <i class="fas fa-edit"></i> Editar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">
-                    <i class="fas fa-times"></i> Cerrar</button>
-            </div>
-
-            </form>
         </div>
     </div>
 </div>
@@ -167,6 +139,22 @@
 
                 <form method="POST" action="{{ route('changePassword', $usuario->id_usuario) }}">
                     @csrf
+
+
+                   <div class="row">
+                        <div class="col-md-6">
+                            <label for="contraseniaactual" style="float: left;">Contraseña actual:</label>
+                            {!! Form::password('contraseniaactual', ['id' => 'contraseniaactual', 'class' =>
+                            'form-control', 'required', 'minlength' => '8']) !!}
+                              <button id="show_passwordA" class="btn btn-secondary" type="button"
+                              onclick="mostrarPasswordA()">
+                              <span class="fa fa-eye-slash iconA"></span> </button>
+                        </div>
+                        
+
+                    </div>
+
+
                     <div class="row">
                         <div class="col-md-6">
                             <label for="contraseniaactual" class="mtop16">Contraseña actual:</label>
@@ -184,6 +172,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
                     <div class="row">
                         <div class="col-md-6">
@@ -400,7 +390,7 @@
                 </div>
 
 
-                <div class="modal-footer">
+                <div class="modal-footer" >
                     <button type="submit" id="btnEditarDatosContacto" class="btn btn-success">
                         <i class="fas fa-edit"></i> Editar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
@@ -415,115 +405,119 @@
 
 
 
-
-<div class="row justify-content-between">
-    <div class="col-3">
-<h4>Información de la cuenta</div>
-    <div class="col-3">
-        <a id="btnEditarDatosPersonales" data-toggle="modal" data-target="#mdlEditarDatosPersonales"
-        class="btn btn-primary ">
-        <i class="fas fa-edit"></i> Editar</a>
-
-        <a id="btnCambiarContraseña" data-toggle="modal" data-target="#mdlCambiarContraseña" class="btn btn-secondary ">
-            <i class="fas fa-lock"></i> Cambiar contraseña</a>
+<div class="content">
+    <div class="section-title">
+        <h3 class="title">Mi cuenta</h3>
     </div>
 
-</div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="subtitle">Información de la cuenta</h3>
+        </div>
+        <div class="col-md-6">
 
-<hr>
-<div class="row">
-    <div class="col-md-6">
-        <label>Nombres y apellidos: {{$usuario->nombres}} {{$usuario->apellidos}}</label>
-    </div>
-    <div class="col-md-6">
-        <label>Correo principal: {{$usuario->email}}</label>
-    </div>
-</div>
+            <a id="btnEditarDatosPersonales" data-toggle="modal" data-target="#mdlEditarDatosPersonales"
+                class="btn btn-primary ">
+                <i class="fas fa-edit"></i> Editar</a>
 
-<div class="row">
-    <div class="col-md-6">
-        <label>{{$usuario->tipodocumento}}: {{$usuario->numero_documento}}</label>
-    </div>
-    <div class="col-md-6">
-        <label>Género: {{$usuario->tipogenero}}</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <label>Fecha nacimiento: {{$usuario->natalicio}}</label>
-    </div>
-</div>
-
-<br>
-<div class="row justify-content-between">
-    <div class="col-3">
-<h4>Datos de contacto</h4>
-    </div>
-    <div class="col-3">
-<a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto" class="btn btn-primary">
-    <i class="fas fa-plus"></i> Agregar datos de contacto</a>
+            <a id="btnCambiarContraseña" data-toggle="modal" data-target="#mdlCambiarContraseña"
+                class="btn btn-primary ">
+                <i class="fas fa-lock"></i> Cambiar contraseña</a>
+        </div>
     </div>
 
-</div>
-<hr>
+    <div class="row">
+        <div class="col-md-6">
+            <label class="subtitle">Nombres y apellidos:</label>
+            <label class="text"> {{$usuario->nombres}} {{$usuario->apellidos}}</label>
+        </div>
+        <div class="col-md-6">
+            <label class="subtitle">Correo principal: </label>
+            <label class="text">{{$usuario->email}}</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label class="subtitle">{{$usuario->tipodocumento}}: </label>
+            <label class="text">{{$usuario->numero_documento}}</label>
+        </div>
+        <div class="col-md-6">
+            <label class="subtitle">Género: </label>
+            <label class="text">{{$usuario->tipogenero}}</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label class="subtitle">Fecha nacimiento: </label>
+            <label class="text">{{$usuario->natalicio}}</label>
+        </div>
+    </div>
 
 
-<table class="table table-hover" id="tbldatoscontacto">
-    <thead>
-        <tr>
-            <td class="negrita">Opcion contacto</td>
-            <td class="negrita">Valor</td>
-            <td class="negrita">Barrio</td>
-            <td class="negrita">Acciones</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($datos_contacto as $contacto)
-        <tr>
-            <td>{{ $contacto->opcioncontacto }}</td>
-            <td>{{ $contacto->valor }}</td>
-            <td>{{ $contacto->nombrebarrio }}</td>
-            <td>
-                <div class="row">
+    <br>
 
-                    <div class="col-md-3">
-                        <a id="btnEditar" onclick="cargarDatosEditar('{{$contacto->id_persona_contacto}}')"
-                            class="btn btn-primary opts" data-toggle="tooltip" data-bs-placement="top"
-                            title="Editar datos de contacto">
-                            <i class="fas fa-edit"></i></a>
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="subtitle">Datos de contacto</h3>
+        </div>
+
+        <div class="col-md-6">
+            <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto"
+            class="btn btn-primary">
+            <i class="fas fa-plus"></i> Agregar datos de contacto</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <table class="table table-hover" id="tbldatoscontacto">
+        <thead>
+            <tr>
+                <td class="negrita">Opcion contacto</td>
+                <td class="negrita">Valor</td>
+                <td class="negrita">Barrio</td>
+                <td class="negrita">Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($datos_contacto as $contacto)
+            <tr>
+                <td>{{ $contacto->opcioncontacto }}</td>
+                <td>{{ $contacto->valor }}</td>
+                <td>{{ $contacto->nombrebarrio }}</td>
+                <td>
+                    <div class="row">
+    
+                        <div class="col-md-3">
+                            <a id="btnEditar" onclick="cargarDatosEditar('{{$contacto->id_persona_contacto}}')"
+                                class="btn btn-primary opts" data-toggle="tooltip" data-bs-placement="top"
+                                title="Editar datos de contacto">
+                                <i class="fas fa-edit"></i></a>
+                        </div>
+                        <div class="col-md-2">
+                            <form class="formEliminar"
+                                action="{{ route('micuenta.destroy', $contacto->id_persona_contacto) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
+                        </div>
                     </div>
-                    <div class="col-md-2">
-                        <form class="formEliminar"
-                            action="{{ route('micuenta.destroy', $contacto->id_persona_contacto) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-                </form>
+                    </form>
+    
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+</div>
+
 @stop
 
-@section('css')
-<style>
-    .negrita {
-        font-weight: bold;
-    }
-</style>
 
-<!-- Para importar bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-@stop
-
-@section('js')
+@section('scripts')
 <script>
     var idpersonacontacto = null;
     var idbarrio =null;

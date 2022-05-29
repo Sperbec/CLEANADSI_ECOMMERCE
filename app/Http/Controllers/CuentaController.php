@@ -13,6 +13,7 @@ use App\Models\Municipio;
 use App\Models\Persona_contacto;
 use App\Models\Barrio;
 use App\Http\Requests\StoreForm;
+use App\Models\Categoria;
 
 class CuentaController extends Controller
 {
@@ -54,12 +55,15 @@ class CuentaController extends Controller
         $tipos_documentos = Opciones_definidas::where('variable', '00identificacion')->get();
         $generos = Opciones_definidas::where('variable', '00genero')->get();
 
+        $categorias = Categoria::all();
+
         $data = ['usuario' => $usuario[0],
                 'tipos_contactos' => $tipos_contactos,
                 'municipios' => $municipios,
                 'datos_contacto' => $datos_contacto,
                 'tipos_documentos' => $tipos_documentos,
-                'generos' => $generos];
+                'generos' => $generos,
+                'categorias' => $categorias];
 
 
         return view('cuenta.index', $data);
@@ -68,25 +72,26 @@ class CuentaController extends Controller
 
    public function update(StoreForm $request, $id){
 
-        $persona = Persona::findOrFail($id);
+        //Obtengo el usuario
+        $usuario = User::findOrFail($id);
 
+        //Busco la persona
+        $persona =  Persona::findOrFail($usuario->id_persona);
+      
+        //Actualizo los datos de la persona
         $persona->nombres = $request->nombres_cuenta;
         $persona->apellidos = $request->apellidos_cuenta;
         $persona->id_opcion_tipo_documento = $request->tipo_documento;
         $persona->numero_documento = $request->numero_documento;
         $persona->id_opcion_genero = $request->tipo_genero;
         $persona->natalicio = $request->fecha_nacimiento;
-
         $persona->update();
-
-
+       
         //Actualizo el email de la tabla usuarios
-        $usuario = DB::table('usuarios')->where('id_persona', $id)->first();
-        $usuario = User::findOrFail($usuario->id_usuario);
         $usuario->email = $request->email_cuenta;
         $usuario->update();
 
-        return redirect()->route('micuenta.index')->with('editado', 'ok');
+        return redirect()->route('micuenta.index')->with('message', 'Registro editado con éxito.')->with('typealert', 'success');
    }
 
 
