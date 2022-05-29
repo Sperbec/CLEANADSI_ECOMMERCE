@@ -125,6 +125,8 @@ Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra'])->n
  Route::get('facturas/facturas', [FacturaController::class, 'factura'])->name('factura');
  Route::post('facturas/', [FacturaController::class, 'crear_factura'])->name('factura.crear');
 
+// get imagenes
 
+Route::get('/get-img', [\App\Http\Controllers\ImageController::class, 'getImg'])->name('getImage');
 
 //-----------------------------------------------------------------
