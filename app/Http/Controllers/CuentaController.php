@@ -119,7 +119,7 @@ class CuentaController extends Controller
    public function destroy($id){
         $persona_contacto = Persona_contacto::findOrFail($id);
         $persona_contacto->delete();
-        return redirect()->route('micuenta.index')->with('eliminado', 'ok');
+        return redirect()->route('micuenta.index')->with('message', 'Registro eliminado con éxito')->with('typealert', 'danger');
    }
 
    public function datosContacto(Request $request, $id){
@@ -134,7 +134,7 @@ class CuentaController extends Controller
 
     $persona_contacto->save();
 
-    return redirect()->route('micuenta.index')->with('guardado', 'ok');
+    return redirect()->route('micuenta.index')->with('message', 'Registro guardado con éxito.')->with('typealert', 'success');
 
    }
 
@@ -164,11 +164,12 @@ class CuentaController extends Controller
 
         $personacontacto->update();
 
-        return redirect()->route('micuenta.index')->with('editado', 'ok');
+        return redirect()->route('micuenta.index')->with('message', 'Registro editado con éxito.')->with('typealert', 'success');
 
    }
 
    public function show(){}
+
 
 
 }

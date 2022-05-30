@@ -280,7 +280,7 @@
 	<!-- /SECTION -->
 	@yield('contenido')
 
-	<br />
+	
 
 	@yield('scripts')
 
