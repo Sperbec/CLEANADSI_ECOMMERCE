@@ -410,29 +410,24 @@ $( document ).ready(navbarActive());
    console.log( path );
    
    if (path == "/frontend/inicio") {
-	console.log("PRUEBA 3");
 	document.getElementById("inicio-nav").classList.add ("active");
    };
    if (path == "/frontend/categoria/") {
-	console.log("PRUEBA 4");
 	document.getElementById("categorias-nav").classList.add ("active");
    };
    if (path == "/login") {
-	console.log("PRUEBA 5");
 	document.getElementById("login-nav").classList.add ("active");
    };
    if (path == "/register") {
-	console.log("PRUEBA 6");
 	document.getElementById("register-nav").classList.add ("active");
    };
    /* OPCIONES PARA CUANDO ESTÁ LOGEADO */
    if (path == "/") {
-	console.log("PRUEBA 6");
 	document.getElementById("faltafalta").classList.add ("active");
    };
    /*  */
    if (path == "/frontend/carrito") {
-	console.log("PRUEBA 7");
+	
 	document.getElementById("carrito-nav").classList.add ("active");
    };
     }    
