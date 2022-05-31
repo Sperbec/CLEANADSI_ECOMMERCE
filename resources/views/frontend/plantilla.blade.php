@@ -33,6 +33,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 	<script src="https://kit.fontawesome.com/8224604846.js" crossorigin="anonymous"></script>
 
@@ -62,11 +64,11 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li><a href="{{route('inicio')}}">Inicio</a></li>
+						<li id="inicio-nav" class=""><a href="{{route('inicio')}}" >Inicio</a></li>
 
 						
 
-						<li class="" class="nav-item dropdown">
+						<li id="categorias-nav" class="" class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorías</a>
 							<div class="dropdown-menu" aria-labelledby="btn-dropdown-categorias">
@@ -87,13 +89,13 @@
 						</li>
 															{{-- DESPLEGABLE DE OPCIONES DE USUARIO --}}
 						@if (Auth::guest())
-						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
-						<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						<li id="login-nav" class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+						<li id="register-nav" class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
 						@else
 
 						
 						
-							<li class="" class="nav-item dropdown">
+							<li id="postLog-nav" class="" class="nav-item dropdown">
 								{{-- Para traer el nombre del usuario --}}
 
 								@foreach ($usuario as $usuario)
@@ -118,7 +120,7 @@
 
 
 
-						<li><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
+						<li id="carrito-nav"><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
 						{{-- <li><a href="{{route('crear')}}">Crear <span class="icon-dot"></span></a></li> --}}
 					</ul>
 					<!-- /NAV -->
@@ -390,19 +392,52 @@
 	<script src="{{asset('guia de plantillas/js/jquery.zoom.min.js')}}"></script>
 	<script src="{{asset('guia de plantillas/js/main.js')}}"></script>
 
-	{{-- SCRIPT PARA LA PANTALLA EN LA QUE SE ENCUENTRA ACTUALMENTE --}}
-	{{-- <script>
-		function pantalla_actual(){
-			var cambio = document.getElementById("inicio");
-			if (cambio.type == "active") {
-				$('.navop1').removeClass('false').addClass('active');
-			}
-            if(cambio.type == "password"){
-                cambio.type = "text";
-                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-			}
-		}
-	</script> --}}
+	
+
 </body>
+
+{{-- <script>
+	function navbarActive() {
+    document.getElementById("inicio-nav").classList.add ("active");
+    
+}
+$( document ).ready(navbarActive());
+</script> --}}
+
+<script>
+	$( document ).ready(function() {
+   var path = $(location).attr('pathname');
+   console.log( path );
+   
+   if (path == "/frontend/inicio") {
+	console.log("PRUEBA 3");
+	document.getElementById("inicio-nav").classList.add ("active");
+   };
+   if (path == "/frontend/categoria/") {
+	console.log("PRUEBA 4");
+	document.getElementById("categorias-nav").classList.add ("active");
+   };
+   if (path == "/login") {
+	console.log("PRUEBA 5");
+	document.getElementById("login-nav").classList.add ("active");
+   };
+   if (path == "/register") {
+	console.log("PRUEBA 6");
+	document.getElementById("register-nav").classList.add ("active");
+   };
+   /* OPCIONES PARA CUANDO ESTÁ LOGEADO */
+   if (path == "/") {
+	console.log("PRUEBA 6");
+	document.getElementById("faltafalta").classList.add ("active");
+   };
+   /*  */
+   if (path == "/frontend/carrito") {
+	console.log("PRUEBA 7");
+	document.getElementById("carrito-nav").classList.add ("active");
+   };
+    }    
+   
+	);
+</script>
 
 </html>
