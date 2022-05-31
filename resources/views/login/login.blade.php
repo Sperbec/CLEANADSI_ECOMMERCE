@@ -72,13 +72,11 @@
 @section('scripts')
     <script> 
         function mostrarPassword(){
-            var cambio = document.getElementById("password");
+            var cambio = document.getElementById("password"); 
             if(cambio.type == "password"){
                 cambio.type = "text";
-                
             }else{
                 cambio.type = "password";
-                
             }
         } 
     </script>

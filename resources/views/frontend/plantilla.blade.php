@@ -38,6 +38,8 @@
 
 	<script src="https://kit.fontawesome.com/8224604846.js" crossorigin="anonymous"></script>
 
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	<link rel="shortcut icon" href="/static/images/logo.png">
 
 
@@ -98,10 +100,9 @@
 							<li id="postLog-nav" class="" class="nav-item dropdown">
 								{{-- Para traer el nombre del usuario --}}
 
-								@foreach ($usuario as $usuario)
 								<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-usuario"
-									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$usuario-> nombres}} {{$usuario->apellidos}}</a>
-								@endforeach
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$usuario->nombres}} {{$usuario->apellidos}}</a>
+								
 
 								<div class="dropdown-menu" aria-labelledby="btn-dropdown-usuario">
 									<ul >
@@ -281,7 +282,7 @@
 	<!-- /SECTION -->
 	@yield('contenido')
 
-	<br />
+	
 
 	@yield('scripts')
 
