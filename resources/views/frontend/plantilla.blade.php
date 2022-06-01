@@ -290,8 +290,10 @@
 
 	@yield('footer')
 	<!-- FOOTER -->
-	<footer id="footer">
+	<div class="col-md-12.5 text-justify">
+		<footer id="footer">
 		<!-- top footer -->
+		
 		<div class="section">
 			<!-- container -->
 			<div class="container">
@@ -340,7 +342,9 @@
 							<ul class="footer-links">
 								<!--<li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
 								<li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li> -->
-								<li><a href="#"><i class="fa fa-whatsapp"></i>Whatsapp</a></li>
+								<li><a href="https://chatwith.io/es/s/cleanline"><i class="fa fa-whatsapp"></i>Whatsapp</a>
+									
+								</li>
 
 							</ul>
 						</div>
@@ -381,7 +385,7 @@
 			</div>
 			<!-- /container -->
 		</div>
-		<!-- /bottom footer -->
+	</div>	<!-- /bottom footer -->
 	</footer>
 	<!-- /FOOTER -->
 

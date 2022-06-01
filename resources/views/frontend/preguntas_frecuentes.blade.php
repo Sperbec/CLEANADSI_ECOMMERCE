@@ -46,14 +46,16 @@
         <p ><strong>Si llega mi pedido y no estoy en la dirección, ¿qué puedo hacer?</strong></p>
         <p >Puedes escribirnos al WhatsApp 315-576-86-10 y te ayudamos a programar una nueva entrega para tu pedido</p>
         <p ><strong>GENERALES:</strong></p>
-        <p ><strong>¿Cómo puedo ser distribuidor u obtener una franquicia?</strong></p>
-        <p >Te contamos que en este momento estamos enfocados en darle fuerza a nuestro sitio web y así llegar a los lugares donde no tenemos tienda física, no estamos otorgando franquicias o ventas al por mayor, sin embargo, puedes ver productos con descuento cada semana en la pestaña del ofertas. Puedes comprar y vender nuestros productos, pero sin usar nuestro nombre y contenido por asuntos de propiedad intelectual</p>
         <p ><strong>¿Cómo puedo ver los productos en mi ciudad ?</strong></p>
         <p >Puedes ver todo nuestro inventario que tenemos en el sitio web cleanline.com, dando clic en productos, está la opción "ver inventario de productos" ahí puedes ver si los productos que quieres todavía están disponibles</p>
         <p ><strong>Nota:</strong></p>
         <p >Si tienes alguna otra duda o novedad con tu pedido (cambio de dirección, celular o persona quien recibe) puedes escribirnos al WhatsApp 315-576-86-10 y de una te ayudamos.</p>
 </p> 
+
 </div>
+<br>
+<br>
+<br>
 
 
 @stop
