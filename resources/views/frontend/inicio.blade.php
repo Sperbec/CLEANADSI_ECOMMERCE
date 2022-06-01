@@ -373,6 +373,12 @@
     $(".cart-dropdown").hide();
 </script>
 
+{{-- SCRIPT PARA LA PANTALLA EN LA QUE SE ENCUENTRA ACTUALMENTE --}}
+
+<script>
+    $( document ).ready(navbarActive());
+</script>
+
 @endsection
 
 @section('footer')

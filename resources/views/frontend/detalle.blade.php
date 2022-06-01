@@ -64,7 +64,7 @@
                     
                     <div>
                         <h3 class="product-price">${{number_format($producto->precio)}}</h3>
-                        <span class="product-available">Cantidad disponivle : {{$producto->cantidad_existencia}}</span>
+                        <span class="product-available">Cantidad disponible : {{$producto->cantidad_existencia}}</span>
                     </div>
                     
                     <div class="add-to-cart">

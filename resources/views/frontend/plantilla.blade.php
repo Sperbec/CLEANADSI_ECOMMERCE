@@ -33,8 +33,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 	<script src="https://kit.fontawesome.com/8224604846.js" crossorigin="anonymous"></script>
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<link rel="shortcut icon" href="/static/images/logo.png">
 
 
 
@@ -60,9 +66,11 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class=""><a href="{{route('inicio')}}">Inicio</a></li>
+						<li id="inicio-nav" class=""><a href="{{route('inicio')}}" >Inicio</a></li>
 
-						<li class="active" class="nav-item dropdown">
+						
+
+						<li id="categorias-nav" class="" class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorías</a>
 							<div class="dropdown-menu" aria-labelledby="btn-dropdown-categorias">
@@ -81,10 +89,39 @@
 							</div>
 
 						</li>
+															{{-- DESPLEGABLE DE OPCIONES DE USUARIO --}}
+						@if (Auth::guest())
+						<li id="login-nav" class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+						<li id="register-nav" class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						@else
 
-						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
-						<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
-						<li><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
+						
+						
+							<li id="postLog-nav" class="" class="nav-item dropdown">
+								{{-- Para traer el nombre del usuario --}}
+
+								<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-usuario"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$usuario->nombres}} {{$usuario->apellidos}}</a>
+								
+
+								<div class="dropdown-menu" aria-labelledby="btn-dropdown-usuario">
+									<ul >
+										<li class="dropdown-item"><a href="{{route('micuenta.index')}}">Mi cuenta<span class="icon-dot"></span></a></li>
+										<li class="dropdown-item"><a href="{{url('/pedidos')}}">Mis pedidos<span class="icon-dot"></span></a></li>
+										<li class="dropdown-item"><a href="{{url('/logout')}}">Cerrar sesión<span class="icon-dot"></span></a></li>
+									</ul>
+
+								</div>
+
+							</li>
+							
+						@endif
+
+	
+
+
+
+						<li id="carrito-nav"><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
 						{{-- <li><a href="{{route('crear')}}">Crear <span class="icon-dot"></span></a></li> --}}
 					</ul>
 					<!-- /NAV -->
@@ -143,7 +180,7 @@
 									<div class="qty">{{ count((array) session('carrito')) }}</div>
 								</a>
 								@if(isset($carrito))
-								
+
 								@else
 
 								<div class="cart-dropdown">
@@ -176,7 +213,7 @@
 										<h5>TOTAL: $ {{ $total }}</h5>
 									</div>
 									<div class="cart-btns text-center">
-										<a href="{{route('carrito')}}">Ver Carrito</a>
+										<a href="{{route('carrito')}}">Ver carrito</a>
 									</div>
 									@endif
 
@@ -245,7 +282,7 @@
 	<!-- /SECTION -->
 	@yield('contenido')
 
-	<br />
+	
 
 	@yield('scripts')
 
@@ -356,6 +393,47 @@
 	<script src="{{asset('guia de plantillas/js/jquery.zoom.min.js')}}"></script>
 	<script src="{{asset('guia de plantillas/js/main.js')}}"></script>
 
+	
+
 </body>
+
+{{-- <script>
+	function navbarActive() {
+    document.getElementById("inicio-nav").classList.add ("active");
+    
+}
+$( document ).ready(navbarActive());
+</script> --}}
+
+<script>
+	$( document ).ready(function() {
+   var path = $(location).attr('pathname');
+   console.log( path );
+   
+   if (path == "/frontend/inicio") {
+	document.getElementById("inicio-nav").classList.add ("active");
+   };
+   if (path == "/frontend/categoria/") {
+	document.getElementById("categorias-nav").classList.add ("active");
+   };
+   if (path == "/login") {
+	document.getElementById("login-nav").classList.add ("active");
+   };
+   if (path == "/register") {
+	document.getElementById("register-nav").classList.add ("active");
+   };
+   /* OPCIONES PARA CUANDO ESTÁ LOGEADO */
+   if (path == "/") {
+	document.getElementById("faltafalta").classList.add ("active");
+   };
+   /*  */
+   if (path == "/frontend/carrito") {
+	
+	document.getElementById("carrito-nav").classList.add ("active");
+   };
+    }    
+   
+	);
+</script>
 
 </html>

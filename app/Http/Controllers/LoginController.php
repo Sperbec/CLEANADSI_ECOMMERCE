@@ -85,6 +85,7 @@ class LoginController extends Controller
                 'password' => $request->input('password')
             ], true)) :
 
+                
                 //Consulto si el usuario que hace login es admin o cliente
                $sql = 'SELECT roles.id 
                FROM usuarios
@@ -99,8 +100,11 @@ class LoginController extends Controller
                 //2: Es un cliente.
                 if($rol[0]->id == 1){
                     return redirect('/home');
-                }else{
-                    return redirect('/');
+                }
+                
+                else{  
+                    
+                     return redirect('/'); 
                 }
                 
             else :
@@ -265,6 +269,6 @@ class LoginController extends Controller
     public function getLogout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 }
