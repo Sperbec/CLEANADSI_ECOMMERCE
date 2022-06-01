@@ -290,8 +290,10 @@
 
 	@yield('footer')
 	<!-- FOOTER -->
-	<footer id="footer">
+	<div class="col-md-12.5 text-justify">
+		<footer id="footer">
 		<!-- top footer -->
+		
 		<div class="section">
 			<!-- container -->
 			<div class="container">
@@ -302,9 +304,9 @@
 							<h3 class="footer-title">Contáctanos</h3>
 
 							<ul class="footer-links">
-								<li><a href="#"><i class="fa fa-map-marker"></i>Calle 56 #1E-142</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i>315-576-86-10</a></li>
-								<li><a href="#"><i class="fa fa-envelope-o"></i>Cleanline@cleanadsi.com</a></li>
+								<li><i class="fa fa-phone"></i>315-576-86-10</a></li>
+								<li><i class="fa fa-map-marker"></i>Calle 56 #1E-142</a></li>
+								<li><i class="fa fa-envelope-o"></i>Cleanline@cleanadsi.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -338,9 +340,11 @@
 						<div class="footer">
 							<h3 class="footer-title">Síguenos</h3>
 							<ul class="footer-links">
-								<li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
-								<li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
-								<li><a href="#"><i class="fa fa-whatsapp"></i>Whatsapp</a></li>
+								<!--<li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+								<li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li> -->
+								<li><a href="https://chatwith.io/es/s/cleanline"><i class="fa fa-whatsapp"></i>Whatsapp</a>
+									
+								</li>
 
 							</ul>
 						</div>
@@ -359,12 +363,12 @@
 				<div class="row">
 					<div class="col-md-12 text-center">
 						<ul class="footer-payments">
-							<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+							<!--<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
 							<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
 							<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
 							<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
 							<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-							<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-amex"></i></a></li> -->
 						</ul>
 						<span class="copyright">
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -381,7 +385,7 @@
 			</div>
 			<!-- /container -->
 		</div>
-		<!-- /bottom footer -->
+	</div>	<!-- /bottom footer -->
 	</footer>
 	<!-- /FOOTER -->
 
