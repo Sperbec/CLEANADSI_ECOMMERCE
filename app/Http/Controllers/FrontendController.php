@@ -154,11 +154,18 @@ class FrontendController extends Controller
     {
         if($request->id && $request->quantity){
             $carrito = session()->get('carrito');
-            $carrito[$request->id]["quantity"] = $request->quantity;
-            session()->put('carrito', $carrito);
+            if($request->quantity<0)
+            {
+                $carrito[$request->id]["quantity"] =1;
+                session()->put('carrito', $carrito);
             session()->flash('success', 'Carrito actualizado');
+            }else {
+                $carrito[$request->id]["quantity"] = $request->quantity;
+                session()->put('carrito', $carrito);
+            session()->flash('success', 'Carrito actualizado');
+            }
+            
         }
-        //return redirect()->route('carrito');
     }   
   
     /**

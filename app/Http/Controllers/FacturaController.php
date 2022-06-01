@@ -34,10 +34,10 @@ class FacturaController extends Controller
         $factura =new Facturas();
         
         if (isset( $factura->codigo )) {
-            $factura->codigo ="FK". 1;
+            $factura->codigo ="FD". 1;
 
         }else {
-            $factura->codigo = "FK".$id->id_factura +1;
+            $factura->codigo = "FD".$id->id_factura +1;
         }
         
         $factura->fecha = date("Y-m-d");
