@@ -16,7 +16,7 @@
 <!--Mostrar sección de contenido exclusivo de esta plantilla, se debe iniciar y finalizar-->
 @section('contenido')
 
-{!! Form::open(['url' => '/login']) !!}
+{!! Form::open(['route' => 'getLogin']) !!}
 <div class="content">
     <div class="section-title">
         <h3 class="title">Iniciar sesión</h3>
@@ -35,6 +35,11 @@
             <label for="password" class="text">Contraseña:</label>
             {!!  Form::password('password', ['id' => 'password', 'class' => 'form-control', 'required']) !!}
         </div>
+    </div>
+    <br>
+    <div class="password-show">
+        <input id="show_password" class="form-check-input" type="checkbox" onclick="mostrarPassword()">
+        <label class="form-check-label" for="show_password">Mostrar contraseña</label>
     </div>
 
     <div class="row">
@@ -67,23 +72,13 @@
 @section('scripts')
     <script> 
         function mostrarPassword(){
-            var cambio = document.getElementById("password");
+            var cambio = document.getElementById("password"); 
             if(cambio.type == "password"){
                 cambio.type = "text";
-                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
             }else{
                 cambio.type = "password";
-                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
             }
-            
         } 
-        
-        $(document).ready(function () {
-            //CheckBox mostrar contraseña
-            $('#ShowPassword').click(function () {
-                $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-            });
-        });
     </script>
 
     

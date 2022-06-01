@@ -35,8 +35,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 	<script src="https://kit.fontawesome.com/8224604846.js" crossorigin="anonymous"></script>
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<link rel="shortcut icon" href="/static/images/logo.png">
 
@@ -69,9 +73,11 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class=""><a href="{{route('inicio')}}">Inicio</a></li>
+						<li id="inicio-nav" class=""><a href="{{route('inicio')}}" >Inicio</a></li>
 
-						<li class="active" class="nav-item dropdown">
+						
+
+						<li id="categorias-nav" class="" class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorías</a>
 							<div class="dropdown-menu" aria-labelledby="btn-dropdown-categorias">
@@ -90,20 +96,39 @@
 							</div>
 
 						</li>
-
+															{{-- DESPLEGABLE DE OPCIONES DE USUARIO --}}
 						@if (Auth::guest())
-						<li class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
-						<li class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						<li id="login-nav" class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+						<li id="register-nav" class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
 						@else
-						<li class=""><a href="{{route('micuenta.index')}}">Mi cuenta<span class="icon-dot"></span></a>
-						</li>
-						<li class=""><a href="{{url('/pedidos')}}">Mis pedidos<span class="icon-dot"></span></a></li>
-						<li class=""><a href="{{url('/logout')}}">Cerrar sesión<span class="icon-dot"></span></a></li>
+
+						
+						
+							<li id="postLog-nav" class="" class="nav-item dropdown">
+								{{-- Para traer el nombre del usuario --}}
+
+								<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-usuario"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$usuario->nombres}} {{$usuario->apellidos}}</a>
+								
+
+								<div class="dropdown-menu" aria-labelledby="btn-dropdown-usuario">
+									<ul >
+										<li class="dropdown-item"><a href="{{route('micuenta.index')}}">Mi cuenta<span class="icon-dot"></span></a></li>
+										<li class="dropdown-item"><a href="{{url('/pedidos')}}">Mis pedidos<span class="icon-dot"></span></a></li>
+										<li class="dropdown-item"><a href="{{url('/logout')}}">Cerrar sesión<span class="icon-dot"></span></a></li>
+									</ul>
+
+								</div>
+
+							</li>
+							
 						@endif
 
+	
 
 
-						<li><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
+
+						<li id="carrito-nav"><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
 						{{-- <li><a href="{{route('crear')}}">Crear <span class="icon-dot"></span></a></li> --}}
 					</ul>
 					<!-- /NAV -->
@@ -280,8 +305,10 @@
 
 	@yield('footer')
 	<!-- FOOTER -->
-	<footer id="footer">
+	<div class="col-md-12.5 text-justify">
+		<footer id="footer">
 		<!-- top footer -->
+		
 		<div class="section">
 			<!-- container -->
 			<div class="container">
@@ -292,9 +319,9 @@
 							<h3 class="footer-title">Contáctanos</h3>
 
 							<ul class="footer-links">
-								<li><a href="#"><i class="fa fa-map-marker"></i>Calle 56 #1E-142</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i>315-576-86-10</a></li>
-								<li><a href="#"><i class="fa fa-envelope-o"></i>Cleanline@cleanadsi.com</a></li>
+								<li><i class="fa fa-phone"></i>315-576-86-10</a></li>
+								<li><i class="fa fa-map-marker"></i>Calle 56 #1E-142</a></li>
+								<li><i class="fa fa-envelope-o"></i>Cleanline@cleanadsi.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -328,9 +355,11 @@
 						<div class="footer">
 							<h3 class="footer-title">Síguenos</h3>
 							<ul class="footer-links">
-								<li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
-								<li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
-								<li><a href="#"><i class="fa fa-whatsapp"></i>Whatsapp</a></li>
+								<!--<li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+								<li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li> -->
+								<li><a href="https://chatwith.io/es/s/cleanline"><i class="fa fa-whatsapp"></i>Whatsapp</a>
+									
+								</li>
 
 							</ul>
 						</div>
@@ -349,12 +378,12 @@
 				<div class="row">
 					<div class="col-md-12 text-center">
 						<ul class="footer-payments">
-							<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+							<!--<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
 							<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
 							<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
 							<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
 							<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-							<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-amex"></i></a></li> -->
 						</ul>
 						<span class="copyright">
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -371,7 +400,7 @@
 			</div>
 			<!-- /container -->
 		</div>
-		<!-- /bottom footer -->
+	</div>	<!-- /bottom footer -->
 	</footer>
 	<!-- /FOOTER -->
 
@@ -383,6 +412,47 @@
 	<script src="{{asset('guia de plantillas/js/jquery.zoom.min.js')}}"></script>
 	<script src="{{asset('guia de plantillas/js/main.js')}}"></script>
 
+	
+
 </body>
+
+{{-- <script>
+	function navbarActive() {
+    document.getElementById("inicio-nav").classList.add ("active");
+    
+}
+$( document ).ready(navbarActive());
+</script> --}}
+
+<script>
+	$( document ).ready(function() {
+   var path = $(location).attr('pathname');
+   console.log( path );
+   
+   if (path == "/frontend/inicio") {
+	document.getElementById("inicio-nav").classList.add ("active");
+   };
+   if (path == "/frontend/categoria/") {
+	document.getElementById("categorias-nav").classList.add ("active");
+   };
+   if (path == "/login") {
+	document.getElementById("login-nav").classList.add ("active");
+   };
+   if (path == "/register") {
+	document.getElementById("register-nav").classList.add ("active");
+   };
+   /* OPCIONES PARA CUANDO ESTÁ LOGEADO */
+   if (path == "/") {
+	document.getElementById("faltafalta").classList.add ("active");
+   };
+   /*  */
+   if (path == "/frontend/carrito") {
+	
+	document.getElementById("carrito-nav").classList.add ("active");
+   };
+    }    
+   
+	);
+</script>
 
 </html>

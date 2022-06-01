@@ -92,6 +92,7 @@ Route::resource('factura', App\Http\Controllers\FacturaController::class)->names
 Route::get('/imprimirfactura/{id}', [App\Http\Controllers\FacturaController::class, 'imprimirfactura'])->name('imprimirfactura');
 
 //Mi cuenta
+Route::get('/micuentaadmin', [App\Http\Controllers\CuentaController::class, 'micuentaadmin'])->name('micuentaadmin');
 Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names('micuenta');
 Route::post('/changePassword/{id}', [App\Http\Controllers\CuentaController::class, 'changePassword'])->name('changePassword');
 Route::post('/datosContacto/{id}', [App\Http\Controllers\CuentaController::class, 'datosContacto'])->name('datosContacto');
@@ -105,7 +106,7 @@ Route::get('frontend/inicio',[App\Http\Controllers\FrontendController::class,'nu
 
 Route::get('/frontend/categoria/{id}',[App\Http\Controllers\FrontendController::class,'categorias_front'])->name('categoria_front');
 
-Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('Aseo_general');
+
 
 Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
 //rutas para crear productos (probicional)
