@@ -409,7 +409,9 @@ $( document ).ready(navbarActive());
 	$( document ).ready(function() {
    var path = $(location).attr('pathname');
    console.log( path );
-   
+   if (path == "/") {
+	document.getElementById("inicio-nav").classList.add ("active");
+   };
    if (path == "/frontend/inicio") {
 	document.getElementById("inicio-nav").classList.add ("active");
    };
