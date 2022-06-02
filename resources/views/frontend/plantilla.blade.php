@@ -338,11 +338,9 @@
 
 					<div class="col-md-3 col-xs-6">
 						<div class="footer">
-							<h3 class="footer-title">Síguenos</h3>
+							<h3 class="footer-title">Redes</h3>
 							<ul class="footer-links">
-								<!--<li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
-								<li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li> -->
-								<li><a href="https://chatwith.io/es/s/cleanline"><i class="fa fa-whatsapp"></i>Whatsapp</a>
+								<li><a href="https://chatwith.io/es/s/cleanline"><i class="fa fa-whatsapp"></i>WhatsApp</a>
 									
 								</li>
 

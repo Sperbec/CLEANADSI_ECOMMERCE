@@ -16,36 +16,47 @@ use Illuminate\Support\Facades\DB;
 class FrontendController extends Controller
 {
 
+    protected $usuario = null;
+    protected $categorias;
+
+    public function consultar_categorias(){
+        $this->categorias = Categoria::all();
+    }
+
+    public  function consultarUsuario()
+    {
+        if (auth()->user() != null) {
+             //Consulto los datos de la persona que está logueada
+             $sql = 'SELECT id_usuario, nombres,apellidos , email,
+             id_opcion_tipo_documento, numero_documento,
+             id_opcion_genero, natalicio,
+             documento.nombre as tipodocumento, genero.nombre as tipogenero
+             from usuarios
+             inner join personas on personas.id_persona = usuarios.id_persona
+             inner join opciones_definidas documento on documento.id_opcion =personas.id_opcion_tipo_documento
+             inner join opciones_definidas genero on genero.id_opcion = personas.id_opcion_genero
+             where id_usuario = '.auth()->user()->id_usuario;
+ 
+             $this->usuario = DB::select($sql);
+        }   
+    }
+
     public function nuevos_productos()
     {
-
-        $categorias = Categoria::all();
+        
+        $this->consultar_categorias();
 
         $producto=Producto::orderBy('id_producto','desc')->paginate(5);
 
-        if (auth()->user() != null) {
-            //Consulto los datos de la persona que está logueada
-            $sql = 'SELECT id_usuario, nombres,apellidos , email,
-            id_opcion_tipo_documento, numero_documento,
-            id_opcion_genero, natalicio,
-            documento.nombre as tipodocumento, genero.nombre as tipogenero
-            from usuarios
-            inner join personas on personas.id_persona = usuarios.id_persona
-            inner join opciones_definidas documento on documento.id_opcion =personas.id_opcion_tipo_documento
-            inner join opciones_definidas genero on genero.id_opcion = personas.id_opcion_genero
-            where id_usuario = '.auth()->user()->id_usuario;
+        $this->consultarUsuario();
 
-            $usuario = DB::select($sql);
-
-            $data = ['categorias' => $categorias,
-            'producto'=>$producto, 'usuario' => $usuario[0]];
-        
+        if ($this->usuario != null) {
+            $data = ['categorias' => $this->categorias,
+            'producto'=>$producto, 'usuario' => $this->usuario != null ? $this->usuario[0] : null];
 
         }else{
-    
-            $data = ['categorias' => $categorias,
+            $data = ['categorias' => $this->categorias,
             'producto'=>$producto];
-
         }
 
         return view('frontend.inicio',$data);
@@ -54,24 +65,36 @@ class FrontendController extends Controller
 
     public function categorias_front($id)
     {
-        
-        $categorias = Categoria::all();
+        $this->consultar_categorias();
+        $this->consultarUsuario();
+
         $categoria_seleccionada = Producto::where('id_categoria', $id)->paginate(12);
-        return view('frontend.categorias_front', compact('categoria_seleccionada', 'categorias'));
+
+        $data = ['categoria_seleccionada' => $categoria_seleccionada,
+                'categorias' => $this->categorias,
+                'usuario' => $this->usuario != null ? $this->usuario[0] : null ];
+
+        return view('frontend.categorias_front', $data);
     }
 
 
 
     public function detalle(Producto $producto)
     {
-        
-        $categorias = Categoria::all();
-        return view('frontend.detalle',compact('producto', 'categorias'));
+        $this->consultar_categorias();  
+        $this->consultarUsuario();
+
+        $data = ['producto' => $producto,
+        'categorias' => $this->categorias,
+        'usuario' => $this->usuario != null ? $this->usuario[0] : null ];
+
+        return view('frontend.detalle',$data);
     }
 
     public function crear()
     {
-        $categorias = Categoria::all();
+        $this->consultar_categorias();
+        $data = ['categorias' => $this->categorias ];
         return view('frontend.crear',compact('categorias'));
     }
 
@@ -100,28 +123,24 @@ class FrontendController extends Controller
         }
 
         Producto::create($salidaimagen);
-        
         return redirect()->route('inicio');
     }
 
-    //carrito de Compras
-     /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+    
      public function carrito()
     {
-        $categorias = Categoria::all();
+        $this->consultar_categorias();
+        $this->consultarUsuario();
         $carrito = session()->get('carrito');
-        return view('frontend.carrito',compact('carrito','categorias'));
+
+        $data = ['carrito' => $carrito,
+        'categorias' => $this->categorias,
+        'usuario' => $this->usuario != null ? $this->usuario[0] : null];
+
+        return view('frontend.carrito',$data);
     } 
   
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+   
      public function añadir_carrito($id)
     {
         $producto = Producto::findOrFail($id);
@@ -147,14 +166,9 @@ class FrontendController extends Controller
         }
         session()->put('carrito', $carrito);
         
-        return redirect()->back()->with('success', 'Producto añadido al carrito!');
+        return redirect()->back()->with('success', 'Producto añadido al carrito.');
     } 
-  
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+ 
     public function update(Request $request)
     {
         if($request->id && $request->quantity){
@@ -166,11 +180,7 @@ class FrontendController extends Controller
         
     }   
   
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+ 
     public function eliminar(Request $request)
     {
         if($request->id) {
@@ -186,33 +196,45 @@ class FrontendController extends Controller
     public function detalle_compra(Request $request)
     {
         
-        $categorias = Categoria::all();
+        $this->consultar_categorias();
+        $this->consultarUsuario();
         
-        $detalle_factura = DetalleFactura::all();
-        $comentario_facturas = Facturas::all();
-        $opcion_entregas = Opciones_definidas::where('variable', '00tipoentrega')->get();
-        $opcion_pagos = Opciones_definidas::where('variable', '00tipopago')->get();
         $carrito = session()->get('carrito');
         session()->put('carrito', $carrito);
-       return view('facturas/detalle',compact('opcion_entregas','opcion_pagos','comentario_facturas','categorias','detalle_factura'));
+
+
+        $data = ['opcion_entregas' => Opciones_definidas::where('variable', '00tipoentrega')->get(),
+                'opcion_pagos' => Opciones_definidas::where('variable', '00tipopago')->get(),
+                'comentario_facturas' => Facturas::all(),
+                'categorias' => $this->categorias,
+                'detalle_factura' => DetalleFactura::all(),
+                'usuario' =>$this->usuario != null ? $this->usuario[0] : null];
+
+       return view('facturas/detalle', $data);
     }  
 
 
     public function preguntasfrecuentes(){
-        $categorias = Categoria::all();
-        $data = ['categorias' => $categorias];
+        $this->consultar_categorias();
+        $this->consultarUsuario();
+        $data = ['categorias' => $this->categorias, 
+                'usuario' =>  $this->usuario != null ? $this->usuario[0] : null];
         return view('frontend.preguntas_frecuentes', $data);
     }
 
     public function sobrenosotros(){
-        $categorias = Categoria::all();
-        $data = ['categorias' => $categorias];
+        $this->consultar_categorias();
+        $this->consultarUsuario();
+        $data = ['categorias' => $this->categorias, 
+                'usuario' => $this->usuario != null ? $this->usuario[0] : null];
         return view('frontend.sobre_nosotros', $data);
     }
 
     public function politicasprivacidad(){
-        $categorias = Categoria::all();
-        $data = ['categorias' => $categorias];
+        $this->consultar_categorias();
+        $this->consultarUsuario();
+        $data = ['categorias' => $this->categorias, 
+                'usuario' =>  $this->usuario != null ? $this->usuario[0] : null];
         return view('frontend.politicas_privacidad', $data);
     }
     
