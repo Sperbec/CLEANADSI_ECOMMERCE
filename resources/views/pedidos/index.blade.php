@@ -48,7 +48,7 @@
                 <div class="row">
 
                     <div class="col-md-3">
-                        <a id="btnVer"  class="btn btn-primary opts"  data-bs-placement="top"
+                        <a id="btnVer"   href="{{ route('pedidos.show', $pedido->id_factura) }}"  class="btn btn-primary opts"  data-bs-placement="top"
                             title="Ver pedido">
                             <i class="fas fa-eye"></i></a>
                     </div>

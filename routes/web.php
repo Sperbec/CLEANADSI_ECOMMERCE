@@ -85,7 +85,7 @@ Route::get('/imprimirordencompra/{id}', [App\Http\Controllers\OrdenCompraControl
 Route::post('/obtenerproducto', [App\Http\Controllers\ProductoController::class, 'obtenerproducto']);
 
 //Mis pedidos
-Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])->name('pedidos');
+Route::resource('pedidos', App\Http\Controllers\PedidosController::class)->names('pedidos');
 
 //Facturas
 Route::resource('factura', App\Http\Controllers\FacturaController::class)->names('factura');

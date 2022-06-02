@@ -1,0 +1,22 @@
+.content{
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.subtitle{
+  font-weight: bold; 
+  float:left;
+}
+
+
+.text{
+  margin-left: 4px;
+  float: left;
+  font-weight: normal;
+}
+
+.negrita{
+  font-weight: bold; 
+}
