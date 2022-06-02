@@ -49,7 +49,7 @@
                 </div>
 
                 @error('nombres_proveedor')
-                <small>{{$message}}</small>
+                <small><span style="color: red">{{$message}}</span></small>
                 @enderror
             </div>
 
@@ -62,7 +62,7 @@
                     {!! Form::text('apellidos_proveedor', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'apellidos_proveedor']) !!}
                 </div>
                 @error('apellidos_proveedor')
-                <small>{{$message}}</small>
+                <small><span style="color: red">{{$message}}</span></small>
                 @enderror
             </div>
         </div>
@@ -93,7 +93,7 @@
                     {!! Form::number('numero_documento', null, ['class' => 'form-control', 'required', 'id' => 'numero_documento', 'disabled']) !!}
                 </div>
                 @error ('numero_documento')
-                <small>{{$message}}</small>
+                <small><span style="color: red">{{$message}}</span></small>
                 @enderror
             </div>
         </div>
@@ -142,7 +142,7 @@
                     {!! Form::text('nombre_juridico', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'nombre_juridico']) !!}
                 </div>
                 @error('nombre_juridico')
-                <small>{{$message}}</small>
+                <small><span style="color: red">{{$message}}</span></small>
                 @enderror
             </div>
 
@@ -157,7 +157,7 @@
                     {!! Form::number('nit', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'nit', 'min' => '000000000000000', 'max' => '999999999999999']) !!}
                 </div>
                 @error('nit')
-                <small>{{$message}}</small>
+                <small><span style="color: red">{{$message}}</span></small>
                 @enderror
             </div>
         </div>
@@ -173,7 +173,7 @@
                     {!! Form::text('direccion_proveedor', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'direccion_proveedor']) !!}
                 </div>
                 @error('direccion_proveedor')
-                <small>{{$message}}</small>
+                <small><span style="color: red">{{$message}}</span></small>
                 @enderror
             </div>
 
@@ -186,7 +186,7 @@
                     {!! Form::text('correo_proveedor', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'correo_proveedor']) !!}
                 </div>
                 @error('correo_proveedor')
-                <small>{{$message}}</small>
+                <small><span style="color: red">{{$message}}</span></small>
                 @enderror
             </div>
         </div>
@@ -204,7 +204,7 @@
                     {!! Form::text('contacto_proveedor', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'contacto_proveedor']) !!}
                 </div>
                 @error('contacto_proveedor')
-                <small>{{$message}}</small>
+                <small><span style="color: red">{{$message}}</span></small>
                 @enderror
             </div>
             
@@ -217,7 +217,7 @@
                     {!! Form::number('telefono_proveedor', null, ['class' => 'form-control', 'required', 'disabled', 'id' => 'telefono_proveedor', 'min' => '0000000000', 'max' => '9999999999']) !!}
                 </div>
                 @error('telefono_proveedor')
-                <small>{{$message}}</small>
+                <small><span style="color: red">{{$message}}</span></small>
                 @enderror
             </div>
         </div>

@@ -11,16 +11,16 @@
 
 @section('content')
 @error('nombres_cuenta')
-<small>{{$message}}</small>
+<small><span style="color: red">{{$message}}</span></small>
 <br>
 @enderror
 
 @error('apellidos_cuenta')
-<small>{{$message}}</small>
+<small><span style="color: red">{{$message}}</span></small>
 @enderror
 
 @error('email_cuenta')
-<small>{{$message}}</small>
+<small><span style="color: red">{{$message}}</span></small>
 @enderror
 
 

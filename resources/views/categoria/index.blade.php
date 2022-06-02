@@ -15,11 +15,11 @@
 @section('content')
 
 @error('codigo_categoria')
-<small>{{$message}}</small>
+<small><span style="color: red">{{$message}}</span></small>
 <br>
 @enderror
 @error('nombre_categoria')
-<small>{{$message}}</small>
+<small><span style="color: red">{{$message}}</span></small>
 @enderror
 
 
