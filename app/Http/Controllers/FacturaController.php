@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
 
+use function PHPUnit\Framework\isEmpty;
+
 class FacturaController extends Controller
 {
 
@@ -29,15 +31,18 @@ class FacturaController extends Controller
         
         $carrito = session()->get('carrito');
         session()->put('carrito', $carrito);
-        
-        $id=Facturas::orderBy('id_factura','desc')->first();
+
+        $sql = 'select id_factura  from facturas order by id_factura  desc limit 1';
+
+        $id_factura = DB::select($sql);
         $factura =new Facturas();
         
-        if (isset( $factura->codigo )) {
-            $factura->codigo ="FD". 1;
-
+        
+        if (isEmpty($id_factura) && sizeof($id_factura) == 0) {
+            $factura->codigo ="FV". 1;
         }else {
-            $factura->codigo = "FD".$id->id_factura +1;
+            $ultima_factura =Facturas::orderBy('id_factura','desc')->first();
+            $factura->codigo = "FV".$ultima_factura->id_factura +1;
         }
         
         $factura->fecha = date("Y-m-d");
