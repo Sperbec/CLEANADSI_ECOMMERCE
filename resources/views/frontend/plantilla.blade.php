@@ -27,6 +27,8 @@
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="{{asset('guia de plantillas/css/style.css')}}" />
+
+	<link type="text/css" rel="stylesheet" href="{{asset('guia de plantillas/css/carga.css')}}" />
 	<link type="text/css" rel="stylesheet" href="{{asset('guia de plantillas/css/style1.css')}}" />
 	{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	--}} <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -56,6 +58,11 @@
 
 <body>
 	<!-- HEADER -->
+	<div id="contenedor_carga">
+        <div id="carga">
+
+        </div>
+    </div>
 	<header>
 
 		<!-- NAVIGATION -->
@@ -196,7 +203,7 @@
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">{{ $details['nombre'] }}</a></h3>
 												<h4 class="product-price"><span class="qty">{{ $details['quantity']
-														}}x</span>$ {{ $details['precio'] }}</h4>
+														}}x</span>$ {{ number_format($details['precio'] )}}</h4>
 											</div>
 
 											<button class="delete"><i class="fa fa-close"></i></button>
@@ -210,7 +217,7 @@
 
 
 									<div class="cart-summary">
-										<h5>TOTAL: $ {{ $total }}</h5>
+										<h5>TOTAL: $ {{ number_format($total) }}</h5>
 									</div>
 									<div class="cart-btns text-center">
 										<a href="{{route('carrito')}}">Ver carrito</a>
@@ -284,6 +291,14 @@
 
 	
 
+	<script>
+        window.onload = function()
+        {
+            var contenedor = document.getElementById('contenedor_carga');
+            contenedor.style.visibility = 'hidden';
+            contenedor.style.opacity = '0';
+        }
+    </script>
 	@yield('scripts')
 
 

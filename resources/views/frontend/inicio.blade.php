@@ -366,6 +366,7 @@
     </div>
     <!-- /container -->
 </div>
+
 @endsection
 
 @section('javascrits')
