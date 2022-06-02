@@ -56,11 +56,7 @@ class FrontendController extends Controller
     {
         
         $categorias = Categoria::all();
-
-        
-
         $categoria_seleccionada = Producto::where('id_categoria', $id)->paginate(12);
-        //dd($categoria_seleccionada);
         return view('frontend.categorias_front', compact('categoria_seleccionada', 'categorias'));
     }
 
@@ -68,9 +64,8 @@ class FrontendController extends Controller
 
     public function detalle(Producto $producto)
     {
-        //dd($producto);
+        
         $categorias = Categoria::all();
-
         return view('frontend.detalle',compact('producto', 'categorias'));
     }
 
@@ -82,8 +77,7 @@ class FrontendController extends Controller
 
     public function store(Request $request)
     {
-        //$producto =Producto::create($request->all());
-
+        
         $request->validate([
             'nombre'=> 'required',
             'descripcion' => 'required',
@@ -94,8 +88,7 @@ class FrontendController extends Controller
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg,jfif|max:2048',
             'id_categoria'=> 'required',
         ]);
-       //dd('ok');
-        
+     
         $salidaimagen =$request->all();
 
         if($imagen=$request->file('imagen'))
@@ -120,9 +113,7 @@ class FrontendController extends Controller
      public function carrito()
     {
         $categorias = Categoria::all();
-
         $carrito = session()->get('carrito');
-        
         return view('frontend.carrito',compact('carrito','categorias'));
     } 
   
@@ -135,6 +126,7 @@ class FrontendController extends Controller
     {
         $producto = Producto::findOrFail($id);
         $carrito = session()->get('carrito', []);
+
         //si el carrito tiene un producto con el mismo id
         if(isset($carrito[$id])) {
             $carrito[$id]['quantity']++;
@@ -171,7 +163,7 @@ class FrontendController extends Controller
             session()->put('carrito', $carrito);
             session()->flash('success', 'Carrito actualizado');
         }
-        //return redirect()->route('carrito');
+        
     }   
   
     /**
@@ -195,7 +187,7 @@ class FrontendController extends Controller
     {
         
         $categorias = Categoria::all();
-
+        
         $detalle_factura = DetalleFactura::all();
         $comentario_facturas = Facturas::all();
         $opcion_entregas = Opciones_definidas::where('variable', '00tipoentrega')->get();
