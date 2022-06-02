@@ -19,11 +19,11 @@
 @section('content')
 
 @error('codigo_barrio')
-<small>{{$message}}</small>
+<small><span style="color: red">{{$message}}</span></small>
 <br>
 @enderror
 @error('nombre_barrio')
-<small>{{$message}}</small>
+<small><span style="color: red">{{$message}}</span></small>
 @enderror
 
 
