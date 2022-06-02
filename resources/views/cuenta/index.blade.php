@@ -413,61 +413,66 @@
 
     <br>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h3 class="subtitle">Datos de contacto</h3>
-        </div>
-
-        <div class="col-md-6">
-            <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto"
-                class="btn btn-primary">
-                <i class="fas fa-plus"></i> Agregar datos de contacto</a>
-        </div>
-    </div>
-
-    <hr>
-
-    <table class="table table-hover" id="tbldatoscontacto">
-        <thead>
-            <tr>
-                <td class="negrita">Opcion contacto</td>
-                <td class="negrita">Valor</td>
-                <td class="negrita">Barrio</td>
-                <td class="negrita">Acciones</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($datos_contacto as $contacto)
-            <tr>
-                <td>{{ $contacto->opcioncontacto }}</td>
-                <td>{{ $contacto->valor }}</td>
-                <td>{{ $contacto->nombrebarrio }}</td>
-                <td>
-                    <div class="row">
-
-                        <div class="col-md-3">
-                            <a id="btnEditar" onclick="cargarDatosEditar('{{$contacto->id_persona_contacto}}')"
-                                class="btn btn-primary opts" data-toggle="tooltip" data-bs-placement="top"
-                                title="Editar datos de contacto">
-                                <i class="fas fa-edit"></i></a>
-                        </div>
-                        <div class="col-md-2">
-                            <form class="formEliminar"
-                                action="{{ route('micuenta.destroy', $contacto->id_persona_contacto) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    </form>
-
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+   
+    
 
 </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="subtitle">Datos de contacto</h3>
+    </div>
+
+    <div class="col-md-6">
+        <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto"
+            class="btn btn-primary">
+            <i class="fas fa-plus"></i> Agregar datos de contacto</a>
+    </div>
+</div>
+
+<hr>
+
+
+
+<table class="table table-hover" id="tbldatoscontacto">
+    <thead>
+        <tr>
+            <td class="negrita">Opcion contacto</td>
+            <td class="negrita">Valor</td>
+            <td class="negrita">Barrio</td>
+            <td class="negrita">Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($datos_contacto as $contacto)
+        <tr>
+            <td>{{ $contacto->opcioncontacto }}</td>
+            <td>{{ $contacto->valor }}</td>
+            <td>{{ $contacto->nombrebarrio }}</td>
+            <td>
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <a id="btnEditar" onclick="cargarDatosEditar('{{$contacto->id_persona_contacto}}')"
+                            class="btn btn-primary opts" data-toggle="tooltip" data-bs-placement="top"
+                            title="Editar datos de contacto">
+                            <i class="fas fa-edit"></i></a>
+                    </div>
+                    <div class="col-md-2">
+                        <form class="formEliminar"
+                            action="{{ route('micuenta.destroy', $contacto->id_persona_contacto) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                </form>
+
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
 @stop
 
