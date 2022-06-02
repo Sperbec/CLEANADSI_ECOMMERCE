@@ -83,12 +83,8 @@ class FacturaController extends Controller
 
         session()->flush('carrito', $carrito);
 
-        return redirect()->route('inicio')->with('success', 'Su Compra fue Exitosa 🛒!');
+        return redirect()->route('inicio')->with('success', 'Su compra fue exitosa 🛒!');
        
-        
-        
-     
-        
     }
 
 
