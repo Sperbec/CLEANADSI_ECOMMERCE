@@ -282,6 +282,12 @@ return [
         ],
 
         [
+            'text'   => 'Productos',
+            'route'  => 'productos.index',
+            'icon'   => 'fas fa-box'
+        ],
+
+        [
             'text'   => 'Proveedores',
             'route'  => 'proveedores.index',
             'icon'   => 'fas fa-fw fa-user-tag',

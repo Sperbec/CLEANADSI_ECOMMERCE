@@ -70,6 +70,9 @@ Route::post('/reset', [App\Http\Controllers\LoginController::class, 'postReset']
 //Categorías
 Route::resource('categoria', App\Http\Controllers\CategoriaController::class)->names('categoria');
 
+//Productos
+Route::resource('productos', App\Http\Controllers\ProductoController::class)->names('productos');
+
 //Proveedores
 Route::resource('proveedores', App\Http\Controllers\ProveedorController::class)->names('proveedores');
 
