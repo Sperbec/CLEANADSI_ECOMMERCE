@@ -355,11 +355,11 @@
 						<div class="footer">
 							<h3 class="footer-title">Redes</h3>
 							<ul class="footer-links">
-								<li><a href="https://chatwith.io/es/s/cleanline"><i class="fa fa-whatsapp"></i>WhatsApp</a>
+								<li><a href="https://wa.link/r3uu91/"><i class="fa fa-whatsapp"></i>WhatsApp</a>
 									
 								</li>
 
-							</ul>
+							</ul> 	 	
 						</div>
 					</div>
 				</div>
