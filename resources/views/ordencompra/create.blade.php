@@ -287,6 +287,14 @@
             })
         @endif
 
+        @if (session('error') == 'ok')
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No es posible crear la orden de compra porque no tiene detalle'
+            })
+        @endif
+
 
         
     </script>
