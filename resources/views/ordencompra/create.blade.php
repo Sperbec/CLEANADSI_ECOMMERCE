@@ -14,7 +14,7 @@
     <div class="row">
     
         <div class="col-md-6">
-            <h1>Crear orden de compra</h1>
+            <h2>Crear orden de compra</h2>
         </div>
         <div class="col-md-6">
             <button  type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-paper-plane"></i> Guardar</button>
@@ -237,7 +237,7 @@
                     '"></td><td> <input style="border: 0; background-color:transparent;"  readonly type="number" name="cantidadproductotbl'+contador+'" value="'+cantidad+
                     '"></td><td> <input style="border: 0; background-color:transparent;"  readonly type="number" name="precio" value="'+data.producto.precio+
                     '"></td><td> <input  type="hidden" id="contador" name="contador" value="'+contador+'">'+
-                    '<input  class="btn btn-danger" type="button" value="Eliminar" onclick="deleteRow(this)">'+'</tr>');
+                    '<input  class="btn btn-danger" type="button" value="Eliminar" onclick="deleteRow(this, '+cantidad+', '+selectProduct.options[selectProduct.selectedIndex].value+')">'+'</tr>');
 
                      $("#miModal").modal('hide');
 
@@ -250,9 +250,31 @@
             
         });
 
-        function deleteRow(id){
+        function deleteRow(id,cantidad, value){
             var i=id.parentNode.parentNode.rowIndex
             document.getElementById('table_articulos').deleteRow(i)
+
+            fetch('../obtenerproducto',{
+                    method : 'POST',
+                    body: JSON.stringify({texto : value}),
+                    headers:{
+                        'Content-Type': 'application/json',
+                        "X-CSRF-Token": document.head.querySelector("[name~=csrf-token][content]").content
+                    }
+                }).then(response =>{
+                    return response.json()
+                }).then( data =>{
+                
+                    if( document.getElementById('subtotal').value != null){
+                        subtotal = subtotal - data.producto.precio * cantidad;
+                        document.getElementById('subtotal').value = subtotal;
+
+                        iva = (subtotal) * 0.19;
+                        document.getElementById('valor_iva').value = iva;
+                        document.getElementById('total').value = subtotal + iva;
+                    }
+                   
+                }).catch(error => console.error(error));
         }
 
         @if ( session('guardado') == 'ok')
