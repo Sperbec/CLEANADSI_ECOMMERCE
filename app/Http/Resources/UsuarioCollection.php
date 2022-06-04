@@ -14,6 +14,18 @@ class UsuarioCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => $this->collection,
+            'links' => [
+                'self' => 'link to itself',
+            ],
+        ];
+    }
+
+    public function withResponse($request, $response)
+    {
+        $response->header('Charset', 'utf-8');
+        $response->header('Content-Type', 'application/json');
+        $response->setEncodingOptions(JSON_UNESCAPED_UNICODE);
     }
 }
