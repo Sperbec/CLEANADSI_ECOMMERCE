@@ -35,11 +35,11 @@
                                         <div class="product-img">
                                             <img src="{{ '/static/images/productos/'.$nvp->imagen}}" >
                                             {{-- <div class="product-label">
-                                               
+
                                             </div> --}}
                                         </div>
                                     <div class="product-body">
-                                        
+
                                         <p class="product-category">Category</p>
                                         <h3 class="product-name"><a href="{{route('detalle',$nvp->id_producto)}}">{{$nvp->nombre}}</a></h3>
                                         <h4 class="product-price">${{number_format($nvp->precio)}}</h4>
@@ -54,8 +54,8 @@
                                     <div class="add-to-cart">
                                         <a href="{{route('carrito.añadir',$nvp->id_producto)}}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button></a>
                                     </div>
-                                    
-                                </div> 
+
+                                </div>
                                 @endforeach
                                 <!-- /product -->
                             </div>
@@ -75,8 +75,8 @@
     <!-- container -->
     <div class="container">
 
-      
-        
+
+
         <!-- row -->
         <div class="row">
             <div class="col-md-4 col-xs-6">
