@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 use PDF;
+use function PHPUnit\Framework\isEmpty;
 
 
 class OrdenCompraController extends Controller
@@ -42,7 +43,17 @@ class OrdenCompraController extends Controller
     public function guardarOrdenCompra(Request $request){
 
         $orden_compra = new  Orden_compra();
-        $orden_compra->codigo = 'ORD001';
+
+        $sql = 'select id_orden  from orden_compras order by id_orden  desc limit 1';
+        $id_orden = DB::select($sql);
+
+        if (isEmpty($id_orden) && sizeof($id_orden) == 0) {
+            $orden_compra->codigo  ="ORD1";
+        }else {
+            $ultima_orden =Orden_compra::orderBy('id_orden','desc')->first();
+            $orden_compra->codigo = "ORD".$ultima_orden->id_orden +1;
+        }
+
         $dt = new DateTime();
         $orden_compra->fecha = $dt->format('Y-m-d H:i:s');
         $orden_compra->id_proveedor = $request->proveedores;
