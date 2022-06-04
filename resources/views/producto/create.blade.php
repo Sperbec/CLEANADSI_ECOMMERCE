@@ -24,10 +24,11 @@
 <div class="row">
 
     <div class="col-md-6">
-        <label for="categoria" class="mtop16">Categoría:</label>
+        <label  for="categoria" class="mtop16">Categoría:</label>
         <div class="input-group">
             <div class="input-group-text">
-                <i class="far fa-id-card"></i>
+                <i class="fas fa-align-justify"></i>
+
             </div>
             <select name="categoria" id="categoria" class="form-select" required>
                 <option value=''>Seleccione</option>
@@ -58,7 +59,7 @@
             <label for="sku" class="mtop16">SKU:</label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <i class="fas fa-user"></i>
+                    <i class="fab fa-product-hunt"></i>
                 </div>
                 {!! Form::text('sku', null, ['class' => 'form-control', 'required', 'id' => 'sku']) !!}
             </div>
@@ -74,7 +75,7 @@
             <label for="precio_producto">Precio:</label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-dollar-sign"></i>
                 </div>
                 {!! Form::number('precio_producto', null, ['class' => 'form-control', 'required', 'id' => 'precio_producto']) !!}
             </div>
@@ -88,7 +89,7 @@
             <label for="cantidad_existencia" class="mtop16">Cantidad en existencia:</label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-sort-amount-up-alt"></i>
                 </div>
                 {!! Form::text('cantidad_existencia', null, ['class' => 'form-control', 'required', 'id' => 'cantidad_existencia']) !!}
             </div>
@@ -104,7 +105,9 @@
             <label for="imagen_producto">Imagen:</label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-link"></i>
+
+
                 </div>
                 {!! Form::file('imagen_producto', null, ['class' => 'form-control', 'required', 'id' => 'imagen_producto']) !!}
             </div>
@@ -120,7 +123,7 @@
             <label for="descripcion_producto">Descripción:</label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-align-justify"></i>
                 </div>
                 {!! Form::textarea('descripcion_producto', null, ['class' => 'form-control','rows'=> 5,  'required', 'id' => 'descripcion_producto']) !!}
             </div>
