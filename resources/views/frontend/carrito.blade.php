@@ -46,7 +46,7 @@
         <tr data-id="{{ $details['id']}}">
             <td data-th="Product">
                 <div class="row">
-                    <div class="col-sm-3 "><img src="{{ $details['imagen'] }}" width="100" height="100"
+                    <div class="col-sm-3 "><img src="{{ '/static/images/productos/'.$details['imagen']}}" width="100" height="100"
                             class="img-responsive" /></div>
                     <div class="col-sm-9">
                         <h4 class="nomargin">{{ $details['nombre'] }}</h4>

@@ -23,7 +23,7 @@
                         
                         <div class="product">
                             <div class="product-img">
-                                <img src="/imagen/{{$pap->imagen}}" alt="">
+                                <img src="{{ '/static/images/productos/'.$pap->imagen}}" alt="">
                                 <div class="product-label">
                                 </div>
                             </div>
