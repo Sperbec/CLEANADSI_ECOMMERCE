@@ -33,10 +33,10 @@
                                 @foreach ($producto as $nvp)
                                 <div class="product">
                                         <div class="product-img">
-                                            <img src="{{ '/static/images/productos/'.$nvp->imagen}}"  height="180px">
-                                            <div class="product-label">
+                                            <img src="{{ '/static/images/productos/'.$nvp->imagen}}" >
+                                            {{-- <div class="product-label">
                                                
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     <div class="product-body">
                                         
