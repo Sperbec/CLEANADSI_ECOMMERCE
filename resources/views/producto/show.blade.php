@@ -22,7 +22,8 @@
         <label for="nombre_categoria">Categoría:</label>
         <div class="input-group">
             <div class="input-group-text">
-                <i class="fa fa-user" aria-hidden="true"></i>
+                
+                <i class="fas fa-align-justify"></i> 
             </div>
             {!! Form::text('nombre_categoria', $categoria->nombre, ['class' => 'form-control', 'required', 'disabled',
             'id' => 'nombre_categoria']) !!}
@@ -46,7 +47,8 @@
         <label for="sku">SKU:</label>
         <div class="input-group">
             <div class="input-group-text">
-                <i class="fa fa-user" aria-hidden="true"></i>
+                
+                <i class="fab fa-product-hunt"></i>
             </div>
             {!! Form::text('sku', $producto->sku, ['class' => 'form-control', 'required', 'disabled',
             'id' => 'sku']) !!}
@@ -61,7 +63,7 @@
         <label for="precio_producto">Precio:</label>
         <div class="input-group">
             <div class="input-group-text">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-dollar-sign"></i>
             </div>
             {!! Form::number('precio_producto', $producto->precio, ['class' => 'form-control', 'required', 'disabled', 'id' => 'precio_producto']) !!}
         </div>
@@ -71,7 +73,7 @@
         <label for="cantidad_existencia" class="mtop16">Cantidad en existencia:</label>
         <div class="input-group">
             <div class="input-group-text">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-sort-amount-up-alt"></i>
             </div>
             {!! Form::text('cantidad_existencia', $producto->cantidad_existencia, ['class' => 'form-control', 'required','disabled', 'id' => 'cantidad_existencia']) !!}
         </div>
@@ -83,7 +85,7 @@
         <label for="descripcion_producto">Descripción:</label>
         <div class="input-group">
             <div class="input-group-text">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-align-justify"></i>   
             </div>
             {!! Form::textarea('descripcion_producto', $producto->descripcion, ['class' => 'form-control','rows'=> 5,  'required','disabled', 'id' => 'descripcion_producto']) !!}
         </div>
