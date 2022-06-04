@@ -1,60 +1,15 @@
-body{
-    margin:0px;
-    background-color: #f6f6f6;
-    font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
+.content{
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 10px;
+  width: 50%;
 }
 
-.box{
-    background-color: #fff;
-    border: 1px solid #d6d6d6;
-    width: 600px;
-    border-radius: 8px;
-    position: absolute;
+.text{
+  float: left;
+  margin-top: 16px;
 }
 
-.header{
-    text-align: center;
-   
-}
-
-.mtop16{
-    margin-top: 16px;
-}
-
-.btn-primary{
-    width: 40%;
-}
-
-.btn-ingresar{
-    text-align: center;
-}
-
-.box_login{    
-    left: calc(50% - 269px);
-    top: calc(40% - 196px);
-}
-
-.box_register{
-    left: calc(50% - 250px);
-    top: calc(50% - 279px);
-}
-
-.inside{
-    padding: 16px;
-}
-
-.logo{
-    width: 30%;
-    display: block;
-    margin: 0px auto;
-}
-
-.footer{
-    text-align: center;
-    font-size: 1em;
-}
-
-.registarse{
-    text-align: center;
+.password-show{
+  text-align: left;
 }

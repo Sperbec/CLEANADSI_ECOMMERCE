@@ -9,71 +9,49 @@
 
 @section('contenido')
 
-<form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+<table class="table" id="tblfacturas">
+  <thead>
+      <tr>
+          <td class="negrita">ID</td>
+          <td class="negrita">Código</td>
+          <td class="negrita">Fecha</td>
+          <td class="negrita">Nombre</td>
+          <td class="negrita">Subtotal</td>
+          <td class="negrita">Valor IVA</td>
+          <td class="negrita">Costo envío</td>
+          <td class="negrita">Total</td>
+          <td class="negrita">Acciones</td>
+      </tr>
+  </thead>
+  <tbody>
+      @foreach ($factura as $f)
+          <tr>
+              <td>{{ $f->id_factura }}</td>
+              <td>{{ $f->codigo }}</td>
+              <td>{{ $f->fecha }}</td>
+              <td>{{ $f->nombrecompleto }}</td>
+              <td>${{ $f->subtotal }}</td>
+              <td>${{ $f->valor_iva }}</td>
+              <td>${{ $f->costo_envio }}</td>
+              <td>${{ $f->total }}</td>
+              <td>
+
+                  <div class="row">
+
+                      <a class="btn btn-secondary opts"
+                      href="{{ route('factura.show',  $f->id_factura) }}" data-toggle="tooltip"
+                      data-bs-placement="top" title="Ver factura">
+                      <i class="fas fa-eye"></i></a>
+
+
+                  </div>
+              </td>
+          </tr>
+      @endforeach
+  </tbody>
+</table>
     
-<div class="row">
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-          <strong>Codigo:</strong>
-          <input type="text" name="codigo" class="form-control" placeholder="Codigo">
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-        <strong>Nombre:</strong>
-        <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-        <strong>Descripcion:</strong>
-        <textarea class="form-control" style="height:150px" name="descripcion" placeholder="Descripcion"></textarea>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-        <strong>Imagen:</strong>
-        <input type="file" name="imagen" class="form-control" placeholder="imagen">
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-          <strong>Precio:</strong>
-          <input type="text" name="precio" class="form-control" placeholder="Precio">
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-          <strong>Estado:</strong>
-          <input type="text" name="estado" class="form-control" placeholder="Estado">
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-        <strong>Stock:</strong>
-        <input type="text" name="cantidadproducto" class="form-control" placeholder="Stock">
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-          <strong>Garantia:</strong>
-          <input type="text" name="garantia" class="form-control" placeholder="Garantia">
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-        <strong>Tiempo de Garantia:</strong>
-        <input type="text" name="tiempogarantia" class="form-control" placeholder="Tiempo de Garantia">
-      </div>
-    </div>
-      <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-              <button type="submit" class="btn btn-primary">crear</button>
-      </div>
-</div>
-</form>
-    facturas
+    
 @endsection
 
 @section('scripts')

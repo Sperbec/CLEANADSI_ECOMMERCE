@@ -17,12 +17,4 @@ class DetalleFactura extends Model
     
     ];
 
-    static function detalle_factura($id_factura,$id_producto,$cantidad)
-    {
-        DetalleFactura::create([
-            "id_factura" =>$id_factura,
-            "id_producto" =>$id_producto,
-            "cantidad" =>$cantidad
-        ]);
-    }
 }

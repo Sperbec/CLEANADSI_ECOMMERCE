@@ -38,6 +38,11 @@
                         data-toggle="tooltip" data-bs-placement="top" title="Ver factura">
                         <i class="fas fa-eye"></i></a>
 
+                        <a class="btn btn-primary opts"
+                        href="{{url('/editarOrdenCompra/'.$orden->id_orden)}}" data-toggle="tooltip"
+                        data-bs-placement="top" title="Editar orden de compra">
+                        <i class="fas fa-edit"></i></a>
+
 
                 </div>
             </td>
@@ -88,5 +93,15 @@
             }
 
         }
+
+        @if ( session('editado') == 'ok' )
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Registro editado con éxito',
+            showConfirmButton: false,
+            timer: 1500
+            })
+        @endif
 </script>
 @stop

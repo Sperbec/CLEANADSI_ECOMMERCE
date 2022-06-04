@@ -282,6 +282,12 @@ return [
         ],
 
         [
+            'text'   => 'Productos',
+            'route'  => 'productos.index',
+            'icon'   => 'fas fa-box'
+        ],
+
+        [
             'text'   => 'Proveedores',
             'route'  => 'proveedores.index',
             'icon'   => 'fas fa-fw fa-user-tag',
@@ -335,7 +341,7 @@ return [
         ],
         [
             'text'    => 'Mi cuenta',
-            'route'  => 'micuenta.index',
+            'url'  => '/micuentaadmin',
             'icon'    => 'fas fa-user-circle',
         ]
     ],

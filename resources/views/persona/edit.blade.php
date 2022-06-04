@@ -31,7 +31,7 @@
                         {!! Form::text('nombres_cliente', $cliente->nombres, ['class' => 'form-control', 'required', 'id' => 'nombres_persona']) !!}
                     </div>
                     @error ('nombres_cliente')
-                    <small>*{{$message}}</small>
+                    <small><span style="color: red">{{$message}}</span></small>
                     @enderror
                 </div>
 
@@ -44,7 +44,7 @@
                         {!! Form::text('apellidos_cliente', $cliente->apellidos, ['class' => 'form-control', 'required', 'id' => 'apellidos_persona']) !!}
                     </div>
                     @error ('apellidos_cliente')
-                    <small>*{{$message}}</small>
+                    <small><span style="color: red">{{$message}}</span></small>
                     @enderror
                 </div>
             </div>

@@ -4,64 +4,103 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\DetalleFactura;
+use App\Models\User;
 use App\Models\Producto;
 use App\Models\Facturas;
 use App\Models\Opciones_definidas;
 use App\Models\Categoria;
 
+use Illuminate\Support\Facades\DB;
+
 class FrontendController extends Controller
 {
-//BORRAR PRUEBA
-    public function prueba()
+
+    protected $usuario = null;
+    protected $categorias;
+
+    public function consultar_categorias(){
+        $this->categorias = Categoria::all();
+    }
+
+    public  function consultarUsuario()
     {
-        return view('frontend.prueba');
+        if (auth()->user() != null) {
+             //Consulto los datos de la persona que está logueada
+             $sql = 'SELECT id_usuario, nombres,apellidos , email,
+             id_opcion_tipo_documento, numero_documento,
+             id_opcion_genero, natalicio,
+             documento.nombre as tipodocumento, genero.nombre as tipogenero
+             from usuarios
+             inner join personas on personas.id_persona = usuarios.id_persona
+             inner join opciones_definidas documento on documento.id_opcion =personas.id_opcion_tipo_documento
+             inner join opciones_definidas genero on genero.id_opcion = personas.id_opcion_genero
+             where id_usuario = '.auth()->user()->id_usuario;
+ 
+             $this->usuario = DB::select($sql);
+        }   
     }
 
     public function nuevos_productos()
     {
-        $categorias = Categoria::all();
-       
+        
+        $this->consultar_categorias();
 
         $producto=Producto::orderBy('id_producto','desc')->paginate(5);
-        $data = ['categorias' => $categorias,
-        'producto'=>$producto];
-        
+
+        $this->consultarUsuario();
+
+        if ($this->usuario != null) {
+            $data = ['categorias' => $this->categorias,
+            'producto'=>$producto, 'usuario' => $this->usuario != null ? $this->usuario[0] : null];
+
+        }else{
+            $data = ['categorias' => $this->categorias,
+            'producto'=>$producto];
+        }
+
         return view('frontend.inicio',$data);
 
     }
 
     public function categorias_front($id)
     {
-
-        $categorias = Categoria::all();
+        $this->consultar_categorias();
+        $this->consultarUsuario();
 
         $categoria_seleccionada = Producto::where('id_categoria', $id)->paginate(12);
-        //dd($categoria_seleccionada);
-        return view('frontend.categorias_front', compact('categoria_seleccionada', 'categorias'));
+
+        $data = ['categoria_seleccionada' => $categoria_seleccionada,
+                'categorias' => $this->categorias,
+                'usuario' => $this->usuario != null ? $this->usuario[0] : null ];
+
+        return view('frontend.categorias_front', $data);
     }
 
-    /*public function categoria_aseo_general()
-    {
-        $producto_aseo_general = Producto::where('id_categoria','1')->paginate(12);
 
-        return view('frontend.aseo_general',compact('producto_aseo_general'));
-    }*/
 
     public function detalle(Producto $producto)
     {
-        //dd($producto);
-        return view('frontend.detalle',compact('producto'));
+        $this->consultar_categorias();  
+        $this->consultarUsuario();
+
+        $data = ['producto' => $producto,
+        'categorias' => $this->categorias,
+        'usuario' => $this->usuario != null ? $this->usuario[0] : null ];
+
+        return view('frontend.detalle',$data);
     }
 
     public function crear()
     {
-        return view('frontend.crear');
+        $this->consultar_categorias();
+        $data = ['categorias' => $this->categorias ];
+        return view('frontend.crear',compact('categorias'));
     }
 
     public function store(Request $request)
     {
-        //$producto =Producto::create($request->all());
-
+        
         $request->validate([
             'nombre'=> 'required',
             'descripcion' => 'required',
@@ -72,47 +111,41 @@ class FrontendController extends Controller
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg,jfif|max:2048',
             'id_categoria'=> 'required',
         ]);
-       //dd('ok');
-        
+     
         $salidaimagen =$request->all();
 
         if($imagen=$request->file('imagen'))
         {
             $rutaGuardarImg = 'imagen/';
-            $imagenProducto = date('YmdHis'). "." .$imagen->getClientOriginalExtension();
+            $imagenProducto = $request->nombre."." . date('YmdHis'). "." .$imagen->getClientOriginalExtension();
             $imagen->move($rutaGuardarImg, $imagenProducto);
             $salidaimagen['imagen'] = "$imagenProducto";
         }
 
         Producto::create($salidaimagen);
-        
         return redirect()->route('inicio');
     }
 
-    //carrito de Compras
-     /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+    
      public function carrito()
     {
-        $categorias = Categoria::all();
-
+        $this->consultar_categorias();
+        $this->consultarUsuario();
         $carrito = session()->get('carrito');
-        
-        return view('frontend.carrito',compact('carrito','categorias'));
+
+        $data = ['carrito' => $carrito,
+        'categorias' => $this->categorias,
+        'usuario' => $this->usuario != null ? $this->usuario[0] : null];
+
+        return view('frontend.carrito',$data);
     } 
   
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+   
      public function añadir_carrito($id)
     {
         $producto = Producto::findOrFail($id);
         $carrito = session()->get('carrito', []);
+
         //si el carrito tiene un producto con el mismo id
         if(isset($carrito[$id])) {
             $carrito[$id]['quantity']++;
@@ -133,30 +166,28 @@ class FrontendController extends Controller
         }
         session()->put('carrito', $carrito);
         
-        return redirect()->back()->with('success', 'Producto Añadido al carrito!');
+        return redirect()->back()->with('success', 'Producto añadido al carrito.');
     } 
-  
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+ 
     public function update(Request $request)
     {
         if($request->id && $request->quantity){
             $carrito = session()->get('carrito');
-            $carrito[$request->id]["quantity"] = $request->quantity;
-            session()->put('carrito', $carrito);
+            if($request->quantity<0)
+            {
+                $carrito[$request->id]["quantity"] =1;
+                session()->put('carrito', $carrito);
             session()->flash('success', 'Carrito actualizado');
+            }else {
+                $carrito[$request->id]["quantity"] = $request->quantity;
+                session()->put('carrito', $carrito);
+            session()->flash('success', 'Carrito actualizado');
+            }
+            
         }
-        //return redirect()->route('carrito');
     }   
   
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+ 
     public function eliminar(Request $request)
     {
         if($request->id) {
@@ -166,23 +197,53 @@ class FrontendController extends Controller
                 session()->put('carrito', $carrito);
             }
             session()->flash('success', 'Producto eliminado');
-        } return redirect()->back()->with('success', 'Producto Añadido al carrito!');
+        } return redirect()->route('carrito')->with('success', 'Producto eliminado del carrito!');
     }
 
     public function detalle_compra(Request $request)
     {
         
-        $categorias = Categoria::all();
-
-
-        $comentario_facturas = Facturas::all();
-        $opcion_entregas = Opciones_definidas::where('variable', '00tipoentrega')->get();
-        $opcion_pagos = Opciones_definidas::where('variable', '00tipopago')->get();
+        $this->consultar_categorias();
+        $this->consultarUsuario();
+        
         $carrito = session()->get('carrito');
         session()->put('carrito', $carrito);
-       return view('facturas/detalle',compact('opcion_entregas','opcion_pagos','comentario_facturas','categorias'));
+
+
+        $data = ['opcion_entregas' => Opciones_definidas::where('variable', '00tipoentrega')->get(),
+                'opcion_pagos' => Opciones_definidas::where('variable', '00tipopago')->get(),
+                'comentario_facturas' => Facturas::all(),
+                'categorias' => $this->categorias,
+                'detalle_factura' => DetalleFactura::all(),
+                'usuario' =>$this->usuario != null ? $this->usuario[0] : null];
+
+       return view('facturas/detalle', $data);
     }  
 
+
+    public function preguntasfrecuentes(){
+        $this->consultar_categorias();
+        $this->consultarUsuario();
+        $data = ['categorias' => $this->categorias, 
+                'usuario' =>  $this->usuario != null ? $this->usuario[0] : null];
+        return view('frontend.preguntas_frecuentes', $data);
+    }
+
+    public function sobrenosotros(){
+        $this->consultar_categorias();
+        $this->consultarUsuario();
+        $data = ['categorias' => $this->categorias, 
+                'usuario' => $this->usuario != null ? $this->usuario[0] : null];
+        return view('frontend.sobre_nosotros', $data);
+    }
+
+    public function politicasprivacidad(){
+        $this->consultar_categorias();
+        $this->consultarUsuario();
+        $data = ['categorias' => $this->categorias, 
+                'usuario' =>  $this->usuario != null ? $this->usuario[0] : null];
+        return view('frontend.politicas_privacidad', $data);
+    }
     
     
 }   

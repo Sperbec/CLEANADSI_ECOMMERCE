@@ -14,11 +14,11 @@
 @section('content')
 
 @error ('codigo_pais')
-<small>{{$message}}</small>
-@enderror
+<small><span style="color: red">{{$message}}</span></small>
 <br>
+@enderror
 @error ('nombre_pais')
-<small>{{$message}}</small>
+<small><span style="color: red">{{$message}}</span></small>
 @enderror
 
     <!-- Modal de crear país-->

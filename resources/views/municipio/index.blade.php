@@ -18,6 +18,15 @@
 
 @section('content')
 
+@error('codigo_municipio')
+<small><span style="color: red">{{$message}}</span></small>
+<br>
+@enderror
+@error('nombre_municipio')
+<small><span style="color: red">{{$message}}</span></small>
+@enderror
+
+
 <!-- Modal de crear municipio-->
 <div id="mdlCrearMunicipio" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -51,23 +60,23 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="codigo">Codigo municipio:</label>
+                        <label for="codigo_municipio">Codigo municipio:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="far fa-keyboard"></i>
                             </div>
-                            {!! Form::text('codigo', null, ['id' => 'codigomunicipio', 'class' => 'form-control',
+                            {!! Form::text('codigo_municipio', null, ['id' => 'codigo_municipio', 'class' => 'form-control',
                             'required']) !!}
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="nombre">Nombre municipio:</label>
+                        <label for="nombre_municipio">Nombre municipio:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="fas fa-keyboard"></i>
                             </div>
-                            {!! Form::text('nombre', null, ['id' => 'nombremunicipio', 'class' => 'form-control',
+                            {!! Form::text('nombre_municipio', null, ['id' => 'nombre_municipio', 'class' => 'form-control',
                             'required']) !!}
                         </div>
                     </div>

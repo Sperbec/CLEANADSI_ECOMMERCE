@@ -36,13 +36,12 @@
     <div class="col-md-6">
         <label>Total: ${{$encabezado->total}}</label>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <label>Comentario: {{$encabezado->comentario}}</label>
+    <div class="col-md-6">
+        <label>Estado: {{$encabezado->estado}}</label>
     </div>
 </div>
+
+
 
 <br>
 <hr>

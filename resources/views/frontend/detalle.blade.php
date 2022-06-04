@@ -17,19 +17,7 @@
 <div class="col-md-5 col-md-push-2">
     <div id="product-main-img">
         <div class="product-preview">
-            <img src="/imagen/{{$producto->imagen}}" alt="">
-        </div>
-
-        <div class="product-preview">
-            <img src="/imagen/{{$producto->imagen}}" alt="">
-        </div>
-
-        <div class="product-preview">
-            <img src="/imagen/{{$producto->imagen}}" alt="">
-        </div>
-
-        <div class="product-preview">
-            <img src="/imagen/{{$producto->imagen}}" alt="">
+            <img src="{{ '/static/images/productos/'.$producto->imagen}}"  alt="">
         </div>
     </div>
 </div>
@@ -38,19 +26,7 @@
             <div class="col-md-2  col-md-pull-5">
                 <div id="product-imgs">
                     <div class="product-preview">
-                        <img src="/imagen/{{$producto->imagen}}" alt="">
-                    </div>
-
-                    <div class="product-preview">
-                        <img src="/imagen/{{$producto->imagen}}" alt="">
-                    </div>
-
-                    <div class="product-preview">
-                        <img src="/imagen/{{$producto->imagen}}" alt="">
-                    </div>
-
-                    <div class="product-preview">
-                        <img src="/imagen/{{$producto->imagen}}" alt="">
+                        <img src="{{ '/static/images/productos/'.$producto->imagen}}"  height="180px" alt="">
                     </div>
                 </div>
             </div>
@@ -64,7 +40,7 @@
                     
                     <div>
                         <h3 class="product-price">${{number_format($producto->precio)}}</h3>
-                        <span class="product-available">Cantidad disponivle : {{$producto->cantidad_existencia}}</span>
+                        <span class="product-available">Cantidad disponible : {{$producto->cantidad_existencia}}</span>
                     </div>
                     
                     <div class="add-to-cart">
@@ -72,14 +48,7 @@
                         <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
                     </div>
 
-                    <ul class="product-links">
-                        <li>Siguenos:</li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                    </ul>
-
+                   
                 </div>
             </div>
             <!-- /Product details -->
@@ -89,7 +58,7 @@
                 <div id="product-tab">
                     <!-- product tab nav -->
                     <ul class="tab-nav">
-                        <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+                        <li class="active"><a data-toggle="tab" href="#tab1">Descripción</a></li>
                         
                     </ul>
                     <!-- /product tab nav -->

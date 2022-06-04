@@ -2,103 +2,89 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Facturas;
-use App\Models\DetalleFactura;
 use App\Models\Persona_contacto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
 
+use function PHPUnit\Framework\isEmpty;
+
 class FacturaController extends Controller
 {
-    public function factura(Request $request)
-    { 
-        /* $factura =new Facturas();
 
-        $factura->comentario =$request->comentario;
-        $factura->codigo =$request->codigo;
-
-        $factura ->save();
-
-        $carrito = session()->get('carrito');
-        session()->put('carrito', $carrito);
-
-        
-        foreach($carrito as $d){
-            dd($id_producto = $d['nombre']);
-            $id_factura = $factura->id;
-            $cantidad =$d['quantity'];
-
-            $re = DetalleFactura::detalle_factura(null,$id_producto,$cantidad);
-            dd($id_producto);
-        }
-        return view('frontend.inicio');
-         */
-        
-       
-        
-
-        
-        
-         /* return view('facturas.facturas');     */
-      
+    public function __construct(){
+        $this->middleware('auth');
     }
 
     public function crear_factura(Request $request)
     {
 
-        $carrito = session()->get('carrito');
-        session()->put('carrito', $carrito);
-        
-
-        if (auth()->check()) {
-            "hola"; 
-            $persona = Persona_contacto::all();
-            $factura =new Facturas();
-    
-            
-            if (isset($request->codigo)) {
-                $factura->codigo =1;
-    
-            }else {
-                $factura->codigo =$request->codigo + 1;
-            }
-            $factura->fecha = date("Y-m-d");
-    
-            $factura->id_persona =$persona->id_persona;
-            $total = 0;
-            foreach($carrito as $d){
-    
-                
-                $total += $d['precio'] * $d['quantity'];
-    
-            }
-    
-            $factura->subtotal =$total*0.81;
-    
-            $factura->valor_iva =$total*0.19;
-    
-            $factura->total =$total;
-    
-            $factura->id_opcion_tipo_entrega = $request->opcion_entregas;
-            
-            $factura->id_opcion_tipo_pago = $request->opcion_pagos; 
-    
-            $factura->comentario =$request->comentario;
-    
-            $factura->estado =1;
-            
-            
-    
-            $factura ->save();
-    
-            return redirect()->route('factura');
-        }else{"no";}
        
 
+        $request->validate([
+            'opcion_pagos'=> 'required',
+            'opcion_entregas' => 'required',
+        ]); 
+       
         
-    
+        $carrito = session()->get('carrito');
+        session()->put('carrito', $carrito);
+
+        $sql = 'select id_factura  from facturas order by id_factura  desc limit 1';
+
+        $id_factura = DB::select($sql);
+        $factura =new Facturas();
+        
+        
+        if (isEmpty($id_factura) && sizeof($id_factura) == 0) {
+            $factura->codigo ="FV". 1;
+        }else {
+            $ultima_factura =Facturas::orderBy('id_factura','desc')->first();
+            $factura->codigo = "FV".$ultima_factura->id_factura +1;
+        }
+        
+        $factura->fecha = date("Y-m-d");
+
+        $factura->id_persona = $request->user()->id_persona; 
+        $total = 0;
+        foreach($carrito as $d){
+
+            
+            $total += $d['precio'] * $d['quantity'];
+
+        }
+
+        $factura->subtotal =$total*0.81;
+
+        $factura->valor_iva =$total*0.19;
+
+        $factura->total =$total;
+
+        $factura->id_opcion_tipo_entrega = $request->opcion_entregas;
+        
+        $factura->id_opcion_tipo_pago = $request->opcion_pagos; 
+
+        $factura->comentario =$request->comentario;
+
+        $factura->estado =1;
+        
+        
+        $factura ->save(); 
+        
+        foreach($carrito as $d){
+            DB::table('detalle_factura')->insert([
+                'id_factura' => $factura->id_factura,
+                'id_producto' => $d['id'],
+                'cantidad' => $d['quantity']
+            ]);
+            }  
+
+        session()->flush('carrito', $carrito);
+
+        return redirect()->route('inicio')->with('success', 'Su compra fue exitosa 🛒!');
+       
     }
 
 

@@ -23,7 +23,7 @@
                         
                         <div class="product">
                             <div class="product-img">
-                                <img src="/imagen/{{$pap->imagen}}" alt="">
+                                <img src="{{ '/static/images/productos/'.$pap->imagen}}" alt="">
                                 <div class="product-label">
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="add-to-cart">
-                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
+                                <a href="{{route('carrito.añadir',$pap->id_producto)}}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button></a>
                             </div>
                         </div>
                     </div>

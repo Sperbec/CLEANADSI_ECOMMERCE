@@ -48,6 +48,9 @@ Route::post('/eliminarBarrio', [App\Http\Controllers\BarrioController::class, 'e
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/preguntasfrecuentes', [App\Http\Controllers\FrontendController::class, 'preguntasfrecuentes'])->name('preguntasfrecuentes');
+Route::get('/sobrenosotros', [App\Http\Controllers\FrontendController::class, 'sobrenosotros'])->name('sobrenosotros');
+Route::get('/politicasprivacidad', [App\Http\Controllers\FrontendController::class, 'politicasprivacidad'])->name('politicasprivacidad');
 
 //Rutas para login
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'getLogin'])->name('getLogin');
@@ -67,6 +70,9 @@ Route::post('/reset', [App\Http\Controllers\LoginController::class, 'postReset']
 //Categorías
 Route::resource('categoria', App\Http\Controllers\CategoriaController::class)->names('categoria');
 
+//Productos
+Route::resource('productos', App\Http\Controllers\ProductoController::class)->names('productos');
+
 //Proveedores
 Route::resource('proveedores', App\Http\Controllers\ProveedorController::class)->names('proveedores');
 
@@ -78,17 +84,20 @@ Route::get('/orden/crear', [App\Http\Controllers\OrdenCompraController::class, '
 Route::get('/orden/consultar', [App\Http\Controllers\OrdenCompraController::class, 'consultar'])->name('consultarOrdenCompra');
 Route::post('/guardarOrdenCompra', [App\Http\Controllers\OrdenCompraController::class, 'guardarOrdenCompra'])->name('guardarOrdenCompra');
 Route::get('/verOrdenCompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'verOrdenCompra'])->name('verOrdenCompra');
-Route::get('/imprimirordencompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'imprimirordencompra'])->name('imprimirordencompra');
+Route::get('/editarOrdenCompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'editarOrdenCompra'])->name('editarOrdenCompra');
+Route::post('/updateOrdenCompra', [App\Http\Controllers\OrdenCompraController::class, 'updateOrdenCompra'])->name('updateOrdenCompra');
+Route::post('/imprimirordencompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'imprimirordencompra'])->name('imprimirordencompra');
 Route::post('/obtenerproducto', [App\Http\Controllers\ProductoController::class, 'obtenerproducto']);
 
 //Mis pedidos
-Route::get('/pedidos', [App\Http\Controllers\PedidosController::class, 'index'])->name('pedidos');
+Route::resource('pedidos', App\Http\Controllers\PedidosController::class)->names('pedidos');
 
 //Facturas
 Route::resource('factura', App\Http\Controllers\FacturaController::class)->names('factura');
 Route::get('/imprimirfactura/{id}', [App\Http\Controllers\FacturaController::class, 'imprimirfactura'])->name('imprimirfactura');
 
 //Mi cuenta
+Route::get('/micuentaadmin', [App\Http\Controllers\CuentaController::class, 'micuentaadmin'])->name('micuentaadmin');
 Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names('micuenta');
 Route::post('/changePassword/{id}', [App\Http\Controllers\CuentaController::class, 'changePassword'])->name('changePassword');
 Route::post('/datosContacto/{id}', [App\Http\Controllers\CuentaController::class, 'datosContacto'])->name('datosContacto');
@@ -102,7 +111,7 @@ Route::get('frontend/inicio',[App\Http\Controllers\FrontendController::class,'nu
 
 Route::get('/frontend/categoria/{id}',[App\Http\Controllers\FrontendController::class,'categorias_front'])->name('categoria_front');
 
-Route::get('/frontend/aseo_general',[App\Http\Controllers\FrontendController::class,'categoria_aseo_general'])->name('Aseo_general');
+
 
 Route::get('/frontend/detalle/{producto}',[App\Http\Controllers\FrontendController::class,'detalle'])->name('detalle');
 //rutas para crear productos (probicional)
@@ -117,13 +126,12 @@ Route::get('frontend/carrito', [FrontendController::class, 'carrito'])->name('ca
 Route::get('add-to-carrito/{id}', [FrontendController::class, 'añadir_carrito'])->name('carrito.añadir');
 Route::patch('update-cart', [FrontendController::class, 'update'])->name('carrito.update');
 Route::delete('remove-from-cart', [FrontendController::class, 'eliminar'])->name('carrito.eliminar');
-Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra'])->name('carrito.compra');
-
+Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra']) ->middleware('auth')  ->name('carrito.compra');
 
 
 /* rutas de la factura y detalle de factura*/
- Route::get('facturas/facturas', [FacturaController::class, 'factura'])->name('factura');
- Route::post('facturas/', [FacturaController::class, 'crear_factura'])->name('factura.crear');
+Route::get('facturas/facturas/{factura}', [FacturaController::class, 'factura'])->name('factura.cliente'); 
+Route::post('facturas/', [FacturaController::class, 'crear_factura']) ->name('factura.crear');
 
 // get imagenes
 

@@ -18,6 +18,15 @@
 
 @section('content')
 
+@error('codigo_barrio')
+<small><span style="color: red">{{$message}}</span></small>
+<br>
+@enderror
+@error('nombre_barrio')
+<small><span style="color: red">{{$message}}</span></small>
+@enderror
+
+
 <!-- Modal de crear barrio-->
 <div id="mdlCrearBarrio" class="modal fade" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -51,23 +60,23 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="codigo">Codigo barrio:</label>
+                        <label for="codigo_barrio">Codigo barrio:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="far fa-keyboard"></i>
                             </div>
-                            {!! Form::text('codigo', null, ['id' => 'codigobarrio', 'class' => 'form-control',
+                            {!! Form::text('codigo_barrio', null, ['id' => 'codigo_barrio', 'class' => 'form-control',
                             'required']) !!}
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="nombre">Nombre barrio:</label>
+                        <label for="nombre_barrio">Nombre barrio:</label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <i class="fas fa-keyboard"></i>
                             </div>
-                            {!! Form::text('nombre', null, ['id' => 'nombrebarrio', 'class' => 'form-control',
+                            {!! Form::text('nombre_barrio', null, ['id' => 'nombre_barrio', 'class' => 'form-control',
                             'required']) !!}
                         </div>
                     </div>
