@@ -64,7 +64,11 @@ class PedidosController extends Controller
         $sql1 = 'SELECT  codigo, fecha,subtotal,valor_iva, total,
         tipoentrega.nombre as tipoentrega,
         tipopago.nombre as tipopago,
-        comentario,estado FROM facturas 
+        comentario,
+        case when estado = 1 then "Pendiente por despachar"
+   		when estado = 2 then "Despachado"
+   		when estado = 3 then "Finalizado"
+        when estado = 4 then "Anulado" end as estado FROM facturas 
         inner join opciones_definidas tipoentrega on tipoentrega.id_opcion = facturas.id_opcion_tipo_entrega 
         inner join opciones_definidas tipopago on tipopago.id_opcion = facturas.id_opcion_tipo_pago
         where id_factura = '.$id_factura;

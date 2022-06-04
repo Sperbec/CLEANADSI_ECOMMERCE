@@ -41,6 +41,12 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-6">
+        <label>Estado: {{$encabezado->estado}}</label>
+    </div>
+</div>
+
 <br>
 <hr>
 
