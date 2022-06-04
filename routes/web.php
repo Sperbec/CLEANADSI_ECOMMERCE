@@ -127,11 +127,12 @@ Route::delete('remove-from-cart', [FrontendController::class, 'eliminar'])->name
 Route::get('frontend/detalle', [FrontendController::class, 'detalle_compra']) ->middleware('auth')  ->name('carrito.compra');
 
 
-
 /* rutas de la factura y detalle de factura*/
- Route::get('facturas/facturas/{factura}', [FacturaController::class, 'factura'])->name('factura.cliente'); 
- Route::post('facturas/', [FacturaController::class, 'crear_factura']) ->name('factura.crear'); 
+Route::get('facturas/facturas/{factura}', [FacturaController::class, 'factura'])->name('factura.cliente'); 
+Route::post('facturas/', [FacturaController::class, 'crear_factura']) ->name('factura.crear');
 
+// get imagenes
 
+Route::get('/get-img', [\App\Http\Controllers\ImageController::class, 'getImg'])->name('getImage');
 
 //-----------------------------------------------------------------
