@@ -69,11 +69,7 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <label>Comentario: {{$encabezado->comentario}}</label>
-    </div>
-</div>
+
 
 <br>
 

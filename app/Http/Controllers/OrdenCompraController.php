@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Detalle_orden_compra;
 use App\Models\Orden_compra;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DateTime;
@@ -104,7 +105,10 @@ class OrdenCompraController extends Controller
         $sql1 = 'SELECT id_orden, codigo, fecha,
         case when nombres is not null then
         concat(nombres, " ", apellidos)  else
-        proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total, comentario
+        proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total, comentario,
+        case when estado = 1 then "Pendiente"
+   		when estado = 2 then "Finalizada"
+   		when estado = 3 then "Anulada" end as estado
         from orden_compras 
         inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
         left join personas on personas.id_persona = proveedores.id_persona
@@ -156,4 +160,62 @@ class OrdenCompraController extends Controller
         //Ver el pdf en el navegador
         return $pdf->stream();
     }
+
+    public function editarOrdenCompra($id){
+
+        $sql1 = 'SELECT id_orden, codigo, fecha,
+        case when nombres is not null then
+        concat(nombres, " ", apellidos)  else
+        proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total, comentario, estado
+        from orden_compras 
+        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
+        left join personas on personas.id_persona = proveedores.id_persona
+        where orden_compras.id_orden = '.$id;
+
+        $sql2 = 'SELECT id_detalle_orden,
+        productos.nombre, productos.sku, detalle_orden_compra.cantidad, productos.precio
+        from orden_compras 
+        inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden 
+        inner join productos on productos.id_producto = detalle_orden_compra.id_producto
+        where orden_compras.id_orden = '.$id;
+
+        $encabezado=DB::select($sql1);
+        $detalles = DB::select($sql2);
+
+        $data = ['encabezado' => $encabezado[0],
+        'detalles' => $detalles];
+
+        return view('ordencompra.edit', $data);
+
+    }
+
+    public function updateOrdenCompra(Request $request){
+        
+        $orden_compra = Orden_compra::find($request->id_orden);
+        $orden_compra->estado = $request->estado;
+        
+        if($request->estado === "2"){
+            $sql2 = 'SELECT id_detalle_orden,
+            productos.id_producto, productos.cantidad_existencia,
+            productos.nombre, productos.sku, detalle_orden_compra.cantidad, productos.precio
+            from orden_compras 
+            inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden 
+            inner join productos on productos.id_producto = detalle_orden_compra.id_producto
+            where orden_compras.id_orden = '.$request->id_orden;
+            $detalles = DB::select($sql2);
+            
+            foreach ($detalles as $det ) {
+                $producto = Producto::find($det->id_producto);
+                $producto->cantidad_existencia = $producto->cantidad_existencia + $det->cantidad;
+                $producto->update();
+            }
+        }
+
+        $orden_compra->update();
+
+       
+        return redirect()->route('consultarOrdenCompra')->with('editado', 'ok' );
+    }
+
+
 }

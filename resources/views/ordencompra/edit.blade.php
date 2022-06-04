@@ -1,10 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalle orden de compra')
+@section('title', 'Editar orden de compra')
 
 @section('content_header')
+
+<form action="{{url('/updateOrdenCompra')}}" method="post">
+    @csrf
+    
+
     <div class="row">
-        <h1>Ver detalle de la orden de compra {{$encabezado->codigo}}</h1>
+        <h1>Editar orden de compra {{$encabezado->codigo}}</h1>
+       <button id="btnEditar" type="submit" class="btn btn-success"><i class="fas fa-edit"></i> Editar</button>
         <a href="{{url('/imprimirordencompra/'.$encabezado->id_orden)}}" class="btn btn-primary btn-sm ml-auto">
             <i class="fas fa-print"></i> Imprimir orden de compra</a>
     </div>
@@ -12,6 +18,8 @@
 @stop
 
 @section('content')
+
+<input type="hidden" value="{{$encabezado->id_orden}}" name="id_orden">
 
 <div class="row">
     <div class="col-md-6">
@@ -36,9 +44,18 @@
     <div class="col-md-6">
         <label>Total: ${{$encabezado->total}}</label>
     </div>
+
     <div class="col-md-6">
-        <label>Estado: {{$encabezado->estado}}</label>
+        <label>Estado:</label>
+        <select name="estado" id="estado" class="form-select" required >
+            <option value=''>Seleccione</option>
+            <option value="1" {{$encabezado->estado == 1 ? 'selected' : ''}}>Pendiente</option>
+            <option value="2" {{$encabezado->estado == 2 ? 'selected' : ''}}>Finalizada</option>
+            <option value="3" {{$encabezado->estado == 3 ? 'selected' : ''}}>Anulada</option>
+        </select>
     </div>
+
+
 </div>
 
 
@@ -69,11 +86,13 @@
         @endforeach
     </tbody>
 </table>
-
+</form>
 
 @stop
 
 @section('css')
+
+
 <style>
      .negrita {
         font-weight: bold;
