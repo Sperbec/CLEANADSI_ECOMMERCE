@@ -42,6 +42,14 @@ class ProductoController extends Controller{
     }
 
     public function show($id_producto){
+
+        $producto = Producto::findOrFail($id_producto);
+        $categoria = Categoria::findOrFail($producto->id_categoria);
+
+        $data = ['producto' => $producto,  
+                'categoria' => $categoria];
+
+        return view('producto.show', $data);
     }
 
     public function edit($id_producto){
