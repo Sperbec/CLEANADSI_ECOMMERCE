@@ -206,7 +206,7 @@
 														}}x</span>$ {{ number_format($details['precio'] )}}</h4>
 											</div>
 
-											<button class="delete"><i class="fa fa-close"></i></button>
+											
 
 										</div>
 
