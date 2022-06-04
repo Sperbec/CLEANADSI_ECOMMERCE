@@ -33,10 +33,7 @@
                                 @foreach ($producto as $nvp)
                                 <div class="product">
                                         <div class="product-img">
-                                            <img src="{{'http://127.0.0.1:8000/get-img?path='.$nvp->imagen}}" alt="">
-                                            {{-- <div class="product-label">
-
-                                            </div> --}}
+                                            <img src="{{ '/static/images/productos/'.$nvp->imagen}}" >
                                         </div>
                                     <div class="product-body">
 
