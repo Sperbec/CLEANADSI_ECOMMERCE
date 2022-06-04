@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Facturas;
 use App\Models\Persona_contacto;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -20,8 +21,6 @@ class FacturaController extends Controller
 
     public function crear_factura(Request $request)
     {
-
-       
 
         $request->validate([
             'opcion_pagos'=> 'required',
@@ -50,10 +49,7 @@ class FacturaController extends Controller
         $factura->id_persona = $request->user()->id_persona; 
         $total = 0;
         foreach($carrito as $d){
-
-            
             $total += $d['precio'] * $d['quantity'];
-
         }
 
         $factura->subtotal =$total*0.81;
@@ -74,12 +70,18 @@ class FacturaController extends Controller
         $factura ->save(); 
         
         foreach($carrito as $d){
+
+            //Resto a la cantidad en existencia lo que se compró
+            $producto = Producto::findOrFail($d['id']);
+            $producto->cantidad_existencia = $producto->cantidad_existencia - $d['quantity'];
+            $producto->update();
+
             DB::table('detalle_factura')->insert([
                 'id_factura' => $factura->id_factura,
                 'id_producto' => $d['id'],
                 'cantidad' => $d['quantity']
             ]);
-            }  
+        }  
 
         session()->flush('carrito', $carrito);
 
