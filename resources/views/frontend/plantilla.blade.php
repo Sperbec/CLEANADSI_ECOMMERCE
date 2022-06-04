@@ -159,7 +159,7 @@
 					<div class="col-md-6">
 						<div class="header-search">
 							<form>
-								<select class="input-select">
+								<select class="input-select" onchange="categorias(this.value);">
 									<option value="0">Categorias</option>
 									@foreach ($categorias as $categoria)
 									<option value="{{$categoria -> id_categoria}}">{{$categoria -> nombre}}</option>
@@ -453,6 +453,10 @@ $( document ).ready(navbarActive());
     }    
    
 	);
+
+	function categorias(value){
+		window.location = "/frontend/categoria/"+value;
+	}
 </script>
 
 </html>

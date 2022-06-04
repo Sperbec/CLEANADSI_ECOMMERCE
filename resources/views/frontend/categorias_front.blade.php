@@ -57,7 +57,7 @@
                
                 <!-- store bottom filter -->
                 <div class="store-filter clearfix">
-                    <span class="store-qty">Showing {{$categoria_seleccionada->count()}}-100 products</span>
+                    <span class="store-qty">Mostrando {{$categoria_seleccionada->count()}}-100 productos</span>
                     <div class="store-position">
                         {!!$categoria_seleccionada->links()!!}
                         
