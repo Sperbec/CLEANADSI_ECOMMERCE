@@ -214,6 +214,6 @@ class ProveedorController extends Controller
             $persona->delete();    
         }       
 
-        return redirect()->route('proveedores.index')->with('eliminado', 'ok');;
+        return redirect()->route('proveedores.index')->with('eliminado', 'ok');
     }
 }
