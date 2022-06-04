@@ -103,6 +103,14 @@
 @section('js')
 
     <script>
+
+    var estado = document.getElementById('estado');
+    if(estado.value != null && estado.value == 2 || estado.value == 3){
+        document.getElementById("estado").disabled = true;
+    }else{
+        document.getElementById("estado").disabled = false;
+    }
+
     $(document).ready(function() {
         $('#tblDetalleOrdenCompra').DataTable({
             "language": idioma_espanol
@@ -131,5 +139,7 @@
         }
 
     }
+
+
 </script>
 @stop

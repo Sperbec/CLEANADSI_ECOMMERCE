@@ -143,7 +143,10 @@ class OrdenCompraController extends Controller
         $sql1 = 'SELECT id_orden, codigo, fecha,
         case when nombres is not null then
         concat(nombres, " ", apellidos)  else
-        proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total, comentario
+        proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total, comentario,
+        case when estado = 1 then "Pendiente"
+   		when estado = 2 then "Finalizada"
+   		when estado = 3 then "Anulada" end as estado
         from orden_compras 
         inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
         left join personas on personas.id_persona = proveedores.id_persona

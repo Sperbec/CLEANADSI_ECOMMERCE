@@ -201,19 +201,29 @@ class ProveedorController extends Controller
 
     public function destroy($id_proveedor)
     {
-        $proveedor = Proveedor::findOrFail($id_proveedor);
+        //No se debe permitir eliminar un proveedor si tiene una orden de compra pendiente.
+        $proveedor_orden = null;
+        $sql = 'SELECT id_orden from orden_compras 
+        WHERE orden_compras.estado =1 and id_proveedor = '.$id_proveedor;
+        $proveedor_orden = DB::select($sql);
 
-        $persona = null;
-        if ($proveedor->id_persona != null) {
-            $persona = Persona::find($proveedor->id_persona);
+        if($proveedor_orden != null){
+            return redirect()->route('proveedores.index')->with('error', 'ok');
+        }else{
+            $proveedor = Proveedor::findOrFail($id_proveedor);
+
+            $persona = null;
+            if ($proveedor->id_persona != null) {
+                $persona = Persona::find($proveedor->id_persona);
+            }
+
+            $proveedor->delete();
+
+            if($persona != null){
+                $persona->delete();    
+            }       
+
+            return redirect()->route('proveedores.index')->with('eliminado', 'ok');
         }
-
-        $proveedor->delete();
-
-        if($persona != null){
-            $persona->delete();    
-        }       
-
-        return redirect()->route('proveedores.index')->with('eliminado', 'ok');
     }
 }
