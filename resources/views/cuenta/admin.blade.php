@@ -32,7 +32,7 @@
                 <h3>Editar datos personales</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            
+
             <div class="modal-body">
 
                 <form action="{{route('micuenta.update', $usuario->id_usuario)}}" method="post">
@@ -51,7 +51,7 @@
                                 'form-control','required']) !!}
                             </div>
                            </div>
-                          
+
 
                         <div class="col-md-6">
                             <label for="apellidos_cuenta">Apellidos:</label>
@@ -144,9 +144,9 @@
 
             <div class="modal-footer">
                 <button id="btnEditarInfoPersonal" type="submit" class="btn btn-success">
-                    <i class="fas fa-edit"></i> Editar</button>
+                    <i class="fas fa-edit"></i> Guardar cambios</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
-                    <i class="fas fa-times"></i> Cerrar</button>
+                    <i class="fas fa-times"></i> Cancelar</button>
             </div>
 
             </form>
@@ -221,9 +221,9 @@
 
                     <div class="modal-footer">
                         <button id="btnGuardarCambioContrase" type="submit" class="btn btn-success">
-                            <i class="fas fa-lock"></i> Guardar</button>
+                            <i class="fas fa-lock"></i> Guardar cambios</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
-                            <i class="fas fa-times"></i> Cerrar</button>
+                            <i class="fas fa-times"></i> Cancelar</button>
                     </div>
 
                 </form>
@@ -402,9 +402,9 @@
 
                 <div class="modal-footer">
                     <button type="submit" id="btnEditarDatosContacto" class="btn btn-success">
-                        <i class="fas fa-edit"></i> Editar</button>
+                        <i class="fas fa-edit"></i> Guardar cambios</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <i class="fas fa-times"></i> Cerrar</button>
+                        <i class="fas fa-times"></i> Cancelar</button>
                 </div>
                </form>
             </div>

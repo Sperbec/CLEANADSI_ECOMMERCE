@@ -20,7 +20,7 @@ class OrdenCompraController extends Controller
         $this->middleware('auth');
     }
 
-    
+
     public function crear(){
 
         $sqlProveedores = 'SELECT id_proveedor,
@@ -54,7 +54,8 @@ class OrdenCompraController extends Controller
                 $orden_compra->codigo  ="ORD1";
             }else {
                 $ultima_orden =Orden_compra::orderBy('id_orden','desc')->first();
-                $orden_compra->codigo = "ORD".$ultima_orden->id_orden +1;
+                $suma_consecutivo = $ultima_orden->id_orden+1;
+                $orden_compra->codigo = "ORD".(string) $suma_consecutivo;
             }
 
             $dt = new DateTime();
@@ -66,10 +67,10 @@ class OrdenCompraController extends Controller
             $orden_compra->comentario = 'comentario';
             $orden_compra->estado = 1;
 
-            
+
             $orden_compra->save();
-            
-            for ($i=1; $i <= $request->contador; $i++) { 
+
+            for ($i=1; $i <= $request->contador; $i++) {
                 $detalle_orden_compra = new  Detalle_orden_compra();
                 $detalle_orden_compra->id_orden = $orden_compra->id_orden;
 
@@ -86,7 +87,7 @@ class OrdenCompraController extends Controller
 
         }else{
             return redirect()->route('crearOrdenCompra')->with('error', 'ok' );
-        }   
+        }
 
     }
 
@@ -96,8 +97,8 @@ class OrdenCompraController extends Controller
         case when nombres is not null then
         concat(nombres, " ", apellidos)  else
         proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total
-        from orden_compras 
-        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
+        from orden_compras
+        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor
         left join personas on personas.id_persona = proveedores.id_persona';
 
         $ordenes = DB::select($sqlOrdenesCompra);
@@ -116,15 +117,15 @@ class OrdenCompraController extends Controller
         case when estado = 1 then "Pendiente"
    		when estado = 2 then "Finalizada"
    		when estado = 3 then "Anulada" end as estado
-        from orden_compras 
-        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
+        from orden_compras
+        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor
         left join personas on personas.id_persona = proveedores.id_persona
         where orden_compras.id_orden = '.$id;
 
         $sql2 = 'SELECT id_detalle_orden,
         productos.nombre, productos.sku, detalle_orden_compra.cantidad, productos.precio
-        from orden_compras 
-        inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden 
+        from orden_compras
+        inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden
         inner join productos on productos.id_producto = detalle_orden_compra.id_producto
         where orden_compras.id_orden = '.$id;
 
@@ -147,15 +148,15 @@ class OrdenCompraController extends Controller
         case when estado = 1 then "Pendiente"
    		when estado = 2 then "Finalizada"
    		when estado = 3 then "Anulada" end as estado
-        from orden_compras 
-        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
+        from orden_compras
+        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor
         left join personas on personas.id_persona = proveedores.id_persona
         where orden_compras.id_orden = '.$id;
 
         $sql2 = 'SELECT id_detalle_orden,
         productos.nombre, productos.sku, detalle_orden_compra.cantidad, productos.precio
-        from orden_compras 
-        inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden 
+        from orden_compras
+        inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden
         inner join productos on productos.id_producto = detalle_orden_compra.id_producto
         where orden_compras.id_orden = '.$id;
 
@@ -177,15 +178,15 @@ class OrdenCompraController extends Controller
         case when nombres is not null then
         concat(nombres, " ", apellidos)  else
         proveedores.nombre end as nombre_proveedor,subtotal, valor_iva, total, comentario, estado
-        from orden_compras 
-        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor 
+        from orden_compras
+        inner join proveedores on proveedores.id_proveedor = orden_compras.id_proveedor
         left join personas on personas.id_persona = proveedores.id_persona
         where orden_compras.id_orden = '.$id;
 
         $sql2 = 'SELECT id_detalle_orden,
         productos.nombre, productos.sku, detalle_orden_compra.cantidad, productos.precio
-        from orden_compras 
-        inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden 
+        from orden_compras
+        inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden
         inner join productos on productos.id_producto = detalle_orden_compra.id_producto
         where orden_compras.id_orden = '.$id;
 
@@ -200,20 +201,20 @@ class OrdenCompraController extends Controller
     }
 
     public function updateOrdenCompra(Request $request){
-        
+
         $orden_compra = Orden_compra::find($request->id_orden);
         $orden_compra->estado = $request->estado;
-        
+
         if($request->estado === "2"){
             $sql2 = 'SELECT id_detalle_orden,
             productos.id_producto, productos.cantidad_existencia,
             productos.nombre, productos.sku, detalle_orden_compra.cantidad, productos.precio
-            from orden_compras 
-            inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden 
+            from orden_compras
+            inner join detalle_orden_compra  on  detalle_orden_compra.id_orden = orden_compras.id_orden
             inner join productos on productos.id_producto = detalle_orden_compra.id_producto
             where orden_compras.id_orden = '.$request->id_orden;
             $detalles = DB::select($sql2);
-            
+
             foreach ($detalles as $det ) {
                 $producto = Producto::find($det->id_producto);
                 $producto->cantidad_existencia = $producto->cantidad_existencia + $det->cantidad;
@@ -223,7 +224,7 @@ class OrdenCompraController extends Controller
 
         $orden_compra->update();
 
-       
+
         return redirect()->route('consultarOrdenCompra')->with('editado', 'ok' );
     }
 

@@ -36,14 +36,14 @@ class FrontendController extends Controller
              inner join opciones_definidas documento on documento.id_opcion =personas.id_opcion_tipo_documento
              inner join opciones_definidas genero on genero.id_opcion = personas.id_opcion_genero
              where id_usuario = '.auth()->user()->id_usuario;
- 
+
              $this->usuario = DB::select($sql);
-        }   
+        }
     }
 
     public function nuevos_productos()
     {
-        
+
         $this->consultar_categorias();
 
         $producto=Producto::orderBy('id_producto','desc')->paginate(5);
@@ -81,7 +81,7 @@ class FrontendController extends Controller
 
     public function detalle(Producto $producto)
     {
-        $this->consultar_categorias();  
+        $this->consultar_categorias();
         $this->consultarUsuario();
 
         $data = ['producto' => $producto,
@@ -100,7 +100,7 @@ class FrontendController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'nombre'=> 'required',
             'descripcion' => 'required',
@@ -111,7 +111,7 @@ class FrontendController extends Controller
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg,jfif|max:2048',
             'id_categoria'=> 'required',
         ]);
-     
+
         $salidaimagen =$request->all();
 
         if($imagen=$request->file('imagen'))
@@ -126,7 +126,7 @@ class FrontendController extends Controller
         return redirect()->route('inicio');
     }
 
-    
+
      public function carrito()
     {
         $this->consultar_categorias();
@@ -138,9 +138,9 @@ class FrontendController extends Controller
         'usuario' => $this->usuario != null ? $this->usuario[0] : null];
 
         return view('frontend.carrito',$data);
-    } 
-  
-   
+    }
+
+
      public function añadir_carrito($id)
     {
         $producto = Producto::findOrFail($id);
@@ -161,33 +161,42 @@ class FrontendController extends Controller
                 "estado" => $producto->estado,
                 "cantidad_existencia" => $producto->cantidad_existencia,
                 "id_categoria" => $producto->id_categoria
-                
+
             ];
         }
         session()->put('carrito', $carrito);
-        
+
         return redirect()->back()->with('success', 'Producto añadido al carrito.');
-    } 
- 
+    }
+
     public function update(Request $request)
     {
+
         if($request->id && $request->quantity){
             $carrito = session()->get('carrito');
-            if($request->quantity<0)
+            if($request->quantity < 0)
             {
                 $carrito[$request->id]["quantity"] =1;
                 session()->put('carrito', $carrito);
-            session()->flash('success', 'Carrito actualizado');
+                session()->flash('success', 'Ingrese números positivos. Carrito actualizado');
             }else {
-                $carrito[$request->id]["quantity"] = $request->quantity;
-                session()->put('carrito', $carrito);
-            session()->flash('success', 'Carrito actualizado');
+
+                $producto = Producto::findOrFail($request->id);
+                if($producto->cantidad_existencia < $request->quantity){
+                    $carrito[$request->id]["quantity"] =1;
+                    session()->put('carrito', $carrito);
+                    session()->flash('success', 'La cantidad solicitada es superior a la existente. Carrito actualizado');
+                }else{
+                    $carrito[$request->id]["quantity"] = $request->quantity;
+                    session()->put('carrito', $carrito);
+                    session()->flash('success', 'Carrito actualizado');
+                }
             }
-            
+
         }
-    }   
-  
- 
+    }
+
+
     public function eliminar(Request $request)
     {
         if($request->id) {
@@ -202,10 +211,10 @@ class FrontendController extends Controller
 
     public function detalle_compra(Request $request)
     {
-        
+
         $this->consultar_categorias();
         $this->consultarUsuario();
-        
+
         $carrito = session()->get('carrito');
         session()->put('carrito', $carrito);
 
@@ -218,13 +227,13 @@ class FrontendController extends Controller
                 'usuario' =>$this->usuario != null ? $this->usuario[0] : null];
 
        return view('facturas/detalle', $data);
-    }  
+    }
 
 
     public function preguntasfrecuentes(){
         $this->consultar_categorias();
         $this->consultarUsuario();
-        $data = ['categorias' => $this->categorias, 
+        $data = ['categorias' => $this->categorias,
                 'usuario' =>  $this->usuario != null ? $this->usuario[0] : null];
         return view('frontend.preguntas_frecuentes', $data);
     }
@@ -232,7 +241,7 @@ class FrontendController extends Controller
     public function sobrenosotros(){
         $this->consultar_categorias();
         $this->consultarUsuario();
-        $data = ['categorias' => $this->categorias, 
+        $data = ['categorias' => $this->categorias,
                 'usuario' => $this->usuario != null ? $this->usuario[0] : null];
         return view('frontend.sobre_nosotros', $data);
     }
@@ -240,10 +249,10 @@ class FrontendController extends Controller
     public function politicasprivacidad(){
         $this->consultar_categorias();
         $this->consultarUsuario();
-        $data = ['categorias' => $this->categorias, 
+        $data = ['categorias' => $this->categorias,
                 'usuario' =>  $this->usuario != null ? $this->usuario[0] : null];
         return view('frontend.politicas_privacidad', $data);
     }
-    
-    
-}   
+
+
+}
