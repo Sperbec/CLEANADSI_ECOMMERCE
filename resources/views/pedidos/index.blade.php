@@ -7,7 +7,7 @@
         margin: 0 auto;
         text-align: center;
         border-radius: 10px;
-        width: 50%;
+        width: 5 0%;
     }
 
     .negrita{
@@ -24,27 +24,30 @@
         <h3 class="title">Mis pedidos</h3>
     </div>
 </div>
+<br>
 
-
-
-<table class="table table-hover" id="tblpedidos">
+<table  class="container"class="table table-hover" id="tblpedidos">
     <thead>
-        <tr>
-            <td class="negrita">Código</td>
-            <td class="negrita">Fecha</td>
-            <td class="negrita">Total</td>
-            <td class="negrita">Estado</td>
-            <td class="negrita">Acciones</td>
-        </tr>
+                <tr>
+                <td class="negrita">Código</td>
+                <td class="negrita">Fecha</td>
+                <td class="negrita">Total</td>
+                <td class="negrita">Estado</td>
+                <td class="negrita">Acciones</td>
+                </tr>
+            
     </thead>
     <tbody>
         @foreach ($pedidos as $pedido)
-        <tr>
+        
+            <tr>
+            
             <td>{{ $pedido->codigo }}</td>
             <td>{{ $pedido->fecha }}</td>
             <td>{{ $pedido->total }}</td>
             <td>{{ $pedido->estado }}</td>
             <td>
+            </div>
                 <div class="row">
 
                     <div class="col-md-3">
@@ -57,9 +60,13 @@
               
             </td>
         </tr>
+    
         @endforeach
     </tbody>
-</table>
+</table> 
+<br>
+<br>
+<br>
 
 
 @stop
