@@ -411,18 +411,13 @@
     </div>
 
 
-    <br>
-
-
-
-
+    <br><br>
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="container"class="col-md-6">
         <h3 class="subtitle">Datos de contacto</h3>
-    </div>
-
+    
     <div class="col-md-6">
         <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto"
             class="btn btn-primary">
@@ -433,15 +428,15 @@
 <hr>
 
 
-
-<table class="table table-hover" id="tbldatoscontacto">
-    <thead>
+<table class="container" class="table table-hover" id="tbldatoscontacto">
+    <thead >
         <tr>
-            <td class="negrita">Opcion contacto</td>
+            <td class="negrita" >Opcion contacto</td>
             <td class="negrita">Valor</td>
             <td class="negrita">Barrio</td>
             <td class="negrita">Acciones</td>
         </tr>
+        
     </thead>
     <tbody>
         @foreach ($datos_contacto as $contacto)
@@ -450,6 +445,7 @@
             <td>{{ $contacto->valor }}</td>
             <td>{{ $contacto->nombrebarrio }}</td>
             <td>
+               
                 <div class="row">
 
                     <div class="col-md-3">
@@ -473,6 +469,8 @@
         @endforeach
     </tbody>
 </table>
+<br><br><br>
+
 
 @stop
 

@@ -62,7 +62,7 @@
 
 <hr>
 
-<table class="table table-hover" id="tbldetallepedidos">
+<table class="container" class="table table-hover" id="tbldetallepedidos">
     <thead>
         <tr>
             <td class="negrita">Código</td>
@@ -84,7 +84,7 @@
     </tbody>
 </table>
 
-
+<br><br>
 
 @stop
 

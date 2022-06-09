@@ -19,7 +19,7 @@
 @section('contenido')
 
 
-<table id="cart" class=" table table-hover table-condensed">
+<table class="container" id="cart" class=" table table-hover table-condensed">
     @if($carrito != null and count($carrito))
     <thead>
         <div class="section-title text-center">
