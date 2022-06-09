@@ -432,7 +432,7 @@ $( document ).ready(navbarActive());
    if (path == "/frontend/inicio") {
 	document.getElementById("inicio-nav").classList.add ("active");
    };
-   if (path == "/frontend/categoria/") {
+   if (path == "/frontend/categoria/" || path == "/frontend/categoria/1" || path == "/frontend/categoria/2") {
 	document.getElementById("categorias-nav").classList.add ("active");
    };
    if (path == "/login") {
@@ -450,6 +450,11 @@ $( document ).ready(navbarActive());
 
 	document.getElementById("carrito-nav").classList.add ("active");
    };
+
+   if (path == "/micuenta" || path == "/pedidos") {
+
+	document.getElementById("postLog-nav").classList.add ("active");
+	};
     }
 
 	);
