@@ -58,3 +58,9 @@ Route::get('/facturas/codigo/{codigo}', function ($codigo) {
 Route::get('/facturas/fecha/{fecha_inicio}/{fecha_fin}', function ($fecha_inicio, $fecha_fin) {
     return FacturaResource::collection(Factura::whereBetween('fecha', [$fecha_inicio, $fecha_fin])->get());
 });
+
+// Opciones Definidas
+
+Route::get('/opciones/id/{id}', function ($id) {
+    return new OpcionDefinidaResource(OpcionDefinida::findOrFail($id));
+});
