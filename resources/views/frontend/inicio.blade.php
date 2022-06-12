@@ -34,9 +34,6 @@
                                 <div class="product">
                                         <div class="product-img">
                                             <img src="{{ '/static/images/productos/'.$nvp->imagen}}" >
-                                            {{-- <div class="product-label">
-
-                                            </div> --}}
                                         </div>
                                     <div class="product-body">
 

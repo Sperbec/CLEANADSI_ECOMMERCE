@@ -6,12 +6,12 @@
 
 <form action="{{url('/updateOrdenCompra')}}" method="post">
     @csrf
-    
+
 
     <div class="row">
         <h1>Editar orden de compra {{$encabezado->codigo}}</h1>
        <button id="btnEditar" type="submit" class="btn btn-success"><i class="fas fa-edit"></i> Editar</button>
-        <a href="{{url('/imprimirordencompra/'.$encabezado->id_orden)}}" class="btn btn-primary btn-sm ml-auto">
+        <a target="_blank" href="{{url('/imprimirordencompra/'.$encabezado->id_orden)}}" class="btn btn-primary btn-sm ml-auto">
             <i class="fas fa-print"></i> Imprimir orden de compra</a>
     </div>
 <hr>
@@ -103,6 +103,16 @@
 @section('js')
 
     <script>
+
+    var estado = document.getElementById('estado');
+    if(estado.value != null && estado.value == 2 || estado.value == 3){
+        document.getElementById("estado").disabled = true;
+        document.getElementById("btnEditar").disabled = true;
+    }else{
+        document.getElementById("estado").disabled = false;
+        document.getElementById("btnEditar").disabled = false;
+    }
+
     $(document).ready(function() {
         $('#tblDetalleOrdenCompra').DataTable({
             "language": idioma_espanol
@@ -131,5 +141,7 @@
         }
 
     }
+
+
 </script>
 @stop

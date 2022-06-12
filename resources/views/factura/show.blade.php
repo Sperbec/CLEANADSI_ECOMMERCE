@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="row">
         <h1>Ver detalle de la factura {{$encabezado->codigo}}</h1>
-        <a href="{{url('/imprimirfactura/'.$encabezado->id_factura)}}" class="btn btn-primary btn-sm ml-auto">
+        <a target="_blank" href="{{url('/imprimirfactura/'.$encabezado->id_factura)}}" class="btn btn-primary btn-sm ml-auto">
             <i class="fas fa-print"></i> Imprimir factura</a>
     </div>
 <hr>
@@ -38,6 +38,12 @@
     </div>
     <div class="col-md-6">
         <label>Total: ${{$encabezado->total}}</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <label>Estado: {{$encabezado->estado}}</label>
     </div>
 </div>
 

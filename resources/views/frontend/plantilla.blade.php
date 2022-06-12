@@ -75,7 +75,7 @@
 					<ul class="main-nav nav navbar-nav">
 						<li id="inicio-nav" class=""><a href="{{route('inicio')}}" >Inicio</a></li>
 
-						
+
 
 						<li id="categorias-nav" class="" class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-categorias"
@@ -102,14 +102,14 @@
 						<li id="register-nav" class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
 						@else
 
-						
-						
+
+
 							<li id="postLog-nav" class="" class="nav-item dropdown">
 								{{-- Para traer el nombre del usuario --}}
 
 								<a href="#" class="nav-link dropdown-toggle" id="btn-dropdown-usuario"
 									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$usuario->nombres}} {{$usuario->apellidos}}</a>
-								
+
 
 								<div class="dropdown-menu" aria-labelledby="btn-dropdown-usuario">
 									<ul >
@@ -121,10 +121,10 @@
 								</div>
 
 							</li>
-							
+
 						@endif
 
-	
+
 
 
 
@@ -159,7 +159,7 @@
 					<div class="col-md-6">
 						<div class="header-search">
 							<form>
-								<select class="input-select">
+								<select class="input-select" onchange="categorias(this.value);">
 									<option value="0">Categorias</option>
 									@foreach ($categorias as $categoria)
 									<option value="{{$categoria -> id_categoria}}">{{$categoria -> nombre}}</option>
@@ -206,7 +206,7 @@
 														}}x</span>$ {{ number_format($details['precio'] )}}</h4>
 											</div>
 
-											
+
 
 										</div>
 
@@ -289,7 +289,7 @@
 	<!-- /SECTION -->
 	@yield('contenido')
 
-	
+
 
 	<script>
         window.onload = function()
@@ -308,7 +308,7 @@
 	<div class="col-md-12.5 text-justify">
 		<footer id="footer">
 		<!-- top footer -->
-		
+
 		<div class="section">
 			<!-- container -->
 			<div class="container">
@@ -355,11 +355,11 @@
 						<div class="footer">
 							<h3 class="footer-title">Redes</h3>
 							<ul class="footer-links">
-								<li><a href="https://wa.link/r3uu91/"><i class="fa fa-whatsapp"></i>WhatsApp</a>
-									
+								<li><a target="_blank" href="https://wa.link/r3uu91/"><i class="fa fa-whatsapp"></i>WhatsApp</a>
+
 								</li>
 
-							</ul> 	 	
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -410,14 +410,14 @@
 	<script src="{{asset('guia de plantillas/js/jquery.zoom.min.js')}}"></script>
 	<script src="{{asset('guia de plantillas/js/main.js')}}"></script>
 
-	
+
 
 </body>
 
 {{-- <script>
 	function navbarActive() {
     document.getElementById("inicio-nav").classList.add ("active");
-    
+
 }
 $( document ).ready(navbarActive());
 </script> --}}
@@ -432,7 +432,7 @@ $( document ).ready(navbarActive());
    if (path == "/frontend/inicio") {
 	document.getElementById("inicio-nav").classList.add ("active");
    };
-   if (path == "/frontend/categoria/") {
+   if (path == "/frontend/categoria/" || path == "/frontend/categoria/1" || path == "/frontend/categoria/2") {
 	document.getElementById("categorias-nav").classList.add ("active");
    };
    if (path == "/login") {
@@ -447,12 +447,21 @@ $( document ).ready(navbarActive());
    };
    /*  */
    if (path == "/frontend/carrito") {
-	
+
 	document.getElementById("carrito-nav").classList.add ("active");
    };
-    }    
-   
+
+   if (path == "/micuenta" || path == "/pedidos") {
+
+	document.getElementById("postLog-nav").classList.add ("active");
+	};
+    }
+
 	);
+
+	function categorias(value){
+		window.location = "/frontend/categoria/"+value;
+	}
 </script>
 
 </html>

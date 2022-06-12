@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="row">
         <h1>Ver detalle de la orden de compra {{$encabezado->codigo}}</h1>
-        <a href="{{url('/imprimirordencompra/'.$encabezado->id_orden)}}" class="btn btn-primary btn-sm ml-auto">
+        <a target="_blank" href="{{url('/imprimirordencompra/'.$encabezado->id_orden)}}" class="btn btn-primary btn-sm ml-auto">
             <i class="fas fa-print"></i> Imprimir orden de compra</a>
     </div>
 <hr>

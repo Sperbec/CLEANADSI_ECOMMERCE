@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Facturas;
 use App\Models\Persona_contacto;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -20,8 +21,6 @@ class FacturaController extends Controller
 
     public function crear_factura(Request $request)
     {
-
-       
 
         $request->validate([
             'opcion_pagos'=> 'required',
@@ -50,10 +49,7 @@ class FacturaController extends Controller
         $factura->id_persona = $request->user()->id_persona; 
         $total = 0;
         foreach($carrito as $d){
-
-            
             $total += $d['precio'] * $d['quantity'];
-
         }
 
         $factura->subtotal =$total*0.81;
@@ -74,12 +70,18 @@ class FacturaController extends Controller
         $factura ->save(); 
         
         foreach($carrito as $d){
+
+            //Resto a la cantidad en existencia lo que se compró
+            $producto = Producto::findOrFail($d['id']);
+            $producto->cantidad_existencia = $producto->cantidad_existencia - $d['quantity'];
+            $producto->update();
+
             DB::table('detalle_factura')->insert([
                 'id_factura' => $factura->id_factura,
                 'id_producto' => $d['id'],
                 'cantidad' => $d['quantity']
             ]);
-            }  
+        }  
 
         session()->flush('carrito', $carrito);
 
@@ -120,7 +122,11 @@ class FacturaController extends Controller
 
         $sql1 = 'SELECT id_factura, codigo, fecha,
         concat(personas.nombres," ", personas.apellidos) as nombrecompleto,
-        subtotal, valor_iva, costo_envio, total
+        subtotal, valor_iva, costo_envio, total,
+        case when estado = 1 then "Pendiente por despachar"
+   		when estado = 2 then "Despachado"
+   		when estado = 3 then "Finalizado"
+        when estado = 4 then "Anulado" end as estado
         from facturas
         inner join personas on personas.id_persona = facturas.id_persona
         where facturas.id_factura = '.$id;
@@ -169,7 +175,11 @@ class FacturaController extends Controller
 
         $sql1 = 'SELECT id_factura, codigo, fecha,
         concat(personas.nombres," ", personas.apellidos) as nombrecompleto,
-        subtotal, valor_iva, costo_envio, total
+        subtotal, valor_iva, costo_envio, total,
+        case when estado = 1 then "Pendiente por despachar"
+   		when estado = 2 then "Despachado"
+   		when estado = 3 then "Finalizado"
+        when estado = 4 then "Anulado" end as estado
         from facturas
         inner join personas on personas.id_persona = facturas.id_persona
         where facturas.id_factura = '.$id;

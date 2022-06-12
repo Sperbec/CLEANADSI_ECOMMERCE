@@ -118,9 +118,9 @@
 
                         <div class="col-md-6" style="text-align: right">
                             <button id="btnEditarInfoPersonal" type="submit" class="btn btn-success">
-                                <i class="fas fa-edit"></i> Editar</button>
+                                <i class="fas fa-edit"></i> Guardar cambios</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">
-                                <i class="fas fa-times"></i> Cerrar</button>
+                                <i class="fas fa-times"></i> Cancelar</button>
                         </div>
                     </div>
 
@@ -182,9 +182,9 @@
 
                         <div class="col-md-6" style="text-align: right">
                             <button id="btnGuardarCambioContrasenia" type="submit" class="btn btn-success">
-                                <i class="fas fa-lock"></i> Guardar</button>
+                                <i class="fas fa-lock"></i> Guardar cambios</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">
-                                <i class="fas fa-times"></i> Cerrar</button>
+                                <i class="fas fa-times"></i> Cancelar</button>
                         </div>
                     </div>
 
@@ -298,7 +298,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="tipoContactoEditar" >Tipo de contacto:</label>
-                            <select id="tipoContactoEditar" name="tipoContactoEditar" class="form-control" required 
+                            <select id="tipoContactoEditar" name="tipoContactoEditar" class="form-control" required
                                 onchange="changeTipoContactoEditar(this.value);">
                                 <option value=''>Seleccione</option>
                                 @foreach ($tipos_contactos as $tipo_contacto)
@@ -345,9 +345,9 @@
 
                         <div class="col-md-6" style="text-align: right">
                             <button id="btnEditarDatosContacto" type="submit" class="btn btn-success">
-                                <i class="fas fa-edit"></i> Editar</button>
+                                <i class="fas fa-edit"></i> Guardar cambios</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">
-                                <i class="fas fa-times"></i> Cerrar</button>
+                                <i class="fas fa-times"></i> Cancelar</button>
                         </div>
                     </div>
 
@@ -411,18 +411,13 @@
     </div>
 
 
-    <br>
-
-   
-    
-
+    <br><br>
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="container"class="col-md-6">
         <h3 class="subtitle">Datos de contacto</h3>
-    </div>
-
+    
     <div class="col-md-6">
         <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto"
             class="btn btn-primary">
@@ -433,15 +428,15 @@
 <hr>
 
 
-
-<table class="table table-hover" id="tbldatoscontacto">
-    <thead>
+<table class="container" class="table table-hover" id="tbldatoscontacto">
+    <thead >
         <tr>
-            <td class="negrita">Opcion contacto</td>
+            <td class="negrita" >Opcion contacto</td>
             <td class="negrita">Valor</td>
             <td class="negrita">Barrio</td>
             <td class="negrita">Acciones</td>
         </tr>
+        
     </thead>
     <tbody>
         @foreach ($datos_contacto as $contacto)
@@ -450,6 +445,7 @@
             <td>{{ $contacto->valor }}</td>
             <td>{{ $contacto->nombrebarrio }}</td>
             <td>
+               
                 <div class="row">
 
                     <div class="col-md-3">
@@ -473,6 +469,8 @@
         @endforeach
     </tbody>
 </table>
+<br><br><br>
+
 
 @stop
 
@@ -500,8 +498,8 @@
             contrasenianueva.type = "password";
             confirmacioncontrasenia.type = "password";
         }
-            
-    } 
+
+    }
 
     function habilitar(value) {
         if (value == "10") {
@@ -630,7 +628,7 @@
         document.getElementById('contacto').value = '';
         document.getElementById('municipio').value = '';
         document.getElementById('barrio').value = '';
-       
+
     });
 
     //Modal de cambiar contraseña

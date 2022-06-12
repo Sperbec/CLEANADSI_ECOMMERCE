@@ -140,6 +140,14 @@
 
         });
 
+        @if (session('error') == 'ok')
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No es posible eliminar el proveedor porque tiene una orden de compra pendiente.'
+            })
+        @endif
+
     </script>
 
 @stop

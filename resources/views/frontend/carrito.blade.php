@@ -19,7 +19,7 @@
 @section('contenido')
 
 
-<table id="cart" class=" table table-hover table-condensed">
+<table class="container" id="cart" class=" table table-hover table-condensed">
     @if($carrito != null and count($carrito))
     <thead>
         <div class="section-title text-center">
@@ -56,7 +56,7 @@
             <td class="hidden-xs" data-th="Price">${{ number_format($precio) }}</td>
             <td data-th="Quantity">
                 <input type="number" value="{{ $details['quantity'] }}" width="50px"
-                    class="form-control quantity update-cart" />
+                    class="form-control quantity update-cart" onKeyPress="return soloNumeros(event)"/>
             </td>
             <td data-th="Subtotal" class="text-center">${{ number_format($subtotal) }}</td>
             <td class="actions" data-th="">
@@ -85,7 +85,7 @@
                         comprando</a>
                     <a href="{{route('carrito.compra')}}" class="btn btn-primary"><i class="fa fa-angle-double-right"></i> Ver detalle de la
                         compra</a>
-                   
+
                 </div>
             </td>
         </tr>
@@ -107,15 +107,15 @@
 <script type="text/javascript">
     $(".update-cart").change(function (e) {
         e.preventDefault();
-  
+
         var ele = $(this);
-  
+
         $.ajax({
             url: '{{ route('carrito.update') }}',
             method: "patch",
             data: {
-                _token: '{{ csrf_token() }}', 
-                id: ele.parents("tr").attr("data-id"), 
+                _token: '{{ csrf_token() }}',
+                id: ele.parents("tr").attr("data-id"),
                 quantity: ele.parents("tr").find(".quantity").val()
             },
             success: function (response) {
@@ -123,7 +123,7 @@
             }
         });
     });
-  
+
     $('.formEliminar').submit(function(e) {
             e.preventDefault();
 
@@ -143,7 +143,12 @@
             })
 
         });
-  
+
+        function soloNumeros(e){
+            var key = window.Event ? e.which : e.keyCode
+            return (key >= 48 && key <= 57)
+        }
+
 </script>
 @endsection
 

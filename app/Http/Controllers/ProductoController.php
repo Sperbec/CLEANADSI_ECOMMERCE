@@ -77,14 +77,15 @@ class ProductoController extends Controller{
         $producto->precio = $request->precio_producto;
         $producto->cantidad_existencia = $request->cantidad_existencia;
 
+        if($request->file('imagen_producto') != null){
+            $imagen = $request->file('imagen_producto');
+            $nombre_imagen = time().'.'.$imagen->getClientOriginalExtension();
+            $destino = public_path('/static/images/productos');
+            $request->imagen_producto->move($destino, $nombre_imagen);
+            $producto->imagen = $nombre_imagen;
+        }
 
-        $imagen = $request->file('imagen_producto');
-        $nombre_imagen = time().'.'.$imagen->getClientOriginalExtension();
-        $destino = public_path('/static/images/productos');
-        $request->imagen_producto->move($destino, $nombre_imagen);
-
-
-        $producto->imagen = $nombre_imagen;
+        
         $producto->id_categoria = $request->categoria;
 
         $producto->save();
@@ -102,13 +103,15 @@ class ProductoController extends Controller{
         $producto->precio = $request->precio_producto;
         $producto->cantidad_existencia = $request->cantidad_existencia;
 
-       
-        $imagen = $request->file('imagen_producto');
-        $nombre_imagen = time().'.'.$imagen->getClientOriginalExtension();
-        $destino = public_path('/static/images/productos');
-        $request->imagen_producto->move($destino, $nombre_imagen);
+       if($request->file('imagen_producto') != null){
+            $imagen = $request->file('imagen_producto');
+            $nombre_imagen = time().'.'.$imagen->getClientOriginalExtension();
+            $destino = public_path('/static/images/productos');
+            $request->imagen_producto->move($destino, $nombre_imagen);
+            $producto->imagen = $nombre_imagen;
+       }
 
-        $producto->imagen = $nombre_imagen;
+        
         $producto->id_categoria = $request->categoria;
 
         $producto->update();

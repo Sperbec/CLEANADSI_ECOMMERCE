@@ -73,6 +73,13 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-6">
+        <label class="negrita">Estado: </label>
+        <label>{{$encabezado->estado}}</label>
+    </div>
+</div>
+
 <br>
 
 

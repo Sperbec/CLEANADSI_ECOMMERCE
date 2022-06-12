@@ -15,7 +15,9 @@
 
 @section('content')
 
+
 <img src="{{ '/static/images/productos/'.$producto->imagen}}" width="20%" >
+
 
 <div class="row">
     <div class="col-md-6">

@@ -86,7 +86,7 @@ Route::post('/guardarOrdenCompra', [App\Http\Controllers\OrdenCompraController::
 Route::get('/verOrdenCompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'verOrdenCompra'])->name('verOrdenCompra');
 Route::get('/editarOrdenCompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'editarOrdenCompra'])->name('editarOrdenCompra');
 Route::post('/updateOrdenCompra', [App\Http\Controllers\OrdenCompraController::class, 'updateOrdenCompra'])->name('updateOrdenCompra');
-Route::post('/imprimirordencompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'imprimirordencompra'])->name('imprimirordencompra');
+Route::get('/imprimirordencompra/{id}', [App\Http\Controllers\OrdenCompraController::class, 'imprimirordencompra'])->name('imprimirordencompra');
 Route::post('/obtenerproducto', [App\Http\Controllers\ProductoController::class, 'obtenerproducto']);
 
 //Mis pedidos

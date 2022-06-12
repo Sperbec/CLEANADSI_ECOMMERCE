@@ -12,7 +12,7 @@
 <div class=" table-responsive">
     <h2 class=" text-center">Datos del pedido</h2>
     <hr>
-    <table class=" col-md-6 table table-striped table-hover tabled-bordered">
+    <table class="container" class=" col-md-6 table table-striped table-hover tabled-bordered">
         <tr class="">
             <th>Producto</th>
             <th>Precio</th>
@@ -36,12 +36,15 @@
             <td>{{number_format($subtotal)}}</td>
 
         </tr>
+        
         @endforeach
+        
         <tfoot>
             <tr class="text-right">
                 <td>
                     <h3>
                         <div>
+                            <br><br>
                             Total de la compra $ {{number_format($total)}}
                         </div>
                     </h3>
