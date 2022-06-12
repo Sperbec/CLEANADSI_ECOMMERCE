@@ -41,6 +41,10 @@ Route::get('/personas/{id}', function ($id) {
     return new PersonaResource(Persona::findOrFail($id));
 });
 
+Route::get('/personas', function () {
+    return PersonaResource::collection(Persona::all());
+});
+
 // Facturas
 
 Route::get('/facturas', function () {

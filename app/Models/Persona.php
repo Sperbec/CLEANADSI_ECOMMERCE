@@ -25,4 +25,5 @@ class Persona extends Model
         'natalicio',
         'habilitado'
     ];
+
 }

@@ -7,6 +7,19 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class PersonaResource extends JsonResource
 {
     /**
+     * @var mixed
+     */
+    private $id_persona;
+    /**
+     * @var mixed
+     */
+    private $nombres;
+    /**
+     * @var mixed
+     */
+    private $apellidos;
+
+    /**
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -18,14 +31,6 @@ class PersonaResource extends JsonResource
             'id_persona' => $this->id_persona,
             'nombres' => $this->nombres,
             'apellidos' => $this->apellidos,
-            'id_opcion_genero' => $this->id_opcion_genero,
-            'id_opcion_tipo_documento' => $this->id_opcion_tipo_documento,
-            'numero_documento' => $this->numero_documento,
-            'natalicio' => $this->natalicio,
-            'habilitado' => $this->habilitado,
-            'deleted_at' => $this->deleted_at,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 

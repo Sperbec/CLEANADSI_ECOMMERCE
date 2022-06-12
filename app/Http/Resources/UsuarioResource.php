@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Persona;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UsuarioResource extends JsonResource
@@ -14,6 +15,8 @@ class UsuarioResource extends JsonResource
      */
     public function toArray($request)
     {
+        $persona = Persona::all()->find($this->id_persona);
+
         return [
             'id_usuario' => $this->id_usuario,
             'id_persona' => $this->id_persona,
@@ -25,6 +28,7 @@ class UsuarioResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
+            'persona' => $persona,
         ];
     }
 
