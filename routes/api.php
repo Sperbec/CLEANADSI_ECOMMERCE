@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Usuarios
-Route::get('/usuarios/{id}', function ($id) {
+Route::get('/usuarios/id/{id}', function ($id) {
     return new UsuarioResource(User::findOrFail($id));
 });
 Route::get('/usuarios/email/{email}', function ($email) {
