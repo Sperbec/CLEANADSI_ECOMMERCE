@@ -27,27 +27,25 @@ class FacturaResource extends JsonResource
         $genero = Opciones_definidas::all()->find($id_opcion_genero);
 
         return [
-            'factura' => [
-                'id_factura' => $this->id_factura,
-                'codigo' => $this->codigo,
-                'fecha' => $this->fecha,
-                'id_persona' => $this->id_persona,
-                'subtotal' => $this->subtotal,
-                'valor_iva' => $this->valor_iva,
-                'total' => $this->total,
-                'id_opcion_tipo_entrega' => $tipo_entrega->nombre,
-                'id_opcion_tipo_pago' => $tipo_pago->nombre,
-                'costo_envio' => $this->costo_envio,
-                'comentario' => $this->comentario,
-                'estado' => $this->estado,
-                'persona' => [
-                    'id_persona' => $persona->id_persona,
-                    'nombres' => $persona->nombres,
-                    'apellidos' => $persona->apellidos,
-                    'genero' => $genero->nombre,
-                    'tipo_documento' => $tipo_documento->nombre,
-                    'numero_documento' => $persona->numero_documento,
-                ],
+            'id_factura' => $this->id_factura,
+            'codigo' => $this->codigo,
+            'fecha' => $this->fecha,
+            'id_persona' => $this->id_persona,
+            'subtotal' => $this->subtotal,
+            'valor_iva' => $this->valor_iva,
+            'total' => $this->total,
+            'id_opcion_tipo_entrega' => $tipo_entrega->nombre,
+            'id_opcion_tipo_pago' => $tipo_pago->nombre,
+            'costo_envio' => $this->costo_envio,
+            'comentario' => $this->comentario,
+            'estado' => $this->estado,
+            'persona' => [
+                'id_persona' => $persona->id_persona,
+                'nombres' => $persona->nombres,
+                'apellidos' => $persona->apellidos,
+                'genero' => $genero->nombre,
+                'tipo_documento' => $tipo_documento->nombre,
+                'numero_documento' => $persona->numero_documento,
             ],
         ];
     }
