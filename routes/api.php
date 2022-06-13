@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Resources\OrdenCompraResource;
 use App\Http\Resources\PersonaResource;
+use App\Models\Orden_compra;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +59,12 @@ Route::get('/facturas/codigo/{codigo}', function ($codigo) {
 
 Route::get('/facturas/fecha/{fecha_inicio}/{fecha_fin}', function ($fecha_inicio, $fecha_fin) {
     return FacturaResource::collection(Factura::whereBetween('fecha', [$fecha_inicio, $fecha_fin])->get());
+});
+
+// Órdenes de Compra
+
+Route::get('/ordenes', function () {
+    return OrdenCompraResource::collection(Orden_compra::all());
 });
 
 // Opciones Definidas
