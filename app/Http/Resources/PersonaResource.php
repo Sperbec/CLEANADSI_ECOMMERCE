@@ -6,9 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PersonaResource extends JsonResource
 {
-    /**
-     * @var mixed
-     */
     private $id_persona;
     /**
      * @var mixed
