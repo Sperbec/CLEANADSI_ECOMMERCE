@@ -31,7 +31,7 @@ class ProductoResource extends JsonResource
             'descripcion' => $this->descripcion,
             'sku' => $this->sku,
             'precio' => number_format($producto->precio, 2, ',', '.'),
-            'cantidad_existencia' => $producto->cantidad_existencia,
+            'cantidad_existencia' => (double) $producto->cantidad_existencia,
             'categoria' => $categoria->nombre,
             'imagen' => $this->imagen,
         ];
