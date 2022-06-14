@@ -31,9 +31,9 @@ class OrdenCompraResource extends JsonResource
             'codigo' => $this->codigo,
             'fecha' => $this->fecha,
             'proveedor' => $proveedor->nombre,
-            'total' => (float) $orden_compra->total,
-            'valor_iva' => (float) $orden_compra->valor_iva,
-            'subtotal' => (float) $orden_compra->subtotal,
+            'total' => (double) $orden_compra->total,
+            'valor_iva' => (double) $orden_compra->valor_iva,
+            'subtotal' => (double) $orden_compra->subtotal,
             'comentario' => $this->comentario,
             'estado' => (int) $orden_compra->estado,
             'persona' => [
