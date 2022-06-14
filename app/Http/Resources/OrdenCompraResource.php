@@ -18,7 +18,7 @@ class OrdenCompraResource extends JsonResource
      */
     public function toArray($request)
     {
-        $orden_compra = Orden_compra::all()->find($this->id_orden_compra);
+        $orden_compra = Orden_compra::all()->find($this->id_orden);
         $proveedor = Proveedor::all()->find($this->id_proveedor);
         $persona = Persona::all()->find($proveedor->id_persona);
         $id_opcion_tipo_documento = $persona->id_opcion_tipo_documento;
@@ -31,9 +31,9 @@ class OrdenCompraResource extends JsonResource
             'codigo' => $this->codigo,
             'fecha' => $this->fecha,
             'proveedor' => $proveedor->nombre,
-            'total' => (double) $orden_compra->total,
-            'valor_iva' => (double) $orden_compra->valor_iva,
-            'subtotal' => (double) $orden_compra->subtotal,
+            'total' => number_format($orden_compra->total, 2, ',', '.'),
+            'valor_iva' => number_format($orden_compra->valor_iva, 2, ',', '.'),
+            'subtotal' => number_format($orden_compra->subtotal, 2, ',', '.'),
             'comentario' => $this->comentario,
             'estado' => (int) $orden_compra->estado,
             'persona' => [
