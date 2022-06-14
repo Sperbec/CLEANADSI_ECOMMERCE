@@ -29,10 +29,10 @@ class FacturaResource extends JsonResource
         $genero = Opciones_definidas::all()->find($id_opcion_genero);
 
         return [
-            'id_factura' => $this->id_factura,
+            'id_factura' => (int) $this->id_factura,
             'codigo' => $this->codigo,
             'fecha' => $this->fecha,
-            'id_persona' => $factura->id_persona,
+            'id_persona' =>  (int) $factura->id_persona,
             'subtotal' => $factura->subtotal,
             'valor_iva' => $factura->valor_iva,
             'total' => $factura->total,
