@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Opciones_definidas;
+use App\Models\Orden_compra;
 use App\Models\Persona;
 use App\Models\Proveedor;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,6 +18,7 @@ class OrdenCompraResource extends JsonResource
      */
     public function toArray($request)
     {
+        $orden_compra = Orden_compra::all()->find($this->id_orden_compra);
         $proveedor = Proveedor::all()->find($this->id_proveedor);
         $persona = Persona::all()->find($proveedor->id_persona);
         $id_opcion_tipo_documento = $persona->id_opcion_tipo_documento;
@@ -29,11 +31,11 @@ class OrdenCompraResource extends JsonResource
             'codigo' => $this->codigo,
             'fecha' => $this->fecha,
             'proveedor' => $proveedor->nombre,
-            'total' => $this->total,
-            'valor_iva' => $this->valor_iva,
-            'subtotal' => $this->subtotal,
+            'total' => $orden_compra->total,
+            'valor_iva' => $orden_compra->valor_iva,
+            'subtotal' => $orden_compra->subtotal,
             'comentario' => $this->comentario,
-            'estado' => $this->estado,
+            'estado' => $orden_compra->estado,
             'persona' => [
                 'id_persona' => $persona->id_persona,
                 'nombres' => $persona->nombres,

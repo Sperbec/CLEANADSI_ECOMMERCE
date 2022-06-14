@@ -24,7 +24,7 @@ class UsuarioResource extends JsonResource
 
         return [
             'id_usuario' => $this->id_usuario,
-            'id_persona' => $this->id_persona,
+            'id_persona' => $persona->id_persona,
             'email' => $this->email,
             'password' => $this->password,
             'email_verified_at' => $this->email_verified_at,

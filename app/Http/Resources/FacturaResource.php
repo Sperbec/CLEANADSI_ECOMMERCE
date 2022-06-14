@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Factura;
 use App\Models\Opciones_definidas;
 use App\Models\Persona;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -16,6 +17,7 @@ class FacturaResource extends JsonResource
      */
     public function toArray($request)
     {
+        $factura = Factura::all()->find($this->id_factura);
         $persona = Persona::all()->find($this->id_persona);
         $id_opcion_tipo_entrega = $this->id_opcion_tipo_entrega;
         $id_opcion_tipo_pago = $this->id_opcion_tipo_pago;
@@ -30,15 +32,15 @@ class FacturaResource extends JsonResource
             'id_factura' => $this->id_factura,
             'codigo' => $this->codigo,
             'fecha' => $this->fecha,
-            'id_persona' => $this->id_persona,
-            'subtotal' => $this->subtotal,
-            'valor_iva' => $this->valor_iva,
-            'total' => $this->total,
+            'id_persona' => $factura->id_persona,
+            'subtotal' => $factura->subtotal,
+            'valor_iva' => $factura->valor_iva,
+            'total' => $factura->total,
             'id_opcion_tipo_entrega' => $tipo_entrega->nombre,
             'id_opcion_tipo_pago' => $tipo_pago->nombre,
-            'costo_envio' => $this->costo_envio,
+            'costo_envio' => $factura->costo_envio,
             'comentario' => $this->comentario,
-            'estado' => $this->estado,
+            'estado' => $factura->estado,
             'persona' => [
                 'id_persona' => $persona->id_persona,
                 'nombres' => $persona->nombres,
