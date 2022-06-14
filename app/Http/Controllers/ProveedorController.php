@@ -105,7 +105,7 @@ class ProveedorController extends Controller
             $persona->id_opcion_tipo_documento = $request->tipo_doc_proveedor;
             $persona->numero_documento = $request->numero_documento;
             $persona->natalicio = $request->fecha_nacimiento;
-            $persona->habilitado = 1;
+            
 
             $persona->save();
 
@@ -181,7 +181,7 @@ class ProveedorController extends Controller
             $persona->id_opcion_tipo_documento = $request->tipo_doc_proveedor;
             $persona->numero_documento = $request->numero_documento;
             $persona->natalicio = $request->fecha_nacimiento;
-            $persona->habilitado = 1;
+            
 
             $persona->update();
         }

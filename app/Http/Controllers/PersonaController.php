@@ -68,7 +68,7 @@ class PersonaController extends Controller
         $persona->id_opcion_tipo_documento = $tipos_documento;
         $persona->numero_documento = $documento;
         $persona->natalicio = $caledario;
-        $persona->habilitado = 1;
+    
 
         $persona->save();
 
@@ -146,7 +146,7 @@ class PersonaController extends Controller
         $persona->id_opcion_tipo_documento = $tipos_documento;
         $persona->numero_documento = $documento;
         $persona->natalicio = $caledario;
-        $persona->habilitado = 1;
+        
 
         $persona->update();
 

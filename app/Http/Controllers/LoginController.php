@@ -153,7 +153,7 @@ class LoginController extends Controller
         $persona->id_opcion_tipo_documento = $request->input('tipo_documento');
         $persona->numero_documento = e($request->input('numero_documento'));
         $persona->natalicio = e($request->input('fecha_nacimiento'));
-        $persona->habilitado = 1;
+        
 
         if ($persona->save()) {
             $usuario = new User;
