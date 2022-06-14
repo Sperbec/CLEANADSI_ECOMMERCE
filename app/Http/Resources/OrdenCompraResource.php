@@ -26,8 +26,6 @@ class OrdenCompraResource extends JsonResource
         $tipo_documento = Opciones_definidas::all()->find($id_opcion_tipo_documento);
         $genero = Opciones_definidas::all()->find($id_opcion_genero);
 
-        dd($orden_compra);
-
         return [
             'id_orden' => $this->id_orden,
             'codigo' => $this->codigo,

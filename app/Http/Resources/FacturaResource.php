@@ -28,8 +28,6 @@ class FacturaResource extends JsonResource
         $tipo_documento = Opciones_definidas::all()->find($id_opcion_tipo_documento);
         $genero = Opciones_definidas::all()->find($id_opcion_genero);
 
-        dd($factura);
-
         return [
             'id_factura' => $this->id_factura,
             'codigo' => $this->codigo,
