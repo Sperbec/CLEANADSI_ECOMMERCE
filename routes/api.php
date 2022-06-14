@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use App\Http\Resources\OrdenCompraResource;
 use App\Http\Resources\PersonaResource;
+use App\Http\Resources\ProductoResource;
 use App\Models\Orden_compra;
 use App\Models\Persona;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\UsuarioResource;
@@ -24,6 +27,16 @@ use App\Models\Factura;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// Imagen
+
+Route::get('/get-img', [ImageController::class, 'getImg'])->name('getImage');
+
+// Productos
+
+Route::get('/productos', function () {
+    return ProductoResource::collection(Producto::all());
 });
 
 // Usuarios
