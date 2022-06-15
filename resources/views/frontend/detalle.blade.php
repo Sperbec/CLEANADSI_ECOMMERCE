@@ -17,7 +17,7 @@
 <div class="col-md-5 col-md-push-2">
     <div id="product-main-img">
         <div class="product-preview">
-            <img src="{{ '/static/images/productos/'.$producto->imagen}}"  alt="">
+            <img src="{{ 'http://cleanadsi.com/api/get-img?path='.$producto->imagen}}"  alt="">
         </div>
     </div>
 </div>
@@ -26,7 +26,7 @@
             <div class="col-md-2  col-md-pull-5">
                 <div id="product-imgs">
                     <div class="product-preview">
-                        <img src="{{ '/static/images/productos/'.$producto->imagen}}"  height="180px" alt="">
+                        <img src="{{ 'http://cleanadsi.com/api/get-img?path='.$producto->imagen}}"  height="180px" alt="">
                     </div>
                 </div>
             </div>

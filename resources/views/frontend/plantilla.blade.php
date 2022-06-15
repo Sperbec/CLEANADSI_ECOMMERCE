@@ -198,7 +198,7 @@
 										<div class="product-widget">
 
 											<div class="product-img">
-												<img src="{{ '/static/images/productos/'.$details['imagen']}}" alt="">
+												<img src="{{ 'http://cleanadsi.com/api/get-img?path='.$details['imagen']}}" alt="">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">{{ $details['nombre'] }}</a></h3>
