@@ -414,16 +414,20 @@
     <br><br>
 </div>
 
-<div class="row">
-    <div class="container"class="col-md-6">
-        <h3 class="subtitle">Datos de contacto</h3>
-    
-    <div class="col-md-6">
-        <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto"
+<div class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="subtitle">Datos de contacto</h3>
+        </div>
+        <div class="col-md-6">
+            <a id="btnAgregarDatosContacto" data-toggle="modal" data-target="#mdlAgregarDatosContacto"
             class="btn btn-primary">
             <i class="fas fa-plus"></i> Agregar datos de contacto</a>
+        </div>
     </div>
+
 </div>
+
 
 <hr>
 
