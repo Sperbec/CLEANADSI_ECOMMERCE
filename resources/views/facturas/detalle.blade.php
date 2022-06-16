@@ -84,19 +84,21 @@
                                 @endforeach
                                 <div class="Opcion Entrega">
                                     <div class="form-group">
-                                        <select name="opcion_entregas" id="opcion_entregas" class="form-select" required>
+                                        <select name="opcion_entregas" id="opcion_entregas" class="form-select" required >
                                             <option value='' >Seleccione método de envío</option>
                                             @foreach ($opcion_entregas as $opcion_entrega)
-                                            <option required value="{{ $opcion_entrega->id_opcion }}">{{ $opcion_entrega->nombre
+                                            <option  value="{{ $opcion_entrega->id_opcion }}">{{ $opcion_entrega->nombre
                                                 }} </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <select name="opcion_pagos" id="opcion_pagos" class="form-select" required>
-                                            <option value=''>Seleccione forma de pago</option>
+                                        <select name="opcion_pagos" id="opcion_pagos" class="form-select" required onchange="
+                                         formaPago(this.value);">
+                                            <option  value=''>Seleccione la forma de pago</option>
                                             @foreach ($opcion_pagos as $opcion_pago)
                                             <option value="{{ $opcion_pago->id_opcion }}">{{ $opcion_pago->nombre }}
+                                                
                                             </option>
                                             @endforeach
                                         </select>
@@ -124,18 +126,58 @@
         
         <!-- /container -->
         <div class="text-center">
-            <button class="btn btn-primary" type="submit"> Ir a pagar</button>
+            <button id="pagarEfectivo" style="visibility: hidden;" class="btn btn-primary" type="submit" > Pagar en efectivo</button>
         </div>
+
+        <div class="text-center"  style="visibility: hidden;" id="paypal-button-container" ></div>
+
     </div>
     <!-- /SECTION -->
 </div>
 
-
+{{-- {{dd(value)}} --}}
 
 @endsection
 
 @section('scripts')
+<script>
+    function formaPago(value)
+    {
+        console.log(value);
 
+        if(value == null || value == ""){ //Ningún método de pago.
+            document.getElementById("pagarEfectivo").style.visibility = "hidden";
+            document.getElementById("paypal-button-container").style.visibility = "hidden";
+        }
+
+        if(value ==13){ //Pago es en efectivo
+            document.getElementById("pagarEfectivo").style.visibility = "visible";
+            document.getElementById("paypal-button-container").style.visibility = "hidden";
+            
+        }else if(value == 14){ //Pago con paypal
+            document.getElementById("pagarEfectivo").style.visibility = "hidden";
+            document.getElementById("paypal-button-container").style.visibility = "visible";
+        }
+    }
+</script>
+<script>
+    
+    paypal.Buttons({
+   createOrder: function(data, actions) {
+       return actions.order.create({
+           // ...
+           purchase_units: [{
+               amount: {
+                   value: {{$total 
+               }}}
+           }],
+       });
+   },
+   onApprove: function(data, actions) {
+       // ...
+   }
+}).render('#paypal-button-container');
+</script>
 @endsection
 
 @section('footer')
