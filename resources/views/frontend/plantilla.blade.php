@@ -57,6 +57,7 @@
 </head>
 
 <body>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- HEADER -->
 	<div id="contenedor_carga">
         <div id="carga">
@@ -165,7 +166,8 @@
 									<option value="{{$categoria -> id_categoria}}">{{$categoria -> nombre}}</option>
 									@endforeach
 								</select>
-								<input class="input" placeholder="">
+								<input class="input" id="mysearch" placeholder="">
+								<ul id="showlist" tabindex="1" class="list-group"></ul>
 								<button class="search-btn">Buscar</button>
 							</form>
 						</div>
@@ -421,9 +423,11 @@
 }
 $( document ).ready(navbarActive());
 </script> --}}
+<script src="{{asset('search/js/search.js')}}" type="module"></script>
 
 <script>
 	$( document ).ready(function() {
+		
    var path = $(location).attr('pathname');
    console.log( path );
    if (path == "/") {
@@ -462,6 +466,10 @@ $( document ).ready(navbarActive());
 	function categorias(value){
 		window.location = "/frontend/categoria/"+value;
 	}
+
+	
+
+
 </script>
 
 </html>
