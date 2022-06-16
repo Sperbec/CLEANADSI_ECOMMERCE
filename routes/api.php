@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ImageController;
+use App\Http\Resources\DetalleFacturaResource;
 use App\Http\Resources\OrdenCompraResource;
 use App\Http\Resources\PersonaResource;
 use App\Http\Resources\ProductoResource;
+use App\Models\DetalleFactura;
 use App\Models\Orden_compra;
 use App\Models\Persona;
 use App\Models\Producto;
@@ -63,6 +65,12 @@ Route::get('/facturas/codigo/{codigo}', function ($codigo) {
 
 Route::get('/facturas/fecha/{fecha_inicio}/{fecha_fin}', function ($fecha_inicio, $fecha_fin) {
     return FacturaResource::collection(Factura::whereBetween('fecha', [$fecha_inicio, $fecha_fin])->get());
+});
+
+// Detalle Factura
+
+Route::get('/detalle-facturas', function () {
+    return DetalleFacturaResource::collection(DetalleFactura::all());
 });
 
 // Órdenes de Compra
