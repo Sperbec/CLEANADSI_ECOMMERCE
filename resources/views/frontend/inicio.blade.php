@@ -37,7 +37,6 @@
                                         </div>
                                     <div class="product-body">
 
-                                        <p class="product-category">Category</p>
                                         <h3 class="product-name"><a href="{{route('detalle',$nvp->id_producto)}}">{{$nvp->nombre}}</a></h3>
                                         <h4 class="product-price">${{number_format($nvp->precio)}}</h4>
                                         <div class="product-rating">

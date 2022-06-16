@@ -22,6 +22,8 @@ use App\Http\Controllers\FacturaController;
 
 Auth::routes();
 
+Route::post('myurl', [App\Http\Controllers\SearchController::class,'show'])->name('myurl');
+
 //Paises
 Route::resource('pais', App\Http\Controllers\PaisController::class)->names('pais');
 

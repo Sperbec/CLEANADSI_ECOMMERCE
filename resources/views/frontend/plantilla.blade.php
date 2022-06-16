@@ -41,6 +41,9 @@
 	<script src="https://kit.fontawesome.com/8224604846.js" crossorigin="anonymous"></script>
 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT_ID')}}&disable-funding=credit,card"></script>
+
+	{{-- <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT_ID')}}&currency=USD"></script> --}}
 
 	<link rel="shortcut icon" href="/static/images/logo.png">
 
@@ -57,6 +60,7 @@
 </head>
 
 <body>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- HEADER -->
 	<div id="contenedor_carga">
         <div id="carga">
@@ -148,7 +152,7 @@
 					<!-- LOGO -->
 					<div class="col-md-3">
 						<div class="header-logo">
-							<a href="#" class="logo">
+							<a href="/" class="logo">
 								<img src="/static/images/logo.png" alt="logo" width="50%">
 							</a>
 						</div>
@@ -165,8 +169,9 @@
 									<option value="{{$categoria -> id_categoria}}">{{$categoria -> nombre}}</option>
 									@endforeach
 								</select>
-								<input class="input" placeholder="">
-								<button class="search-btn">Buscar</button>
+								<input class="input" id="mysearch" placeholder="">
+								<ul id="showlist" tabindex="1" class="list-group"></ul>
+								
 							</form>
 						</div>
 					</div>
@@ -198,7 +203,7 @@
 										<div class="product-widget">
 
 											<div class="product-img">
-												<img src="{{ '/static/images/productos/'.$details['imagen']}}" alt="">
+												<img src="{{ 'http://cleanadsi.com/api/get-img?path='.$details['imagen']}}" alt="">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">{{ $details['nombre'] }}</a></h3>
@@ -421,9 +426,11 @@
 }
 $( document ).ready(navbarActive());
 </script> --}}
+<script src="{{asset('search/js/search.js')}}" type="module"></script>
 
 <script>
 	$( document ).ready(function() {
+		
    var path = $(location).attr('pathname');
    console.log( path );
    if (path == "/") {
@@ -462,6 +469,10 @@ $( document ).ready(navbarActive());
 	function categorias(value){
 		window.location = "/frontend/categoria/"+value;
 	}
+
+	
+
+
 </script>
 
 </html>
