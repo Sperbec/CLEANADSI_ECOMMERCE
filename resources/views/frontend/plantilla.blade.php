@@ -152,7 +152,7 @@
 					<!-- LOGO -->
 					<div class="col-md-3">
 						<div class="header-logo">
-							<a href="#" class="logo">
+							<a href="/" class="logo">
 								<img src="/static/images/logo.png" alt="logo" width="50%">
 							</a>
 						</div>
@@ -171,7 +171,7 @@
 								</select>
 								<input class="input" id="mysearch" placeholder="">
 								<ul id="showlist" tabindex="1" class="list-group"></ul>
-								<button class="search-btn">Buscar</button>
+								
 							</form>
 						</div>
 					</div>
