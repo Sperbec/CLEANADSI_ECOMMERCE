@@ -41,6 +41,9 @@
 	<script src="https://kit.fontawesome.com/8224604846.js" crossorigin="anonymous"></script>
 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT_ID')}}&disable-funding=credit,card"></script>
+
+	{{-- <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT_ID')}}&currency=USD"></script> --}}
 
 	<link rel="shortcut icon" href="/static/images/logo.png">
 
