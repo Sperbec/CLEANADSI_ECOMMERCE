@@ -91,8 +91,8 @@
                                     </div>
                                     <div class="form-group">
                                         <select name="opcion_pagos" id="opcion_pagos" class="form-select" required onchange="
-                                        mostrar(this.value);">
-                                            <option  value=''>Seleccione forma de pago</option>
+                                         formaPago(this.value);">
+                                            <option  value=''>Seleccione la forma de pago</option>
                                             @foreach ($opcion_pagos as $opcion_pago)
                                             <option value="{{ $opcion_pago->id_opcion }}">{{ $opcion_pago->nombre }}
                                                 
@@ -122,11 +122,12 @@
 
         
         <!-- /container -->
-        <div class="text-center" style="display: none">
-            <button class="btn btn-primary" type="submit" > Pagar en Efectivo</button>
-            
+        <div class="text-center">
+            <button id="pagarEfectivo" style="visibility: hidden;" class="btn btn-primary" type="submit" > Pagar en efectivo</button>
         </div>
-        <div class="text-center" id="paypal-button-container" ></div>
+
+        <div class="text-center"  style="visibility: hidden;" id="paypal-button-container" ></div>
+
     </div>
     <!-- /SECTION -->
 </div>
@@ -137,12 +138,23 @@
 
 @section('scripts')
 <script>
-    function mostrar(value)
+    function formaPago(value)
     {
-        if (value ='' ) {
-            document.getElementById('paypal-button-container').style.display = 'none';
-             /* style.display = 'none' */
-        } 
+        console.log(value);
+
+        if(value == null || value == ""){ //Ningún método de pago.
+            document.getElementById("pagarEfectivo").style.visibility = "hidden";
+            document.getElementById("paypal-button-container").style.visibility = "hidden";
+        }
+
+        if(value ==13){ //Pago es en efectivo
+            document.getElementById("pagarEfectivo").style.visibility = "visible";
+            document.getElementById("paypal-button-container").style.visibility = "hidden";
+            
+        }else if(value == 14){ //Pago con paypal
+            document.getElementById("pagarEfectivo").style.visibility = "hidden";
+            document.getElementById("paypal-button-container").style.visibility = "visible";
+        }
     }
 </script>
 <script>
