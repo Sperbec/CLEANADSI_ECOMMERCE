@@ -33,14 +33,7 @@ class UsuarioResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
-            'persona' => [
-                'id_persona' => $persona->id_persona,
-                'nombres' => $persona->nombres,
-                'apellidos' => $persona->apellidos,
-                'genero' => $genero->nombre,
-                'tipo_documento' => $tipo_documento->nombre,
-                'numero_documento' => $persona->numero_documento,
-            ],
+            'persona' => new PersonaResource(Persona::all()->find($persona->id_persona)),
         ];
     }
 

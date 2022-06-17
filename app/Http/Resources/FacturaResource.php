@@ -38,7 +38,7 @@ class FacturaResource extends JsonResource
             'costo_envio' => number_format($this->costo_envio, 2, ',', '.'),
             'comentario' => $this->comentario,
             'estado' => (int) $factura->estado,
-            'persona' => Persona::all()->find($factura->id_persona),
+            'persona' => new PersonaResource(Persona::all()->find($factura->id_persona)),
             'detalle_factura' => DetalleFacturaResource::collection($detalles),
         ];
     }
