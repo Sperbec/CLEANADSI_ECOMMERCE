@@ -35,6 +35,8 @@ class FacturaResource extends JsonResource
         // Persona
         $persona = Persona::all()->find($factura->id_persona);
 
+        dd($persona->id_opcion_tipo_documento);
+
         // OpcionesDefinidas
         $tipo_entrega = Opciones_definidas::all()->find((int) $this->id_opcion_tipo_entrega);
         $tipo_pago = Opciones_definidas::all()->find((int) $this->id_opcion_tipo_pago);
