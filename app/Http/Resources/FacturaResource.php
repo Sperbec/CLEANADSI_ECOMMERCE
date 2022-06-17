@@ -25,22 +25,6 @@ class FacturaResource extends JsonResource
         // get a collection of DetalleFactura where the id_factura is the same as the id_factura of the FacturaResource
         $detalles = DetalleFactura::where('id_factura', $this->id_factura)->get();
 
-        // Productos
-        $productos = [];
-        foreach ($detalles as $detalle) {
-            $producto = Producto::all()->find($detalle->id_producto);
-            $productos[] = $producto;
-        }
-
-        // Persona
-        $persona = Persona::all()->find($this->id_persona);
-
-        // OpcionesDefinidas
-        $tipo_entrega = Opciones_definidas::all()->find($this->id_opcion_tipo_entrega);
-        $tipo_pago = Opciones_definidas::all()->find($this->id_opcion_tipo_pago);
-        $tipo_documento = Opciones_definidas::all()->find($persona->id_opcion_tipo_documento);
-        $genero = Opciones_definidas::all()->find($persona->id_opcion_genero);
-
         return [
             'id_factura' => (int) $this->id_factura,
             'codigo' => $this->codigo,
@@ -49,19 +33,12 @@ class FacturaResource extends JsonResource
             'subtotal' => number_format($factura->subtotal, 2, ',', '.'),
             'valor_iva' => number_format($factura->valor_iva, 2, ',', '.'),
             'total' => number_format($factura->total, 2, ',', '.'),
-            'id_opcion_tipo_entrega' => $tipo_entrega->nombre,
-            'id_opcion_tipo_pago' => $tipo_pago->nombre,
+            'opcion_tipo_entrega' => Opciones_definidas::all()->find($factura->id_opcion_tipo_entrega),
+            'opcion_tipo_pago' => Opciones_definidas::all()->find($factura->id_opcion_tipo_pago),
             'costo_envio' => number_format($this->costo_envio, 2, ',', '.'),
             'comentario' => $this->comentario,
             'estado' => (int) $factura->estado,
-            'persona' => [
-                'id_persona' => $persona->id_persona,
-                'nombres' => $persona->nombres,
-                'apellidos' => $persona->apellidos,
-                'genero' => $genero->nombre,
-                'tipo_documento' => $tipo_documento->nombre,
-                'numero_documento' => $persona->numero_documento,
-            ],
+            'persona' => Persona::all()->find($factura->id_persona),
             'detalle_factura' => DetalleFacturaResource::collection($detalles),
         ];
     }
