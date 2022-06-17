@@ -24,4 +24,11 @@ class DetalleFacturaResource extends JsonResource
             'cantidad' => (int) $this->cantidad,
         ];
     }
+
+    public function withResponse($request, $response)
+    {
+        $response->header('Charset', 'utf-8');
+        $response->header('Content-Type', 'application/json');
+        $response->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+    }
 }

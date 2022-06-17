@@ -33,13 +33,13 @@ class FacturaResource extends JsonResource
         }
 
         // Persona
-        $persona = Persona::all()->find($factura->id_persona);
+        $persona = Persona::all()->find($this->id_persona);
 
         // OpcionesDefinidas
-        $tipo_entrega = Opciones_definidas::all()->find((int) $this->id_opcion_tipo_entrega);
-        $tipo_pago = Opciones_definidas::all()->find((int) $this->id_opcion_tipo_pago);
-        $tipo_documento = Opciones_definidas::all()->find((int) $persona->id_opcion_tipo_documento);
-        $genero = Opciones_definidas::all()->find((int)$persona->id_opcion_genero);
+        $tipo_entrega = Opciones_definidas::all()->find($this->id_opcion_tipo_entrega);
+        $tipo_pago = Opciones_definidas::all()->find($this->id_opcion_tipo_pago);
+        $tipo_documento = Opciones_definidas::all()->find($persona->id_opcion_tipo_documento);
+        $genero = Opciones_definidas::all()->find($persona->id_opcion_genero);
 
         return [
             'id_factura' => (int) $this->id_factura,
