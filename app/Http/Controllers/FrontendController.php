@@ -46,7 +46,7 @@ class FrontendController extends Controller
 
         $this->consultar_categorias();
 
-        $producto=Producto::orderBy('id_producto','desc')->paginate(5);
+        $producto=Producto::where('cantidad_existencia', '>', 5)->paginate(5);
 
         $this->consultarUsuario();
 
@@ -68,7 +68,7 @@ class FrontendController extends Controller
         $this->consultar_categorias();
         $this->consultarUsuario();
 
-        $categoria_seleccionada = Producto::where('id_categoria', $id)->paginate(12);
+        $categoria_seleccionada = Producto::where('id_categoria', $id)->where('cantidad_existencia', '>', 5)->paginate(12);
 
         $data = ['categoria_seleccionada' => $categoria_seleccionada,
                 'categorias' => $this->categorias,

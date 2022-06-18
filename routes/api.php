@@ -7,6 +7,7 @@ use App\Http\Resources\OpcionDefinidaResource;
 use App\Http\Resources\OrdenCompraResource;
 use App\Http\Resources\PersonaResource;
 use App\Http\Resources\ProductoResource;
+use App\Models\Detalle_orden_compra;
 use App\Models\DetalleFactura;
 use App\Models\Opciones_definidas;
 use App\Models\Orden_compra;
@@ -91,7 +92,7 @@ Route::get('/ordenes', function () {
 // Detalle Órdenes de Compra
 
 Route::get('/detalle-ordenes', function () {
-    return DetalleOrdenCompraResource::collection(DetalleFactura::all());
+    return DetalleOrdenCompraResource::collection(Detalle_orden_compra::all());
 });
 
 // Opciones Definidas

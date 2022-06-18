@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Municipio;
 use App\Models\Barrio;
 use App\Http\Requests\StoreForm;
+use Illuminate\Support\Facades\DB;
 
 class BarrioController extends Controller
 {
@@ -16,6 +17,18 @@ class BarrioController extends Controller
     
     public function index()
     {
+        $sql = 'SELECT roles.id 
+        FROM usuarios
+        inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+        inner join roles on roles.id = mhr.role_id 
+        where id_usuario = ' . auth()->user()->id_usuario;
+
+        $rol = DB::select($sql);
+
+        if ($rol[0]->id == 2) {
+            return redirect('/');
+        }
+
         $municipios= Municipio::All();
         $data = ['municipios' => $municipios];
         return view('barrio.index', $data);

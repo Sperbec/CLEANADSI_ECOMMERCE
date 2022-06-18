@@ -18,7 +18,7 @@ class DetalleOrdenCompraResource extends JsonResource
         $producto = Producto::where('id_producto', $this->id_producto)->first();
 
         return [
-            'id_detalle_orden' => (int) $this->id_detalle_orden,
+            'id_detalle_orden' => $this->id_detalle_orden,
             'producto' => $producto->nombre,
             'imagen' => $producto->imagen,
             'cantidad' => (int) $this->cantidad,
