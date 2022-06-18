@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Detalle_orden_compra;
 use App\Models\Opciones_definidas;
 use App\Models\Orden_compra;
 use App\Models\Persona;
@@ -19,31 +20,20 @@ class OrdenCompraResource extends JsonResource
     public function toArray($request)
     {
         $orden_compra = Orden_compra::all()->find($this->id_orden);
-        $proveedor = Proveedor::all()->find($this->id_proveedor);
-        $persona = Persona::all()->find($proveedor->id_persona);
-        $id_opcion_tipo_documento = $persona->id_opcion_tipo_documento;
-        $id_opcion_genero = $persona->id_opcion_genero;
-        $tipo_documento = Opciones_definidas::all()->find($id_opcion_tipo_documento);
-        $genero = Opciones_definidas::all()->find($id_opcion_genero);
+
+        $detalles = Detalle_orden_compra::where('id_orden', $this->id_orden)->get();
 
         return [
             'id_orden' => $this->id_orden,
             'codigo' => $this->codigo,
             'fecha' => $this->fecha,
-            'proveedor' => $proveedor->nombre,
             'total' => number_format($orden_compra->total, 2, ',', '.'),
             'valor_iva' => number_format($orden_compra->valor_iva, 2, ',', '.'),
             'subtotal' => number_format($orden_compra->subtotal, 2, ',', '.'),
             'comentario' => $this->comentario,
             'estado' => (int) $orden_compra->estado,
-            'persona' => [
-                'id_persona' => $persona->id_persona,
-                'nombres' => $persona->nombres,
-                'apellidos' => $persona->apellidos,
-                'genero' => $genero->nombre,
-                'tipo_documento' => $tipo_documento->nombre,
-                'numero_documento' => $persona->numero_documento
-            ],
+            'proveedor' => new ProveedorResource(Proveedor::all()->find($orden_compra->id_proveedor)),
+            'detalle_orden' => DetalleOrdenCompraResource::collection($detalles),
         ];
     }
 

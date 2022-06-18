@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\ImageController;
 use App\Http\Resources\DetalleFacturaResource;
+use App\Http\Resources\DetalleOrdenCompraResource;
 use App\Http\Resources\OpcionDefinidaResource;
 use App\Http\Resources\OrdenCompraResource;
 use App\Http\Resources\PersonaResource;
 use App\Http\Resources\ProductoResource;
+use App\Models\Detalle_orden_compra;
 use App\Models\DetalleFactura;
 use App\Models\Opciones_definidas;
 use App\Models\Orden_compra;
@@ -41,12 +43,6 @@ Route::get('/get-img', [ImageController::class, 'getImg'])->name('getImage');
 
 Route::get('/productos', function () {
     return ProductoResource::collection(Producto::all());
-});
-
-// Opcion Definidas
-
-Route::get('/opciones-definidas', function () {
-    return OpcionDefinidaResource::collection(Opciones_definidas::all());
 });
 
 // Personas
@@ -93,7 +89,17 @@ Route::get('/ordenes', function () {
     return OrdenCompraResource::collection(Orden_compra::all());
 });
 
+// Detalle Órdenes de Compra
+
+Route::get('/detalle-ordenes', function () {
+    return DetalleOrdenCompraResource::collection(Detalle_orden_compra::all());
+});
+
 // Opciones Definidas
+
+Route::get('/opciones-definidas', function () {
+    return OpcionDefinidaResource::collection(Opciones_definidas::all());
+});
 
 Route::get('/opciones/id/{id}', function ($id) {
     return new OpcionDefinidaResource(OpcionDefinida::findOrFail($id));
