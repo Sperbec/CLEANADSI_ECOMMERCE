@@ -20,6 +20,20 @@ class PersonaController extends Controller
 
     public function index()
     {
+
+        $sql = 'SELECT roles.id 
+        FROM usuarios
+        inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+        inner join roles on roles.id = mhr.role_id 
+        where id_usuario = ' . auth()->user()->id_usuario;
+
+        $rol = DB::select($sql);
+
+        if ($rol[0]->id == 2) {
+            return redirect('/');
+        }
+
+        
         //Consulto solo las personas que tienen rol de cliente
          $sql = 'SELECT * from personas
         inner join usuarios on usuarios.id_persona = personas.id_persona

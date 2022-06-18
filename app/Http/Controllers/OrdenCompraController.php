@@ -23,6 +23,19 @@ class OrdenCompraController extends Controller
 
     public function crear(){
 
+        $sql = 'SELECT roles.id 
+        FROM usuarios
+        inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+        inner join roles on roles.id = mhr.role_id 
+        where id_usuario = ' . auth()->user()->id_usuario;
+
+        $rol = DB::select($sql);
+
+        if ($rol[0]->id == 2) {
+            return redirect('/');
+        }
+
+
         $sqlProveedores = 'SELECT id_proveedor,
                 case when nombres is not null then
                 concat(nombres, " ", apellidos)  else
@@ -31,7 +44,7 @@ class OrdenCompraController extends Controller
                 left join personas on personas.id_persona = proveedores.id_persona
                 WHERE proveedores.deleted_at is null';
 
-        $sqlProductos = 'SELECT id_producto, nombre FROM productos WHERE estado = 1 and deleted_at is null';
+        $sqlProductos = 'SELECT id_producto, nombre FROM productos WHERE  deleted_at is null';
 
         $proveedores = DB::select($sqlProveedores);
         $productos = DB::select($sqlProductos);
@@ -92,6 +105,19 @@ class OrdenCompraController extends Controller
     }
 
     public function consultar(){
+
+        $sql = 'SELECT roles.id 
+        FROM usuarios
+        inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+        inner join roles on roles.id = mhr.role_id 
+        where id_usuario = ' . auth()->user()->id_usuario;
+
+        $rol = DB::select($sql);
+
+        if ($rol[0]->id == 2) {
+            return redirect('/');
+        }
+        
 
         $sqlOrdenesCompra = 'SELECT id_orden, codigo, fecha,
         case when nombres is not null then

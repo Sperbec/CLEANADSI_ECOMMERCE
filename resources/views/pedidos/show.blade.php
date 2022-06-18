@@ -26,18 +26,18 @@
     <div class="row">
         <div class="col-md-6">
             <label class="subtitle">Subtotal: </label>
-            <label class="text">{{$encabezado->subtotal}}</label>
+            <label class="text">${{$encabezado->subtotal}}</label>
         </div>
         <div class="col-md-6">
             <label class="subtitle">Valor IVA: </label>
-            <label class="text">{{$encabezado->valor_iva}}</label>
+            <label class="text">${{$encabezado->valor_iva}}</label>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
             <label class="subtitle">Total: </label>
-            <label class="text">{{$encabezado->total}}</label>
+            <label class="text">${{$encabezado->total}}</label>
         </div>
         <div class="col-md-6">
             <label class="subtitle">Tipo entrega: </label>
@@ -78,7 +78,7 @@
             <td>{{ $detalle->codigo }}</td>
             <td>{{ $detalle->nombre }}</td>
             <td>{{ $detalle->cantidad }}</td>
-            <td>{{ $detalle->valorunitario }}</td>
+            <td>${{ $detalle->valorunitario }}</td>
         </tr>
         @endforeach
     </tbody>

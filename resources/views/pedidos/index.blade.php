@@ -44,7 +44,7 @@
             
             <td>{{ $pedido->codigo }}</td>
             <td>{{ $pedido->fecha }}</td>
-            <td>{{ $pedido->total }}</td>
+            <td>${{ $pedido->total }}</td>
             <td>{{ $pedido->estado }}</td>
             <td>
             </div>

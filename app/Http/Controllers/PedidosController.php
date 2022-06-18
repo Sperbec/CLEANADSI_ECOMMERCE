@@ -45,7 +45,12 @@ class PedidosController extends Controller
         $this->consultarUsuario();
 
         $usuario = User::findOrFail(auth()->user()->id_usuario);
-        $sql = 'select id_factura, codigo, fecha, total, estado from facturas where id_persona = '.$usuario->id_persona;
+        $sql = 'select id_factura, codigo, fecha, total, 
+        case when estado = 1 then "Pendiente por despachar"
+        when estado = 2 then "Despachado"
+        when estado = 3 then "Finalizado"
+        when estado = 4 then "Anulado" end as estado 
+        from facturas where id_persona = '.$usuario->id_persona;
         $pedidos = DB::select($sql);
 
 

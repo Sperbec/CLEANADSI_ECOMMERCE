@@ -19,19 +19,17 @@ class RoleSeeder extends Seeder
        $role2 = Role::create(['name' => 'Cliente']);
 
        //Permisos para administrador
+       Permission::create(['name' => 'home'])->assignRole($role1);
        Permission::create(['name' => 'categorias'])->assignRole($role1);
-       Permission::create(['name' => 'permisos'])->assignRole($role1);
        Permission::create(['name' => 'ubicacion'])->assignRole($role1);
        Permission::create(['name' => 'proveedores'])->assignRole($role1);
        Permission::create(['name' => 'ordencompra'])->assignRole($role1);
        Permission::create(['name' => 'ventas'])->assignRole($role1);    
        Permission::create(['name' => 'clientes'])->assignRole($role1);
-       Permission::create(['name' => 'productos'])->assignRole($role1);
+       Permission::create(['name' => 'micuenta'])->syncRoles([$role1]);
 
        //Permisos para cliente
        Permission::create(['name' => 'pedidos'])->assignRole($role2);
-
-       //Permisos para cliente y administrador
-       Permission::create(['name' => 'micuenta'])->syncRoles([$role1, $role2]);
+       
     }
 }
