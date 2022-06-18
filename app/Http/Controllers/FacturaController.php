@@ -21,6 +21,34 @@ class FacturaController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+
+        $sql = 'SELECT roles.id 
+        FROM usuarios
+        inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+        inner join roles on roles.id = mhr.role_id 
+        where id_usuario = ' . auth()->user()->id_usuario;
+
+        $rol = DB::select($sql);
+
+        if ($rol[0]->id == 2) {
+            return redirect('/');
+        }
+
+        $sql = 'SELECT id_factura, codigo, fecha,
+        concat(personas.nombres," ", personas.apellidos) as nombrecompleto,
+        subtotal, valor_iva, costo_envio, total
+        from facturas
+        inner join personas on personas.id_persona = facturas.id_persona
+        where facturas.deleted_at is null';
+
+
+        $facturas=DB::select($sql);
+        $data = ['facturas' => $facturas];
+        return view('factura.index', $data);
+    }
+
     public function crear_factura(Request $request)
     {
 
@@ -94,21 +122,7 @@ class FacturaController extends Controller
     }
 
 
-    public function index()
-    {
-
-        $sql = 'SELECT id_factura, codigo, fecha,
-        concat(personas.nombres," ", personas.apellidos) as nombrecompleto,
-        subtotal, valor_iva, costo_envio, total
-        from facturas
-        inner join personas on personas.id_persona = facturas.id_persona
-        where facturas.deleted_at is null';
-
-
-        $facturas=DB::select($sql);
-        $data = ['facturas' => $facturas];
-        return view('factura.index', $data);
-    }
+  
 
 
     public function create()

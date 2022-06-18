@@ -19,6 +19,18 @@ class MunicipioController extends Controller
 
     public function index()
     {
+        $sql = 'SELECT roles.id 
+        FROM usuarios
+        inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+        inner join roles on roles.id = mhr.role_id 
+        where id_usuario = ' . auth()->user()->id_usuario;
+
+        $rol = DB::select($sql);
+
+        if ($rol[0]->id == 2) {
+            return redirect('/');
+        }
+        
         $departamentos= Departamento::All();
         $data = ['departamentos' => $departamentos];
         return view('municipio.index', $data);
