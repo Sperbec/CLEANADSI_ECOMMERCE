@@ -254,6 +254,8 @@
             var i=id.parentNode.parentNode.rowIndex
             document.getElementById('table_articulos').deleteRow(i)
 
+            contador = contador -1;
+
             fetch('../obtenerproducto',{
                     method : 'POST',
                     body: JSON.stringify({texto : value}),

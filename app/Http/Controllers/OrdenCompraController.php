@@ -83,17 +83,23 @@ class OrdenCompraController extends Controller
 
             $orden_compra->save();
 
+            
+
             for ($i=1; $i <= $request->contador; $i++) {
+               
                 $detalle_orden_compra = new  Detalle_orden_compra();
                 $detalle_orden_compra->id_orden = $orden_compra->id_orden;
 
                 $letrasidproducto = "idproductotbl".strval($i);
                 $detalle_orden_compra->id_producto = $request->$letrasidproducto;
+               
 
                 $letrascantidad = "cantidadproductotbl".strval($i);
                 $detalle_orden_compra->cantidad = $request-> $letrascantidad;
 
-                $detalle_orden_compra->save();
+                if($detalle_orden_compra->id_producto != null){
+                    $detalle_orden_compra->save();
+                }
             }
 
             return redirect()->route('crearOrdenCompra')->with('guardado', 'ok' );
