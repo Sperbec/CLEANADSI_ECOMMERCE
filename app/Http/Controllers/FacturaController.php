@@ -9,6 +9,8 @@ use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use DateTime;
+use Carbon\Carbon;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -44,7 +46,9 @@ class FacturaController extends Controller
             $factura->codigo = "FV".$ultima_factura->id_factura +1;
         }
         
-        $factura->fecha = date("Y-m-d");
+        
+        $factura->fecha =  Carbon::now();
+        
 
         $factura->id_persona = $request->user()->id_persona; 
         $total = 0;
