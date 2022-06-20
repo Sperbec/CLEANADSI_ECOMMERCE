@@ -3,12 +3,14 @@
 use App\Http\Controllers\ImageController;
 use App\Http\Resources\DetalleFacturaResource;
 use App\Http\Resources\DetalleOrdenCompraResource;
+use App\Http\Resources\ModelHasRoleResource;
 use App\Http\Resources\OpcionDefinidaResource;
 use App\Http\Resources\OrdenCompraResource;
 use App\Http\Resources\PersonaResource;
 use App\Http\Resources\ProductoResource;
 use App\Models\Detalle_orden_compra;
 use App\Models\DetalleFactura;
+use App\Models\ModelHasRoles;
 use App\Models\Opciones_definidas;
 use App\Models\Orden_compra;
 use App\Models\Persona;
@@ -103,4 +105,10 @@ Route::get('/opciones-definidas', function () {
 
 Route::get('/opciones/id/{id}', function ($id) {
     return new OpcionDefinidaResource(OpcionDefinida::findOrFail($id));
+});
+
+// ModelHasRoles
+
+Route::get('/model-has-roles', function () {
+    return ModelHasRoleResource::collection(ModelHasRoles::all());
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ModelHasRoles;
 use App\Models\Opciones_definidas;
 use App\Models\Persona;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,10 +18,7 @@ class UsuarioResource extends JsonResource
     public function toArray($request)
     {
         $persona = Persona::all()->find($this->id_persona);
-        $id_opcion_tipo_documento = $persona->id_opcion_tipo_documento;
-        $id_opcion_genero = $persona->id_opcion_genero;
-        $tipo_documento = Opciones_definidas::all()->find($id_opcion_tipo_documento);
-        $genero = Opciones_definidas::all()->find($id_opcion_genero);
+        $role = ModelHasRoles::where('model_id', $persona->id_persona)->first();
 
         return [
             'id_usuario' => $this->id_usuario,
@@ -34,6 +32,7 @@ class UsuarioResource extends JsonResource
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
             'persona' => new PersonaResource(Persona::all()->find($persona->id_persona)),
+            'role' => new ModelHasRoleResource($role),
         ];
     }
 
