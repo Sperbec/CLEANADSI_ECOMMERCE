@@ -18,6 +18,7 @@ class SearchController extends Controller
 
         return response()->json(
             [
+                "estado"=>1,
                 "result" => $result
             ]
         );

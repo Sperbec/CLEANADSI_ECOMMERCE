@@ -1,4 +1,4 @@
-export class search{
+export class search {
     constructor(myurlp, mysearchp, ul_add_lip) {
         this.url = myurlp;
         this.mysearch = mysearchp;
@@ -12,7 +12,7 @@ export class search{
             e.preventDefault();
             try {
                 let token = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
-                let minimo_letras = 1; 
+                let minimo_letras = 1;
                 let valor = this.mysearch.value;
                 console.log(valor);
 
@@ -21,27 +21,77 @@ export class search{
                     let datasearh = new FormData();
                     datasearh.append("valor", valor);
                     fetch(this.url, {
-                        headers: {
-                        "X-CSRF-TOKEN": token,
-                        },
-                        method: "post",
-                        body: datasearh,
-                    })
+                            headers: {
+                                "X-CSRF-TOKEN": token,
+                            },
+                            method: "post",
+                            body: datasearh,
+                        })
                         .then((data) => data.json())
                         .then((data) => {
                             console.log("Success:", data);
-                            //this.Showlist(data, valor);
+                            this.Showlist(data, valor);
                         })
                         .catch(function (error) {
-                        console.error("Error:", error);
+                            console.error("Error:", error);
                         });
-                    } else {
+                } else {
                     this.ul_add_li.style.display = "none";
-                    }
+                }
 
 
-            } catch (error) {}
-            });
+            } catch (error) {
+
+            }
+        });
     }
 
+    Showlist(data, valor) {
+        this.ul_add_li.style.display = "block";
+
+        if (data.result != "") {
+            let arrayp = data.result;
+            this.ul_add_li.innerHTML = "";
+            let n = 0;
+
+            this.Show_list_each_data(arrayp, valor, n);
+
+            let adclasli = document.getElementById('1' + this.idli);
+            adclasli.classList.add('selected');
+        } else {
+            this.ul_add_li.innerHTML = "";
+            this.ul_add_li.innerHTML += `
+                        <p style="color:red;"><br>No se encontro</p>
+                    `;
+        }
+
+    }
+
+    Show_list_each_data(arrayp,valor,n){
+        for (let item of arrayp) {
+            n++;
+            let nombre = item.nombre;
+            console.log(nombre)
+            this.ul_add_li.innerHTML +=`
+            <li id="${n+this.idli}" value="${item.nombre}" class="list-group-item"  style="">
+            <div class="d-flex flex-row " style="">
+                <div class="p-2 text-center divimg" style="">
+                    <img src="{{ 'http://cleanadsi.com/api/get-img?path='.$nvp->imagen}}" class="img-thumbnail" width="50" height="50" >
+                </div>
+                ${item.imagen}}
+                
+                <div class="p-2">
+                    <strong>${nombre.substr(0,valor.length)}</strong>
+                    ${nombre.substr(valor.length)}
+                    <p></p>
+                </div>
+            </div>
+            </li>
+            
+            `;
+        }
+    }
+
+    
 }
+
