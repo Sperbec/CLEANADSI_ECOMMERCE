@@ -19,7 +19,7 @@
 
     @section('content')
 
-        @if ($proveedor->id_opcion_persona === 20)
+        @if ($proveedor->id_opcion_persona == 20)
 
             <div class="row">
                 <div class="col-md-6">
@@ -111,7 +111,7 @@
         @endif
 
 
-        @if ($proveedor->id_opcion_persona === 21)
+        @if ($proveedor->id_opcion_persona == 21)
             <div class="row">
                 <div class="col-md-6">
                     <label for="nombre_juridico">Nombre:</label>
