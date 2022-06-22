@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Factura;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Facturas;
 use App\Models\Persona_contacto;
@@ -227,4 +228,45 @@ class FacturaController extends Controller
         //Descargar el PDF
         //return $pdf->download('Factura.pdf');
     }
+
+    public function editarFactura($id){
+        $sql1 = 'SELECT id_factura, codigo, fecha,
+        concat(personas.nombres," ", personas.apellidos) as nombrecompleto,
+        subtotal, valor_iva, costo_envio, total,
+        estado
+        from facturas
+        inner join personas on personas.id_persona = facturas.id_persona
+        where facturas.id_factura = '.$id;
+
+
+        $sql2 = 'SELECT facturas.id_factura, codigo,
+        productos.nombre,  df.id_detalle_factura, df.cantidad, productos.precio,
+        df.cantidad * productos.precio as subtotal,
+        productos.sku
+        from facturas
+        inner join personas on personas.id_persona = facturas.id_persona
+        inner join detalle_factura df on df.id_factura  = facturas.id_factura
+        inner join productos on productos.id_producto = df.id_producto
+        where facturas.id_factura = '.$id;
+
+        $encabezado=DB::select($sql1);
+        $detalles = DB::select($sql2);
+
+
+        $data = ['encabezado' => $encabezado[0],
+                'detalles' => $detalles];
+
+        return view('factura.edit', $data);
+    }
+
+    public function updateFactura(Request $request){
+        
+        //Actualizo el estado de la factura.
+        $factura = Factura::find($request->id_factura);
+        $factura->estado = $request->estado;
+        $factura->update();
+
+        return redirect()->route('factura.index')->with('editado', 'ok' );
+    }
+
 }

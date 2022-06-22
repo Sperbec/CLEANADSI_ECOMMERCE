@@ -19,7 +19,6 @@
             <td class="negrita">Nombre</td>
             <td class="negrita">Subtotal</td>
             <td class="negrita">Valor IVA</td>
-            <td class="negrita">Costo envío</td>
             <td class="negrita">Total</td>
             <td class="negrita">Acciones</td>
         </tr>
@@ -33,7 +32,6 @@
                 <td>{{ $factura->nombrecompleto }}</td>
                 <td>${{ $factura->subtotal }}</td>
                 <td>${{ $factura->valor_iva }}</td>
-                <td>${{ $factura->costo_envio }}</td>
                 <td>${{ $factura->total }}</td>
                 <td>
 
@@ -43,6 +41,11 @@
                         href="{{ route('factura.show',  $factura->id_factura) }}" data-toggle="tooltip"
                         data-bs-placement="top" title="Ver factura">
                         <i class="fas fa-eye"></i></a>
+
+                        <a class="btn btn-primary opts"
+                        href="{{url('/editarFactura/'.$factura->id_factura)}}" data-toggle="tooltip"
+                        data-bs-placement="top" title="Editar factura">
+                        <i class="fas fa-edit"></i></a>
 
 
                     </div>
@@ -91,5 +94,15 @@
             }
 
         }
+
+        @if ( session('editado') == 'ok' )
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Registro editado con éxito',
+            showConfirmButton: false,
+            timer: 1500
+            })
+        @endif
 </script>
 @stop
