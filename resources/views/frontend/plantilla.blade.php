@@ -177,11 +177,10 @@
                                     <option value="{{$categoria -> id_categoria}}">{{$categoria -> nombre}}</option>
                                     @endforeach
                                 </select>
-                            
-							<div>
 								<input class="input searchbar" id="mysearch" placeholder="">
 								<ul id="showlist" tabindex="1" class="list-group"></ul>
-							</div>
+								
+							
                         </div>
                     </div>
 				</form>
