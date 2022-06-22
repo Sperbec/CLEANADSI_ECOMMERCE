@@ -178,7 +178,7 @@
                                     @endforeach
                                 </select>
 								<input class="input searchbar" id="mysearch" placeholder="">
-								<ul id="showlist" tabindex="1" class="list-group" class="main-nav nav navbar-nav"></ul>
+								<ul id="showlist" tabindex="1" class="list-group"></ul>
 								
 							
                         </div>

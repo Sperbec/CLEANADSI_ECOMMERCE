@@ -78,10 +78,10 @@ export class search {
 
             if (path == "/") {
                 this.ul_add_li.innerHTML +=`
-            <li id="${n+this.idli}" value="${item.nombre}" class="list-group-item"  class="nav-item dropdown">
+            <li id="${n+this.idli}" value="${item.nombre}" class="list-group-item"  style="">
             <div class="d-flex flex-row" style="">
                 <div class="p-2 text-left divimg" style="">
-                    <img src="http://cleanadsi.com/api/get-img?path=${item.imagen}" width="80" height="80" >
+                    <img src="http://cleanadsi.com/api/get-img?path=${item.imagen}" width="60" height="60" >
                 <div class="p-2">
                 <a href="frontend/detalle/${item.id_producto}"><strong>${nombre.substr(0,valor.length)}</strong>${nombre.substr(valor.length)}</a>
                     <p>Precio unidad= ${item.precio}</p>
