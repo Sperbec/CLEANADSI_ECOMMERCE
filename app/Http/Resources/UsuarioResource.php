@@ -18,7 +18,7 @@ class UsuarioResource extends JsonResource
     public function toArray($request)
     {
         $persona = Persona::all()->find($this->id_persona);
-        $role = ModelHasRoles::where('model_id', $persona->id_persona)->first();
+        $role = ModelHasRoles::where('model_id',  $this->id_usuario)->first();
 
         return [
             'id_usuario' => $this->id_usuario,
