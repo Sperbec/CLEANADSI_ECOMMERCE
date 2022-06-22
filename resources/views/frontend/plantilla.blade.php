@@ -449,7 +449,7 @@ $( document ).ready(navbarActive());
     $(document).ready(function () {
 
             var path = $(location).attr('pathname');
-            console.log(path);
+            /* console.log(path); */
             if (path == "/") {
                 document.getElementById("inicio-nav").classList.add("active");
             };
