@@ -107,22 +107,36 @@
 .searchbar {
     border-radius: 0px 8px 8px 0px;
 }
+
+.resultado_search:hover{
+    background-color: rgb(245, 248, 248);
+}
+
 .resultado_search{
     
     background-color: aqua;
     margin-left: 27.5%;
     width: 53%;
 
-    text-align: left;
+    text-align: center;
 }
 
 .container1{
     
     width: 100%;
+
+    
+}
+
+
+
+.container1 li:hover{
+    background-color: rgb(245, 248, 248);
     
 }
 
 .img-search{
-    margin: 1%;
+
+    float: left;
 }
 

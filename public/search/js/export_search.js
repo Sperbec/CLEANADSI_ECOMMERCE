@@ -99,12 +99,14 @@ export class search {
                     
                         
                         <span class="container1">
-                            <ul id="${n+this.idli}" value="${item.nombre}" class="list-group-item">
-                            <li>
+                        <ul>
+                            <li id="${n+this.idli}" value="${item.nombre}" class="list-group-item dropdown-item">
+                            
                             <a href="../../frontend/detalle/${item.id_producto}"><img class="img-search" src="http://cleanadsi.com/api/get-img?path=${item.imagen}" width="50" height="50"><strong>${nombre.substr(0,valor.length)}</strong>${nombre.substr(valor.length)}
-                            <span></span></a>
+                            Precio del producto: $ ${item.precio}</a>
+                            
                             </li>
-                            </ul>
+                        </ul>
                         </span>
                     
 
