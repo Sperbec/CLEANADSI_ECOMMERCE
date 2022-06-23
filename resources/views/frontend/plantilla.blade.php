@@ -61,13 +61,13 @@
 
 <body>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<!-- HEADER -->
+	<!-- HEADER 
 	<div id="contenedor_carga">
         <div id="carga">
 
         </div>
     </div>
-	<header>
+	<header>-->
 
 		<!-- NAVIGATION -->
 		<nav id="navigation">
@@ -102,8 +102,8 @@
 						</li>
 															{{-- DESPLEGABLE DE OPCIONES DE USUARIO --}}
 						@if (Auth::guest())
-						<li id="login-nav" class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
-						<li id="register-nav" class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+							<li id="login-nav" class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+							<li id="register-nav" class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
 						@else
 
 
@@ -128,12 +128,12 @@
 
 						@endif
 
-
-
-
-
 						<li id="carrito-nav"><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
-						{{-- <li><a href="{{route('crear')}}">Crear <span class="icon-dot"></span></a></li> --}}
+
+						@if (isset($rol) && $rol != null && $rol ==1)
+							<li id="carrito-nav"><a href="{{route('home')}}">Opciones administrador <span class="icon-dot"></span></a></li>				
+						@endif	
+
 					</ul>
 					<!-- /NAV -->
 				</div>

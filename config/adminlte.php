@@ -345,7 +345,15 @@ return [
             'url'  => '/micuentaadmin',
             'icon'    => 'fas fa-user-circle',
             'can'     => 'pedidos',
+        ],
+
+        [
+            'text'    => 'Vista cliente',
+            'url'  => '/',
+            'icon'    => 'fas fa-eye',
         ]
+
+
     ],
 
     /*

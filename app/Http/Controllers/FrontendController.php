@@ -51,8 +51,21 @@ class FrontendController extends Controller
         $this->consultarUsuario();
 
         if ($this->usuario != null) {
+
+            //consultar el rol
+
+            $sql = 'SELECT roles.id 
+               FROM usuarios
+               inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+               inner join roles on roles.id = mhr.role_id 
+               where id_usuario = '.auth()->user()->id_usuario;
+
+
+            $rol = DB::select($sql);
+
             $data = ['categorias' => $this->categorias,
-            'producto'=>$producto, 'usuario' => $this->usuario != null ? $this->usuario[0] : null];
+            'producto'=>$producto, 'usuario' => $this->usuario != null ? $this->usuario[0] : null,
+            'rol' => $rol != null ? $rol[0]->id : null];
 
         }else{
             $data = ['categorias' => $this->categorias,

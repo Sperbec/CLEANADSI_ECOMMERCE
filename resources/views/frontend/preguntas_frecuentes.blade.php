@@ -22,7 +22,7 @@
 <div class="content">
     <div class="section-title">
         <h3 class="title">Preguntas frecuentes</h3>
-    </div>
+    </div>  
     <p ><strong>COMPRAS:</strong></p>
         <p ><strong>¿Cómo comprar en el sitio web?</strong></p>
         <p >Si aún no tienes una cuenta, primero debes registrarte, luego activas tu cuenta dando clic en el correo que te llegó, después eliges los ítems que te gustaron, llenas tus datos de envío, luego eliges el método de pago y por último finalizas tu pedido. Puedes ver el paso a paso aquí</p> 
@@ -30,6 +30,8 @@
         <p >Puedes pagar con tarjeta de crédito, débito y efectivo o pagando contra entrega.</p>
         <p ><strong>¿Puedo cambiar el método de pago de mi pedido?</strong></p>
         <p >No es posible cambiar el método de pago de un pedido, pero si elegiste pago en efectivo o contra entrega, nos puedes escribir al WhatsApp 315-576-86-10 para cancelar el pedido y puedas hacer uno nuevo con el método que prefieras.</p> 
+
+        <br>
         <p ><strong>ENVÍOS:</strong></p>
         <p ><strong>¿Todos los envíos son gratis?</strong></p>
         <p >No, todos los productos sí tienen costo de envío.</p> 
@@ -45,6 +47,9 @@
         <p >Tu pedido lo enviaremos por TCC o Coordinadora dependiendo de la ciudad o municipio en el que estés.</p> 
         <p ><strong>Si llega mi pedido y no estoy en la dirección, ¿qué puedo hacer?</strong></p>
         <p >Puedes escribirnos al WhatsApp 315-576-86-10 y te ayudamos a programar una nueva entrega para tu pedido</p>
+
+        <br>
+        
         <p ><strong>GENERALES:</strong></p>
         <p ><strong>¿Cómo puedo ver los productos en mi ciudad ?</strong></p>
         <p >Puedes ver todo nuestro inventario que tenemos en el sitio web cleanline.com, dando clic en productos, está la opción "ver inventario de productos" ahí puedes ver si los productos que quieres todavía están disponibles</p>
