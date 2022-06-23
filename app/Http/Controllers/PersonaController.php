@@ -164,6 +164,24 @@ class PersonaController extends Controller
 
     public function update(StoreForm $request, $id)
     {
+
+        //Consulto si ya existe una persona con ese número de identificación
+        $sqlPersonas = "SELECT  id_persona  from personas
+        where deleted_at is null and numero_documento = '".$request->numero_documento."'";
+        
+        $personaExistente = DB::select($sqlPersonas);
+
+        //Consulto si ya existe una persona con ese mismo email
+        $sqlUsuarios = "SELECT  id_usuario  from usuarios
+        where deleted_at is null and email = '".$request->email."'";
+
+        $usuarioExistente = DB::select($sqlUsuarios);
+
+        if(!empty($personaExistente) || !empty($usuarioExistente)){
+            return redirect()->route('clientes.index')->with('error', 'ok');
+        }
+
+        
         $nombres = $request->nombres_cliente;
         $apellidos = $request->apellidos_cliente;
         $tipos_documento = $request->tipo_documento;
