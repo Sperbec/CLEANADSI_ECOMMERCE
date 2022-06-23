@@ -61,13 +61,13 @@
 
 <body>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<!-- HEADER 
+	<!-- HEADER -->
 	<div id="contenedor_carga">
         <div id="carga">
 
         </div>
     </div>
-	<header>-->
+	<header>
 
 		<!-- NAVIGATION -->
 		<nav id="navigation">
