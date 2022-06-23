@@ -103,6 +103,27 @@
 
 }
 
+
 .searchbar {
     border-radius: 0px 8px 8px 0px;
 }
+.resultado_search{
+    
+    background-color: aqua;
+    margin-left: 27.5%;
+    width: 53%;
+
+    text-align: center;
+
+}
+
+.container1{
+    
+    width: 100%;
+    
+}
+
+.img-search{
+    margin: 1%;
+}
+

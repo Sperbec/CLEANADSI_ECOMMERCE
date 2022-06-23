@@ -63,11 +63,11 @@
 <body>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- HEADER -->
-    <div id="contenedor_carga">
+{{--     <div id="contenedor_carga">
         <div id="carga">
 
         </div>
-    </div>
+    </div> --}}
     <header>
 
         <!-- NAVIGATION -->
@@ -177,8 +177,8 @@
                                     <option value="{{$categoria -> id_categoria}}">{{$categoria -> nombre}}</option>
                                     @endforeach
                                 </select>
-								<input class="input searchbar" id="mysearch" placeholder="">
-								<ul id="showlist" tabindex="1" class="list-group"></ul>
+								<input class="input searchbar" id="mysearch" type="search" placeholder="">
+								<ul id="showlist" tabindex="1" class="list-group">....</ul>
 								
 							
                         </div>
