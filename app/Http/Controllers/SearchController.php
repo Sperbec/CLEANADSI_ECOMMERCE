@@ -13,7 +13,7 @@ class SearchController extends Controller
 
         $result = DB::table('productos')
         ->where('nombre','like',''.$data.'%')
-        ->limit(5)
+        ->limit(4)
         ->get();
 
         return response()->json(

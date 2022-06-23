@@ -98,13 +98,14 @@ export class search {
                 <div class="resultado_search" >
                     
                         
-                        <div class="container1">
-                            <li id="${n+this.idli}" value="${item.nombre}" class="list-group-item">
-                            <a href="../../frontend/detalle/${item.id_producto}"><img class="img-search" src="http://cleanadsi.com/api/get-img?path=${item.imagen}" width="60" height="60"><strong>${nombre.substr(0,valor.length)}</strong>${nombre.substr(valor.length)}
-                           <span></span></a>
-                            
+                        <span class="container1">
+                            <ul id="${n+this.idli}" value="${item.nombre}" class="list-group-item">
+                            <li>
+                            <a href="../../frontend/detalle/${item.id_producto}"><img class="img-search" src="http://cleanadsi.com/api/get-img?path=${item.imagen}" width="50" height="50"><strong>${nombre.substr(0,valor.length)}</strong>${nombre.substr(valor.length)}
+                            <span></span></a>
                             </li>
-                        </div>
+                            </ul>
+                        </span>
                     
 
                     
