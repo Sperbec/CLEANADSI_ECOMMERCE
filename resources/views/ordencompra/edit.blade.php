@@ -4,7 +4,7 @@
 
 @section('content_header')
 
-<form action="{{url('/updateFactura')}}" method="post">
+<form action="{{url('/updateOrdenCompra')}}" method="post">
     @csrf
 
 
