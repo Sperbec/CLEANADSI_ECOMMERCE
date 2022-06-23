@@ -145,13 +145,9 @@
             Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'No es posible crear la persona porque ya existe un usuario con el mismo número de identificación o mismo email.'
+            text: 'No es posible crear/editar la persona porque ya existe un usuario con el mismo número de identificación o mismo email.'
             })
         @endif
-
-
-
-
 
     </script>
 
