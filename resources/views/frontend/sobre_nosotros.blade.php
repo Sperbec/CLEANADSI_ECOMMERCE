@@ -23,12 +23,11 @@
     <div class="section-title">
         <h3 class="title">Sobre nosotros</h3>
     </div>
-    <p><strong>Quienes Somos</strong>
+    <p><strong>¿Quienes somos?</strong>
         <br>
         <br>
-        <strong>ClineLine</strong> somos la empresa líder del sector comercial con más de 5 años en el mercado.
-        Distribuimos productos de aseo personal e institucional, de acuerdo a las necesidades de los hogares y las
-        empresas a nivel nacional.
+        <strong>ClineLine</strong> <br>
+        Distribuimos productos de aseo personal y aseo hogar, de acuerdo a las necesidades de los clientes.
         <strong>ClineLine</strong> estamos avalados por <strong>INVIMA</strong> para la producción y distribución de
         productos de aseo y desinfección. Además, estamos certificados bajo la norma <strong>ICONTEC ISO 9001: 2015
             (Sistema de Gestión de Calidad)</strong>; y de igual forma, los productos TDA, fabricados por nuestra
