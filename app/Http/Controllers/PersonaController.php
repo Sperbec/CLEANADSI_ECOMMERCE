@@ -20,6 +20,20 @@ class PersonaController extends Controller
 
     public function index()
     {
+
+        $sql = 'SELECT roles.id 
+        FROM usuarios
+        inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+        inner join roles on roles.id = mhr.role_id 
+        where id_usuario = ' . auth()->user()->id_usuario;
+
+        $rol = DB::select($sql);
+
+        if ($rol[0]->id == 2) {
+            return redirect('/');
+        }
+
+        
         //Consulto solo las personas que tienen rol de cliente
          $sql = 'SELECT * from personas
         inner join usuarios on usuarios.id_persona = personas.id_persona
@@ -53,6 +67,24 @@ class PersonaController extends Controller
 
     public function store(StoreForm $request)
     {
+
+        //Consulto si ya existe una persona con ese número de identificación
+        $sqlPersonas = "SELECT  id_persona  from personas
+        where deleted_at is null and numero_documento = '".$request->numero_documento."'";
+        
+        $personaExistente = DB::select($sqlPersonas);
+
+        //Consulto si ya existe una persona con ese mismo email
+        $sqlUsuarios = "SELECT  id_usuario  from usuarios
+        where deleted_at is null and email = '".$request->email."'";
+
+        $usuarioExistente = DB::select($sqlUsuarios);
+
+        if(!empty($personaExistente) || !empty($usuarioExistente)){
+            return redirect()->route('clientes.index')->with('error', 'ok');
+        }
+
+
         $nombres = $request->nombres_cliente;
         $apellidos = $request->apellidos_cliente;
         $tipos_documento = $request->tipo_documento;
@@ -132,6 +164,24 @@ class PersonaController extends Controller
 
     public function update(StoreForm $request, $id)
     {
+
+        //Consulto si ya existe una persona con ese número de identificación
+        $sqlPersonas = "SELECT  id_persona  from personas
+        where deleted_at is null and numero_documento = '".$request->numero_documento."'";
+        
+        $personaExistente = DB::select($sqlPersonas);
+
+        //Consulto si ya existe una persona con ese mismo email
+        $sqlUsuarios = "SELECT  id_usuario  from usuarios
+        where deleted_at is null and email = '".$request->email."'";
+
+        $usuarioExistente = DB::select($sqlUsuarios);
+
+        if(!empty($personaExistente) || !empty($usuarioExistente)){
+            return redirect()->route('clientes.index')->with('error', 'ok');
+        }
+
+        
         $nombres = $request->nombres_cliente;
         $apellidos = $request->apellidos_cliente;
         $tipos_documento = $request->tipo_documento;

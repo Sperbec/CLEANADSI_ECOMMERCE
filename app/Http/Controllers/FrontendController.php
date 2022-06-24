@@ -46,13 +46,26 @@ class FrontendController extends Controller
 
         $this->consultar_categorias();
 
-        $producto=Producto::orderBy('id_producto','desc')->paginate(5);
+        $producto=Producto::where('cantidad_existencia', '>', 5)->paginate(5);
 
         $this->consultarUsuario();
 
         if ($this->usuario != null) {
+
+            //consultar el rol
+
+            $sql = 'SELECT roles.id 
+               FROM usuarios
+               inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+               inner join roles on roles.id = mhr.role_id 
+               where id_usuario = '.auth()->user()->id_usuario;
+
+
+            $rol = DB::select($sql);
+
             $data = ['categorias' => $this->categorias,
-            'producto'=>$producto, 'usuario' => $this->usuario != null ? $this->usuario[0] : null];
+            'producto'=>$producto, 'usuario' => $this->usuario != null ? $this->usuario[0] : null,
+            'rol' => $rol != null ? $rol[0]->id : null];
 
         }else{
             $data = ['categorias' => $this->categorias,
@@ -68,7 +81,7 @@ class FrontendController extends Controller
         $this->consultar_categorias();
         $this->consultarUsuario();
 
-        $categoria_seleccionada = Producto::where('id_categoria', $id)->paginate(12);
+        $categoria_seleccionada = Producto::where('id_categoria', $id)->where('cantidad_existencia', '>', 5)->paginate(12);
 
         $data = ['categoria_seleccionada' => $categoria_seleccionada,
                 'categorias' => $this->categorias,

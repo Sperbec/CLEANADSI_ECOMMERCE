@@ -63,11 +63,11 @@
 <body>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- HEADER -->
-{{--     <div id="contenedor_carga">
+    <div id="contenedor_carga">
         <div id="carga">
 
         </div>
-    </div> --}}
+    </div>
     <header>
 
         <!-- NAVIGATION -->
@@ -100,14 +100,12 @@
                                 </ul>
                             </div>
 
-                        </li>
-                        {{-- DESPLEGABLE DE OPCIONES DE USUARIO --}}
-                        @if (Auth::guest())
-                        <li id="login-nav" class=""><a href="{{url('/login')}}">Iniciar sesión<span
-                                    class="icon-dot"></span></a></li>
-                        <li id="register-nav" class=""><a href="{{url('/register')}}">Registrarse <span
-                                    class="icon-dot"></span></a></li>
-                        @else
+						</li>
+															{{-- DESPLEGABLE DE OPCIONES DE USUARIO --}}
+						@if (Auth::guest())
+							<li id="login-nav" class=""><a href="{{url('/login')}}">Iniciar sesión<span class="icon-dot"></span></a></li>
+							<li id="register-nav" class=""><a href="{{url('/register')}}">Registrarse <span class="icon-dot"></span></a></li>
+						@else
 
 
 
@@ -135,21 +133,20 @@
 
                         @endif
 
+						<li id="carrito-nav"><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a></li>
 
+						@if (isset($rol) && $rol != null && $rol ==1)
+							<li id="carrito-nav"><a href="{{route('home')}}">Opciones administrador <span class="icon-dot"></span></a></li>				
+						@endif	
 
-
-
-                        <li id="carrito-nav"><a href="{{route('carrito')}}">Carrito <span class="icon-dot"></span></a>
-                        </li>
-                        {{-- <li><a href="{{route('crear')}}">Crear <span class="icon-dot"></span></a></li> --}}
-                    </ul>
-                    <!-- /NAV -->
-                </div>
-                <!-- /responsive-nav -->
-            </div>
-            <!-- /container -->
-        </nav>
-        <!-- /NAVIGATION -->
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
 
         <!-- MAIN HEADER -->
         <div id="header" style="background-color:  #dfe4ea">

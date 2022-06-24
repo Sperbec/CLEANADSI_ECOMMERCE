@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Factura;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Facturas;
 use App\Models\Persona_contacto;
@@ -9,6 +10,8 @@ use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use DateTime;
+use Carbon\Carbon;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -17,6 +20,34 @@ class FacturaController extends Controller
 
     public function __construct(){
         $this->middleware('auth');
+    }
+
+    public function index()
+    {
+
+        $sql = 'SELECT roles.id 
+        FROM usuarios
+        inner join model_has_roles mhr on mhr.model_id = usuarios.id_usuario 
+        inner join roles on roles.id = mhr.role_id 
+        where id_usuario = ' . auth()->user()->id_usuario;
+
+        $rol = DB::select($sql);
+
+        if ($rol[0]->id == 2) {
+            return redirect('/');
+        }
+
+        $sql = 'SELECT id_factura, codigo, fecha,
+        concat(personas.nombres," ", personas.apellidos) as nombrecompleto,
+        subtotal, valor_iva, costo_envio, total
+        from facturas
+        inner join personas on personas.id_persona = facturas.id_persona
+        where facturas.deleted_at is null';
+
+
+        $facturas=DB::select($sql);
+        $data = ['facturas' => $facturas];
+        return view('factura.index', $data);
     }
 
     public function crear_factura(Request $request)
@@ -44,7 +75,9 @@ class FacturaController extends Controller
             $factura->codigo = "FV".$ultima_factura->id_factura +1;
         }
         
-        $factura->fecha = date("Y-m-d");
+        
+        $factura->fecha =  Carbon::now();
+        
 
         $factura->id_persona = $request->user()->id_persona; 
         $total = 0;
@@ -90,21 +123,7 @@ class FacturaController extends Controller
     }
 
 
-    public function index()
-    {
-
-        $sql = 'SELECT id_factura, codigo, fecha,
-        concat(personas.nombres," ", personas.apellidos) as nombrecompleto,
-        subtotal, valor_iva, costo_envio, total
-        from facturas
-        inner join personas on personas.id_persona = facturas.id_persona
-        where facturas.deleted_at is null';
-
-
-        $facturas=DB::select($sql);
-        $data = ['facturas' => $facturas];
-        return view('factura.index', $data);
-    }
+  
 
 
     public function create()
@@ -209,4 +228,45 @@ class FacturaController extends Controller
         //Descargar el PDF
         //return $pdf->download('Factura.pdf');
     }
+
+    public function editarFactura($id){
+        $sql1 = 'SELECT id_factura, codigo, fecha,
+        concat(personas.nombres," ", personas.apellidos) as nombrecompleto,
+        subtotal, valor_iva, costo_envio, total,
+        estado
+        from facturas
+        inner join personas on personas.id_persona = facturas.id_persona
+        where facturas.id_factura = '.$id;
+
+
+        $sql2 = 'SELECT facturas.id_factura, codigo,
+        productos.nombre,  df.id_detalle_factura, df.cantidad, productos.precio,
+        df.cantidad * productos.precio as subtotal,
+        productos.sku
+        from facturas
+        inner join personas on personas.id_persona = facturas.id_persona
+        inner join detalle_factura df on df.id_factura  = facturas.id_factura
+        inner join productos on productos.id_producto = df.id_producto
+        where facturas.id_factura = '.$id;
+
+        $encabezado=DB::select($sql1);
+        $detalles = DB::select($sql2);
+
+
+        $data = ['encabezado' => $encabezado[0],
+                'detalles' => $detalles];
+
+        return view('factura.edit', $data);
+    }
+
+    public function updateFactura(Request $request){
+        
+        //Actualizo el estado de la factura.
+        $factura = Factura::find($request->id_factura);
+        $factura->estado = $request->estado;
+        $factura->update();
+
+        return redirect()->route('factura.index')->with('editado', 'ok' );
+    }
+
 }

@@ -97,7 +97,8 @@ Route::resource('pedidos', App\Http\Controllers\PedidosController::class)->names
 //Facturas
 Route::resource('factura', App\Http\Controllers\FacturaController::class)->names('factura');
 Route::get('/imprimirfactura/{id}', [App\Http\Controllers\FacturaController::class, 'imprimirfactura'])->name('imprimirfactura');
-
+Route::get('/editarFactura/{id}', [App\Http\Controllers\FacturaController::class, 'editarFactura'])->name('editarFactura');
+Route::post('/updateFactura', [App\Http\Controllers\FacturaController::class, 'updateFactura'])->name('updateFactura');
 //Mi cuenta
 Route::get('/micuentaadmin', [App\Http\Controllers\CuentaController::class, 'micuentaadmin'])->name('micuentaadmin');
 Route::resource('micuenta', App\Http\Controllers\CuentaController::class)->names('micuenta');

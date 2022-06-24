@@ -146,6 +146,23 @@ class LoginController extends Controller
                 ->with('typealert', 'danger')->withInput();
         endif;
 
+        //Consulto si ya existe una persona con ese número de identificación
+        $sqlPersonas = "SELECT  id_persona  from personas
+        where numero_documento = '".e($request->input('numero_documento'))."'";
+        
+        $personaExistente = DB::select($sqlPersonas);
+
+        //Consulto si ya existe una persona con ese mismo email
+        $sqlUsuarios = "SELECT  id_usuario  from usuarios
+        where email = '".e($request->input('email'))."'";
+
+        $usuarioExistente = DB::select($sqlUsuarios);
+
+        if(!empty($personaExistente) || !empty($usuarioExistente)){
+            return back()->with('message', 'Error al registrarse, ya existe un usuario con el mismo número de identificación o mismo email.')
+            ->with('typealert', 'danger')->withInput();
+        }
+
         $persona = new Persona;
         $persona->nombres = e($request->input('nombres'));
         $persona->apellidos = e($request->input('apellidos'));

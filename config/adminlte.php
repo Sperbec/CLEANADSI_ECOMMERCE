@@ -242,6 +242,7 @@ return [
             'text'   => 'Inicio',
             'url'  => '/home',
             'icon'   => 'fas fa-home',
+            'can'    => 'inicio'
         ],
 
         [
@@ -281,11 +282,11 @@ return [
             'can'    => 'categorias'
         ],
 
-        [
+        /*[
             'text'   => 'Productos',
             'route'  => 'productos.index',
             'icon'   => 'fas fa-box'
-        ],
+        ],*/
 
         [
             'text'   => 'Proveedores',
@@ -343,7 +344,16 @@ return [
             'text'    => 'Mi cuenta',
             'url'  => '/micuentaadmin',
             'icon'    => 'fas fa-user-circle',
+            'can'     => 'pedidos',
+        ],
+
+        [
+            'text'    => 'Vista cliente',
+            'url'  => '/',
+            'icon'    => 'fas fa-eye',
         ]
+
+
     ],
 
     /*
