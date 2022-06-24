@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   
+	<!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="{{asset('guia de plantillas/css/style.css')}}" />
 
     <title>@yield('titulo')</title>
 
@@ -25,8 +28,7 @@
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="{{asset('guia de plantillas/css/font-awesome.min.css')}}">
 
-    <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="{{asset('guia de plantillas/css/style.css')}}" />
+
 
     <link type="text/css" rel="stylesheet" href="{{asset('guia de plantillas/css/carga.css')}}" />
     <link type="text/css" rel="stylesheet" href="{{asset('guia de plantillas/css/style1.css')}}" />
@@ -441,11 +443,7 @@
 }
 $( document ).ready(navbarActive());
 </script> --}}
-<script src="{{asset('search/js/search.js')}}" type="module">
-
-	alert("PRUEBA");
-
-</script>
+<script src="{{asset('search/js/search.js')}}" type="module"></script>
 
 <script>
     $(document).ready(function () {

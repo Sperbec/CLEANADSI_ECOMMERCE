@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <title>Orden de compra {{$encabezado->codigo}}</title>
   <meta charset="utf-8">
