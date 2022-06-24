@@ -13,6 +13,8 @@ class SearchController extends Controller
 
         $result = DB::table('productos')
         ->where('nombre','like',''.$data.'%')
+        ->where('cantidad_existencia', '>', '4')
+        ->limit(5)
         ->limit(4)
         ->get();
 
