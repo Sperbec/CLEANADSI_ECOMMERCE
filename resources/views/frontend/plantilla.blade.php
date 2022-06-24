@@ -444,7 +444,11 @@
 }
 $( document ).ready(navbarActive());
 </script> --}}
-<script src="{{asset('search/js/search.js')}}" type="module"></script>
+<script src="{{asset('search/js/search.js')}}" type="module">
+
+	alert("PRUEBA");
+
+</script>
 
 <script>
     $(document).ready(function () {

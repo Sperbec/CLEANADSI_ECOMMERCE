@@ -57,7 +57,7 @@ export class search {
             this.Show_list_each_data(arrayp, valor, n);
 
             let adclasli = document.getElementById('1' + this.idli);
-            adclasli.classList.add('selected');
+            /* adclasli.classList.add('selected'); */
         } else {
             this.ul_add_li.innerHTML = "";
             this.ul_add_li.innerHTML += `
@@ -71,10 +71,9 @@ export class search {
         for (let item of arrayp) {
             n++;
             let nombre = item.nombre;
+            var cantidad = item.cantidad_existencia;
 
             var path = $(location).attr('pathname');
-            console.log(path);
-
 
             if (path == "/") {
                 this.ul_add_li.innerHTML += `
@@ -92,27 +91,42 @@ export class search {
             
             `;
             } else {
-                n++;
-                this.ul_add_li.innerHTML += `
+                if (cantidad > 0) {
+                    n++;
+
+                    this.ul_add_li.innerHTML += `
 
                 <div class="resultado_search" >
                     
                         
-                        <span class="container1">
-                        <ul>
-                            <li id="${n+this.idli}" value="${item.nombre}" class="list-group-item dropdown-item">
+                        <div class="container1">
+                        
+                            <li id="${n+this.idli}" value="${item.nombre}" class="list-group-item drop-item">
                             
                             <a href="../../frontend/detalle/${item.id_producto}"><img class="img-search" src="http://cleanadsi.com/api/get-img?path=${item.imagen}" width="50" height="50"><strong>${nombre.substr(0,valor.length)}</strong>${nombre.substr(valor.length)}
                             Precio del producto: $ ${item.precio}</a>
                             
                             </li>
-                        </ul>
-                        </span>
+                            
+                        </div>
                     
-
+                        
                     
                 </div>
             `;
+
+                    var mylist = arrayp;
+
+                    console.log(mylist);
+
+
+                }
+                else{
+                    this.ul_add_li.innerHTML = "";
+                    this.ul_add_li.innerHTML += `
+                        <p style="color:red;"><br>No se encontro</p>
+                    `;
+                }
             }
 
         }
