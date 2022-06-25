@@ -28,13 +28,9 @@
         <br>
         <strong>ClineLine</strong> <br>
         Distribuimos productos de aseo personal y aseo hogar, de acuerdo a las necesidades de los clientes.
-        <strong>ClineLine</strong> estamos avalados por <strong>INVIMA</strong> para la producción y distribución de
-        productos de aseo y desinfección. Además, estamos certificados bajo la norma <strong>ICONTEC ISO 9001: 2015
-            (Sistema de Gestión de Calidad)</strong>; y de igual forma, los productos TDA, fabricados por nuestra
-        empresa, cumplen la normatividad del <strong>Sistema de Gestión de Seguridad y Salud en el Trabajo (SG-SST) y
-            Sistema Globalmente Armonizado (SGA)</strong>.
-        Contamos con Sedes, puntos de venta y ejecutivos comerciales en las ciudades de Cali en el valle del cauca
-    <p><strong>CleanLine</strong></p>
+        <br>Creemos firmemente, que el uso de nuestros productos genera experiencias agradables
+        al realizar las labores de aseo de forma rápida, eficiente y divertida. 
+        </p>
     </p>
     <br>
     <br>
